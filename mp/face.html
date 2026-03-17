@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaPipe Face Landmark Detection (468 Points)</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .main-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .container {
+            position: relative;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        #videoElement {
+            border-radius: 8px;
+            transform: scaleX(-1); /* Mirror flip */
+        }
+        
+        #canvasElement {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            border-radius: 8px;
+            transform: scaleX(-1); /* Mirror flip */
+        }
+        
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 300px;
+        }
+        
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 640px;
+        }
+        
+        .status {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .status.loading {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status.ready {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .controls {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .webcam-controls {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .webcam-controls label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .webcam-controls select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        button.start {
+            background-color: #28a745;
+        }
+        
+        button.start:hover {
+            background-color: #218838;
+        }
+        
+        button.stop {
+            background-color: #dc3545;
+        }
+        
+        button.stop:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h1>MediaPipe Face Landmark Detection</h1>
+    
+    <div id="status" class="status loading">Initializing MediaPipe...</div>
+    
+    <div class="main-content">
+        <div class="container" id="videoContainer" style="display: none;">
+            <video id="videoElement" width="640" height="480" autoplay></video>
+            <canvas id="canvasElement" width="640" height="480"></canvas>
+        </div>
+        
+        <div class="side-panel">
+            <div class="info">
+                <div class="webcam-controls">
+                    <label for="modelSelect">Select Draw Mode:</label>
+                    <select id="modelSelect" onchange="updateDrawMode()">
+                        <option value="tesselation">FACEMESH_TESSELATION</option>
+                        <option value="contours">FACEMESH_CONTOURS</option>
+                    </select>
+                    
+                    <div class="button-group">
+                        <button id="startButton" class="start" onclick="startCamera()">▶ Start Camera</button>
+                        <button id="stopButton" class="stop" onclick="stopCamera()" disabled>⏹ Stop Camera</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info">
+                <h3>Detection Info</h3>
+                <p>Draw Mode: <span id="currentModel">FACEMESH_TESSELATION</span></p>
+                <p>Detected Faces: <span id="faceCount">0</span></p>
+                <p>Landmarks per Face: <span id="landmarkCount">468</span></p>
+                <p>FPS: <span id="fps">0</span></p>
+                
+                <div class="controls">
+                    <button id="toggleButton" onclick="toggleDetection()" disabled>Pause Detection</button>
+                    <button onclick="togglePoints()" disabled id="togglePointsButton">Hide Landmarks</button>
+                    <button onclick="toggleBackground()" disabled id="toggleBgButton">Black Background</button>
+                </div>
+            </div>
+            
+            <div class="info">
+                <details style="margin-top: 0;">
+                    <summary style="cursor: pointer; font-weight: bold;">About Draw Modes</summary>
+                    <p style="margin-top: 10px;">
+                        <strong>FACEMESH_TESSELATION:</strong> Draws the complete face mesh with all triangular connections.
+                        Shows the full 3D structure of the face with a detailed mesh grid.
+                    </p>
+                    <p style="margin-top: 10px;">
+                        <strong>FACEMESH_CONTOURS:</strong> Draws only the contour lines of facial features.
+                        Shows face oval, eyes, eyebrows, irises, and lips with colored outlines (red for left, green for right).
+                    </p>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load MediaPipe libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+
+    <script>
+        const videoElement = document.getElementById('videoElement');
+        const canvasElement = document.getElementById('canvasElement');
+        const canvasCtx = canvasElement.getContext('2d');
+        const statusDiv = document.getElementById('status');
+        const faceCountSpan = document.getElementById('faceCount');
+        const fpsSpan = document.getElementById('fps');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const toggleButton = document.getElementById('toggleButton');
+        const togglePointsButton = document.getElementById('togglePointsButton');
+        const toggleBgButton = document.getElementById('toggleBgButton');
+        const videoContainer = document.getElementById('videoContainer');
+        const modelSelect = document.getElementById('modelSelect');
+        const currentModelSpan = document.getElementById('currentModel');
+        
+        let isDetecting = true;
+        let showPoints = true;
+        let lastTime = Date.now();
+        let frameCount = 0;
+        let currentStream = null;
+        let animationFrameId = null;
+        let drawMode = 'tesselation';
+        let useBlackBackground = false;
+
+        // Initialize MediaPipe Face Mesh
+        const faceMesh = new FaceMesh({
+            locateFile: (file) => {
+                return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
+            }
+        });
+
+        // Configure Face Mesh parameters
+        faceMesh.setOptions({
+            maxNumFaces: 2,  // Detect up to 2 faces
+            refineLandmarks: true,  // Refine landmarks (including iris)
+            minDetectionConfidence: 0.5,
+            minTrackingConfidence: 0.5
+        });
+
+        // Process detection results
+        faceMesh.onResults(onResults);
+
+        // Process Face Mesh results
+        function onResults(results) {
+            if (!isDetecting || !currentStream) return;
+            
+            // Clear canvas
+            canvasCtx.save();
+            canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+            
+            // Draw background - either video or black
+            if (useBlackBackground) {
+                canvasCtx.fillStyle = '#000000';
+                canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+            } else {
+                canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
+            }
+            
+            if (results.multiFaceLandmarks) {
+                // Update detected face count
+                faceCountSpan.textContent = results.multiFaceLandmarks.length;
+                
+                // Draw landmarks for each face
+                for (const landmarks of results.multiFaceLandmarks) {
+                    if (showPoints) {
+                        // Draw all 468 landmarks
+                        drawLandmarks(landmarks);
+                        
+                        if (drawMode === 'tesselation') {
+                            // FACEMESH_TESSELATION mode - full mesh with all triangles
+                            drawConnectors(landmarks, FACEMESH_TESSELATION, {color: '#C0C0C070', lineWidth: 1});
+                        } else {
+                            // FACEMESH_CONTOURS mode - only contours
+                            // Draw face oval
+                            drawConnectors(landmarks, FACEMESH_FACE_OVAL, {color: '#E0E0E0', lineWidth: 2});
+                            
+                            // Draw lips
+                            drawConnectors(landmarks, FACEMESH_LIPS, {color: '#E0E0E0', lineWidth: 2});
+                            
+                            // Draw left eye
+                            drawConnectors(landmarks, FACEMESH_LEFT_EYE, {color: '#FF3030', lineWidth: 2});
+                            
+                            // Draw left eyebrow
+                            drawConnectors(landmarks, FACEMESH_LEFT_EYEBROW, {color: '#FF3030', lineWidth: 2});
+                            
+                            // Draw left iris
+                            drawConnectors(landmarks, FACEMESH_LEFT_IRIS, {color: '#FF3030', lineWidth: 2});
+                            
+                            // Draw right eye
+                            drawConnectors(landmarks, FACEMESH_RIGHT_EYE, {color: '#30FF30', lineWidth: 2});
+                            
+                            // Draw right eyebrow
+                            drawConnectors(landmarks, FACEMESH_RIGHT_EYEBROW, {color: '#30FF30', lineWidth: 2});
+                            
+                            // Draw right iris
+                            drawConnectors(landmarks, FACEMESH_RIGHT_IRIS, {color: '#30FF30', lineWidth: 2});
+                        }
+                    }
+                }
+            } else {
+                faceCountSpan.textContent = '0';
+            }
+            
+            canvasCtx.restore();
+            updateFPS();
+        }
+
+        // Update FPS
+        function updateFPS() {
+            frameCount++;
+            const currentTime = Date.now();
+            if (currentTime - lastTime >= 1000) {
+                fpsSpan.textContent = frameCount;
+                frameCount = 0;
+                lastTime = currentTime;
+            }
+        }
+
+        // Draw landmarks
+        function drawLandmarks(landmarks) {
+            for (const landmark of landmarks) {
+                const x = landmark.x * canvasElement.width;
+                const y = landmark.y * canvasElement.height;
+                
+                canvasCtx.beginPath();
+                canvasCtx.arc(x, y, 1, 0, 2 * Math.PI);
+                canvasCtx.fillStyle = '#00FF00';
+                canvasCtx.fill();
+            }
+        }
+
+        // Draw connectors
+        function drawConnectors(landmarks, connections, style) {
+            const ctx = canvasCtx;
+            for (const connection of connections) {
+                const start = landmarks[connection[0]];
+                const end = landmarks[connection[1]];
+                
+                ctx.beginPath();
+                ctx.moveTo(start.x * canvasElement.width, start.y * canvasElement.height);
+                ctx.lineTo(end.x * canvasElement.width, end.y * canvasElement.height);
+                ctx.strokeStyle = style.color;
+                ctx.lineWidth = style.lineWidth || 2;
+                ctx.stroke();
+            }
+        }
+
+        // Update draw mode
+        function updateDrawMode() {
+            drawMode = modelSelect.value;
+            
+            if (drawMode === 'tesselation') {
+                currentModelSpan.textContent = 'FACEMESH_TESSELATION';
+            } else {
+                currentModelSpan.textContent = 'FACEMESH_CONTOURS';
+            }
+        }
+
+        // Start camera
+        async function startCamera() {
+            try {
+                // Stop existing stream if any
+                if (currentStream) {
+                    stopCamera();
+                }
+
+                statusDiv.textContent = '⏳ Starting camera...';
+                statusDiv.className = 'status loading';
+
+                // Get default video stream
+                const constraints = {
+                    video: {
+                        width: 640,
+                        height: 480,
+                        facingMode: 'user'
+                    }
+                };
+
+                currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+                videoElement.srcObject = currentStream;
+                
+                // Wait for video to load
+                await new Promise((resolve) => {
+                    videoElement.onloadedmetadata = () => {
+                        resolve();
+                    };
+                });
+
+                // Show video container
+                videoContainer.style.display = 'block';
+
+                statusDiv.textContent = '✓ Camera started. Initializing detection...';
+                statusDiv.className = 'status ready';
+
+                // Start processing frames
+                const processFrame = async () => {
+                    if (currentStream && videoElement.readyState === videoElement.HAVE_ENOUGH_DATA) {
+                        await faceMesh.send({image: videoElement});
+                    }
+                    animationFrameId = requestAnimationFrame(processFrame);
+                };
+                
+                processFrame();
+                
+                // Update UI
+                statusDiv.textContent = '✓ Detection active';
+                statusDiv.className = 'status ready';
+                startButton.disabled = true;
+                stopButton.disabled = false;
+                toggleButton.disabled = false;
+                togglePointsButton.disabled = false;
+                toggleBgButton.disabled = false;
+                
+            } catch (error) {
+                console.error('Camera start failed:', error);
+                
+                let errorMessage = '✗ Error: ';
+                if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+                    errorMessage += 'Camera permission denied. Please allow camera access and try again.';
+                } else if (error.name === 'NotFoundError' || error.name === 'DevicesNotFoundError') {
+                    errorMessage += 'Camera not found. Please check your camera connection.';
+                } else if (error.name === 'NotReadableError' || error.name === 'TrackStartError') {
+                    errorMessage += 'Camera is being used by another application.';
+                } else if (error.name === 'OverconstrainedError') {
+                    errorMessage += 'Camera does not support the required resolution.';
+                } else if (error.name === 'SecurityError') {
+                    errorMessage += 'Security restriction: Please use HTTPS or localhost.';
+                } else {
+                    errorMessage += error.message || 'Cannot access camera';
+                }
+                
+                statusDiv.textContent = errorMessage;
+                statusDiv.className = 'status error';
+                showTroubleshootingInfo();
+            }
+        }
+
+        // Stop camera
+        function stopCamera() {
+            if (currentStream) {
+                // Stop all tracks
+                currentStream.getTracks().forEach(track => track.stop());
+                currentStream = null;
+                videoElement.srcObject = null;
+            }
+
+            // Cancel animation frame
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+
+            // Clear canvas
+            canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+
+            // Hide video container
+            videoContainer.style.display = 'none';
+
+            // Update UI
+            statusDiv.textContent = '⏹ Camera stopped';
+            statusDiv.className = 'status loading';
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            toggleButton.disabled = true;
+            togglePointsButton.disabled = true;
+            toggleBgButton.disabled = true;
+            faceCountSpan.textContent = '0';
+            fpsSpan.textContent = '0';
+        }
+
+        // Toggle detection
+        function toggleDetection() {
+            if (!currentStream) return;
+            
+            isDetecting = !isDetecting;
+            
+            if (isDetecting) {
+                toggleButton.textContent = 'Pause Detection';
+                statusDiv.textContent = '✓ Detection active';
+                statusDiv.className = 'status ready';
+            } else {
+                toggleButton.textContent = 'Resume Detection';
+                statusDiv.textContent = '⏸ Detection paused';
+                statusDiv.className = 'status loading';
+            }
+        }
+
+        // Toggle landmarks display
+        function togglePoints() {
+            showPoints = !showPoints;
+            togglePointsButton.textContent = showPoints ? 'Hide Landmarks' : 'Show Landmarks';
+        }
+
+        // Toggle background
+        function toggleBackground() {
+            useBlackBackground = !useBlackBackground;
+            toggleBgButton.textContent = useBlackBackground ? 'Video Background' : 'Black Background';
+        }
+
+        // Show troubleshooting info
+        function showTroubleshootingInfo() {
+            // Check if already shown
+            if (document.getElementById('troubleshooting')) return;
+            
+            const troubleshooting = document.createElement('div');
+            troubleshooting.id = 'troubleshooting';
+            troubleshooting.className = 'info';
+            troubleshooting.style.backgroundColor = '#fff3cd';
+            troubleshooting.innerHTML = `
+                <h3>⚠️ Troubleshooting</h3>
+                <p><strong>Please try the following:</strong></p>
+                <ol>
+                    <li><strong>Check browser permissions:</strong> Allow this website to access your camera</li>
+                    <li><strong>Use HTTPS or localhost:</strong>
+                        <ul>
+                            <li>If using local file (file:///), use a local server instead</li>
+                            <li>Recommended: Python's <code>python -m http.server 8000</code></li>
+                            <li>Or use online editors like CodePen or JSFiddle</li>
+                        </ul>
+                    </li>
+                    <li><strong>Check camera:</strong> Ensure camera is connected and not used by other apps</li>
+                    <li><strong>Browser recommendation:</strong> Use latest Chrome, Edge, or Firefox</li>
+                    <li><strong>Reload page:</strong> Press F5 and allow camera access again</li>
+                </ol>
+                <button onclick="location.reload()" style="margin-top: 10px;">🔄 Reload Page</button>
+            `;
+            document.body.appendChild(troubleshooting);
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            statusDiv.textContent = '✓ Ready. Click "Start Camera" to begin.';
+            statusDiv.className = 'status ready';
+        });
+    </script>
+</body>
+</html>
