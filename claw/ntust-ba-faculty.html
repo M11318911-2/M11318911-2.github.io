@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國立臺灣科技大學 企業管理系 - 師資陣容</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1.3rem;
+            color: #aaa;
+        }
+        .professor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .professor-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        .professor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: #00d9ff;
+        }
+        .professor-name {
+            font-size: 1.5rem;
+            color: #00d9ff;
+            margin-bottom: 5px;
+        }
+        .professor-title {
+            font-size: 0.95rem;
+            color: #00ff88;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .professor-info {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        .professor-info span {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .research-label {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        .research-area {
+            font-size: 0.9rem;
+            color: #ddd;
+            background: rgba(0,0,0,0.2);
+            padding: 12px;
+            border-radius: 10px;
+            line-height: 1.8;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .badge-top-scientist {
+            background: linear-gradient(90deg, #ffd700, #ffaa00);
+            color: #000;
+        }
+        .badge-emeritus {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #00d9ff;
+            color: #00d9ff;
+        }
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #00d9ff;
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .professor-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏢 國立臺灣科技大學 企業管理系</h1>
+            <p class="subtitle">National Taiwan University of Science and Technology</p>
+            <p style="margin-top: 20px; color: #888;">師資陣容 | Faculty</p>
+        </header>
+
+        <h2 class="section-title">👨‍🏫 專任師資 Full-time Faculty</h2>
+        
+        <div class="professor-grid">
+            <!-- 吳克振 -->
+            <div class="professor-card">
+                <div class="professor-name">吳克振</div>
+                <div class="professor-title">教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-512</span>
+                    <span>📞 電話：02-2737-6751</span>
+                    <span>✉️ Email：ccwu@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：美國加州柏克萊大學作業研究博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    品牌管理、行銷與人工智慧、策略性行銷
+                </div>
+            </div>
+
+            <!-- 欒斌 -->
+            <div class="professor-card">
+                <div class="professor-name">欒斌</div>
+                <div class="professor-title">
+                    教授 
+                    <span class="badge badge-top-scientist">🌟 全球前2%頂尖科學家</span>
+                    <span class="badge" style="background:#ff6b6b;color:#fff;">🏆 教育部師鐸獎</span>
+                </div>
+                <div class="professor-info">
+                    <span>📍 研究室：T2-408-4</span>
+                    <span>📞 電話：02-2737-6754</span>
+                    <span>✉️ Email：luarn@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：美國威斯康辛大學工業工程博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    電子商務、網路行銷、區塊鏈應用、Web 3.0
+                </div>
+            </div>
+
+            <!-- 張順教 -->
+            <div class="professor-card">
+                <div class="professor-name">張順教</div>
+                <div class="professor-title">教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-511</span>
+                    <span>📞 電話：02-2730-1004</span>
+                    <span>✉️ Email：hlyun56@gmail.com</span>
+                    <span>🎓 最高學歷：PhD in Economics, SUNY Stony Brook</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    高科技產業與人工智慧分析、賽局理論、個體計量應用
+                </div>
+            </div>
+
+            <!-- 葉穎蓉 -->
+            <div class="professor-card">
+                <div class="professor-name">葉穎蓉</div>
+                <div class="professor-title">教授 | 國際長</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-510</span>
+                    <span>📞 電話：02-2737-6738</span>
+                    <span>✉️ Email：yyeh@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：PhD in Industrial Management, UW-Madison</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    人力資源管理、組織行為、工作與生活平衡
+                </div>
+            </div>
+
+            <!-- 張譯尹 -->
+            <div class="professor-card">
+                <div class="professor-name">張譯尹</div>
+                <div class="professor-title">
+                    特聘教授
+                    <span class="badge badge-top-scientist">🌟 全球前2%頂尖科學家</span>
+                </div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-517</span>
+                    <span>📞 電話：02-2737-6507</span>
+                    <span>✉️ Email：y.chang@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：英國 Loughborough University 博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    跨文化行銷管理、語言字詞分析、人工智慧、量化分析、國際人力資源管理、新興國家跨國企業、知識轉移與創新管理
+                </div>
+            </div>
+
+            <!-- 盛麗慧 -->
+            <div class="professor-card">
+                <div class="professor-name">盛麗慧</div>
+                <div class="professor-title">
+                    教授
+                    <span class="badge badge-top-scientist">🌟 全球前2%頂尖科學家</span>
+                </div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-515</span>
+                    <span>📞 電話：02-2730-3285</span>
+                    <span>✉️ Email：msheng@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：美國明尼蘇達大學博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    未來行銷、 omni-channel 策略、全球行銷創新、高科技行銷、消費者行為、數位行銷、循環行銷經濟、破壞式創新、創新擴散、可持续消費行為
+                </div>
+            </div>
+
+            <!-- 曾盛恕 -->
+            <div class="professor-card">
+                <div class="professor-name">曾盛恕</div>
+                <div class="professor-title">教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-513</span>
+                    <span>📞 電話：02-2737-6748</span>
+                    <span>✉️ Email：tsang@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：PhD in Public Policy and Management, Carnegie Mellon</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    零售策略與創新、服務創新、商業數據分析與應用、科技創新創業
+                </div>
+            </div>
+
+            <!-- 陳崇文 -->
+            <div class="professor-card">
+                <div class="professor-name">陳崇文</div>
+                <div class="professor-title">教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-516</span>
+                    <span>📞 電話：02-2737-6752</span>
+                    <span>✉️ Email：cwchen@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：美國華盛頓州立大學企業管理博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    組織理論、策略理論、跨文化管理
+                </div>
+            </div>
+
+            <!-- 王蕙芝 -->
+            <div class="professor-card">
+                <div class="professor-name">王蕙芝</div>
+                <div class="professor-title">教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-408</span>
+                    <span>📞 電話：02-2737-6732</span>
+                    <span>✉️ Email：hcwang1@gmail.com</span>
+                    <span>🎓 最高學歷：英國卡地夫大學行銷與策略博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    ESG 設計與企業品牌定位策略、新創企業行銷策略、虛實通路與溝通策略、創意商品開發與顧客價值策略、腦科學與智慧行銷策略
+                </div>
+            </div>
+
+            <!-- 郭啟賢 -->
+            <div class="professor-card">
+                <div class="professor-name">郭啟賢</div>
+                <div class="professor-title">教授 | 系主任</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-502</span>
+                    <span>📞 電話：02-2737-6728</span>
+                    <span>✉️ Email：cooper@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：美國德州大學會計學博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    管理會計、財務會計
+                </div>
+            </div>
+
+            <!-- 謝亦泰 -->
+            <div class="professor-card">
+                <div class="professor-name">謝亦泰</div>
+                <div class="professor-title">副教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-503</span>
+                    <span>📞 電話：02-2737-6505</span>
+                    <span>✉️ Email：yitai@ntust.edu.tw</span>
+                    <span>🎓 最高學歷：PhD in Social and Personality Psychology, UT Austin</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    管理心理學、職場嫌惡行為、組織行為、消費者心理學、行銷心理學
+                </div>
+            </div>
+
+            <!-- 呂志豪 -->
+            <div class="professor-card">
+                <div class="professor-name">呂志豪</div>
+                <div class="professor-title">副教授 | 管院副院長暨EMBA執行長</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-407</span>
+                    <span>📞 電話：02-2737-6735</span>
+                    <span>✉️ Email：shlu@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：PhD in Supply Chain Management, Iowa State</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    物流與運輸問題之數學建模
+                </div>
+            </div>
+
+            <!-- 江藍龍 -->
+            <div class="professor-card">
+                <div class="professor-name">江藍龍</div>
+                <div class="professor-title">副教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-204</span>
+                    <span>📞 電話：02-2737-6734</span>
+                    <span>✉️ Email：luke114ba@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：美國愛荷華州立大學行銷博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    影響力行銷、全球休閒產業暨旅遊行銷、國際行銷、中小企業行銷績效、永續行銷、消費者體驗/行為、運動行銷
+                </div>
+            </div>
+
+            <!-- 成力庚 -->
+            <div class="professor-card">
+                <div class="professor-name">成力庚</div>
+                <div class="professor-title">副教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-508-1</span>
+                    <span>📞 電話：02-2730-3710</span>
+                    <span>✉️ Email：lkcheng@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：國立政治大學企業管理學系博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    服務科技與體驗行銷、數位轉型與品牌傳播專題、大數據行銷
+                </div>
+            </div>
+
+            <!-- 李嘉林 -->
+            <div class="professor-card">
+                <div class="professor-name">李嘉林</div>
+                <div class="professor-title">助理教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-203</span>
+                    <span>📞 電話：02-2737-6789</span>
+                    <span>✉️ Email：chialin@ntust.edu.tw</span>
+                    <span>🎓 最高學歷：PhD in Business Administration, Bielefeld University, Germany</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    分析建模、品牌管理、消費者經濟、客戶體驗、行銷
+                </div>
+            </div>
+
+            <!-- 黃美慈 -->
+            <div class="professor-card">
+                <div class="professor-name">黃美慈</div>
+                <div class="professor-title">助理教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-526</span>
+                    <span>📞 電話：02-2737-6906</span>
+                    <span>✉️ Email：mthuang@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：伊利諾大學香檳分校人力資源發展博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    團隊學習、工作場所學習、工作倫理
+                </div>
+            </div>
+
+            <!-- 洪東敏 -->
+            <div class="professor-card">
+                <div class="professor-name">洪東敏</div>
+                <div class="professor-title">助理教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-509</span>
+                    <span>📞 電話：02-2730-1083</span>
+                    <span>✉️ Email：tung@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：PhD in Strategy & International Business, Rutgers University</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    競爭策略、合作策略、競合策略、平臺策略、產業分析與企業評價、全球創新與創業管理
+                </div>
+            </div>
+
+            <!-- 梁浩怡 -->
+            <div class="professor-card">
+                <div class="professor-name">梁浩怡</div>
+                <div class="professor-title">助理教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-409</span>
+                    <span>📞 電話：02-2737-6739</span>
+                    <span>✉️ Email：hawi@ntust.edu.tw</span>
+                    <span>🎓 最高學歷：國立臺灣大學國際企業博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    顧客服務行銷、B2B 與通路行銷、CSR 與善因行銷、數位行銷
+                </div>
+            </div>
+
+            <!-- 阮祥微 -->
+            <div class="professor-card">
+                <div class="professor-name">阮祥微 (Tuong-Vy Nguyen)</div>
+                <div class="professor-title">助理教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：MA-514</span>
+                    <span>📞 電話：02-2737-6730</span>
+                    <span>✉️ Email：Tvy.nguyen@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：國立成功大學 國際企業博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    人力資源系統、領導風格、組織行為
+                </div>
+            </div>
+
+            <!-- 紀舒哲 -->
+            <div class="professor-card">
+                <div class="professor-name">紀舒哲</div>
+                <div class="professor-title">專案副教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：誠信樓 E307 (華夏校區)</span>
+                    <span>📞 電話：02-89415100#4318</span>
+                    <span>✉️ Email：scchi@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：國立臺北科技大學工商管理研究所博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    行銷通路、數位行銷、行銷科技、訓練規劃與評量、職能分析、職能導向課程發展
+                </div>
+            </div>
+
+            <!-- 趙子欽 -->
+            <div class="professor-card">
+                <div class="professor-name">趙子欽</div>
+                <div class="professor-title">專案副教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：誠信樓 E304 (華夏校區)</span>
+                    <span>📞 電話：02-89415100#4313</span>
+                    <span>✉️ Email：edgarchao@gmail.com</span>
+                    <span>🎓 最高學歷：國立臺灣大學商學研究所博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    (待補)
+                </div>
+            </div>
+
+            <!-- 林建宏 -->
+            <div class="professor-card">
+                <div class="professor-name">林建宏</div>
+                <div class="professor-title">專案助理教授</div>
+                <div class="professor-info">
+                    <span>📍 研究室：誠信樓 E302 (華夏校區)</span>
+                    <span>📞 電話：02-89415100#4311</span>
+                    <span>✉️ Email：kfut543@gmail.com</span>
+                    <span>🎓 最高學歷：美國韋伯斯特大學管理博士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    企業優勢、門市營運、策略規劃
+                </div>
+            </div>
+
+            <!-- 林清珮 -->
+            <div class="professor-card">
+                <div class="professor-name">林清珮</div>
+                <div class="professor-title">專案講師</div>
+                <div class="professor-info">
+                    <span>📍 研究室：中正堂 A311 (華夏校區)</span>
+                    <span>📞 電話：02-8941-5100#4126</span>
+                    <span>✉️ Email：cpeilin@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：國立台灣大學財務金融碩士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    投資人行為、異常報酬研究、財金資訊創新
+                </div>
+            </div>
+
+            <!-- 馬蓉 -->
+            <div class="professor-card">
+                <div class="professor-name">馬蓉</div>
+                <div class="professor-title">專案講師</div>
+                <div class="professor-info">
+                    <span>📍 研究室：中正常 A208 (華夏校區)</span>
+                    <span>📞 電話：02-89415100#4117</span>
+                    <span>✉️ Email：emma722@mail.ntust.edu.tw</span>
+                    <span>🎓 最高學歷：國立台灣科技大學管理學碩士</span>
+                </div>
+                <div class="research-label">研究範疇 Research Areas</div>
+                <div class="research-area">
+                    企業優勢、門市營運、策略規劃
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>📍 地址：106 臺北市大安區基隆路四段 43 號 管理大樓四樓</p>
+            <p>📞 電話：02-2733-3141#7801 | ✉️ Email：baoffice@ntust.edu.tw</p>
+            <p style="margin-top: 20px;">
+                資料來源：<a href="https://ba.ntust.edu.tw/" target="_blank">臺灣科技大學企業管理系</a>
+            </p>
+            <p style="margin-top: 10px; color: #666;">
+                © 2026 國立臺灣科技大學企業管理系 | 網頁製作：OpenClaw AI Assistant
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
