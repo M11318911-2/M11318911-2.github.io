@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026年3月17日 科技新聞晨報</title>
+    <style>
+        body { font-family: "Microsoft JhengHei", Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.8; background: #f5f5f5; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        .language-tabs { display: flex; gap: 10px; margin: 20px 0; }
+        .tab { padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .tab.active { background: #2c3e50; }
+        .news-section { display: none; }
+        .news-section.active { display: block; }
+        .news-item { background: white; padding: 20px; margin: 15px 0; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .news-item h2 { color: #e74c3c; margin-top: 0; }
+        .date { color: #7f8c8d; font-size: 14px; }
+        .audio-player { background: #34495e; color: white; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0; }
+        audio { width: 100%; margin-top: 10px; }
+        .footer { text-align: center; color: #7f8c8d; margin-top: 30px; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h1>📰 科技新聞晨報 | Tech News Briefing</h1>
+    <p class="date">2026年3月17日 | March 17, 2026</p>
+    
+    <div class="language-tabs">
+        <button class="tab active" onclick="showTab('zh')">🇹🇼 中文</button>
+        <button class="tab" onclick="showTab('en')">🇺🇸 English</button>
+    </div>
+
+    <!-- 中文版本 -->
+    <div id="zh" class="news-section active">
+        <div class="audio-player">
+            <h3>🎧 語音播放</h3>
+            <audio controls>
+                <source src="morningnews-20260317.mp3" type="audio/mpeg">
+                您的瀏覽器不支援音訊播放
+            </audio>
+        </div>
+
+        <div class="news-item">
+            <h2>🚀 輝達 GTC 2026</h2>
+            <p>輝達執行長黃仁勳在GTC 2026大会上宣布，太空運算時代已經到來。他表示隨著衛星星座的部署和對太空的探索，人工智慧必須存在於任何有資料的地方。華爾街分析師高度讚揚輝達的新技術和成長預測，認為這完全反駁了AI動能放緩的觀點。</p>
+        </div>
+
+        <div class="news-item">
+            <h2>🤖 迪士尼機器人</h2>
+            <p>迪士尼的漫遊機器人角色冰雪奇緣的奧洛夫在輝達GTC主題演講中驚喜亮相，預覽了將於3月29日在巴黎迪士尼樂園亮相的技術。</p>
+        </div>
+
+        <div class="news-item">
+            <h2>💻 半導體產業</h2>
+            <p>SK集團會長表示，晶圓短缺將持續到2030年，試圖穩定記憶體價格。</p>
+        </div>
+    </div>
+
+    <!-- 英文版本 -->
+    <div id="en" class="news-section">
+        <div class="audio-player">
+            <h3>🎧 Audio</h3>
+            <audio controls>
+                <source src="morningnews-en.mp3" type="audio/mpeg">
+                Your browser does not support audio playback
+            </audio>
+        </div>
+
+        <div class="news-item">
+            <h2>🚀 Nvidia GTC 2026</h2>
+            <p>Nvidia CEO Jensen Huang announced at GTC 2026 that the era of space computing has arrived. He stated that as satellite constellations are deployed and exploration goes deeper into space, artificial intelligence must exist wherever there is data. Wall Street analysts highly praised Nvidia's new technology and growth forecasts.</p>
+        </div>
+
+        <div class="news-item">
+            <h2>🤖 Disney Robotics</h2>
+            <p>Disney's roaming robot character Olaf from Frozen made a surprise appearance at Nvidia GTC keynote, previewing the technology that will debut at Disneyland Paris on March 29.</p>
+        </div>
+
+        <div class="news-item">
+            <h2>💻 Semiconductor Industry</h2>
+            <p>SK Group chairman said the wafer shortage will continue until 2030, trying to stabilize memory prices.</p>
+        </div>
+    </div>
+
+    <script>
+        function showTab(lang) {
+            document.querySelectorAll('.news-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(lang).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+
+    <div class="footer">
+        <p>由 OpenClaw AI 生成的每日科技新聞晨報 | Daily Tech News by OpenClaw AI</p>
+    </div>
+</body>
+</html>
