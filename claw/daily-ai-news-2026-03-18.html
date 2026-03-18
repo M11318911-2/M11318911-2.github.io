@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日 AI 資訊 - 2026年3月18日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.8;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(0,217,255,0.3);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle { font-size: 1.2rem; color: #aaa; }
+        
+        /* 語音播放器區域 */
+        .voice-section {
+            background: rgba(0,0,0,0.4);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px solid #00d9ff;
+        }
+        .voice-section h2 {
+            color: #00d9ff;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .voice-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .voice-tab {
+            padding: 10px 25px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .voice-tab.active {
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            color: #000;
+            font-weight: bold;
+        }
+        .voice-player { display: none; text-align: center; }
+        .voice-player.active { display: block; }
+        .voice-player audio {
+            width: 100%;
+            max-width: 400px;
+            height: 40px;
+            border-radius: 20px;
+        }
+        
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: #00d9ff;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0,217,255,0.3);
+        }
+        h3 { font-size: 1.2rem; color: #00ff88; margin: 20px 0 10px; }
+        .news-item {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #00d9ff;
+        }
+        .news-item h4 { color: #fff; font-size: 1.1rem; margin-bottom: 8px; }
+        .news-item p { color: #ccc; font-size: 0.95rem; }
+        .teaching-tag {
+            display: inline-block;
+            background: #ff6b6b;
+            color: #fff;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+        .highlight { background: rgba(0,217,255,0.15); padding: 15px; border-radius: 10px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        th { color: #00d9ff; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 每日 AI 資訊 Daily AI News</h1>
+            <p class="subtitle">2026年3月18日 Wednesday</p>
+        </header>
+
+        <!-- 語音播放器 -->
+        <div class="voice-section">
+            <h2>🎤 語音播放 Voice</h2>
+            <div class="voice-tabs">
+                <div class="voice-tab active" onclick="switchVoice('zh')">🇨🇳 中文</div>
+                <div class="voice-tab" onclick="switchVoice('en')">🇺🇸 English</div>
+            </div>
+            <div id="voice-zh" class="voice-player active">
+                <audio controls><source src="https://ntust2026.github.io/claw/daily-ai-news-2026-03-18-zh.mp3" type="audio/mpeg"></audio>
+            </div>
+            <div id="voice-en" class="voice-player">
+                <audio controls><source src="https://ntust2026.github.io/claw/daily-ai-news-2026-03-18-en.mp3" type="audio/mpeg"></audio>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📰 MIT News AI 重點</h2>
+            
+            <div class="news-item">
+                <h4>🎓 MIT-IBM Watson AI Lab：支持早期職涯研究人員</h4>
+                <p>學術與產業合作是早期階段的加速器，支持職業發展與研究進步。</p>
+                <span class="teaching-tag">🎓 教學：產學合作</span>
+            </div>
+
+            <div class="news-item">
+                <h4>🎓 AI 幫助預測心衰竭患者一年內惡化風險</h4>
+                <p>MIT、Mass General Brigham 和哈佛醫學院研究團隊開發深度學習模型，可提前一年預測心衰竭患者預後。</p>
+                <span class="teaching-tag">🎓 教學：醫療 AI 應用</span>
+            </div>
+
+            <div class="news-item">
+                <h4>🎓 AI 與數學及物理科學的未來</h4>
+                <p>MIT Professor Jesse Thaler 描述 AI 與數學物理科學的雙向橋樑願景。</p>
+                <span class="teaching-tag">🎓 教學：AI 跨領域應用</span>
+            </div>
+
+            <div class="news-item">
+                <h4>MIT 新課程：用人類學改善聊天機器人</h4>
+                <p>MIT 電腦科學學生設計 AI 聊天機器人，幫助年輕用戶變得更社交化和有社交自信。</p>
+                <span class="teaching-tag">🎓 教學：人機互動設計</span>
+            </div>
+
+            <div class="news-item">
+                <h4>🎓 改進 AI 模型解釋預測的能力</h4>
+                <p>新方法可幫助用戶判斷是否應該信任 AI 模型在醫療、自動駕駛等安全關鍵應用中的預測。</p>
+                <span class="teaching-tag">🎓 教學：可解釋 AI (XAI)</span>
+            </div>
+
+            <div class="news-item">
+                <h4>「ChatGPT for spreadsheets」幫助工程師更快解決設計難題</h4>
+                <p>可處理電網優化、車輛設計等極其複雜的設計問題。</p>
+                <span class="teaching-tag">🎓 教學：LLM 與專業工具結合</span>
+            </div>
+
+            <div class="news-item">
+                <h4>🎓 新方法可提高 LLM 訓練效率</h4>
+                <p>利用閒置運算時間，可將訓練速度提高一倍，同時保持準確度。</p>
+                <span class="teaching-tag">🎓 教學：LLM 訓練成本優化</span>
+            </div>
+
+            <div class="news-item">
+                <h4>🎓 研究：AI 聊天機器人對弱勢用戶提供較不準確資訊</h4>
+                <p>對英語程度較低、教育程度較低、非美國出生的用戶表現較差。</p>
+                <span class="teaching-tag">🎓 教學：AI 公平性與偏見</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌐 產業動態 / Hacker News</h2>
+            
+            <div class="news-item">
+                <h4>⚠️ OpenClaw AI Agent 發現安全漏洞</h4>
+                <p>中國 CNCERT 發布警告，OpenClaw 存在 Prompt Injection 與資料外洩風險。</p>
+            </div>
+
+            <div class="news-item">
+                <h4>OpenAI Codex Security 掃描發現嚴重漏洞</h4>
+                <p>Codex Security 掃描 120 萬個提交，發現 792 個關鍵漏洞與 10,561 個高嚴重性問題。</p>
+            </div>
+
+            <div class="news-item">
+                <h4>AI 輔助攻擊：600+ FortiGate 設備被入侵</h4>
+                <p>俄語攻擊者利用 Anthropic、CyberStrikeAI 等 AI 服務，在 55 國發動攻擊。</p>
+            </div>
+
+            <div class="news-item">
+                <h4>🔒 安全領導者難以抵禦 AI 系統攻擊</h4>
+                <p>大多數安全領導者表示，現有工具與技能不足以應對 AI 系統的安全挑戰。</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📄 最新 AI 論文精選</h2>
+            
+            <table>
+                <tr><th>論文</th><th>領域</th><th>教學相關</th></tr>
+                <tr><td>NeuroHex: World Models for Adaptive AI</td><td>AI 架構</td><td>🎓</td></tr>
+                <tr><td>Agentic AI for Industrial Flowsheet</td><td>Agent 應用</td><td>🎓</td></tr>
+                <tr><td>OpenClaw-RL</td><td>強化學習</td><td>🎓</td></tr>
+                <tr><td>Privacy-Preserving Machine Translation</td><td>翻譯</td><td>🎓</td></tr>
+            </table>
+        </div>
+
+        <footer>
+            <p>📅 每日更新 | Daily Update | 臺科大 Agentic AI 課程</p>
+            <p style="margin-top:10px; color:#666;">© 2026 OpenClaw AI Assistant</p>
+        </footer>
+    </div>
+
+    <script>
+        function switchVoice(lang) {
+            document.querySelectorAll('.voice-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.voice-player').forEach(p => p.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('voice-' + lang).classList.add('active');
+        }
+    </script>
+</body>
+</html>
