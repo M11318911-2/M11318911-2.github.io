@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日 AI 資訊 - 2026年3月17日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.8;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(0,217,255,0.3);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle { font-size: 1.2rem; color: #aaa; }
+        .lang-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .lang-tab {
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .lang-tab.active {
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            color: #000;
+            font-weight: bold;
+        }
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: #00d9ff;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0,217,255,0.3);
+        }
+        h3 { font-size: 1.2rem; color: #00ff88; margin: 20px 0 10px; }
+        .news-item {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #00d9ff;
+        }
+        .news-item h4 { color: #fff; font-size: 1.1rem; margin-bottom: 8px; }
+        .news-item p { color: #ccc; font-size: 0.95rem; }
+        .teaching-tag {
+            display: inline-block;
+            background: #ff6b6b;
+            color: #fff;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+        .highlight { background: rgba(0,217,255,0.15); padding: 15px; border-radius: 10px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        th { color: #00d9ff; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 每日 AI 資訊 Daily AI News</h1>
+            <p class="subtitle">2026年3月17日 Tuesday</p>
+        </header>
+
+        <div class="lang-tabs">
+            <div class="lang-tab active" onclick="switchLang('zh')">🇨🇳 中文</div>
+            <div class="lang-tab" onclick="switchLang('en')">🇺🇸 English</div>
+        </div>
+
+        <!-- 中文版本 -->
+        <div id="zh" class="lang-content active">
+            <div class="section">
+                <h2>📰 MIT News AI 重點</h2>
+                
+                <div class="news-item">
+                    <h4>🎓 AI 幫助預測心衰竭患者一年內惡化風險</h4>
+                    <p>MIT、Mass General Brigham 和哈佛醫學院研究團隊開發深度學習模型，可提前一年預測心衰竭患者預後。</p>
+                    <span class="teaching-tag">🎓 教學：醫療 AI 應用、預測模型</span>
+                </div>
+
+                <div class="news-item">
+                    <h4>🎓 AI 與數學及物理科學的未來</h4>
+                    <p>MIT Professor Jesse Thaler 描述 AI 與數學物理科學的雙向橋樑願景。</p>
+                    <span class="teaching-tag">🎓 教學：AI 跨領域應用</span>
+                </div>
+
+                <div class="news-item">
+                    <h4>MIT 新課程：用人類學改善聊天機器人</h4>
+                    <p>MIT 電腦科學學生設計 AI 聊天機器人，幫助年輕用戶變得更社交化和有社交自信。</p>
+                    <span class="teaching-tag">🎓 教學：人機互動設計</span>
+                </div>
+
+                <div class="news-item">
+                    <h4>🎓 改進 AI 模型解釋預測的能力</h4>
+                    <p>新方法可幫助用戶判斷是否應該信任 AI 模型在醫療、自動駕駛等安全關鍵應用中的預測。</p>
+                    <span class="teaching-tag">🎓 教學：可解釋 AI (XAI)</span>
+                </div>
+
+                <div class="news-item">
+                    <h4>「ChatGPT for spreadsheets」幫助工程師更快解決設計難題</h4>
+                    <p>可處理電網優化、車輛設計等極其複雜的設計問題。</p>
+                    <span class="teaching-tag">🎓 教學：LLM 與專業工具結合</span>
+                </div>
+
+                <div class="news-item">
+                    <h4>🎓 新方法可提高 LLM 訓練效率</h4>
+                    <p>利用閒置運算時間，可將訓練速度提高一倍，同時保持準確度。</p>
+                    <span class="teaching-tag">🎓 教學：LLM 訓練成本優化</span>
+                </div>
+
+                <div class="news-item">
+                    <h4>🎓 研究：AI 聊天機器人對弱勢用戶提供較不準確資訊</h4>
+                    <p>對英語程度較低、教育程度較低、非美國出生的用戶表現較差。</p>
+                    <span class="teaching-tag">🎓 教學：AI 公平性與偏見</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🌐 Hacker News / 產業動態</h2>
+                
+                <div class="news-item">
+                    <h4>⚠️ OpenClaw AI Agent 發現安全漏洞</h4>
+                    <p>中國 CNCERT 發布警告，OpenClaw (原 Clawdbot、Moltbot) 存在安全問題。</p>
+                </div>
+
+                <div class="news-item">
+                    <h4>AI 輔助攻擊：600+ FortiGate 設備被入侵</h4>
+                    <p>俄語攻擊者利用 Anthropic、CyberStrikeAI 等 AI 服務，在 55 國發動攻擊。</p>
+                </div>
+
+                <div class="news-item">
+                    <h4>🔒 AI 安全威脅升級</h4>
+                    <p>網路攻擊速度加快 89%，AI 勒索軟體 2025 年創歷史新高。</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📄 最新 AI 論文精選</h2>
+                
+                <table>
+                    <tr><th>論文</th><th>領域</th><th>教學相關</th></tr>
+                    <tr><td>NeuroHex: World Models for Adaptive AI</td><td>AI 架構</td><td>🎓</td></tr>
+                    <tr><td>RAPTOR-AI for Disaster</td><td>多模態 RAG</td><td>🎓 Multi-Agent</td></tr>
+                    <tr><td>coDrawAgents</td><td>多智能體對話</td><td>🎓</td></tr>
+                    <tr><td>Privacy-Preserving MT</td><td>翻譯</td><td>🎓</td></tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>🎓 本日教學重點</h2>
+                <div class="highlight">
+                    <p><strong>第 1 週（LLM 基礎）</strong>：LLM 訓練效率、Prompt Engineering</p>
+                    <p><strong>第 2 週（Agentic AI）</strong>：什麼是 Agent？AI 安全問題</p>
+                    <p><strong>第 4 週（RAG）</strong>：可解釋 AI、XAI 教學案例</p>
+                    <p><strong>第 9 週（企業應用）</strong>：醫療 AI、AI 倫理與安全</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 英文版本 -->
+        <div id="en" class="lang-content">
+            <div class="section">
+                <h2>📰 MIT News AI Highlights</h2>
+                
+                <div class="news-item">
+                    <h4>🎓 AI May Help Predict Heart Failure Patient Deterioration</h4>
+                    <p>MIT, Mass General Brigham, and Harvard Medical School developed a deep-learning model to forecast heart failure prognosis up to one year in advance.</p>
+                    <span class="teaching-tag">🎓 Teaching: Medical AI, Predictive Models</span>
+                </div>
+
+                <div class="news-item">
+                    <h4>🎓 3 Questions: AI and Mathematical/Physical Sciences</h4>
+                    <p>Professor Jesse Thaler describes a vision for a two-way bridge between AI and mathematical/physical sciences.</p>
+                    <span class="teaching-tag">🎓 Teaching: Cross-disciplinary AI</span>
+                </div>
+
+                <div class="news-item">
+                    <h4>New MIT Class Uses Anthropology to Improve Chatbots</h4>
+                    <p>MIT CS students design AI chatbots to help young users become more socially confident.</p>
+                    <span class="teaching-tag">🎓 Teaching: HCI Design</span>
+                </div>
+
+                <div class="news-item">
+                    <h4>🎓 Improving AI Models' Ability to Explain Predictions</h4>
+                    <p>New approach helps users decide whether to trust AI predictions in healthcare and autonomous driving.</p>
+                    <span class="teaching-tag">🎓 Teaching: Explainable AI (XAI)</span>
+                </div>
+
+                <div class="news-item">
+                    <h4>"ChatGPT for Spreadsheets" Helps Engineers</h4>
+                    <p>Can tackle extremely complex design problems like power grid optimization and vehicle design.</p>
+                    <span class="teaching-tag">🎓 Teaching: LLM + Domain Tools</span>
+                </div>
+
+                <div class="news-item">
+                    <h4>🎓 New Method Could Increase LLM Training Efficiency</h4>
+                    <p>By leveraging idle computing time, training speed can be doubled while preserving accuracy.</p>
+                    <span class="teaching-tag">🎓 Teaching: LLM Training Optimization</span>
+                </div>
+
+                <div class="news-item">
+                    <h4>🎓 Study: AI Chatbots Provide Less Accurate Info to Vulnerable Users</h4>
+                    <p>Models perform worse for users with lower English proficiency, less education, and non-US origins.</p>
+                    <span class="teaching-tag">🎓 Teaching: AI Fairness & Bias</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🌐 Industry News</h2>
+                
+                <div class="news-item">
+                    <h4>⚠️ OpenClaw AI Agent Security Flaws</h4>
+                    <p>China's CNCERT issued warnings about security issues with OpenClaw (formerly Clawdbot, Moltbot).</p>
+                </div>
+
+                <div class="news-item">
+                    <h4>AI-Assisted Attacks: 600+ FortiGate Devices Compromised</h4>
+                    <p>Russian-speaking attackers used Anthropic, CyberStrikeAI to attack devices in 55 countries.</p>
+                </div>
+
+                <div class="news-item">
+                    <h4>🔒 AI Security Threats Escalate</h4>
+                    <p>Cyber attack speed increased 89%, AI ransomware hit record highs in 2025.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📄 Featured AI Papers</h2>
+                
+                <table>
+                    <tr><th>Paper</th><th>Domain</th><th>Teaching</th></tr>
+                    <tr><td>NeuroHex: World Models for Adaptive AI</td><td>AI Architecture</td><td>🎓</td></tr>
+                    <tr><td>RAPTOR-AI for Disaster</td><td>Multimodal RAG</td><td>🎓 Multi-Agent</td></tr>
+                    <tr><td>coDrawAgents</td><td>Multi-Agent Dialogue</td><td>🎓</td></tr>
+                    <tr><td>Privacy-Preserving MT</td><td>Translation</td><td>🎓</td></tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>🎓 Today's Teaching Highlights</h2>
+                <div class="highlight">
+                    <p><strong>Week 1 (LLM Basics)</strong>: LLM Training Efficiency, Prompt Engineering</p>
+                    <p><strong>Week 2 (Agentic AI)</strong>: What is an Agent? AI Security</p>
+                    <p><strong>Week 4 (RAG)</strong>: Explainable AI, XAI Cases</p>
+                    <p><strong>Week 9 (Enterprise)</strong>: Medical AI, AI Ethics & Security</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>📅 每日更新 | Daily Update | 臺科大 Agentic AI 課程</p>
+            <p style="margin-top:10px; color:#666;">© 2026 OpenClaw AI Assistant</p>
+        </footer>
+    </div>
+
+    <script>
+        function switchLang(lang) {
+            document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.lang-content').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(lang).classList.add('active');
+        }
+    </script>
+</body>
+</html>
