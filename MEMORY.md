@@ -15,6 +15,12 @@ _這是我的長期記憶，記錄重要資訊_
 ### ElevenLabs 語音
 - API Key：環境變數 `$ElevenLabs`
 - Voice ID：`V2Qp7CrxJtLL0a5YYNap`
+- 模型：`eleven_multilingual_v2`（飽滿聲音）
+- 設定：
+  - stability: 0.4
+  - similarity_boost: 0.9
+  - style: 0.4
+  - use_speaker_boost: true
 - 用法：
   - 「用說的給我聽」→ 中文
   - 「用說給我聽」或「請用英文說給我聽」→ 英文
