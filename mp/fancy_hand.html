@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sci-Fi Hand Tracking - Sonic Pro HUD</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/addons/p5.sound.min.js"></script>
+    <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+
+    <style>
+      html, body { margin: 0; padding: 0; background-color: #0a0f19; overflow: hidden; font-family: 'Courier New', monospace; }
+      #back-btn { position: fixed; top: 20px; left: 20px; z-index: 2000; padding: 10px 20px; font-size: 0.8em; background: rgba(0, 255, 255, 0.05); border: 1px solid rgba(0, 255, 255, 0.2); border-radius: 4px; color: #0ff; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
+      #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0f19; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; color: #0ff; }
+      .start-btn { background: transparent; border: 1px solid #0ff; color: #0ff; padding: 12px 35px; font-size: 1.1em; cursor: pointer; margin-top: 20px; letter-spacing: 4px; }
+    </style>
+  </head>
+  <body>
+    <a href="../perception_demo.html" id="back-btn">RETURN_TO_HUB</a>
+
+    <div id="overlay">
+      <div style="letter-spacing: 8px; font-size: 1.5em;">SYSTEM INITIALIZING</div>
+      <button class="start-btn" onclick="initSystem()">START_INTERFACE</button>
+    </div>
+
+    <script>
+      let video, handPose, hands = [];
+      let isReady = false;
+      let smoothedAngle = 0, lastTickAngle = 0, smoothedX = 0, smoothedY = 0;
+      let mainColor, colors = ['#00ffff', '#ff00ff', '#ffff00'], colorIdx = 0;
+      let glitchTimer = 0, osc, envelope;
+
+      let buttons = [
+        { label: 'COLOR', x: 40, y: 120, w: 90, h: 40, active: false },
+        { label: 'GLITCH', x: 40, y: 170, w: 90, h: 40, active: false },
+        { label: 'EXIT', x: 40, y: 220, w: 90, h: 40, active: false }
+      ];
+
+      function setup() {
+        createCanvas(windowWidth, windowHeight);
+        mainColor = color(colors[colorIdx]);
+        
+        // 音效引擎初始化
+        osc = new p5.Oscillator('sine');
+        envelope = new p5.Envelope();
+        envelope.setADSR(0.001, 0.05, 0.1, 0.1);
+        envelope.setRange(0.5, 0);
+        
+        handPose = ml5.handPose({ flipped: true });
+        angleMode(DEGREES);
+        textFont('Courier New');
+      }
+
+      function initSystem() {
+        userStartAudio();
+        
+        // --- 1. 補回起始音效 (Boot Sound) ---
+        playBootSound();
+        
+        video = createCapture(VIDEO, () => {
+          document.getElementById('overlay').style.display = 'none';
+          setTimeout(() => {
+            isReady = true;
+            handPose.detectStart(video, results => hands = results);
+          }, 800);
+        });
+        video.size(640, 480);
+        video.hide();
+      }
+
+      function playTone(freq, duration = 0.08) {
+        osc.freq(freq);
+        osc.start();
+        envelope.setADSR(0.001, duration, 0.1, 0.1);
+        envelope.play(osc);
+      }
+
+      // 起始掃描音效
+      function playBootSound() {
+        let f = 200;
+        let interval = setInterval(() => {
+          playTone(f, 0.02);
+          f += 100;
+          if (f > 1200) clearInterval(interval);
+        }, 50);
+      }
+
+      function draw() {
+        background(10, 15, 25);
+        if (!isReady) return;
+
+        let gx = 0, gy = 0;
+        if (glitchTimer > 0) {
+          gx = random(-12, 12); gy = random(-4, 4); glitchTimer--;
+        }
+
+        push();
+        translate(width + gx, gy); scale(-1, 1);
+        tint(red(mainColor), green(mainColor), blue(mainColor), 55);
+        image(video, 0, 0, width, height, 0, 0, video.width, video.height, COVER);
+        pop();
+
+        if (hands && hands.length > 0) {
+          let hand = hands[0];
+          let indexTip = hand.keypoints[8];
+          let tx = map(indexTip.x, 0, 640, 0, width);
+          let ty = map(indexTip.y, 0, 480, 0, height);
+
+          checkButtons(tx, ty);
+          drawVirtualButtons(gx, gy);
+          drawSciFiSkeleton(hand, gx, gy);
+          drawFingertips(hand, gx, gy);
+          drawHoloDial(hand, gx, gy);
+          drawCursor(tx, ty);
+        } else {
+          drawScanningUI();
+          drawVirtualButtons(gx, gy);
+        }
+      }
+
+      function drawHoloDial(hand, gx, gy) {
+        let wrist = hand.keypoints[0], middle = hand.keypoints[9];
+        let targetX = map(wrist.x, 0, 640, 0, width);
+        let targetY = map(wrist.y, 0, 480, 0, height);
+        let angle = atan2(middle.y - wrist.y, middle.x - wrist.x) + 90;
+        
+        smoothedAngle = lerp(smoothedAngle, angle, 0.15); 
+        smoothedX = lerp(smoothedX, targetX, 0.2);
+        smoothedY = lerp(smoothedY, targetY, 0.2);
+
+        // --- 2. 補回旋轉「答答答」聲音 ---
+        if (abs(smoothedAngle - lastTickAngle) >= 15) {
+          playTone(1500, 0.01); // 極短促的高音嗶聲
+          lastTickAngle = smoothedAngle;
+        }
+        
+        push();
+        translate(smoothedX + gx, smoothedY + gy);
+        noFill(); stroke(mainColor); strokeWeight(2); rotate(smoothedAngle);
+        arc(0, 0, 140, 140, -40, 220);
+        for(let i = 0; i < 12; i++) { rotate(30); stroke(mainColor, 150); line(55, 0, 65, 0); }
+        fill(255, 60, 100); noStroke(); triangle(80, 0, 70, -6, 70, 6);
+        pop();
+        
+        push();
+        translate(smoothedX + gx, smoothedY + gy);
+        fill(255); textAlign(CENTER); textSize(28); text(`${int(smoothedAngle)}°`, 0, 10);
+        pop();
+      }
+
+      function checkButtons(x, y) {
+        buttons.forEach(btn => {
+          let isInside = x > btn.x && x < btn.x + btn.w && y > btn.y && y < btn.y + btn.h;
+          if (isInside && !btn.active) {
+            btn.active = true;
+            playTone(1000, 0.05);
+            if (btn.label === 'COLOR') { 
+              colorIdx = (colorIdx + 1) % colors.length; mainColor = color(colors[colorIdx]); 
+            } else if (btn.label === 'GLITCH') { 
+              glitchTimer = 25; playTone(150, 0.2);
+            } else if (btn.label === 'EXIT') {
+              window.location.href = '../perception_demo.html';
+            }
+          } else if (!isInside) { btn.active = false; }
+        });
+      }
+
+      function drawSciFiSkeleton(hand, gx, gy) {
+        stroke(red(mainColor), green(mainColor), blue(mainColor), 100);
+        let connections = handPose.getConnections();
+        for (let i = 0; i < connections.length; i++) {
+          let a = connections[i][0], b = connections[i][1];
+          line(map(hand.keypoints[a].x, 0, 640, 0, width) + gx, map(hand.keypoints[a].y, 0, 480, 0, height) + gy,
+               map(hand.keypoints[b].x, 0, 640, 0, width) + gx, map(hand.keypoints[b].y, 0, 480, 0, height) + gy);
+        }
+      }
+
+      function drawFingertips(hand, gx, gy) {
+        [4, 8, 12, 16, 20].forEach(idx => {
+          let k = hand.keypoints[idx];
+          let x = map(k.x, 0, 640, 0, width) + gx, y = map(k.y, 0, 480, 0, height) + gy;
+          noFill(); stroke(255, 200); circle(x, y, 14);
+          stroke(255, 60); line(x, y, x + 25, y - 25);
+          fill(255, 180); noStroke(); textSize(10); text(`ID:${idx}`, x + 28, y - 25);
+        });
+      }
+
+      function drawVirtualButtons(gx, gy) {
+        buttons.forEach(btn => {
+          push(); translate(btn.x + gx/3, btn.y + gy/3);
+          noFill(); stroke(mainColor, 180); rect(0, 0, btn.w, btn.h, 2);
+          if (btn.active) { fill(red(mainColor), green(mainColor), blue(mainColor), 100); rect(0,0,btn.w,btn.h); }
+          fill(btn.active ? 255 : mainColor); noStroke(); textAlign(CENTER, CENTER); textSize(11);
+          text(btn.label, btn.w/2, btn.h/2);
+          pop();
+        });
+      }
+
+      function drawCursor(tx, ty) {
+        fill(255); circle(tx, ty, 6);
+        noFill(); stroke(mainColor); circle(tx, ty, 20 + sin(frameCount*10)*5);
+      }
+
+      function drawScanningUI() {
+        stroke(mainColor, 60); line(0, (frameCount*4)%height, width, (frameCount*4)%height);
+      }
+
+      function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+    </script>
+  </body>
+</html>

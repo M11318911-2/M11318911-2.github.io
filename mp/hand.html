@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaPipe Hand Landmark Detection (21 Points)</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .main-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .container {
+            position: relative;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        #videoElement {
+            border-radius: 8px;
+            transform: scaleX(-1); /* Mirror flip */
+        }
+        
+        #canvasElement {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            border-radius: 8px;
+            transform: scaleX(-1); /* Mirror flip */
+        }
+        
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 300px;
+        }
+        
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 640px;
+        }
+        
+        .status {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .status.loading {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status.ready {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .controls {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .webcam-controls {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .webcam-controls label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .webcam-controls select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        button.start {
+            background-color: #28a745;
+        }
+        
+        button.start:hover {
+            background-color: #218838;
+        }
+        
+        button.stop {
+            background-color: #dc3545;
+        }
+        
+        button.stop:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h1>MediaPipe Hand Landmark Detection</h1>
+    
+    <div id="status" class="status loading">Initializing MediaPipe...</div>
+    
+    <div class="main-content">
+        <div class="container" id="videoContainer" style="display: none;">
+            <video id="videoElement" width="640" height="480" autoplay></video>
+            <canvas id="canvasElement" width="640" height="480"></canvas>
+        </div>
+        
+        <div class="side-panel">
+            <div class="info">
+                <div class="webcam-controls">
+                    <div class="button-group">
+                        <button id="startButton" class="start" onclick="startCamera()">▶ Start Camera</button>
+                        <button id="stopButton" class="stop" onclick="stopCamera()" disabled>⏹ Stop Camera</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info">
+                <h3>Detection Info</h3>
+                <p>Detected Hands: <span id="handCount">0</span></p>
+                <p>Landmarks per Hand: <span id="landmarkCount">21</span></p>
+                <p>FPS: <span id="fps">0</span></p>
+                
+                <div class="controls">
+                    <button id="toggleButton" onclick="toggleDetection()" disabled>Pause Detection</button>
+                    <button onclick="togglePoints()" disabled id="togglePointsButton">Hide Landmarks</button>
+                    <button onclick="toggleBackground()" disabled id="toggleBgButton">Black Background</button>
+                </div>
+            </div>
+            
+            <div class="info">
+                <details style="margin-top: 0;">
+                    <summary style="cursor: pointer; font-weight: bold;">About MediaPipe Hands</summary>
+                    <p style="margin-top: 10px;">
+                        MediaPipe Hands can detect up to 2 hands in real-time with 21 3D landmarks per hand.
+                        Each finger is color-coded for easy identification: thumb, index, middle, ring, and pinky.
+                        The landmarks include wrist, thumb (4 points), index finger (4 points), 
+                        middle finger (4 points), ring finger (4 points), and pinky (4 points).
+                    </p>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load MediaPipe libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+
+    <script>
+        const videoElement = document.getElementById('videoElement');
+        const canvasElement = document.getElementById('canvasElement');
+        const canvasCtx = canvasElement.getContext('2d');
+        const statusDiv = document.getElementById('status');
+        const handCountSpan = document.getElementById('handCount');
+        const fpsSpan = document.getElementById('fps');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const toggleButton = document.getElementById('toggleButton');
+        const togglePointsButton = document.getElementById('togglePointsButton');
+        const toggleBgButton = document.getElementById('toggleBgButton');
+        const videoContainer = document.getElementById('videoContainer');
+        
+        let isDetecting = true;
+        let showPoints = true;
+        let lastTime = Date.now();
+        let frameCount = 0;
+        let currentStream = null;
+        let animationFrameId = null;
+        let useBlackBackground = false;
+
+        // Initialize MediaPipe Hands
+        const hands = new Hands({
+            locateFile: (file) => {
+                return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+            }
+        });
+
+        // Configure Hands parameters
+        hands.setOptions({
+            maxNumHands: 2,  // Detect up to 2 hands
+            modelComplexity: 1,  // 0, 1, or 2 (higher = more accurate but slower)
+            minDetectionConfidence: 0.5,
+            minTrackingConfidence: 0.5
+        });
+
+        // Process detection results
+        hands.onResults(onResults);
+
+        // Define default hand landmark and connection styles (similar to MediaPipe's default)
+        const landmarkStyles = {
+            0: { color: '#FF0000', fillColor: '#FF0000' },  // Wrist - Red
+            1: { color: '#00FF00', fillColor: '#00FF00' },  // Thumb - Green
+            2: { color: '#00FF00', fillColor: '#00FF00' },
+            3: { color: '#00FF00', fillColor: '#00FF00' },
+            4: { color: '#00FF00', fillColor: '#00FF00' },
+            5: { color: '#FF9900', fillColor: '#FF9900' },  // Index - Orange
+            6: { color: '#FF9900', fillColor: '#FF9900' },
+            7: { color: '#FF9900', fillColor: '#FF9900' },
+            8: { color: '#FF9900', fillColor: '#FF9900' },
+            9: { color: '#FFFF00', fillColor: '#FFFF00' },  // Middle - Yellow
+            10: { color: '#FFFF00', fillColor: '#FFFF00' },
+            11: { color: '#FFFF00', fillColor: '#FFFF00' },
+            12: { color: '#FFFF00', fillColor: '#FFFF00' },
+            13: { color: '#00FFFF', fillColor: '#00FFFF' },  // Ring - Cyan
+            14: { color: '#00FFFF', fillColor: '#00FFFF' },
+            15: { color: '#00FFFF', fillColor: '#00FFFF' },
+            16: { color: '#00FFFF', fillColor: '#00FFFF' },
+            17: { color: '#0000FF', fillColor: '#0000FF' },  // Pinky - Blue
+            18: { color: '#0000FF', fillColor: '#0000FF' },
+            19: { color: '#0000FF', fillColor: '#0000FF' },
+            20: { color: '#0000FF', fillColor: '#0000FF' }
+        };
+
+        // Define connection colors based on finger
+        const connectionStyles = {
+            // Wrist to palm
+            '0-1': '#00FF00',   // Thumb
+            '0-5': '#FF9900',   // Index
+            '0-9': '#FFFF00',   // Middle
+            '0-13': '#00FFFF',  // Ring
+            '0-17': '#0000FF',  // Pinky
+            // Palm connections
+            '5-9': '#CCCCCC',
+            '9-13': '#CCCCCC',
+            '13-17': '#CCCCCC',
+            '1-5': '#CCCCCC',
+            // Thumb
+            '1-2': '#00FF00',
+            '2-3': '#00FF00',
+            '3-4': '#00FF00',
+            // Index
+            '5-6': '#FF9900',
+            '6-7': '#FF9900',
+            '7-8': '#FF9900',
+            // Middle
+            '9-10': '#FFFF00',
+            '10-11': '#FFFF00',
+            '11-12': '#FFFF00',
+            // Ring
+            '13-14': '#00FFFF',
+            '14-15': '#00FFFF',
+            '15-16': '#00FFFF',
+            // Pinky
+            '17-18': '#0000FF',
+            '18-19': '#0000FF',
+            '19-20': '#0000FF'
+        };
+
+        function onResults(results) {
+            if (!isDetecting || !currentStream) return;
+            
+            // Clear canvas
+            canvasCtx.save();
+            canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+            
+            // Draw background - either video or black
+            if (useBlackBackground) {
+                canvasCtx.fillStyle = '#000000';
+                canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+            } else {
+                canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
+            }
+            
+            if (results.multiHandLandmarks && results.multiHandedness) {
+                // Update detected hand count
+                handCountSpan.textContent = results.multiHandLandmarks.length;
+                
+                // Draw landmarks for each hand
+                for (let i = 0; i < results.multiHandLandmarks.length; i++) {
+                    const landmarks = results.multiHandLandmarks[i];
+                    
+                    if (showPoints) {
+                        // Draw connections with colors
+                        drawStyledConnectors(landmarks, HAND_CONNECTIONS);
+                        
+                        // Draw landmarks with colors
+                        drawStyledLandmarks(landmarks);
+                    }
+                }
+            } else {
+                handCountSpan.textContent = '0';
+            }
+            
+            canvasCtx.restore();
+            updateFPS();
+        }
+
+        // Draw styled landmarks with different colors per finger
+        function drawStyledLandmarks(landmarks) {
+            landmarks.forEach((landmark, index) => {
+                const x = landmark.x * canvasElement.width;
+                const y = landmark.y * canvasElement.height;
+                const style = landmarkStyles[index];
+                
+                canvasCtx.beginPath();
+                canvasCtx.arc(x, y, 5, 0, 2 * Math.PI);
+                canvasCtx.fillStyle = style.fillColor;
+                canvasCtx.fill();
+                
+                // Add white border for better visibility
+                canvasCtx.strokeStyle = '#FFFFFF';
+                canvasCtx.lineWidth = 2;
+                canvasCtx.stroke();
+            });
+        }
+
+        // Draw styled connectors with different colors
+        function drawStyledConnectors(landmarks, connections) {
+            for (const connection of connections) {
+                const start = landmarks[connection[0]];
+                const end = landmarks[connection[1]];
+                
+                // Get connection key
+                const key1 = `${connection[0]}-${connection[1]}`;
+                const key2 = `${connection[1]}-${connection[0]}`;
+                const color = connectionStyles[key1] || connectionStyles[key2] || '#CCCCCC';
+                
+                drawStyledLine(start, end, color, 3);
+            }
+        }
+
+        // Draw a styled line between two landmarks
+        function drawStyledLine(start, end, color, lineWidth) {
+            canvasCtx.beginPath();
+            canvasCtx.moveTo(start.x * canvasElement.width, start.y * canvasElement.height);
+            canvasCtx.lineTo(end.x * canvasElement.width, end.y * canvasElement.height);
+            canvasCtx.strokeStyle = color;
+            canvasCtx.lineWidth = lineWidth;
+            canvasCtx.stroke();
+        }
+
+        // Update FPS
+        function updateFPS() {
+            frameCount++;
+            const currentTime = Date.now();
+            if (currentTime - lastTime >= 1000) {
+                fpsSpan.textContent = frameCount;
+                frameCount = 0;
+                lastTime = currentTime;
+            }
+        }
+
+        // Start camera
+        async function startCamera() {
+            try {
+                // Stop existing stream if any
+                if (currentStream) {
+                    stopCamera();
+                }
+
+                statusDiv.textContent = '⏳ Starting camera...';
+                statusDiv.className = 'status loading';
+
+                // Get default video stream
+                const constraints = {
+                    video: {
+                        width: 640,
+                        height: 480,
+                        facingMode: 'user'
+                    }
+                };
+
+                currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+                videoElement.srcObject = currentStream;
+                
+                // Wait for video to load
+                await new Promise((resolve) => {
+                    videoElement.onloadedmetadata = () => {
+                        resolve();
+                    };
+                });
+
+                // Show video container
+                videoContainer.style.display = 'block';
+
+                statusDiv.textContent = '✓ Camera started. Initializing detection...';
+                statusDiv.className = 'status ready';
+
+                // Start processing frames
+                const processFrame = async () => {
+                    if (currentStream && videoElement.readyState === videoElement.HAVE_ENOUGH_DATA) {
+                        await hands.send({image: videoElement});
+                    }
+                    animationFrameId = requestAnimationFrame(processFrame);
+                };
+                
+                processFrame();
+                
+                // Update UI
+                statusDiv.textContent = '✓ Detection active';
+                statusDiv.className = 'status ready';
+                startButton.disabled = true;
+                stopButton.disabled = false;
+                toggleButton.disabled = false;
+                togglePointsButton.disabled = false;
+                toggleBgButton.disabled = false;
+                
+            } catch (error) {
+                console.error('Camera start failed:', error);
+                
+                let errorMessage = '✗ Error: ';
+                if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+                    errorMessage += 'Camera permission denied. Please allow camera access and try again.';
+                } else if (error.name === 'NotFoundError' || error.name === 'DevicesNotFoundError') {
+                    errorMessage += 'Camera not found. Please check your camera connection.';
+                } else if (error.name === 'NotReadableError' || error.name === 'TrackStartError') {
+                    errorMessage += 'Camera is being used by another application.';
+                } else if (error.name === 'OverconstrainedError') {
+                    errorMessage += 'Camera does not support the required resolution.';
+                } else if (error.name === 'SecurityError') {
+                    errorMessage += 'Security restriction: Please use HTTPS or localhost.';
+                } else {
+                    errorMessage += error.message || 'Cannot access camera';
+                }
+                
+                statusDiv.textContent = errorMessage;
+                statusDiv.className = 'status error';
+                showTroubleshootingInfo();
+            }
+        }
+
+        // Stop camera
+        function stopCamera() {
+            if (currentStream) {
+                // Stop all tracks
+                currentStream.getTracks().forEach(track => track.stop());
+                currentStream = null;
+                videoElement.srcObject = null;
+            }
+
+            // Cancel animation frame
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+
+            // Clear canvas
+            canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+
+            // Hide video container
+            videoContainer.style.display = 'none';
+
+            // Update UI
+            statusDiv.textContent = '⏹ Camera stopped';
+            statusDiv.className = 'status loading';
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            toggleButton.disabled = true;
+            togglePointsButton.disabled = true;
+            toggleBgButton.disabled = true;
+            handCountSpan.textContent = '0';
+            fpsSpan.textContent = '0';
+        }
+
+        // Toggle detection
+        function toggleDetection() {
+            if (!currentStream) return;
+            
+            isDetecting = !isDetecting;
+            
+            if (isDetecting) {
+                toggleButton.textContent = 'Pause Detection';
+                statusDiv.textContent = '✓ Detection active';
+                statusDiv.className = 'status ready';
+            } else {
+                toggleButton.textContent = 'Resume Detection';
+                statusDiv.textContent = '⏸ Detection paused';
+                statusDiv.className = 'status loading';
+            }
+        }
+
+        // Toggle landmarks display
+        function togglePoints() {
+            showPoints = !showPoints;
+            togglePointsButton.textContent = showPoints ? 'Hide Landmarks' : 'Show Landmarks';
+        }
+
+        // Toggle background
+        function toggleBackground() {
+            useBlackBackground = !useBlackBackground;
+            toggleBgButton.textContent = useBlackBackground ? 'Video Background' : 'Black Background';
+        }
+
+        // Show troubleshooting info
+        function showTroubleshootingInfo() {
+            // Check if already shown
+            if (document.getElementById('troubleshooting')) return;
+            
+            const troubleshooting = document.createElement('div');
+            troubleshooting.id = 'troubleshooting';
+            troubleshooting.className = 'info';
+            troubleshooting.style.backgroundColor = '#fff3cd';
+            troubleshooting.innerHTML = `
+                <h3>⚠️ Troubleshooting</h3>
+                <p><strong>Please try the following:</strong></p>
+                <ol>
+                    <li><strong>Check browser permissions:</strong> Allow this website to access your camera</li>
+                    <li><strong>Use HTTPS or localhost:</strong>
+                        <ul>
+                            <li>If using local file (file:///), use a local server instead</li>
+                            <li>Recommended: Python's <code>python -m http.server 8000</code></li>
+                            <li>Or use online editors like CodePen or JSFiddle</li>
+                        </ul>
+                    </li>
+                    <li><strong>Check camera:</strong> Ensure camera is connected and not used by other apps</li>
+                    <li><strong>Browser recommendation:</strong> Use latest Chrome, Edge, or Firefox</li>
+                    <li><strong>Reload page:</strong> Press F5 and allow camera access again</li>
+                </ol>
+                <button onclick="location.reload()" style="margin-top: 10px;">🔄 Reload Page</button>
+            `;
+            document.body.appendChild(troubleshooting);
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            statusDiv.textContent = '✓ Ready. Click "Start Camera" to begin.';
+            statusDiv.className = 'status ready';
+        });
+    </script>
+</body>
+</html>
