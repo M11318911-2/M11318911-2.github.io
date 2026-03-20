@@ -7,245 +7,153 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f7f5f0;
+    --bg: #f4f1ea;
     --surface: #ffffff;
-    --border: #d8d0c0;
-    --border-light: #ece6da;
+    --surface2: #faf8f3;
+    --border: #ddd6c8;
+    --border-light: #ede8de;
     --forest: #2c4a2c;
-    --gold: #b8963a;
+    --forest-light: #3d6b3d;
+    --gold: #9a7830;
     --gold-bg: #fdf8ee;
-    --text: #1e1a14;
+    --text: #2a2420;
     --text-muted: #7a6e60;
     --text-light: #a09488;
-    --red: #8b2635;
-    --red-bg: #fff5f6;
-    --green-bg: #f4faf4;
-    --transit-bg: #f5f4f0;
-    --transit-border: #c8c0b0;
+    --transit-bg: #f0ede6;
+    --transit-border: #c0b8a8;
+    --beer-amber: #b87820;
+    --beer-bg: #fef9ee;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: var(--bg);
     color: var(--text);
     font-family: 'Noto Sans TC', sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 14px; line-height: 1.5;
   }
 
   /* ── HEADER ── */
   .header {
-    background: var(--forest);
+    background: linear-gradient(160deg, #2c4a2c 0%, #3d6136 60%, #4a7040 100%);
     color: white;
-    padding: 28px 40px 24px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
+    padding: 26px 40px 22px;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap;
+    border-bottom: 4px solid var(--gold);
   }
-  .header-left {}
-  .header-eyebrow {
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(200,168,75,0.8);
-    margin-bottom: 6px;
-  }
-  .header-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.7rem;
-    line-height: 1.2;
-    color: #f5f0e8;
-  }
+  .header-eyebrow { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(200,168,75,0.8); margin-bottom: 5px; }
+  .header-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; line-height: 1.2; color: #f8f4ed; }
   .header-title span { color: #e8c870; font-style: italic; }
-  .header-meta {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
+  .header-meta { display: flex; gap: 14px; flex-wrap: wrap; }
   .meta-pill {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 20px;
-    padding: 5px 14px;
-    font-size: 0.78rem;
-    color: rgba(245,240,232,0.9);
-    white-space: nowrap;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 20px; padding: 5px 14px;
+    font-size: 0.76rem; color: rgba(245,240,232,0.9); white-space: nowrap;
   }
   .meta-pill span { color: #e8c870; font-weight: 500; }
 
-  /* ── ALERT ── */
-  .alert-bar {
-    background: var(--red-bg);
-    border-bottom: 2px solid var(--red);
-    padding: 10px 40px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.83rem;
-    color: #6b1422;
-  }
-  .alert-bar strong { color: var(--red); }
-
   /* ── WRAPPER ── */
-  .wrapper { max-width: 980px; margin: 0 auto; padding: 28px 24px 50px; }
+  .wrapper { max-width: 1020px; margin: 0 auto; padding: 26px 22px 48px; }
 
   /* ── TABLE ── */
   .table-wrap {
     background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.07);
   }
+  table { width: 100%; border-collapse: collapse; }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  /* Header row */
   thead tr th {
     background: var(--forest);
-    color: rgba(245,240,232,0.9);
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    padding: 11px 14px;
-    text-align: left;
+    color: rgba(245,240,232,0.88);
+    font-size: 0.66rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 11px 13px; text-align: left;
     border-right: 1px solid rgba(255,255,255,0.1);
   }
   thead tr th:last-child { border-right: none; }
 
-  /* Col widths */
-  .col-day   { width: 52px; }
-  .col-date  { width: 130px; }
-  .col-route { width: 180px; }
-  .col-act   { width: auto; }
-  .col-accom { width: 200px; }
+  .col-day  { width: 50px; }
+  .col-date { width: 120px; }
+  .col-route{ width: 170px; }
+  .col-act  { width: auto; }
+  .col-accom{ width: 190px; }
 
-  /* Body rows */
-  tbody tr { border-bottom: 1px solid var(--border-light); transition: background 0.15s; }
+  tbody tr { border-bottom: 1px solid var(--border-light); }
   tbody tr:last-child { border-bottom: none; }
-  tbody tr:hover { background: #faf8f4; }
-
-  /* Transit rows */
+  tbody tr:hover { background: var(--surface2); }
   tbody tr.transit { background: var(--transit-bg); }
-  tbody tr.transit:hover { background: #f0ede8; }
+  tbody tr.transit:hover { background: #ebe8e0; }
   tbody tr.transit td { color: var(--text-muted); }
 
   td {
-    padding: 13px 14px;
-    vertical-align: top;
-    border-right: 1px solid var(--border-light);
-    font-size: 0.86rem;
+    padding: 12px 13px; vertical-align: top;
+    border-right: 1px solid var(--border-light); font-size: 0.84rem;
   }
   td:last-child { border-right: none; }
 
-  /* Day number cell */
   .td-day {
     text-align: center;
+    background: var(--gold-bg);
     border-right: 3px solid var(--gold) !important;
-    background: linear-gradient(180deg, #fdf8ee, #faf4e4);
   }
-  .transit .td-day {
-    border-right: 3px solid var(--transit-border) !important;
-    background: #f0ede6;
-  }
-  .day-n {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--gold);
-    line-height: 1;
-  }
+  .transit .td-day { background: var(--transit-bg); border-right-color: var(--transit-border) !important; }
+  .day-n { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--gold); line-height: 1; }
   .transit .day-n { color: var(--text-light); }
-  .day-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); }
+  .day-lbl { font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-light); }
 
-  /* Date cell */
-  .td-date {}
-  .date-main { font-weight: 500; color: var(--text); font-size: 0.84rem; }
-  .date-wd { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+  .date-main { font-weight: 500; font-size: 0.83rem; }
+  .date-wd { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
 
-  /* Route cell */
-  .td-route {}
-  .route-from { font-size: 0.82rem; color: var(--text); font-weight: 500; }
-  .route-to { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; display: flex; align-items: center; gap: 5px; }
-  .route-arrow { color: var(--gold); font-size: 0.7rem; }
-  .dist-badge {
-    display: inline-flex; align-items: center; gap: 4px;
-    background: var(--green-bg); border: 1px solid #c8dfc8;
-    border-radius: 3px; padding: 2px 7px;
-    font-size: 0.68rem; color: #3d6b3d; margin-top: 5px;
-  }
+  .route-from { font-weight: 500; font-size: 0.82rem; }
+  .route-to { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; display: flex; align-items: center; gap: 5px; }
+  .rarr { color: var(--gold); font-size: 0.7rem; }
+  .dist { display: inline-flex; align-items: center; gap: 4px; background: #f0f5f0; border: 1px solid #c0d4c0; border-radius: 3px; padding: 2px 7px; font-size: 0.67rem; color: var(--forest-light); margin-top: 4px; }
 
-  /* Activities cell */
-  .td-act {}
-  .act-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .act-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
   .act-item { display: flex; gap: 8px; align-items: flex-start; }
-  .act-num {
+  .act-n {
     width: 18px; height: 18px; border-radius: 50%;
-    background: var(--gold-bg); border: 1px solid rgba(184,150,58,0.35);
-    font-size: 0.62rem; color: var(--gold); font-weight: 700;
+    background: var(--gold-bg); border: 1px solid rgba(154,120,48,0.3);
+    font-size: 0.6rem; color: var(--gold); font-weight: 700;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0; margin-top: 1px;
   }
-  .act-text { font-size: 0.84rem; line-height: 1.55; color: var(--text); }
-  .act-text strong { color: var(--forest); font-weight: 500; }
-  .act-time {
-    font-size: 0.7rem; color: var(--gold); font-weight: 500;
-    letter-spacing: 0.05em; margin-bottom: 1px;
-  }
-  .act-warn {
-    display: inline-flex; align-items: center; gap: 4px;
-    background: var(--red-bg); border: 1px solid rgba(139,38,53,0.3);
-    border-radius: 2px; padding: 2px 7px;
-    font-size: 0.68rem; color: var(--red); margin-top: 3px;
-  }
-  .sub-opts { margin-top: 5px; display: flex; flex-direction: column; gap: 3px; padding-left: 4px; }
-  .sub-opt { display: flex; gap: 7px; align-items: flex-start; font-size: 0.8rem; color: var(--text-muted); }
-  .sub-lbl { font-size: 0.68rem; color: var(--gold); font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+  .act-time { font-size: 0.69rem; color: var(--gold); font-weight: 500; letter-spacing: 0.05em; margin-bottom: 1px; }
+  .act-text { font-size: 0.83rem; line-height: 1.55; }
+  .act-text strong { color: var(--forest); font-weight: 600; }
 
-  /* Accommodation cell */
-  .td-accom {}
-  .accom-name { font-weight: 500; color: var(--text); font-size: 0.84rem; }
-  .accom-note { font-size: 0.76rem; color: var(--text-muted); margin-top: 3px; line-height: 1.5; }
-  .accom-opts { margin-top: 5px; display: flex; flex-direction: column; gap: 4px; }
-  .accom-opt { display: flex; gap: 6px; align-items: baseline; }
-  .aoid { font-size: 0.68rem; color: var(--gold); font-weight: 600; flex-shrink: 0; }
-  .aodt { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
-  .em-price { color: var(--forest); font-weight: 600; }
-  .dash-text { font-size: 0.8rem; color: var(--text-muted); }
+  /* Beer row */
+  .act-item.beer .act-n { background: var(--beer-bg); border-color: rgba(184,120,32,0.3); }
+  .act-item.beer .act-text strong { color: var(--beer-amber); }
+  .beer-tag { display: inline-flex; align-items: center; gap: 4px; background: var(--beer-bg); border: 1px solid rgba(184,120,32,0.3); border-radius: 3px; padding: 2px 7px; font-size: 0.67rem; color: var(--beer-amber); margin-top: 3px; }
 
-  /* ── FOOTER ── */
-  .footer {
-    text-align: center;
-    padding: 22px 0 10px;
-    font-size: 0.74rem;
-    color: var(--text-light);
-    letter-spacing: 0.12em;
-  }
+  .sub-opts { margin-top: 5px; display: flex; flex-direction: column; gap: 3px; }
+  .sub-opt { display: flex; gap: 7px; align-items: flex-start; font-size: 0.79rem; color: var(--text-muted); }
+  .sub-lbl { font-size: 0.66rem; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
 
-  @media (max-width: 700px) {
-    .header { padding: 20px 18px 18px; }
-    .alert-bar { padding: 9px 18px; }
-    .wrapper { padding: 18px 10px 36px; }
+  .accom-name { font-weight: 600; color: var(--forest); font-size: 0.83rem; }
+  .accom-note { font-size: 0.74rem; color: var(--text-muted); margin-top: 3px; line-height: 1.5; }
+  .accom-opts { margin-top: 5px; }
+  .aopt { display: flex; align-items: baseline; gap: 6px; margin-top: 3px; }
+  .aoid { font-size: 0.66rem; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+  .aodt { font-size: 0.77rem; color: var(--text-muted); }
+  .price { color: var(--forest); font-weight: 600; }
+  .dash-txt { font-size: 0.78rem; color: var(--text-light); font-style: italic; }
+
+  .footer { text-align: center; padding: 20px 0 8px; font-size: 0.73rem; color: var(--text-light); letter-spacing: 0.1em; }
+
+  @media (max-width: 680px) {
+    .header { padding: 18px 16px; }
+    .wrapper { padding: 16px 10px 32px; }
     .col-route { display: none; }
-    td, th { padding: 10px 9px; }
-  }
-  @media print {
-    body { background: white; }
-    .table-wrap { box-shadow: none; }
-    tbody tr { page-break-inside: avoid; }
+    td, th { padding: 9px 8px; }
   }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="header">
-  <div class="header-left">
+  <div>
     <div class="header-eyebrow">Reiseplan · 旅行計劃 · 2026</div>
     <div class="header-title">德國巴伐利亞 &amp; 斯瓦比亞<br><span>深度文化之旅</span></div>
   </div>
@@ -256,13 +164,6 @@
   </div>
 </header>
 
-<!-- ALERT -->
-<div class="alert-bar">
-  <span>⚠️</span>
-  <div><strong>重要提醒：</strong>希特勒鷹巢（Kehlsteinhaus）入場票請務必於 <strong>5月7日</strong> 前提前線上預訂，票源有限！</div>
-</div>
-
-<!-- TABLE -->
 <div class="wrapper">
   <div class="table-wrap">
     <table>
@@ -279,112 +180,62 @@
 
         <!-- DAY 1 -->
         <tr class="transit">
-          <td class="td-day"><div class="day-label">Day</div><div class="day-n">1</div></td>
-          <td class="td-date">
-            <div class="date-main">05 / 24</div>
-            <div class="date-wd">星期日</div>
-          </td>
-          <td class="td-route">
-            <div class="route-from">台灣</div>
-            <div class="route-to"><span class="route-arrow">✈</span><span>前往德國途中</span></div>
-          </td>
-          <td class="td-act">
+          <td class="td-day"><div class="day-lbl">Day</div><div class="day-n">1</div></td>
+          <td><div class="date-main">05 / 24</div><div class="date-wd">星期日</div></td>
+          <td><div class="route-from">台灣</div><div class="route-to"><span class="rarr">✈</span><span>前往德國途中</span></div></td>
+          <td>
             <ul class="act-list">
               <li class="act-item">
-                <div class="act-num">✈</div>
+                <div class="act-n">✈</div>
                 <div><div class="act-text">從台灣桃園機場出發，啟程前往德國。</div></div>
               </li>
             </ul>
           </td>
-          <td class="td-accom"><div class="dash-text">— 機上過夜 —</div></td>
+          <td><div class="dash-txt">— 機上過夜 —</div></td>
         </tr>
 
         <!-- DAY 2 -->
         <tr>
-          <td class="td-day"><div class="day-label">Day</div><div class="day-n">2</div></td>
-          <td class="td-date">
-            <div class="date-main">05 / 25</div>
-            <div class="date-wd">星期一</div>
-          </td>
-          <td class="td-route">
+          <td class="td-day"><div class="day-lbl">Day</div><div class="day-n">2</div></td>
+          <td><div class="date-main">05 / 25</div><div class="date-wd">星期一</div></td>
+          <td>
             <div class="route-from">慕尼黑 MUC</div>
-            <div class="route-to"><span class="route-arrow">→</span><span>貝希特斯加登</span></div>
-            <div class="dist-badge">🚗 200 km</div>
+            <div class="route-to"><span class="rarr">→</span><span>貝希特斯加登</span></div>
+            <div class="dist">🚗 200 km</div>
           </td>
-          <td class="td-act">
+          <td>
             <ul class="act-list">
-              <li class="act-item">
-                <div class="act-num">1</div>
-                <div>
-                  <div class="act-time">07:30</div>
-                  <div class="act-text">於 <strong>慕尼黑機場第二航廈（MUC T2）</strong> 接機</div>
-                </div>
-              </li>
-              <li class="act-item">
-                <div class="act-num">2</div>
-                <div>
-                  <div class="act-text">驅車 200 km 南下前往貝希特斯加登，沿途欣賞巴伐利亞田園風光</div>
-                </div>
-              </li>
-              <li class="act-item">
-                <div class="act-num">3</div>
-                <div>
-                  <div class="act-text">遊覽 <strong>國王湖（Königssee）</strong>，搭乘電動船穿越翡翠湖面至聖巴多羅買教堂</div>
-                </div>
-              </li>
+              <li class="act-item"><div class="act-n">1</div><div><div class="act-time">07:30</div><div class="act-text">於 <strong>慕尼黑機場 MUC T2</strong> 接機</div></div></li>
+              <li class="act-item"><div class="act-n">2</div><div><div class="act-text">驅車 200 km 南下前往貝希特斯加登</div></div></li>
+              <li class="act-item"><div class="act-n">3</div><div><div class="act-text">遊覽 <strong>國王湖（Königssee）</strong>，搭電動船至聖巴多羅買教堂</div></div></li>
             </ul>
           </td>
-          <td class="td-accom">
-            <div class="accom-name" style="color:#7a6e60;font-size:0.78rem">⚖️ 議定中</div>
+          <td>
+            <div class="accom-name">傳統旅館</div>
             <div class="accom-opts">
-              <div class="accom-opt">
-                <div class="aoid">方案A</div>
-                <div class="aodt">傳統旅館<br>雙人房 <span class="em-price">€386</span> / 單人 <span class="em-price">€240</span></div>
-              </div>
-              <div class="accom-opt">
-                <div class="aoid">方案B</div>
-                <div class="aodt">新建青年旅館<br>附衛浴單人房 <span class="em-price">€129</span>／間</div>
-              </div>
+              <div class="aopt"><div class="aoid">雙人</div><div class="aodt"><span class="price">€ 386</span>／間</div></div>
+              <div class="aopt"><div class="aoid">單人</div><div class="aodt"><span class="price">€ 240</span>／間</div></div>
             </div>
           </td>
         </tr>
 
         <!-- DAY 3 -->
         <tr>
-          <td class="td-day"><div class="day-label">Day</div><div class="day-n">3</div></td>
-          <td class="td-date">
-            <div class="date-main">05 / 26</div>
-            <div class="date-wd">星期二</div>
-          </td>
-          <td class="td-route">
+          <td class="td-day"><div class="day-lbl">Day</div><div class="day-n">3</div></td>
+          <td><div class="date-main">05 / 26</div><div class="date-wd">星期二</div></td>
+          <td>
             <div class="route-from">貝希特斯加登</div>
-            <div class="route-to"><span class="route-arrow">→</span><span>慕尼黑</span></div>
-            <div class="dist-badge">🚗 160 km</div>
+            <div class="route-to"><span class="rarr">→</span><span>慕尼黑</span></div>
+            <div class="dist">🚗 160 km</div>
           </td>
-          <td class="td-act">
+          <td>
             <ul class="act-list">
-              <li class="act-item">
-                <div class="act-num">1</div>
-                <div>
-                  <div class="act-text">參觀 <strong>希特勒鷹巢（Kehlsteinhaus）</strong>，海拔 1834m，俯瞰阿爾卑斯全景</div>
-                  <div class="act-warn">⚠️ 請於 5/7 前預先線上訂票</div>
-                </div>
-              </li>
-              <li class="act-item">
-                <div class="act-num">2</div>
-                <div>
-                  <div class="act-text">參觀 <strong>地底鹽礦（Salzbergwerk）</strong>，穿礦工服滑入地底、乘船遊覽地下鹽湖</div>
-                </div>
-              </li>
-              <li class="act-item">
-                <div class="act-num">3</div>
-                <div>
-                  <div class="act-text">驅車 160 km 北上，返抵慕尼黑</div>
-                </div>
-              </li>
+              <li class="act-item"><div class="act-n">1</div><div><div class="act-text">參觀 <strong>希特勒鷹巢（Kehlsteinhaus）</strong>，海拔 1834m，俯瞰阿爾卑斯全景</div></div></li>
+              <li class="act-item"><div class="act-n">2</div><div><div class="act-text">參觀 <strong>地底鹽礦（Salzbergwerk）</strong>，穿礦工服滑入地底、乘船遊地下鹽湖</div></div></li>
+              <li class="act-item"><div class="act-n">3</div><div><div class="act-text">驅車 160 km 北上返抵慕尼黑</div></div></li>
             </ul>
           </td>
-          <td class="td-accom">
+          <td>
             <div class="accom-name">Hampton by Hilton<br>Munich City North</div>
             <div class="accom-note">慕尼黑市區北部</div>
           </td>
@@ -392,27 +243,17 @@
 
         <!-- DAY 4 -->
         <tr>
-          <td class="td-day"><div class="day-label">Day</div><div class="day-n">4</div></td>
-          <td class="td-date">
-            <div class="date-main">05 / 27</div>
-            <div class="date-wd">星期三</div>
-          </td>
-          <td class="td-route">
+          <td class="td-day"><div class="day-lbl">Day</div><div class="day-n">4</div></td>
+          <td><div class="date-main">05 / 27</div><div class="date-wd">星期三</div></td>
+          <td>
             <div class="route-from">慕尼黑</div>
-            <div class="route-to"><span class="route-arrow">→</span><span>因戈爾施塔特</span></div>
-            <div class="dist-badge">🚗 80 km</div>
+            <div class="route-to"><span class="rarr">→</span><span>因戈爾施塔特</span></div>
+            <div class="dist">🚗 80 km</div>
           </td>
-          <td class="td-act">
+          <td>
             <ul class="act-list">
-              <li class="act-item">
-                <div class="act-num">1</div>
-                <div>
-                  <div class="act-time">12:00–14:00</div>
-                  <div class="act-text">參觀 <strong>BMW 汽車工廠</strong>，親眼目睹頂級汽車從零件到整車的完整製造流程</div>
-                </div>
-              </li>
-              <li class="act-item">
-                <div class="act-num">2</div>
+              <li class="act-item"><div class="act-n">1</div><div><div class="act-time">12:00–14:00</div><div class="act-text">參觀 <strong>BMW 汽車工廠</strong>，親眼目睹完整製造流程</div></div></li>
+              <li class="act-item"><div class="act-n">2</div>
                 <div>
                   <div class="act-text"><strong>下午三選一：</strong></div>
                   <div class="sub-opts">
@@ -424,77 +265,51 @@
               </li>
             </ul>
           </td>
-          <td class="td-accom"><div class="dash-text">— 依行程彈性安排 —</div></td>
+          <td><div class="dash-txt">— 依行程彈性安排 —</div></td>
         </tr>
 
         <!-- DAY 5 -->
         <tr>
-          <td class="td-day"><div class="day-label">Day</div><div class="day-n">5</div></td>
-          <td class="td-date">
-            <div class="date-main">05 / 28</div>
-            <div class="date-wd">星期四</div>
-          </td>
-          <td class="td-route">
+          <td class="td-day"><div class="day-lbl">Day</div><div class="day-n">5</div></td>
+          <td><div class="date-main">05 / 28</div><div class="date-wd">星期四</div></td>
+          <td>
             <div class="route-from">因戈爾施塔特</div>
-            <div class="route-to"><span class="route-arrow">→</span><span>斯圖加特</span></div>
-            <div class="dist-badge">🚗 250 km</div>
+            <div class="route-to"><span class="rarr">→</span><span>斯圖加特</span></div>
+            <div class="dist">🚗 250 km</div>
           </td>
-          <td class="td-act">
+          <td>
             <ul class="act-list">
-              <li class="act-item">
-                <div class="act-num">1</div>
-                <div>
-                  <div class="act-text"><strong>早上（彈性）：</strong>補充 Ingolstadt Village 購物村或老城區（視前日安排）</div>
-                </div>
-              </li>
-              <li class="act-item">
-                <div class="act-num">2</div>
-                <div>
-                  <div class="act-time">13:00–14:00</div>
-                  <div class="act-text">參觀 <strong>Audi 汽車工廠（Audi Forum Ingolstadt）</strong>，深入生產線親歷頂級汽車製造流程</div>
-                </div>
-              </li>
-              <li class="act-item">
-                <div class="act-num">3</div>
-                <div>
-                  <div class="act-text">驅車 250 km 西南向，抵達斯圖加特</div>
-                </div>
-              </li>
+              <li class="act-item"><div class="act-n">1</div><div><div class="act-text"><strong>早上（彈性）：</strong>補充 Ingolstadt Village 或老城區</div></div></li>
+              <li class="act-item"><div class="act-n">2</div><div><div class="act-time">13:00–14:00</div><div class="act-text">參觀 <strong>Audi 汽車工廠（Audi Forum Ingolstadt）</strong></div></div></li>
+              <li class="act-item"><div class="act-n">3</div><div><div class="act-text">驅車 250 km 西南向抵達斯圖加特</div></div></li>
             </ul>
           </td>
-          <td class="td-accom"><div class="dash-text">— 斯圖加特過夜 —</div></td>
+          <td><div class="dash-txt">— 斯圖加特過夜 —</div></td>
         </tr>
 
         <!-- DAY 6 -->
         <tr>
-          <td class="td-day"><div class="day-label">Day</div><div class="day-n">6</div></td>
-          <td class="td-date">
-            <div class="date-main">05 / 29</div>
-            <div class="date-wd">星期五</div>
-          </td>
-          <td class="td-route">
+          <td class="td-day"><div class="day-lbl">Day</div><div class="day-n">6</div></td>
+          <td><div class="date-main">05 / 29</div><div class="date-wd">星期五</div></td>
+          <td>
             <div class="route-from">斯圖加特</div>
-            <div class="route-to"><span class="route-arrow">→</span><span>慕尼黑機場</span></div>
-            <div class="dist-badge">🚗 240 km</div>
+            <div class="route-to"><span class="rarr">→</span><span>慕尼黑機場</span></div>
+            <div class="dist">🚗 240 km</div>
           </td>
-          <td class="td-act">
+          <td>
             <ul class="act-list">
-              <li class="act-item">
-                <div class="act-num">1</div>
+              <li class="act-item"><div class="act-n">1</div><div><div class="act-time">13:45–15:30</div><div class="act-text">參觀 <strong>梅賽德斯-賓士汽車工廠</strong>，深入生產線體驗頂級工藝</div></div></li>
+              <li class="act-item beer"><div class="act-n">🍺</div>
                 <div>
-                  <div class="act-time">13:45–15:30</div>
-                  <div class="act-text">參觀 <strong>梅賽德斯-賓士汽車工廠（Mercedes-Benz Factory）</strong>，深入生產線體驗德國頂級汽車製造工藝</div>
+                  <div class="act-time">約 16:00</div>
+                  <div class="act-text"><strong>Dinkelacker Shop &amp; Schanke</strong>（Tübinger Str. 54）<br>斯圖加特百年家族釀酒廠直營店，品嚐在地生啤、選購伴手禮</div>
+                  <div class="beer-tag">🕐 週五 13:00–19:00</div>
                 </div>
               </li>
-              <li class="act-item">
-                <div class="act-num">2</div>
-                <div>
-                  <div class="act-text">驅車 240 km 趕赴慕尼黑機場，準備隔日登機手續</div>
-                </div>
-              </li>
+              <li class="act-item"><div class="act-n">3</div><div><div class="act-text">驅車 240 km 趕赴慕尼黑機場</div></div></li>
             </ul>
           </td>
-          <td class="td-accom">
+          <td>
             <div class="accom-name">Hilton Munich Airport</div>
             <div class="accom-note">緊鄰機場，明日登機最便利</div>
           </td>
@@ -502,58 +317,33 @@
 
         <!-- DAY 7 -->
         <tr class="transit">
-          <td class="td-day"><div class="day-label">Day</div><div class="day-n">7</div></td>
-          <td class="td-date">
-            <div class="date-main">05 / 30</div>
-            <div class="date-wd">星期六</div>
-          </td>
-          <td class="td-route">
-            <div class="route-from">慕尼黑 MUC T2</div>
-            <div class="route-to"><span class="route-arrow">✈</span><span>返台途中</span></div>
-          </td>
-          <td class="td-act">
+          <td class="td-day"><div class="day-lbl">Day</div><div class="day-n">7</div></td>
+          <td><div class="date-main">05 / 30</div><div class="date-wd">星期六</div></td>
+          <td><div class="route-from">慕尼黑 MUC T2</div><div class="route-to"><span class="rarr">✈</span><span>返台途中</span></div></td>
+          <td>
             <ul class="act-list">
-              <li class="act-item">
-                <div class="act-num">✈</div>
-                <div>
-                  <div class="act-time">12:00</div>
-                  <div class="act-text">抵達 <strong>慕尼黑機場 MUC T2</strong>，完成報到劃位、行李托運及出境手續，候機返台</div>
-                </div>
-              </li>
+              <li class="act-item"><div class="act-n">✈</div><div><div class="act-time">12:00</div><div class="act-text">抵達 <strong>慕尼黑機場 MUC T2</strong>，完成報到劃位、行李托運及出境手續</div></div></li>
             </ul>
           </td>
-          <td class="td-accom"><div class="dash-text">— 機上過夜 —</div></td>
+          <td><div class="dash-txt">— 機上過夜 —</div></td>
         </tr>
 
         <!-- DAY 8 -->
         <tr class="transit">
-          <td class="td-day"><div class="day-label">Day</div><div class="day-n">8</div></td>
-          <td class="td-date">
-            <div class="date-main">05 / 31</div>
-            <div class="date-wd">星期日</div>
-          </td>
-          <td class="td-route">
-            <div class="route-from">返抵台北</div>
-            <div class="route-to"><span class="route-arrow">🏠</span><span>旅程圓滿</span></div>
-          </td>
-          <td class="td-act">
+          <td class="td-day"><div class="day-lbl">Day</div><div class="day-n">8</div></td>
+          <td><div class="date-main">05 / 31</div><div class="date-wd">星期日</div></td>
+          <td><div class="route-from">返抵台北</div><div class="route-to"><span class="rarr">🏠</span><span>旅程圓滿</span></div></td>
+          <td>
             <ul class="act-list">
-              <li class="act-item">
-                <div class="act-num">🛬</div>
-                <div>
-                  <div class="act-time">06:35</div>
-                  <div class="act-text">抵達 <strong>台北桃園國際機場</strong>，旅程圓滿結束</div>
-                </div>
-              </li>
+              <li class="act-item"><div class="act-n">🛬</div><div><div class="act-time">06:35</div><div class="act-text">抵達 <strong>台北桃園國際機場</strong>，旅程圓滿結束</div></div></li>
             </ul>
           </td>
-          <td class="td-accom"><div class="dash-text">— 返回台灣 —</div></td>
+          <td><div class="dash-txt">— 返回台灣 —</div></td>
         </tr>
 
       </tbody>
     </table>
   </div>
-
   <div class="footer">Gute Reise · 旅途愉快 · Germany 2026 · 8 Days 7 Nights</div>
 </div>
 

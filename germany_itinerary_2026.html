@@ -7,308 +7,253 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --forest: #1a2e1a;
-    --pine: #2d4a2d;
-    --moss: #3d6b3d;
-    --sage: #7a9e7a;
-    --gold: #c8a84b;
-    --gold-light: #e8c870;
-    --cream: #f5f0e8;
+    --bg: #f4f1ea;
+    --surface: #ffffff;
+    --surface2: #faf8f3;
+    --border: #ddd6c8;
+    --border-light: #ede8de;
+    --forest: #2c4a2c;
+    --forest-light: #3d6b3d;
+    --gold: #9a7830;
+    --gold-light: #b89040;
+    --gold-bg: #fdf8ee;
+    --cream: #faf7f2;
     --ink: #1e1a14;
-    --mist: #8a9e8a;
-    --red-accent: #8b2635;
+    --text: #2a2420;
+    --text-muted: #7a6e60;
+    --text-light: #a09488;
+    --red: #8b2635;
+    --transit-bg: #f0ede6;
+    --transit-border: #c0b8a8;
+    --beer-amber: #b87820;
+    --beer-bg: #fef9ee;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    background-color: var(--forest);
-    color: var(--cream);
+    background: var(--bg);
+    color: var(--text);
     font-family: 'Noto Serif TC', 'EB Garamond', serif;
     min-height: 100vh;
-    overflow-x: hidden;
   }
 
   /* ── HERO ── */
   .hero {
+    background: linear-gradient(160deg, #2c4a2c 0%, #3d6136 50%, #4a7040 100%);
+    color: white;
+    padding: 52px 40px 44px;
     position: relative;
-    width: 100%;
-    min-height: 360px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 56px 40px 48px;
     overflow: hidden;
-    background: linear-gradient(160deg, #0d1f0d 0%, #1a2e1a 40%, #243824 100%);
+    display: flex; flex-direction: column; align-items: center; text-align: center;
   }
-  .hero::before {
+  .hero::after {
     content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 70% 60% at 50% 30%, rgba(200,168,75,0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(61,107,61,0.3) 0%, transparent 60%);
-    pointer-events: none;
+    position: absolute; bottom: 0; left: 0; right: 0; height: 6px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
   }
   .hero-mountains {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    pointer-events: none;
+    position: absolute; bottom: 0; left: 0; right: 0; pointer-events: none;
   }
-  .corner { position: absolute; width: 100px; height: 100px; opacity: 0.22; }
-  .corner.tl { top: 18px; left: 18px; }
-  .corner.tr { top: 18px; right: 18px; transform: scaleX(-1); }
-  .corner.bl { bottom: 18px; left: 18px; transform: scaleY(-1); }
-  .corner.br { bottom: 18px; right: 18px; transform: scale(-1); }
+  .corner { position: absolute; width: 90px; height: 90px; opacity: 0.18; }
+  .corner.tl { top: 16px; left: 16px; }
+  .corner.tr { top: 16px; right: 16px; transform: scaleX(-1); }
+  .corner.bl { bottom: 16px; left: 16px; transform: scaleY(-1); }
+  .corner.br { bottom: 16px; right: 16px; transform: scale(-1); }
 
   .hero-eyebrow {
     font-family: 'EB Garamond', serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.38em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    animation: fadeUp 0.8s ease both;
+    font-size: 0.8rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: rgba(200,168,75,0.85); margin-bottom: 12px;
   }
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.6rem);
-    font-weight: 700;
-    text-align: center;
-    line-height: 1.18;
-    color: var(--cream);
-    animation: fadeUp 0.8s 0.1s ease both;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    font-size: clamp(1.9rem, 4.5vw, 3.4rem);
+    font-weight: 700; line-height: 1.2;
+    color: #f8f4ed; text-shadow: 0 2px 16px rgba(0,0,0,0.25);
   }
-  .hero-title em { color: var(--gold-light); font-style: italic; }
-  .hero-subtitle {
-    margin-top: 16px;
-    font-family: 'EB Garamond', serif;
-    font-size: 1.05rem;
-    color: var(--sage);
-    letter-spacing: 0.1em;
-    animation: fadeUp 0.8s 0.2s ease both;
+  .hero-title em { color: #e8c870; font-style: italic; }
+  .hero-sub {
+    margin-top: 14px; font-family: 'EB Garamond', serif;
+    font-size: 1rem; color: rgba(220,240,220,0.85); letter-spacing: 0.1em;
   }
-  .divider-line {
-    margin: 22px 0 18px;
-    display: flex; align-items: center; gap: 14px;
-    animation: fadeUp 0.8s 0.3s ease both;
+  .hero-div {
+    margin: 20px 0 16px;
+    display: flex; align-items: center; gap: 12px;
   }
-  .divider-line::before, .divider-line::after {
-    content: ''; height: 1px; width: 90px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  .hero-div::before, .hero-div::after {
+    content: ''; height: 1px; width: 80px;
+    background: linear-gradient(90deg, transparent, rgba(200,168,75,0.7), transparent);
   }
-  .diamond { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
-  .hero-meta {
-    display: flex; gap: 30px;
-    animation: fadeUp 0.8s 0.4s ease both;
-  }
+  .diamond { width: 7px; height: 7px; background: var(--gold-light); transform: rotate(45deg); }
+  .hero-meta { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
   .meta-item { text-align: center; }
-  .meta-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mist); margin-bottom: 4px; }
-  .meta-value { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold-light); }
-
-  /* ── NOTICE ── */
-  .notice {
-    background: rgba(139,38,53,0.18);
-    border: 1px solid rgba(139,38,53,0.45);
-    border-left: 4px solid var(--red-accent);
-    max-width: 860px;
-    width: 100%;
-    padding: 13px 20px;
-    margin-top: 22px;
-    border-radius: 0 3px 3px 0;
-    display: flex; gap: 11px; align-items: flex-start;
-    animation: fadeUp 0.8s 0.5s ease both;
-  }
-  .notice-text { font-size: 0.86rem; line-height: 1.7; color: #f0c0c0; }
-  .notice-text strong { color: #f5a0a0; }
+  .meta-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(200,230,200,0.7); margin-bottom: 3px; }
+  .meta-value { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #e8c870; }
 
   /* ── CONTAINER ── */
-  .container { max-width: 940px; margin: 0 auto; padding: 36px 22px 70px; }
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 22px 64px; }
 
   /* ── DAY CARD ── */
-  .day-card { margin-bottom: 24px; border-radius: 2px; overflow: hidden; animation: fadeUp 0.7s ease both; }
-  .day-card:nth-child(1){ animation-delay:.05s }
-  .day-card:nth-child(2){ animation-delay:.1s }
-  .day-card:nth-child(3){ animation-delay:.15s }
-  .day-card:nth-child(4){ animation-delay:.2s }
-  .day-card:nth-child(5){ animation-delay:.25s }
-  .day-card:nth-child(6){ animation-delay:.3s }
-  .day-card:nth-child(7){ animation-delay:.35s }
-  .day-card:nth-child(8){ animation-delay:.4s }
+  .day-card { margin-bottom: 20px; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
 
   .card-inner {
-    display: grid;
-    grid-template-columns: 92px 1fr;
-    background: linear-gradient(135deg, rgba(45,74,45,0.45), rgba(26,46,26,0.82));
-    border: 1px solid rgba(200,168,75,0.2);
-    border-left: none;
-    transition: border-color 0.3s;
+    display: grid; grid-template-columns: 88px 1fr;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden;
+    transition: box-shadow 0.2s;
   }
-  .card-inner:hover { border-color: rgba(200,168,75,0.42); }
+  .card-inner:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.1); }
 
   .sidebar {
-    background: linear-gradient(180deg, var(--pine) 0%, rgba(29,50,29,0.9) 100%);
-    border-left: 3px solid var(--gold);
+    background: linear-gradient(180deg, var(--forest) 0%, #324e32 100%);
+    border-right: 3px solid var(--gold-light);
     display: flex; flex-direction: column;
     align-items: center; justify-content: flex-start;
-    padding: 22px 10px; gap: 5px; flex-shrink: 0;
+    padding: 20px 8px; gap: 4px;
   }
-  .day-card.transit .sidebar { border-left-color: var(--mist); }
-  .day-card.transit .day-num { color: var(--mist); }
-  .day-card.transit .card-inner { border-color: rgba(138,158,138,0.18); }
+  .day-card.transit .sidebar { background: linear-gradient(180deg, #5a5248, #4a4440); border-right-color: var(--transit-border); }
+  .day-card.transit .day-num { color: #c8bfb0; }
 
-  .day-lbl { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mist); }
-  .day-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
-  .sep { width: 18px; height: 1px; background: rgba(200,168,75,0.35); margin: 4px 0; }
-  .day-wd { font-size: 0.7rem; color: var(--sage); writing-mode: vertical-rl; letter-spacing: 0.1em; }
+  .day-lbl { font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .day-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #e8c870; line-height: 1; }
+  .sep { width: 16px; height: 1px; background: rgba(232,200,112,0.3); margin: 3px 0; }
+  .day-wd { font-size: 0.66rem; color: rgba(220,235,220,0.65); writing-mode: vertical-rl; letter-spacing: 0.1em; }
 
-  .body { padding: 20px 26px; }
-  .head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 13px; flex-wrap: wrap; }
-  .date { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); font-style: italic; }
-  .route { font-size: 0.78rem; color: var(--mist); letter-spacing: 0.05em; display: flex; align-items: center; gap: 7px; }
-  .arr { color: var(--gold); opacity: 0.6; }
-  .hdiv { height: 1px; background: linear-gradient(90deg, rgba(200,168,75,0.28), transparent); margin-bottom: 15px; }
+  .body { padding: 18px 24px; background: var(--surface); }
+  .head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+  .date { font-family: 'Playfair Display', serif; font-size: 0.98rem; color: var(--gold); font-style: italic; }
+  .route { font-size: 0.76rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+  .arr { color: var(--gold-light); }
+  .hdiv { height: 1px; background: var(--border-light); margin-bottom: 14px; }
 
-  /* Items */
   .items { display: flex; flex-direction: column; gap: 10px; }
-  .item { display: flex; gap: 13px; align-items: flex-start; }
+  .item { display: flex; gap: 11px; align-items: flex-start; }
   .ico {
     width: 26px; height: 26px; border-radius: 50%;
-    background: rgba(200,168,75,0.1); border: 1px solid rgba(200,168,75,0.28);
+    background: var(--gold-bg); border: 1px solid rgba(154,120,48,0.25);
     display: flex; align-items: center; justify-content: center;
-    font-size: 0.85rem; flex-shrink: 0; margin-top: 1px;
+    font-size: 0.82rem; flex-shrink: 0; margin-top: 1px;
   }
-  .itime { font-family: 'EB Garamond', serif; font-size: 0.76rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 2px; }
-  .itext { font-size: 0.87rem; line-height: 1.75; color: rgba(245,240,232,0.9); }
-  .itext strong { color: var(--cream); font-weight: 500; }
+  .itime { font-size: 0.72rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 2px; font-family: 'EB Garamond', serif; }
+  .itext { font-size: 0.86rem; line-height: 1.72; color: var(--text); }
+  .itext strong { color: var(--forest); font-weight: 600; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #f0f5f0; border: 1px solid #c0d4c0;
+    border-radius: 20px; padding: 2px 10px;
+    font-size: 0.7rem; color: var(--forest-light); margin-top: 4px;
+  }
+
+  /* Beer special item */
+  .item-beer .ico { background: var(--beer-bg); border-color: rgba(184,120,32,0.3); }
+  .item-beer .itext strong { color: var(--beer-amber); }
+  .beer-note {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--beer-bg); border: 1px solid rgba(184,120,32,0.3);
+    border-radius: 3px; padding: 3px 9px;
+    font-size: 0.72rem; color: var(--beer-amber); margin-top: 4px;
+  }
 
   /* Sub options */
-  .subopts { margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
+  .subopts { margin-top: 7px; display: flex; flex-direction: column; gap: 5px; }
   .subopt {
-    display: flex; gap: 10px; align-items: flex-start;
-    padding: 7px 12px;
-    background: rgba(255,255,255,0.03);
-    border-left: 2px solid rgba(122,158,122,0.38);
-    border-radius: 0 2px 2px 0;
+    display: flex; gap: 9px; align-items: flex-start;
+    padding: 6px 10px;
+    background: var(--surface2); border-left: 2px solid rgba(61,107,61,0.35);
+    border-radius: 0 3px 3px 0;
   }
-  .sublbl { font-family: 'EB Garamond', serif; font-size: 0.73rem; color: var(--gold); letter-spacing: 0.12em; flex-shrink: 0; margin-top: 2px; }
-  .subtxt { font-size: 0.84rem; color: rgba(245,240,232,0.8); line-height: 1.6; }
-
-  /* Transit badge */
-  .badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: rgba(61,107,61,0.22); border: 1px solid rgba(122,158,122,0.28);
-    border-radius: 20px; padding: 3px 11px;
-    font-size: 0.73rem; color: var(--sage); margin-top: 5px;
-  }
-
-  /* Alert */
-  .alert-tag {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: rgba(139,38,53,0.18); border: 1px solid rgba(139,38,53,0.42);
-    border-radius: 2px; padding: 3px 8px;
-    font-size: 0.71rem; color: #f5a0a0; margin-top: 5px;
-  }
+  .sublbl { font-size: 0.7rem; color: var(--gold); font-weight: 600; letter-spacing: 0.1em; flex-shrink: 0; margin-top: 2px; font-family: 'EB Garamond', serif; }
+  .subtxt { font-size: 0.83rem; color: var(--text-muted); line-height: 1.55; }
 
   /* Accommodation */
   .accom {
-    margin-top: 15px; padding: 13px 15px;
-    background: rgba(200,168,75,0.05); border: 1px solid rgba(200,168,75,0.18);
-    border-radius: 2px; display: flex; gap: 11px; align-items: flex-start;
+    margin-top: 14px; padding: 12px 14px;
+    background: var(--gold-bg); border: 1px solid rgba(154,120,48,0.2);
+    border-radius: 4px; display: flex; gap: 10px; align-items: flex-start;
   }
-  .accom-lbl { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-  .accom-txt { font-size: 0.84rem; color: rgba(245,240,232,0.85); line-height: 1.7; }
-  .accom-opt {
-    display: flex; align-items: baseline; gap: 8px;
-    margin-top: 5px; padding: 5px 0;
-    border-bottom: 1px dashed rgba(200,168,75,0.14);
-  }
+  .accom-lbl { font-size: 0.63rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; font-family: 'EB Garamond', serif; }
+  .accom-txt { font-size: 0.84rem; color: var(--text); line-height: 1.6; }
+  .accom-txt strong { color: var(--forest); }
+  .accom-opts { margin-top: 4px; display: flex; flex-direction: column; gap: 3px; }
+  .accom-opt { display: flex; align-items: baseline; gap: 7px; padding: 3px 0; border-bottom: 1px dashed rgba(154,120,48,0.15); }
   .accom-opt:last-child { border-bottom: none; }
-  .aoid { font-size: 0.7rem; color: var(--gold); font-family: 'EB Garamond', serif; letter-spacing: 0.14em; flex-shrink: 0; }
-  .aodt { font-size: 0.82rem; color: rgba(245,240,232,0.8); line-height: 1.6; }
+  .aoid { font-size: 0.68rem; color: var(--gold); font-weight: 600; flex-shrink: 0; font-family: 'EB Garamond', serif; }
+  .aodt { font-size: 0.81rem; color: var(--text-muted); line-height: 1.55; }
 
   /* Footer */
-  .footer { text-align: center; padding: 28px 0 18px; border-top: 1px solid rgba(200,168,75,0.13); }
-  .ftxt { font-size: 0.76rem; color: var(--mist); letter-spacing: 0.12em; font-family: 'EB Garamond', serif; margin-top: 10px; }
+  .footer { text-align: center; padding: 24px 0 12px; border-top: 1px solid var(--border); }
+  .ftxt { font-size: 0.74rem; color: var(--text-light); letter-spacing: 0.12em; font-family: 'EB Garamond', serif; margin-top: 8px; }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
   }
+  .day-card { animation: fadeUp 0.6s ease both; }
+  .day-card:nth-child(1){ animation-delay:.04s }
+  .day-card:nth-child(2){ animation-delay:.08s }
+  .day-card:nth-child(3){ animation-delay:.12s }
+  .day-card:nth-child(4){ animation-delay:.16s }
+  .day-card:nth-child(5){ animation-delay:.20s }
+  .day-card:nth-child(6){ animation-delay:.24s }
+  .day-card:nth-child(7){ animation-delay:.28s }
+  .day-card:nth-child(8){ animation-delay:.32s }
+
   @media (max-width: 580px) {
     .card-inner { grid-template-columns: 68px 1fr; }
-    .day-num { font-size: 1.7rem; }
+    .day-num { font-size: 1.6rem; }
     .body { padding: 14px 14px; }
-    .hero-meta { gap: 14px; }
+    .hero { padding: 36px 20px 32px; }
   }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <header class="hero">
-  <!-- Mountains SVG -->
-  <svg class="hero-mountains" viewBox="0 0 1200 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="opacity:0.06">
-    <polygon points="0,160 180,50 320,120 480,15 620,90 760,25 900,110 1060,45 1200,75 1200,160" fill="#c8a84b"/>
-    <polygon points="0,160 220,80 380,140 540,40 700,110 860,55 1020,130 1200,65 1200,160" fill="#7a9e7a"/>
+  <svg class="hero-mountains" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="opacity:0.08">
+    <polygon points="0,120 180,40 320,90 480,10 620,70 760,18 900,85 1060,35 1200,55 1200,120" fill="#e8c870"/>
+    <polygon points="0,120 220,65 380,105 540,30 700,88 860,42 1020,100 1200,50 1200,120" fill="#a0c890"/>
   </svg>
-  <!-- Corner ornaments -->
-  <svg class="corner tl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8,8 L55,8 M8,8 L8,55" stroke="#c8a84b" stroke-width="1.5" fill="none"/>
-    <path d="M18,18 L45,18 M18,18 L18,45" stroke="#c8a84b" stroke-width="0.7" fill="none"/>
-    <circle cx="8" cy="8" r="2.5" fill="#c8a84b"/>
+  <svg class="corner tl" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7,7 L50,7 M7,7 L7,50" stroke="#e8c870" stroke-width="1.4" fill="none"/>
+    <path d="M16,16 L40,16 M16,16 L16,40" stroke="#e8c870" stroke-width="0.6" fill="none"/>
+    <circle cx="7" cy="7" r="2.2" fill="#e8c870"/>
   </svg>
-  <svg class="corner tr" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8,8 L55,8 M8,8 L8,55" stroke="#c8a84b" stroke-width="1.5" fill="none"/>
-    <path d="M18,18 L45,18 M18,18 L18,45" stroke="#c8a84b" stroke-width="0.7" fill="none"/>
-    <circle cx="8" cy="8" r="2.5" fill="#c8a84b"/>
+  <svg class="corner tr" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7,7 L50,7 M7,7 L7,50" stroke="#e8c870" stroke-width="1.4" fill="none"/>
+    <path d="M16,16 L40,16 M16,16 L16,40" stroke="#e8c870" stroke-width="0.6" fill="none"/>
+    <circle cx="7" cy="7" r="2.2" fill="#e8c870"/>
   </svg>
-  <svg class="corner bl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8,8 L55,8 M8,8 L8,55" stroke="#c8a84b" stroke-width="1.5" fill="none"/>
-    <path d="M18,18 L45,18 M18,18 L18,45" stroke="#c8a84b" stroke-width="0.7" fill="none"/>
-    <circle cx="8" cy="8" r="2.5" fill="#c8a84b"/>
+  <svg class="corner bl" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7,7 L50,7 M7,7 L7,50" stroke="#e8c870" stroke-width="1.4" fill="none"/>
+    <path d="M16,16 L40,16 M16,16 L16,40" stroke="#e8c870" stroke-width="0.6" fill="none"/>
+    <circle cx="7" cy="7" r="2.2" fill="#e8c870"/>
   </svg>
-  <svg class="corner br" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8,8 L55,8 M8,8 L8,55" stroke="#c8a84b" stroke-width="1.5" fill="none"/>
-    <path d="M18,18 L45,18 M18,18 L18,45" stroke="#c8a84b" stroke-width="0.7" fill="none"/>
-    <circle cx="8" cy="8" r="2.5" fill="#c8a84b"/>
+  <svg class="corner br" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7,7 L50,7 M7,7 L7,50" stroke="#e8c870" stroke-width="1.4" fill="none"/>
+    <path d="M16,16 L40,16 M16,16 L16,40" stroke="#e8c870" stroke-width="0.6" fill="none"/>
+    <circle cx="7" cy="7" r="2.2" fill="#e8c870"/>
   </svg>
 
   <p class="hero-eyebrow">Reiseplan · 旅行計劃 · 2026</p>
   <h1 class="hero-title">德國巴伐利亞 &amp; 斯瓦比亞<br><em>深度文化之旅</em></h1>
-  <p class="hero-subtitle">Bayern · Ingolstadt · Stuttgart</p>
-  <div class="divider-line"><div class="diamond"></div></div>
+  <p class="hero-sub">Bayern · Ingolstadt · Stuttgart</p>
+  <div class="hero-div"><div class="diamond"></div></div>
   <div class="hero-meta">
-    <div class="meta-item">
-      <div class="meta-label">出發日期</div>
-      <div class="meta-value">2026 / 05 / 24</div>
-    </div>
-    <div class="meta-item">
-      <div class="meta-label">返回日期</div>
-      <div class="meta-value">2026 / 05 / 31</div>
-    </div>
-    <div class="meta-item">
-      <div class="meta-label">行程天數</div>
-      <div class="meta-value">8 天 7 夜</div>
-    </div>
-  </div>
-  <div class="notice">
-    <span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">⚠️</span>
-    <div class="notice-text"><strong>重要提醒：</strong>希特勒鷹巢（Kehlsteinhaus）入場票請務必於 <strong>5月7日</strong> 提前線上預訂，票源有限，逾期恐無法入場。</div>
+    <div class="meta-item"><div class="meta-label">出發日期</div><div class="meta-value">2026 / 05 / 24</div></div>
+    <div class="meta-item"><div class="meta-label">返回日期</div><div class="meta-value">2026 / 05 / 31</div></div>
+    <div class="meta-item"><div class="meta-label">行程天數</div><div class="meta-value">8 天 7 夜</div></div>
   </div>
 </header>
 
-<!-- ITINERARY -->
 <main class="container">
 
   <!-- DAY 1 -->
   <div class="day-card transit">
     <div class="card-inner">
       <div class="sidebar">
-        <div class="day-lbl">DAY</div>
-        <div class="day-num">01</div>
-        <div class="sep"></div>
-        <div class="day-wd">星期日</div>
+        <div class="day-lbl">DAY</div><div class="day-num">01</div>
+        <div class="sep"></div><div class="day-wd">星期日</div>
       </div>
       <div class="body">
         <div class="head">
@@ -319,9 +264,7 @@
         <div class="items">
           <div class="item">
             <div class="ico">✈️</div>
-            <div>
-              <div class="itext">從台灣桃園國際機場出發，正式啟程前往德國。長途飛行，建議充分休息，蓄積體力迎接豐富旅程。</div>
-            </div>
+            <div><div class="itext">從台灣桃園國際機場出發，正式啟程前往德國。長途飛行，建議充分休息，蓄積體力迎接豐富旅程。</div></div>
           </div>
         </div>
       </div>
@@ -332,10 +275,8 @@
   <div class="day-card">
     <div class="card-inner">
       <div class="sidebar">
-        <div class="day-lbl">DAY</div>
-        <div class="day-num">02</div>
-        <div class="sep"></div>
-        <div class="day-wd">星期一</div>
+        <div class="day-lbl">DAY</div><div class="day-num">02</div>
+        <div class="sep"></div><div class="day-wd">星期一</div>
       </div>
       <div class="body">
         <div class="head">
@@ -348,7 +289,7 @@
             <div class="ico">🛬</div>
             <div>
               <div class="itime">07:30</div>
-              <div class="itext">於<strong>慕尼黑機場第二航廈（MUC T2）</strong>接機，與全體成員順利會合。</div>
+              <div class="itext">於 <strong>慕尼黑機場第二航廈（MUC T2）</strong> 接機，與全體成員順利會合。</div>
             </div>
           </div>
           <div class="item">
@@ -368,15 +309,8 @@
         <div class="accom">
           <div style="font-size:1rem;flex-shrink:0;margin-top:2px">🏨</div>
           <div>
-            <div class="accom-lbl">住宿選項（待議定）</div>
-            <div class="accom-opt">
-              <div class="aoid">方案 A</div>
-              <div class="aodt">傳統旅館 — 雙人房 <strong>€ 386</strong>／間，單人房 <strong>€ 240</strong>／間</div>
-            </div>
-            <div class="accom-opt">
-              <div class="aoid">方案 B</div>
-              <div class="aodt">新建青年旅館 — 每人獨立附衛浴單人房，<strong>€ 129</strong>／間（隱私性佳，預算友善）</div>
-            </div>
+            <div class="accom-lbl">住宿</div>
+            <div class="accom-txt">傳統旅館 — 雙人房 <strong>€ 386</strong>／間，單人房 <strong>€ 240</strong>／間</div>
           </div>
         </div>
       </div>
@@ -387,10 +321,8 @@
   <div class="day-card">
     <div class="card-inner">
       <div class="sidebar">
-        <div class="day-lbl">DAY</div>
-        <div class="day-num">03</div>
-        <div class="sep"></div>
-        <div class="day-wd">星期二</div>
+        <div class="day-lbl">DAY</div><div class="day-num">03</div>
+        <div class="sep"></div><div class="day-wd">星期二</div>
       </div>
       <div class="body">
         <div class="head">
@@ -402,8 +334,7 @@
           <div class="item">
             <div class="ico">🦅</div>
             <div>
-              <div class="itext">參觀 <strong>希特勒鷹巢（Kehlsteinhaus）</strong>，海拔 1834 公尺。搭乘百年歷史特製電梯直達頂端，俯瞰阿爾卑斯山脈壯麗全景。</div>
-              <div class="alert-tag">⚠️ 請於 5/7 前預先線上訂票，務必提前預訂！</div>
+              <div class="itext">參觀 <strong>希特勒鷹巢（Kehlsteinhaus）</strong>，海拔 1834 公尺，搭乘特製電梯直達山頂，俯瞰阿爾卑斯山脈壯麗全景。</div>
             </div>
           </div>
           <div class="item">
@@ -424,7 +355,7 @@
           <div style="font-size:1rem;flex-shrink:0;margin-top:2px">🏨</div>
           <div>
             <div class="accom-lbl">住宿</div>
-            <div class="accom-txt"><strong>Hampton by Hilton Munich City North</strong>，位於慕尼黑市區北部，交通便捷。</div>
+            <div class="accom-txt"><strong>Hampton by Hilton Munich City North</strong>，慕尼黑市區北部，交通便捷。</div>
           </div>
         </div>
       </div>
@@ -435,10 +366,8 @@
   <div class="day-card">
     <div class="card-inner">
       <div class="sidebar">
-        <div class="day-lbl">DAY</div>
-        <div class="day-num">04</div>
-        <div class="sep"></div>
-        <div class="day-wd">星期三</div>
+        <div class="day-lbl">DAY</div><div class="day-num">04</div>
+        <div class="sep"></div><div class="day-wd">星期三</div>
       </div>
       <div class="body">
         <div class="head">
@@ -469,7 +398,7 @@
                 </div>
                 <div class="subopt">
                   <div class="sublbl">選項 C</div>
-                  <div class="subtxt">前往 <strong>因戈爾施塔特老城區</strong>，漫步中世紀石板街道，參觀哥德式大教堂與巴伐利亞軍事博物館。</div>
+                  <div class="subtxt">前往 <strong>因戈爾施塔特老城區</strong>，漫步中世紀石板街道，參觀哥德式大教堂。</div>
                 </div>
               </div>
             </div>
@@ -483,10 +412,8 @@
   <div class="day-card">
     <div class="card-inner">
       <div class="sidebar">
-        <div class="day-lbl">DAY</div>
-        <div class="day-num">05</div>
-        <div class="sep"></div>
-        <div class="day-wd">星期四</div>
+        <div class="day-lbl">DAY</div><div class="day-num">05</div>
+        <div class="sep"></div><div class="day-wd">星期四</div>
       </div>
       <div class="body">
         <div class="head">
@@ -498,14 +425,14 @@
           <div class="item">
             <div class="ico">🌅</div>
             <div>
-              <div class="itext"><strong>早上（彈性安排）</strong>：若前一天未能前往，可補充安排 <strong>Ingolstadt Village 購物村</strong> 或 <strong>老城區</strong> 漫遊。</div>
+              <div class="itext"><strong>早上（彈性安排）：</strong>若前一天未能前往，可補充安排 <strong>Ingolstadt Village 購物村</strong> 或 <strong>老城區</strong> 漫遊。</div>
             </div>
           </div>
           <div class="item">
             <div class="ico">🚗</div>
             <div>
               <div class="itime">13:00 – 14:00</div>
-              <div class="itext">參觀 <strong>Audi 汽車工廠（Audi Forum Ingolstadt）</strong>，深入生產線親歷世界頂級汽車製造流程，感受「進步源於科技」的品牌精神。</div>
+              <div class="itext">參觀 <strong>Audi 汽車工廠（Audi Forum Ingolstadt）</strong>，親歷世界頂級汽車製造流程，感受「進步源於科技」的品牌精神。</div>
             </div>
           </div>
           <div class="item">
@@ -524,10 +451,8 @@
   <div class="day-card">
     <div class="card-inner">
       <div class="sidebar">
-        <div class="day-lbl">DAY</div>
-        <div class="day-num">06</div>
-        <div class="sep"></div>
-        <div class="day-wd">星期五</div>
+        <div class="day-lbl">DAY</div><div class="day-num">06</div>
+        <div class="sep"></div><div class="day-wd">星期五</div>
       </div>
       <div class="body">
         <div class="head">
@@ -543,10 +468,18 @@
               <div class="itext">參觀 <strong>梅賽德斯-賓士汽車工廠（Mercedes-Benz Factory Stuttgart）</strong>，深入生產線體驗德國頂級汽車製造工藝，見證每一輛賓士誕生的過程。</div>
             </div>
           </div>
+          <div class="item item-beer">
+            <div class="ico">🍺</div>
+            <div>
+              <div class="itime">約 16:00</div>
+              <div class="itext">步行至附近的 <strong>Dinkelacker Shop &amp; Schanke</strong>（Tübinger Str. 54），斯圖加特百年家族釀酒廠直營商店與酒吧，品嚐 Dinkelacker、Wulle、Schwaben Bräu 等在地生啤，選購伴手禮。</div>
+              <div class="beer-note">🕐 週五營業時間：13:00 – 19:00</div>
+            </div>
+          </div>
           <div class="item">
             <div class="ico">🚗</div>
             <div>
-              <div class="itext">參觀結束，驅車 <strong>240 公里</strong>趕赴慕尼黑機場，辦理入住並準備明日登機手續。</div>
+              <div class="itext">結束後驅車 <strong>240 公里</strong>趕赴慕尼黑機場，準備隔日登機手續。</div>
               <div class="badge">🛣️ 車程約 2.5 小時</div>
             </div>
           </div>
@@ -566,10 +499,8 @@
   <div class="day-card transit">
     <div class="card-inner">
       <div class="sidebar">
-        <div class="day-lbl">DAY</div>
-        <div class="day-num">07</div>
-        <div class="sep"></div>
-        <div class="day-wd">星期六</div>
+        <div class="day-lbl">DAY</div><div class="day-num">07</div>
+        <div class="sep"></div><div class="day-wd">星期六</div>
       </div>
       <div class="body">
         <div class="head">
@@ -594,10 +525,8 @@
   <div class="day-card transit">
     <div class="card-inner">
       <div class="sidebar">
-        <div class="day-lbl">DAY</div>
-        <div class="day-num">08</div>
-        <div class="sep"></div>
-        <div class="day-wd">星期日</div>
+        <div class="day-lbl">DAY</div><div class="day-num">08</div>
+        <div class="sep"></div><div class="day-wd">星期日</div>
       </div>
       <div class="body">
         <div class="head">
@@ -618,9 +547,8 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <div class="footer">
-    <div class="divider-line" style="justify-content:center"><div class="diamond" style="background:rgba(200,168,75,0.35)"></div></div>
+    <div class="hero-div" style="justify-content:center"><div class="diamond" style="background:rgba(154,120,48,0.35)"></div></div>
     <div class="ftxt">Gute Reise · 旅途愉快 · 8 Days in Germany · May 2026</div>
   </div>
 
