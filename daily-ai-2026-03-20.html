@@ -3,333 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日 AI 資訊 - 2026年3月20日</title>
+    <title>每日 AI 資訊 - 2026年03月20日</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @page { size: A4; margin: 2.5cm; }
         body {
-            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            min-height: 100vh;
-            color: #eee;
+            font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", Arial, sans-serif;
             line-height: 1.8;
-        }
-        .container {
+            color: #1a1a1a;
             max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px;
+            font-size: 12pt;
+            background: #fafafa;
         }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-        h1 {
-            font-size: 2.5em;
-            background: linear-gradient(90deg, #00d9ff, #00ff88);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-        }
-        .date {
-            color: #888;
-            font-size: 1.1em;
-        }
-        .audio-section {
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .audio-section h2 {
-            color: #00d9ff;
-            margin-bottom: 20px;
-            font-size: 1.3em;
-        }
-        .audio-player {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .audio-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(0,0,0,0.3);
-            padding: 15px;
-            border-radius: 10px;
-        }
-        .audio-item label {
-            min-width: 60px;
-            font-weight: bold;
-            color: #00ff88;
-        }
-        .audio-item audio {
-            flex: 1;
-            height: 40px;
-        }
-        .audio-item audio::-webkit-media-controls-panel {
-            background: #1a1a2e;
-        }
-        section {
-            background: rgba(255,255,255,0.03);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        h2 {
-            color: #00d9ff;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(0,217,255,0.3);
-            font-size: 1.4em;
-        }
-        h3 {
-            color: #00ff88;
-            margin: 20px 0 10px;
-            font-size: 1.2em;
-        }
-        .source-tag {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            margin-right: 8px;
-        }
-        .mit-tag { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; }
-        .hn-tag { background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%); }
-        .paper-tag { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-        
-        .teaching-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75em;
-            margin-left: 10px;
-        }
-        
-        ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-        li {
-            margin-bottom: 12px;
-            position: relative;
-        }
-        li::marker {
-            color: #00d9ff;
-        }
-        
-        .highlight {
-            background: linear-gradient(120deg, rgba(0,217,255,0.1) 0%, rgba(0,255,136,0.1) 100%);
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #00d9ff;
-            margin: 15px 0;
-        }
-        
-        .tech-term {
-            color: #00ff88;
-            font-weight: bold;
-        }
-        
-        .key-finding {
-            background: rgba(0,255,136,0.1);
-            border: 1px solid rgba(0,255,136,0.3);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #666;
-            font-size: 0.9em;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        .stat {
-            text-align: center;
-        }
-        .stat-value {
-            font-size: 2em;
-            font-weight: bold;
-            color: #00d9ff;
-        }
-        .stat-label {
-            color: #888;
-            font-size: 0.9em;
-        }
-        
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8em; }
-            .container { padding: 10px; }
-            section { padding: 15px; }
-            .audio-item { flex-direction: column; align-items: flex-start; }
-            .audio-item audio { width: 100%; }
-        }
+        h1 { color: #1a5f7a; border-bottom: 4px solid #1a5f7a; padding-bottom: 15px; text-align: center; font-size: 28pt; margin-bottom: 10px; }
+        h2 { color: #0f4c75; border-left: 5px solid #0f4c75; padding-left: 15px; margin-top: 40px; font-size: 16pt; }
+        h3 { color: #1a5f7a; background: linear-gradient(90deg, #f0f4f8 0%, #e8eef4 100%); padding: 12px 15px; border-radius: 6px; margin-top: 30px; font-size: 14pt; }
+        .week-header { background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%); color: white; padding: 18px 25px; border-radius: 10px; margin: 40px 0 25px 0; font-size: 16pt; font-weight: bold; }
+        .info-box { background-color: #bee3f8; padding: 15px; border-radius: 8px; border-left: 4px solid #3182ce; margin: 15px 0; }
+        .teaching { background-color: #fed7e2; padding: 15px; border-radius: 8px; border-left: 4px solid #ed64a6; margin: 15px 0; }
+        .source-tag { display: inline-block; background-color: #e2e8f0; padding: 3px 10px; border-radius: 12px; font-size: 10pt; margin-right: 8px; }
+        .source-link { font-size: 11pt; color: #3182ce; }
+        .source-link a { color: #3182ce; text-decoration: none; }
+        .source-link a:hover { text-decoration: underline; }
+        .download-btn { position: fixed; top: 20px; right: 20px; background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%); color: white; padding: 12px 20px; border: none; border-radius: 25px; cursor: pointer; font-size: 13px; font-weight: bold; }
+        hr { border: 0; height: 2px; background: linear-gradient(90deg, transparent, #3182ce, transparent); margin: 40px 0; }
+        .voice-player { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px; text-align: center; margin-bottom: 30px; }
+        .voice-player h3 { background: none; color: white; margin-top: 0; }
+        audio { width: 100%; margin: 10px 0; }
+        .footer { text-align: center; color: #718096; font-size: 10pt; margin-top: 40px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🤖 每日 AI 資訊</h1>
-            <p class="date">📅 2026年3月20日</p>
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-value">3</div>
-                    <div class="stat-label">來源數</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">8</div>
-                    <div class="stat-label">重點新聞</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">2</div>
-                    <div class="stat-label">教學亮點</div>
-                </div>
-            </div>
-        </header>
+    <button class="download-btn" onclick="window.print()">🖨️ 下載/列印 PDF</button>
+    
+    <h1>🤖 每日 AI 資訊</h1>
+    <p style="text-align: center; font-size: 14pt; color: #4a5568;">2026年03月20日</p>
+    <p style="text-align: center; color: #718096;">來源：MIT News、The New Stack、The Hacker News</p>
 
-        <!-- 語音播放器 -->
-        <div class="audio-section">
-            <h2>🎙️ 語音播放</h2>
-            <div class="audio-player">
-                <div class="audio-item">
-                    <label>中文</label>
-                    <audio controls preload="metadata">
-                        <source src="daily-ai-report-2026-03-20-zh.mp3" type="audio/mpeg">
-                        您的瀏覽器不支持音頻播放
-                    </audio>
-                </div>
-                <div class="audio-item">
-                    <label>English</label>
-                    <audio controls preload="metadata">
-                        <source src="daily-ai-report-2026-03-20-en.mp3" type="audio/mpeg">
-                        Your browser does not support audio playback
-                    </audio>
-                </div>
-            </div>
-        </div>
+    <!-- 語音播放器 -->
+    <div class="voice-player">
+        <h3>🎧 語音播放</h3>
+        <p>中文版本：</p>
+        <audio controls>
+            <source src="https://ntust2026.github.io/claw/daily-ai-2026-03-20-zh.mp3" type="audio/mpeg">
+            您的瀏覽器不支援音訊播放
+        </audio>
+        <p>English Version：</p>
+        <audio controls>
+            <source src="https://ntust2026.github.io/claw/daily-ai-2026-03-20-en.mp3" type="audio/mpeg">
+            Your browser does not support audio playback
+        </audio>
+    </div>
 
-        <!-- MIT News -->
-        <section>
-            <h2>📰 MIT News AI 主題</h2>
-            
-            <h3>🚀 生成式 AI 改進無線視覺系統 — 可「看穿」障礙物 <span class="teaching-badge">🎓 教學亮點</span></h3>
-            <span class="source-tag mit-tag">MIT News</span>
-            <p>MIT 研究團隊利用生成式 AI 改進了無線視覺系統，讓機器人能夠「看穿」障礙物。這項技術使用<span class="tech-term">毫米波信號</span>（mmWave）穿透牆壁和障礙物，結合生成式 AI 模型填補缺失的形狀數據。</p>
-            <div class="highlight">
-                <strong>應用場景：</strong>倉庫機器人驗證包裝商品、智慧家居機器人理解人類位置、搜索救援任務
-            </div>
-            <p>研究團隊構建了一個名為 <span class="tech-term">Wave-Former</span> 的系統，能重建約70種日常物品，準確率比現有技術提高近20%。這項研究發表於 IEEE CVPR 會議。</p>
-            
-            <h3>🎯 新方法識別過度自信的大型語言模型 <span class="teaching-badge">🎓 教學亮點</span></h3>
-            <span class="source-tag mit-tag">MIT News</span>
-            <p>MIT 研究人員提出了一種新方法，通過比較<span class="tech-term">跨模型分歧</span>（cross-model disagreement）來測量不確定性，比傳統方法更能準確識別模型過度自信的情況。</p>
-            <div class="key-finding">
-                <strong>核心發現：</strong>傳統方法只測量「自我一致性」，但 AI 可能在完全錯誤時仍然非常自信。新方法測量「認知不確定性」（epistemic uncertainty），更能反映真實的不可靠程度。
-            </div>
-            <p>這個發現對 AI 可信度教學非常重要，可幫助學生理解為什麼不應完全信任 AI 輸出。</p>
-            
-            <h3>📚 MIT 課程：用人類學改進聊天機器人設計</h3>
-            <span class="source-tag mit-tag">MIT News</span>
-            <p>MIT 開設了一門結合人類學與電腦科學的課程 — <span class="tech-term">「人性化使用者體驗設計」</span>（Humane UXD），訓練學生設計「人性化」的聊天機器人。</p>
-            <p>課程由人類學教授與電腦科學教授共同授課，學生學習使用人類學方法來分析人類對話，設計幫助用戶提升自我的聊天機器人，而非設計令人上癮的數位產品。</p>
-            <div class="highlight">
-                <strong>學生專案 Pond：</strong>幫助應屆畢業生適應獨立成人生活的聊天機器人，涵蓋社交生活、職業發展和成人技能三個領域。
-            </div>
-            
-            <h3>❤️ AI 預測心臟衰竭患者一年內病情惡化</h3>
-            <span class="source-tag mit-tag">MIT News</span>
-            <p>MIT、Mass General Brigham 和哈佛醫學院的研究團隊開發了一個深度學習模型，可提前一年預測心臟衰竭患者的病情發展。</p>
-            
-            <h3>🔬 AI 與數學物理科學的未來</h3>
-            <span class="source-tag mit-tag">MIT News</span>
-            <p>MIT 教授 Jesse Thaler 描述了 AI 與數學物理科學之間的「雙向橋樑」願景，有望推動兩個領域的共同發展。</p>
-        </section>
+    <!-- 新聞內容 -->
+    <div class="week-header">📰 今日 AI 新聞</div>
 
-        <!-- Hacker News -->
-        <section>
-            <h2>💻 Hacker News AI 趨勢</h2>
-            
-            <h3>📈 2026年2月 HN 趨勢：AI  dominate</h3>
-            <span class="source-tag hn-tag">Hacker News</span>
-            <p>2026年2月，Hacker News 前五大熱門故事中，有四個與 AI 相關，涵蓋 AI 生成內容、AI 檢測和 AI 驅動產品。</p>
-            
-            <h3>🔐 AI 資安新發展</h3>
-            <span class="source-tag hn-tag">Hacker News</span>
-            <ul>
-                <li><strong>OpenAI Codex Security：</strong>掃描了120萬次提交，發現792個關鍵漏洞和10,561個高嚴重性問題</li>
-                <li><strong>AI 助手被濫用：</strong>研究顯示 Copilot 和 Grok 可被濫用作為惡意軟體的 C2 代理</li>
-                <li><strong>隱私疑慮：</strong>研究發現 AI 可幫助駭客識別匿名社交媒體帳號</li>
-            </ul>
-            
-            <h3>💬 2026年 AI 預測</h3>
-            <span class="source-tag hn-tag">Hacker News</span>
-            <p>Hacker News 用戶預測：LLM 將被广泛使用但被描述為邪惡；Leetcode 將成為軟體工程師面試標準，其他行業也將採用類似驗證機制。</p>
-        </section>
+    <h2>1. Anthropic 澄清 Claude Code 使用條款 - 個人用戶不受影響</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 The New Stack</span>
+    </div>
+    <p>Anthropic 澄清其 Claude Code 政策的更新不會影響個人用戶使用訂閱帳號運行 OpenClaw、NanoClaw 等開源 Agent 工具。先前的文件更新引發社區討論，Anthropic 強調「 Nothing changes around how customers have been using their account」。</p>
+    <p class="source-link">🔗 <a href="https://thenewstack.io/anthropic-agent-sdk-confusion/" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
 
-        <!-- AI 論文 -->
-        <section>
-            <h2>📄 最新 AI 論文</h2>
-            
-            <h3>🧠 NeuroHex：高效六邊形座標系統</h3>
-            <span class="source-tag paper-tag">arXiv</span>
-            <p>創建世界模型的新型六邊形座標系統，可實現自適應 AI。發表於 NICE 2026。</p>
-            
-            <h3>🔬 OpenMOSS：AI 的科學品味</h3>
-            <span class="source-tag paper-tag">alphaXiv</span>
-            <p>復旦大學研究團隊開發的 AI 框架，讓 AI 學會「科學品味」來判斷和生成具有影響力的研究想法。使用<span class="tech-term">強化學習與社區回饋</span>（RLCF）方法。</p>
-            
-            <h3>🤖 Specification-Aware Distribution Shaping</h3>
-            <span class="source-tag paper-tag">arXiv</span>
-            <p>針對機器人基礎模型的規範感知分佈塑形研究。</p>
-            
-            <h3>🎨 Visual RAG Toolkit</h3>
-            <span class="source-tag paper-tag">arXiv</span>
-            <p>無訓練池化和多階段搜索的多向量視覺檢索技術。</p>
-        </section>
+    <h2>2. NVIDIA 推出 NemoClaw - 開源 AI Agent 平台</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 The New Stack</span>
+    </div>
+    <p>NVIDIA 宣布推出 NemoClaw，這是一個開源平台，旨在幫助開發者構建和部署 AI Agents。該平台整合了 NVIDIA 的 GPU 加速技術，為企業級 AI 應用提供更強大的支援。</p>
+    <p class="source-link">🔗 <a href="https://thenewstack.io/nvidia-nemoclaw-launch/" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
 
-        <!-- 總結 -->
-        <section>
-            <h2>📊 今日摘要</h2>
-            <div class="highlight">
-                <ul>
-                    <li><strong>MIT 研究亮點：</strong>生成式 AI 賦予機器人「透視」能力；新方法可識別 AI 的過度自信問題</li>
-                    <li><strong>AI 倫理教育：</strong>MIT 跨學科課程展示人類學與 AI 結合的可能性</li>
-                    <li><strong>資安趨勢：</strong>AI 在資安領域的應用與濫用同時增加</li>
-                    <li><strong>論文趨勢：</strong>AI 開始展現「科學品味」，能夠評估研究想法的價值</li>
-                </ul>
-            </div>
-        </section>
+    <h2>3. AI 程式碼審查工具爆發 - OpenAI Codex Security 掃描百萬提交</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 The Hacker News</span>
+    </div>
+    <p>OpenAI 推出 Codex Security AI 代理工具，掃描了 120 萬個代碼提交，發現 792 個關鍵漏洞和 10,561 個高嚴重性漏洞。這顯示 AI 在資安領域的應用正在快速發展。</p>
+    <p class="source-link">🔗 <a href="https://thehackernews.com/2026/03/openai-codex-security-scans.html" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
 
-        <footer>
-            <p>📡 由 OpenClaw AI 課程為您自動生成</p>
-            <p>Sources: MIT News, Hacker News, arXiv, alphaXiv</p>
-        </footer>
+    <h2>4. MIT 推出新 AI 課程 - 使用人類學改善聊天機器人</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 MIT News</span>
+    </div>
+    <p>MIT 電腦科學學生設計 AI 聊天機器人，幫助年輕用戶變得更善於社交。這門新課程結合了人類學與 AI 技術，展示跨學科 AI 設計的潛力。</p>
+    <p class="source-link">🔗 <a href="https://news.mit.edu/2026/0311/ai-anthropology-chatbots" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
+
+    <h2>5. AI 醫療突破 - MIT 開發心臟衰竭預測模型</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 MIT News</span>
+    </div>
+    <p>MIT、Mass General Brigham 和哈佛醫學院的研究人員開發深度學習模型，可提前一年預測心臟衰竭患者的病情惡化。這是 AI 在醫療領域的重要應用案例。</p>
+    <p class="source-link">🔗 <a href="https://news.mit.edu/2026/0312/ai-heart-failure-prediction" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
+
+
+    <hr>
+    <div class="footer">
+        <p>每日 AI 資訊簡報 | 由 OpenClaw 自動產生</p>
+        <p>更新時間：2026-03-20 08:00:56</p>
     </div>
 </body>
 </html>
