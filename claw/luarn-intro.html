@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欒斌教授介紹</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            color: #a0a0a0;
+            margin-bottom: 40px;
+        }
+        .card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        .info-row {
+            display: flex;
+            margin: 15px 0;
+            align-items: center;
+        }
+        .label {
+            font-weight: bold;
+            color: #00d9ff;
+            min-width: 120px;
+        }
+        .value { color: #fff; }
+        audio {
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        .badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff6b6b, #ffa500);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 欒斌教授介紹</h1>
+        <p class="subtitle">National Taiwan University of Science and Technology</p>
+        
+        <div class="card">
+            <div class="info-row">
+                <span class="label">現職</span>
+                <span class="value">臺灣科技大學企業管理系 專任教授</span>
+            </div>
+            <div class="info-row">
+                <span class="label">學歷</span>
+                <span class="value">美國威斯康辛大學工業工程博士</span>
+            </div>
+            <div class="info-row">
+                <span class="label">研究領域</span>
+                <span class="value">電子商務、網路行銷、區塊鏈應用、Web 3.0</span>
+            </div>
+            <div class="info-row">
+                <span class="label">殊榮</span>
+                <span class="value">
+                    <span class="badge">🏆 全球前2%頂尖科學家</span>
+                    <span class="badge">🎖️ 113年教育部師鐸獎</span>
+                </span>
+            </div>
+            <div class="info-row">
+                <span class="label">Email</span>
+                <span class="value">luarn@mail.ntust.edu.tw</span>
+            </div>
+            <div class="info-row">
+                <span class="label">研究室</span>
+                <span class="value">T2-408-4</span>
+            </div>
+            <div class="info-row">
+                <span class="label">辦公時間</span>
+                <span class="value">週四 13:30~15:30</span>
+            </div>
+            
+            <audio controls preload="auto">
+                <source src="luarn-intro.mp3" type="audio/mpeg">
+                您的瀏覽器不支援音訊播放
+            </audio>
+        </div>
+    </div>
+</body>
+</html>
