@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>晨間科技新聞 | Morning Tech News</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-card: #21262d;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --accent-hover: #79c0ff;
+            --border: #30363d;
+            --success: #3fb950;
+            --warning: #d29922;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #58a6ff, #a371f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        .audio-section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+        
+        .audio-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .audio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 600px) {
+            .audio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .audio-player {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 15px 20px;
+        }
+        
+        .audio-player label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .audio-player audio {
+            width: 100%;
+            height: 40px;
+        }
+        
+        .news-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .news-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .news-card h3 {
+            font-size: 1.3rem;
+            margin: 10px 0 8px;
+            color: var(--text-primary);
+        }
+        
+        .source {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+        
+        .bilingual-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .lang-version {
+            padding: 15px;
+            border-radius: 8px;
+            background: var(--bg-secondary);
+        }
+        
+        .lang-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .lang-version.zh .lang-label {
+            color: #f778ba;
+        }
+        
+        .lang-version.en .lang-label {
+            color: #58a6ff;
+        }
+        
+        .lang-version p {
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        .badge.hot {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        
+        .badge.tech {
+            background: rgba(88, 166, 255, 0.2);
+            color: #58a6ff;
+        }
+        
+        .badge.business {
+            background: rgba(63, 185, 80, 0.2);
+            color: #3fb950;
+        }
+
+        .badge.ai {
+            background: rgba(168, 85, 247, 0.2);
+            color: #a855f7;
+        }
+
+        .badge.policy {
+            background: rgba(249, 115, 22, 0.2);
+            color: #f97316;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌐 晨間科技新聞</h1>
+            <p class="subtitle">Morning Tech News - Bilingual Edition</p>
+            <p class="date">2026年3月22日 | March 22, 2026</p>
+        </header>
+        
+        <section class="audio-section">
+            <h2>🎧 語音播放 | Audio Player</h2>
+            <div class="audio-grid">
+                <div class="audio-player">
+                    <label>🇹🇼 中文新聞播報</label>
+                    <audio controls>
+                        <source src="https://ntust2026.github.io/claw/morning-zh.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="audio-player">
+                    <label>🇺🇸 English News</label>
+                    <audio controls>
+                        <source src="https://ntust2026.github.io/claw/morning-en.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </section>
+        
+        <main>
+            <!-- News Item 1 -->
+            <article class="news-card">
+                <span class="badge policy">政策</span>
+                <span class="badge hot">🔥 熱門</span>
+                <h3>白宮發布AI政策框架 要求國會限制各州AI監管法規</h3>
+                <div class="source">來源：SiliconANGLE, Roll Call, Boston.com | March 20, 2026</div>
+                <div class="bilingual-content">
+                    <div class="lang-version zh">
+                        <div class="lang-label">中文</div>
+                        <p>白宮於3月20日發布AI政策框架白皮書，要求國會限制各州監管人工智慧的能力。這份包含七大支柱的立法藍圖主張，國會應優先於各州AI法律，以確保全國統一的最低標準。白皮書還呼籲建立「AI監管沙盒」，簡化資料中心電力設施的聯邦許可流程，並對兒童安全、智慧財產權和AI企業的資料使用進行規範。眾院共和黨領袖已表態支持，但要在參议院通過仍面臨艱難挑戰。</p>
+                    </div>
+                    <div class="lang-version en">
+                        <div class="lang-label">English</div>
+                        <p>The White House on March 20 released its AI policy framework, urging Congress to limit states' ability to regulate artificial intelligence. The legislative blueprint, organized around seven pillars, calls for federal preemption of state AI laws to ensure a uniformly minimal national standard. It also advocates for creating regulatory sandboxes for AI applications and streamlining federal permitting for data center power infrastructure, while addressing child safety, intellectual property, and data usage by AI firms. House Republican leaders have endorsed the framework, though Senate passage remains a heavy lift.</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- News Item 2 -->
+            <article class="news-card">
+                <span class="badge ai">AI</span>
+                <span class="badge business">商業</span>
+                <h3>OpenAI計劃2026年底前將員工人數翻倍至8000人</h3>
+                <div class="source">來源：Reuters, Financial Times | March 21, 2026</div>
+                <div class="bilingual-content">
+                    <div class="lang-version zh">
+                        <div class="lang-label">中文</div>
+                        <p>根據金融時報報導，OpenAI計劃在2026年底前將員工人數從4500人大幅增加至8000人，幾乎翻倍。這家人工智慧新創公司正在積極擴張，以抓住生成式AI市場的高速成長機遇。同期，Alphabet和Meta也宣布2026年將合計投入3050億美元於AI領域，凸顯科技巨頭在AI競賽中的激烈角力。專家指出，AI人才爭奪戰正在加劇，頂尖研究人員的薪資水準已達到歷史高點。</p>
+                    </div>
+                    <div class="lang-version en">
+                        <div class="lang-label">English</div>
+                        <p>OpenAI plans to nearly double its workforce from 4,500 to 8,000 by the end of 2026, the Financial Times reported, citing two people with knowledge of the matter. The artificial intelligence startup is aggressively expanding to capture the booming generative AI market. Meanwhile, Alphabet and Meta have announced a combined $305 billion investment in AI for 2026, underscoring the fierce competition among tech giants. Experts note that the AI talent war is intensifying, with top researchers' salaries reaching historic highs.</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- News Item 3 -->
+            <article class="news-card">
+                <span class="badge tech">晶片</span>
+                <span class="badge business">商業</span>
+                <h3>NVIDIA GTC 2026：大秀機器人AI合唱 亞馬遜雲端大單達百萬晶片</h3>
+                <div class="source">來源：NVIDIA Blog | March 19, 2026</div>
+                <div class="bilingual-content">
+                    <div class="lang-version zh">
+                        <div class="lang-label">中文</div>
+                        <p>NVIDIA於3月19日舉辦GTC 2026開發者大會，執行長黃仁勳以一首AI生成的機器人合唱影片閉幕，影片中虛擬機器人在營火旁彈吉他、吹口琴，呈現NVIDIA在生成式AI領域的多元應用。同日，NVIDIA宣布與亞馬遜達成重大協議，承諾在2027年底前向亞馬遜雲端供應100萬片AI晶片。新街研究也將NVIDIA列入2026年最佳投資標的，看好其長期營收潛力大幅超越市場預期。</p>
+                    </div>
+                    <div class="lang-version en">
+                        <div class="lang-label">English</div>
+                        <p>NVIDIA held its GTC 2026 developer conference on March 19, closing with an AI-generated sing-along video featuring virtual robots playing guitars and harmonicas by a campfire — showcasing NVIDIA's diverse generative AI applications. Same day, NVIDIA announced a major agreement with Amazon to supply 1 million AI chips to Amazon Web Services by the end of 2027. New Street Research also added NVIDIA to its best ideas list for 2026, citing long-term revenue potential that significantly exceeds market expectations.</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- News Item 4 -->
+            <article class="news-card">
+                <span class="badge tech">法律</span>
+                <span class="badge hot">🔥 熱門</span>
+                <h3>美國起訴超微電腦三人 涉嫌走私數十億美元AI晶片至中國</h3>
+                <div class="source">來源：Reuters | March 20, 2026</div>
+                <div class="bilingual-content">
+                    <div class="lang-version zh">
+                        <div class="lang-label">中文</div>
+                        <p>美國司法部於3月20日宣布起訴與超微電腦相關的三名嫌疑人，指控他們涉嫌協助走私價值數十億美元的人工智慧晶片至中國。起訴書指出，被告涉嫌利用空殼公司偽造出口文件，規避美國對中國的晶片出口管制。這是美國打擊先進技術流向中國的最新行動。超微電腦是全球最大的伺服器供應商之一，近年來因其與中國的業務往來而受到美國監管機構的嚴格審查。</p>
+                    </div>
+                    <div class="lang-version en">
+                        <div class="lang-label">English</div>
+                        <p>The US Department of Justice on March 20 announced charges against three individuals linked to Super Micro Computer, accusing them of helping smuggle billions of dollars' worth of AI chips to China. The indictment alleges the defendants used shell companies and falsified export documents to evade US export controls on chips to China. This marks the latest US action against the flow of advanced technology to China. Super Micro Computer, one of the world's largest server suppliers, has faced intense scrutiny from US regulators in recent years over its China business ties.</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- News Item 5 -->
+            <article class="news-card">
+                <span class="badge ai">AI政治</span>
+                <span class="badge hot">🔥 趨勢</span>
+                <h3>AI深偽影片入侵2026美國期中選舉 國會候選人互相攻擊</h3>
+                <div class="source">來源：The Daily Signal | March 21, 2026</div>
+                <div class="bilingual-content">
+                    <div class="lang-version zh">
+                        <div class="lang-label">中文</div>
+                        <p>人工智慧正在主導2026年美國期中選舉，不僅是政策議題，更已成為選戰工具。共和黨參議員候選人約翰·康寧競選團隊發布了一段AI生成的音樂影片，使用B-52s樂團的歌曲嘲諷對手肯·塔克斯頓。民主党參議員候選人詹姆斯·塔拉里科也成為深偽技術的目標。值得注意的是，B-52s樂團已發表聲明，譴責其音樂被未經授權使用於政治廣告，並要求立即停止。</p>
+                    </div>
+                    <div class="lang-version en">
+                        <div class="lang-label">English</div>
+                        <p>Artificial intelligence is dominating the 2026 US midterm elections—not just as a political issue but as a campaign weapon. Senator John Cornyn's campaign released an AI-generated music video parodying his primary challenger Ken Paxton, set to the B-52s' hit song "Love Shack." Democratic Senate candidate James Talarico has also been targeted by deepfake technology. Notably, the B-52s have issued a statement condemning the unauthorized use of their music in political advertising and demanding immediate cessation.</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- News Item 6 -->
+            <article class="news-card">
+                <span class="badge tech">消費電子</span>
+                <span class="badge business">商業</span>
+                <h3>蘋果曾擬收購Halide相機App開發商 交易破局後陷入訴訟</h3>
+                <div class="source">來源：MacRumors | March 21, 2026</div>
+                <div class="bilingual-content">
+                    <div class="lang-version zh">
+                        <div class="lang-label">中文</div>
+                        <p>根據The Information報導，蘋果公司曾在2025年夏天與熱門iPhone相機App Halide的開發商Lux Optics洽談收購。談判破裂後，蘋果轉而試圖直接挖角Lux共同創辦人塞巴斯蒂安·德·威斯。此舉引發Lux Optics內部糾紛，共同創辦人之間爆發激烈法律衝突。分析師指出，蘋果此舉是為了提升iPhone 18 Pro的相機軟體能力，並與Google Pixel在計算攝影領域展開更激烈的競爭。</p>
+                    </div>
+                    <div class="lang-version en">
+                        <div class="lang-label">English</div>
+                        <p>According to The Information, Apple held acquisition talks in the summer of 2025 with Lux Optics, the developer of popular iPhone camera app Halide. After negotiations collapsed, Apple attempted to poach Lux co-founder and designer Sebastian de With directly, sparking an intense legal dispute among the company's co-founders. Analysts suggest Apple sought to enhance the iPhone 18 Pro's camera software capabilities and compete more aggressively with Google Pixel in computational photography.</p>
+                    </div>
+                </div>
+            </article>
+        </main>
+        
+        <footer>
+            <p>🌐 晨間科技新聞 | Morning Tech News</p>
+            <p>由 OpenClaw AI 自動生成 | Generated by OpenClaw AI</p>
+            <p><a href="https://ntust2026.github.io/claw/">返回首頁</a></p>
+        </footer>
+    </div>
+</body>
+</html>
