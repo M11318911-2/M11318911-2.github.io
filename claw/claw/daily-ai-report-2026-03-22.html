@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日 AI 資訊簡報 - 2026年3月22日</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .date {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .audio-section {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .audio-section h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .audio-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .audio-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .audio-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .audio-btn.secondary {
+            background: var(--accent);
+        }
+        
+        .audio-btn.secondary:hover {
+            background: #d97706;
+        }
+        
+        section {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 20px 0 10px;
+            font-size: 1.2rem;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+        
+        .tag.lesson {
+            background: #10b981;
+        }
+        
+        .source {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .highlight {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        th {
+            background: var(--primary);
+            color: white;
+        }
+        
+        tr:hover {
+            background: #f1f5f9;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🤖 每日 AI 資訊簡報</h1>
+        <p class="date">2026年3月22日 星期日</p>
+    </header>
+    
+    <div class="container">
+        <div class="audio-section">
+            <h2>🔊 語音播放</h2>
+            <div class="audio-buttons">
+                <a href="daily-ai-report-2026-03-22-zh.mp3" class="audio-btn" download>▶️ 中文語音</a>
+                <a href="daily-ai-report-2026-03-22-en.mp3" class="audio-btn secondary" download>▶️ English</a>
+            </div>
+        </div>
+        
+        <section>
+            <h2>📰 MIT News AI 重點</h2>
+            
+            <h3>🔬 AI 研究突破</h3>
+            <ul>
+                <li>
+                    <strong>生成式 AI 改善無線視覺系統</strong>
+                    <p class="source">MIT 研究團隊利用生成式 AI 克服長期瓶頸，讓 wireless vision system 能夠看穿障礙物，精度大幅提升。</p>
+                </li>
+                <li>
+                    <strong>AI 模型可解釋性突破</strong>
+                    <p class="source">新技術可將任何電腦視覺模型轉換為能夠用人類可理解的概念解釋其預測的模型，提升 AI 透明度。🎓 教學相關：可解釋 AI (XAI)</p>
+                </li>
+            </ul>
+            
+            <h3>🌍 AI 與創意</h3>
+            <ul>
+                <li>
+                    <strong>MIT 與 Hasso Plattner Institute 成立 AI 與創意中心</strong>
+                    <p class="source">為期 10 年的合作計畫，由 MIT 建築與規劃學院、MIT 計算學院共同主導，探索 AI 在創意領域的應用。</p>
+                </li>
+            </ul>
+            
+            <h3>⚠️ AI 倫理與公平性</h3>
+            <ul>
+                <li>
+                    <strong>研究：AI 聊天機器人對弱勢用戶提供較不準確資訊</strong>
+                    <p class="source">MIT 研究發現，AI 聊天機器人對邊緣化群體提供較不準確或更敷衍的回答。🎓 教學相關：AI 倫理與數位包容</p>
+                </li>
+            </ul>
+            
+            <h3>❓ AI 的正確發展道路</h3>
+            <ul>
+                <li>
+                    <strong>Karen Hao 談 AI 的正確道路</strong>
+                    <p class="source">記者 Karen Hao 在演講中呼籲改變 AI 發展軌跡，包括遠離大規模數據和模型擴展，以及避免僅追求「人工通用智慧」的目標。</p>
+                </li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>🌐 Hacker News 與產業動態</h2>
+            
+            <h3>🔒 AI 安全威脅</h3>
+            <ul>
+                <li>
+                    <strong>67% 的 CISO 缺乏 AI 可視性</strong>
+                    <p class="source">Pentera 報告顯示，2026 年大多數資安長缺乏對 AI 的可見性，暴露安全缺口。企業風險持續增加。</p>
+                </li>
+                <li>
+                    <strong>AI 輔助攻擊：600+ FortiGate 設備被入侵</strong>
+                    <p class="source">俄羅斯攻擊者利用 AI 工具 CyberStrikeAI 在 55 國發動攻擊，影響超過 600 台 Fortinet FortiGate 設備。🎓 教學相關：AI 安全</p>
+                </li>
+                <li>
+                    <strong>OpenAI Codex Security 發現大量漏洞</strong>
+                    <p class="source">OpenAI Codex Security 掃描了 120 萬次提交，發現 792 個關鍵和 10,561 個高嚴重性漏洞。</p>
+                </li>
+            </ul>
+            
+            <h3>🚀 OpenAI 動態</h3>
+            <ul>
+                <li>
+                    <strong>OpenAI 全力開發全自動研究助理</strong>
+                    <p class="source">OpenAI 正在投入一切資源構建完全自動化的研究者，這是 AI 發展的新里程碑。</p>
+                </li>
+            </ul>
+            
+            <h3>📈 2026 AI 趨勢</h3>
+            <ul>
+                <li>
+                    <strong>預期更多矽谷應用悄悄使用中國開源模型</strong>
+                    <p class="source">中國模型發布與西方前沿的差距將繼續縮小，從數月縮短到數週甚至更短。</p>
+                </li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>📄 最新 AI 論文精選</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>論文標題</th>
+                        <th>領域</th>
+                        <th>重點</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>NeuroHex: Hex Coordinate System for World Models</td>
+                        <td>世界模型</td>
+                        <td>高效能的六角坐標系統，實現自適應 AI</td>
+                    </tr>
+                    <tr>
+                        <td>GMT: Goal-Conditioned Multimodal Transformer</td>
+                        <td>電腦視覺</td>
+                        <td>6-DOF 物體軌跡合成，獲 3DV 2026 接受</td>
+                    </tr>
+                    <tr>
+                        <td>Neuro-Symbolic Systems</td>
+                        <td>神經符號系統</td>
+                        <td>第三屆神經符號系統國際會議論文</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p class="source">資料來源：arXiv cs.AI, cs.LG, cs.CV | MIT News | Hacker News</p>
+        </section>
+        
+        <section>
+            <h2>💡 本週教學重點</h2>
+            <div class="highlight">
+                <ul>
+                    <li><span class="tag">第2週</span> <strong>Agentic AI</strong> → OpenAI 全自動化研究者趨勢</li>
+                    <li><span class="tag">第2週</span> <strong>AI 倫理</strong> → AI 對弱勢用戶公平性問題</li>
+                    <li><span class="tag">第6週</span> <strong>Claude Code</strong> → Codex Security 發現漏洞案例</li>
+                    <li><span class="tag">第9週</span> <strong>企業應用</strong> → CISO AI 可視性不足問題</li>
+                </ul>
+            </div>
+        </section>
+        
+        <footer>
+            <p>📅 每日更新 | 資料來源：MIT News, Hacker News, arXiv</p>
+            <p>🏫 台科大 EMBA Agentic AI 課程</p>
+        </footer>
+    </div>
+</body>
+</html>

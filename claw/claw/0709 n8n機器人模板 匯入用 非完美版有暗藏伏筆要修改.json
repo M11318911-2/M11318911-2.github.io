@@ -1,0 +1,1121 @@
+{
+  "name": "0709客製化機器人課程",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "0709LINEBOT",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1260,
+        -80
+      ],
+      "id": "f0e98df8-d19e-449e-890d-b9a51bbc9353",
+      "name": "Webhook",
+      "webhookId": "6b3bcede-1d0d-42b9-8727-8a6658ac513e"
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $('Webhook').item.json.body.events[0].message.text }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "住院須知相關",
+              "description": "使用者詢問關於住院或台北榮總相關的問題"
+            },
+            {
+              "category": "無關住院須知",
+              "description": "使用者詢問無關住院或台北榮總相關的問題"
+            },
+            {
+              "category": "轉真人客服",
+              "description": "詢問找真人、找主管，或詢問非住院或台北榮總相關的問題。"
+            },
+            {
+              "category": "詢問病況或治療",
+              "description": "使用者表示身體不適，或想查詢朋友的身體狀況"
+            },
+            {
+              "category": "詢問推薦的醫師",
+              "description": "使用者詢問有無推薦的醫師"
+            },
+            {
+              "category": "使用者抱怨客訴",
+              "description": "使用者抱怨醫院、客訴、投訴或建議事項"
+            },
+            {
+              "category": "身體不適",
+              "description": "使用者提及現在身體不舒服或其他與身體反應相關問題"
+            },
+            {
+              "category": "壞了",
+              "description": "使用者輸入 無回應 壞了 沒反應 機器人壞掉了 等訊息"
+            },
+            {
+              "category": "謝謝",
+              "description": "使用者回覆 收到 謝謝 感恩 感謝 好的 嗯嗯 之類表示已收到的訊息字眼"
+            }
+          ]
+        },
+        "options": {
+          "fallback": "other"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        -120
+      ],
+      "id": "40bbec9a-de7e-4971-a452-04860d839c47",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        80
+      ],
+      "id": "5be244de-f7d0-4f66-83f5-2e4a4b6e8635",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "yCeKgEGGnZNc87qj",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/upload/v1beta/files",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Goog-Upload-Protocol",
+              "value": "resumable"
+            },
+            {
+              "name": "X-Goog-Upload-Command",
+              "value": "start"
+            },
+            {
+              "name": "X-Goog-Upload-Header-Content-Length",
+              "value": "={{ $binary.data.fileSize }}"
+            },
+            {
+              "name": "X-Goog-Upload-Header-Content-Type",
+              "value": "={{ $binary.data.mimeType }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"file\":{\n    \"display_name\":\" {{ $binary.data.fileName }}\"\n  }\n}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1460,
+        -860
+      ],
+      "id": "bb58f6a1-03cc-484e-8f78-06b466b7a06e",
+      "name": "initiateUpload1",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "8OyGFgo1BtFvawTn",
+          "name": "Query Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('initiateUpload1').item.json.headers['x-goog-upload-url'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Length",
+              "value": "={{ $Goo"
+            },
+            {
+              "name": "X-Goog-Upload-Offset",
+              "value": "0"
+            },
+            {
+              "name": "X-Goog-Upload-Command",
+              "value": "upload, finalize"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "binaryData",
+        "inputDataFieldName": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1740,
+        -860
+      ],
+      "id": "a680b722-40f3-4cbd-902b-7cc9791b136e",
+      "name": "Upload1"
+    },
+    {
+      "parameters": {
+        "jsCode": "return{\n  json: {},\n  binary: $('Download file').item.binary\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        -860
+      ],
+      "id": "97f14a83-da3b-4ef7-ad05-a498a7c19e10",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"contents\": [\n        {\n            \"role\": \"user\",\n            \"parts\": [\n                {\n                    \"text\": \"你是住院須知小幫手，幫助回答病人有關住院的疑問。回答不可超過5000個字元，且回應請去除多餘的空格*星號，並確保頭尾不含空白。注意：不要使用Markdown語法輸出。\"\n                                },\n                {\n                    \"fileData\": {\n                        \"mimeType\": \"{{ $json.file.mimeType }}\",\n                        \"fileUri\": \"{{ $json.file.uri }}\"\n                    }\n                },\n                {\n                    \"text\": \"請根據上傳的檔案作為知識庫。\"\n                }\n            ]\n        },\n        {\n            \"role\": \"user\",\n            \"parts\": [\n                {\n                    \"text\": \"{{ $('Webhook').item.json.body.events[0].message.text.replaceAll('\\n','') }}\"\n                }\n            ]\n        }\n    ],\n    \"generationConfig\": {\n        \"responseMimeType\": \"text/plain\"\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1940,
+        -860
+      ],
+      "id": "f78046fa-1c85-4757-b423-d5521f0a4294",
+      "name": "Analyze1",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "8OyGFgo1BtFvawTn",
+          "name": "Query Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"replyToken\": \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n    \"messages\": [\n        {\n            \"type\": \"text\",\n            \"text\": \"{{ $node['Code3'].json['safeText'] }}\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2380,
+        -860
+      ],
+      "id": "c6ada1b2-c6e0-4d32-a3d9-6237752f2f04",
+      "name": "HTTP Request6",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BsyFf6GW4gr9BIpo",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let text = $input.first().json.candidates[0].content.parts[0].text;  // 确保这里正确获取到了输入文本\nlet safeText = text.replace(/\\n/g, '\\\\n').replace(/\"/g, '\\\\\"');\nreturn [{json: {safeText: safeText}}]; // 确保输出是这种格式"
+      },
+      "id": "4253baa7-c9d5-4d44-935e-d092c3adea18",
+      "name": "Code3",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2140,
+        -860
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.events[0].message.type }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "83c10cb6-712d-4225-8ac6-9e121ea073ed"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e2c6f8dc-a76f-4b0c-ab4d-8f359ffd3143",
+                    "leftValue": "={{ $json.body.events[0].message.type }}",
+                    "rightValue": "image",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5fad3a87-d604-4022-8db2-9d5ddd4d662a",
+                    "leftValue": "={{ $json.body.events[0].message.type }}",
+                    "rightValue": "audio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1000,
+        -80
+      ],
+      "id": "869ac828-3eb8-4c82-8860-dce3d612007c",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "content": "分辨訊息為：\n文字\n圖片\n語音",
+        "height": 240,
+        "width": 180,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1060,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "06d59eb2-f7d5-4724-ae15-eeb8752c7cca",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "這邊根據自己的官方帳號設定webhook\n點進去之後在「Path」的地方修改成自己容易識別的文字\n上方的Test Url要貼回去LINE官方帳號的Webhook URL ",
+        "height": 240,
+        "width": 380
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1480,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "698528c0-6d98-4b22-aa07-605a0d734803",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "問題分類器\n根據使用者的問題請LLM來幫我們把問題初步分類",
+        "height": 400,
+        "width": 480,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -540,
+        -180
+      ],
+      "typeVersion": 1,
+      "id": "c850849b-f047-4012-9785-7a1c6cb6207f",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "根據不同問題 不經過LLM直接回覆到LINE中\n請在Header Auth的地方修改成自己的LINE API\nBearer[空格]Channel access token\n回覆的內容請修改 \"text\" : \"這邊的內容\"\n請注意要遵守JSON的規範",
+        "height": 1440,
+        "width": 360
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1140,
+        -520
+      ],
+      "typeVersion": 1,
+      "id": "b9c52d7f-16cf-417e-8a18-8e5ecaca82e8",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "下載對應的檔案作為知識庫\n將檔案上傳到google drive\n並取得文件的ID 再填入裡面的欄位",
+        "height": 240,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1140,
+        -940
+      ],
+      "typeVersion": 1,
+      "id": "95727bb3-c8a3-4aea-a9f8-c9f64f13c747",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "將檔案上傳到Gemini的伺服器 **不用修改任何設定**",
+        "height": 240,
+        "width": 460
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1400,
+        -940
+      ],
+      "typeVersion": 1,
+      "id": "bf744ac9-9e65-4aca-ab80-7e9e762a18d7",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "請LLM根據檔案回答問題\n點進去根據需求修改\n依樣畫葫蘆即可",
+        "height": 240,
+        "width": 220,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1880,
+        -940
+      ],
+      "typeVersion": 1,
+      "id": "ac9f0090-8196-49e0-b4cd-ff79c840e24c",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "處理LLM的回覆結果\n去掉\\n否則會影響到JSON的結構發生錯誤",
+        "height": 240,
+        "width": 170
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2120,
+        -940
+      ],
+      "typeVersion": 1,
+      "id": "7db894a6-d55c-441c-9a16-f1ac30d80263",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "將回覆結果回傳到LINE",
+        "height": 240,
+        "width": 260,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2320,
+        -940
+      ],
+      "typeVersion": 1,
+      "id": "60146e4f-18b8-4134-a665-de2e88eeb3a6",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/chat/loading/start",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n    \"chatId\": \"{{ $json.body.events[0].source.userId }}\",\n    \"loadingSeconds\": 60\n}",
+        "options": {}
+      },
+      "id": "40c49dda-ac7f-42f7-bb56-238b0e9845d4",
+      "name": "Loading Animation",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -740,
+        -140
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BsyFf6GW4gr9BIpo",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "LINE對話框Loading動畫",
+        "height": 300,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -820,
+        -180
+      ],
+      "typeVersion": 1,
+      "id": "bb312b45-89a2-4a85-ad1a-b997ee04c550",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1RGrEMQ7QdsJjXsaOdwNmg2LPlEMKJKUj",
+          "mode": "list",
+          "cachedResultName": "臺北榮民總醫院  AI生成住院須知知識庫.txt",
+          "cachedResultUrl": "https://drive.google.com/file/d/1RGrEMQ7QdsJjXsaOdwNmg2LPlEMKJKUj/view?usp=drivesdk"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1260,
+        -860
+      ],
+      "id": "ca5e7d83-3281-4c4a-98ef-6f29832cbe26",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "fyktLAHHLBERIu0t",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"replyToken\": \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n    \"messages\": [\n        {\n            \"type\": \"text\",\n            \"text\": \"抱歉，請詢問與住院須知相關的問題。\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        -400
+      ],
+      "id": "b16005c1-39fe-4c7b-a730-6acebf6aee08",
+      "name": "無關住院的問題",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BsyFf6GW4gr9BIpo",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"replyToken\": \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n    \"messages\": [\n        {\n            \"type\": \"text\",\n            \"text\": \"抱歉，小幫手無轉真人客服的功能，請撥打02-2871-2121由總機為您服務。\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        -240
+      ],
+      "id": "47790300-e19b-4f60-ab27-abba5433d72c",
+      "name": "轉真人找主管",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BsyFf6GW4gr9BIpo",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"replyToken\": \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n    \"messages\": [\n        {\n            \"type\": \"text\",\n            \"text\": \"抱歉，本小幫手僅提供住院須知的簡單回覆。若有其他詢問需求請洽02-2871-2121總機為您服務，謝謝。若您有身體不適請儘速就醫。\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        -80
+      ],
+      "id": "1c64755a-0c0f-40c9-b55a-2834745f4b98",
+      "name": "詢問病況",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BsyFf6GW4gr9BIpo",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"replyToken\": \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n    \"messages\": [\n        {\n            \"type\": \"text\",\n            \"text\": \"小幫手僅限回答住院須知相關問題，若想查詢相關病症與看診醫師專長，請至https://www.vghtpe.gov.tw/docsearch.action查詢，謝謝。\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        80
+      ],
+      "id": "8d1ff557-be7e-483f-aea5-cc2625de2fd2",
+      "name": "推薦醫師",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BsyFf6GW4gr9BIpo",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"replyToken\": \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n    \"messages\": [\n        {\n            \"type\": \"text\",\n            \"text\": \"抱歉造成您的不便與困擾，小幫手僅限住院須知的問題回覆。建議與指教請至院長信箱https://www6.vghtpe.gov.tw/director/ 謝謝。\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        240
+      ],
+      "id": "6fb395ef-c555-48a3-817f-db6beda7b48d",
+      "name": "抱怨客訴",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BsyFf6GW4gr9BIpo",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"replyToken\": \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n    \"messages\": [\n        {\n            \"type\": \"text\",\n            \"text\": \"抱歉，已通知負責人員進行處理，感謝您的回報。\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        400
+      ],
+      "id": "7b6d9c05-74f1-407b-85b5-f0a93e67d7d7",
+      "name": "回報機器人壞了",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BsyFf6GW4gr9BIpo",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"replyToken\": \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n    \"messages\": [\n        {\n            \"type\": \"text\",\n            \"text\": \"$\" ,\n            \"emojis\": [\n              {\n                \"index\": 0,\n                \"productId\": \"5ac1bfd5040ab15980c9b435\",\n                \"emojiId\": \"044\"\n              }\n                      ]\n        }\n                ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        580
+      ],
+      "id": "5959331d-350c-418f-b567-fc3c2eca27ce",
+      "name": "敷衍謝謝",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BsyFf6GW4gr9BIpo",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"replyToken\": \"{{ $('Webhook').item.json.body.events[0].replyToken }}\",\n    \"messages\": [\n        {\n            \"type\": \"text\",\n            \"text\": \"抱歉，非小幫手服務範圍。\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        740
+      ],
+      "id": "1e5fd31b-c76d-4dcc-ad36-47dfe45c9130",
+      "name": "全部不符合",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "BsyFf6GW4gr9BIpo",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# 等待接收LINE訊息觸發流程",
+        "height": 120,
+        "width": 320
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1480,
+        120
+      ],
+      "typeVersion": 1,
+      "id": "c2a247e9-d9c9-43a0-927f-2bf0a5a9239f",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "# 分辨訊息類型",
+        "height": 120,
+        "width": 180,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1060,
+        120
+      ],
+      "typeVersion": 1,
+      "id": "6727a187-49e3-47cd-9a2b-cfab92608d99",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "content": "# loading動畫",
+        "height": 80,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -820,
+        160
+      ],
+      "typeVersion": 1,
+      "id": "4e0c47b1-e68d-42fd-8e37-aa3d33a33856",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "content": "# 問題分類器 不是每個問題都要經過LLM",
+        "height": 120,
+        "width": 480,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -540,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "69f6bd66-090c-447f-8b8d-542fbdf0cdc8",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "content": "# 我是罐頭回覆文字",
+        "height": 80,
+        "width": 320
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1140,
+        940
+      ],
+      "typeVersion": 1,
+      "id": "117d90d0-e7d7-4c77-8730-a15872430be6",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "content": "# 給LLM的參考資料",
+        "height": 120,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1140,
+        -680
+      ],
+      "typeVersion": 1,
+      "id": "dcbd2880-82dc-4db9-9609-a6477b85269b",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "content": "# LLM本人",
+        "height": 80,
+        "width": 180,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1900,
+        -680
+      ],
+      "typeVersion": 1,
+      "id": "ebd2e3b8-79b8-42e5-b7e6-4d3d2882b9bd",
+      "name": "Sticky Note16"
+    },
+    {
+      "parameters": {
+        "content": "# 回覆結果回傳到LINE",
+        "height": 80,
+        "width": 380,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2320,
+        -680
+      ],
+      "typeVersion": 1,
+      "id": "0d965e20-0819-4bc3-bbfa-c90050980cf5",
+      "name": "Sticky Note17"
+    },
+    {
+      "parameters": {
+        "content": "# 資料上傳給LLM",
+        "height": 80,
+        "width": 280
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1460,
+        -680
+      ],
+      "typeVersion": 1,
+      "id": "abfeb6a3-3e6f-4be9-9c8a-409b830c986b",
+      "name": "Sticky Note18"
+    },
+    {
+      "parameters": {
+        "content": "# 處理格式",
+        "height": 80,
+        "width": 180
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2120,
+        -680
+      ],
+      "typeVersion": 1,
+      "id": "23eb92c8-ae1e-4ac5-bbac-75443f59e3c0",
+      "name": "Sticky Note19"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "無關住院的問題",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "轉真人找主管",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "詢問病況",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "推薦醫師",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "抱怨客訴",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "詢問病況",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "回報機器人壞了",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "敷衍謝謝",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "全部不符合",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "initiateUpload1": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload1": {
+      "main": [
+        [
+          {
+            "node": "Analyze1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Upload1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze1": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Loading Animation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loading Animation": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "initiateUpload1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "8208b0de-a4b2-49cc-9a47-634f4c1053d2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6b8c04be5e2e3b69fb74f90ecfedc687df98379699be5c829e7a5e2f6144b10e"
+  },
+  "id": "o4DMws75aQ2DZeqM",
+  "tags": []
+}

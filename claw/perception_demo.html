@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perception AI Demo Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .demo-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .demo-card:hover::before {
+            opacity: 1;
+        }
+
+        .icon-container {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover .icon-container {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .icon {
+            font-size: 40px;
+            color: white;
+        }
+
+        .demo-card h2 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .demo-card p {
+            color: #666;
+            text-align: center;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .demo-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .header p { font-size: 1em; }
+            .demo-grid { grid-template-columns: 1fr; }
+        }
+
+        .footer {
+            margin-top: 60px;
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+            font-size: 0.9em;
+        }
+    </style>
+    <link rel="icon" type="image/x-icon" href="/pic/favicon.ico">
+</head>
+<body>
+    <div class="header">
+        <h1>Perception AI Demo Site</h1>
+        <p>Explore cutting-edge AI perception technologies in your browser</p>
+    </div>
+
+    <div class="demo-grid">
+        <a href="mp/face.html" class="demo-card">
+            <div class="icon-container">
+                <div class="icon">👤</div>
+            </div>
+            <h2>Face Landmark Detection</h2>
+            <p>Real-time facial feature detection and tracking using advanced computer vision algorithms</p>
+            <span class="demo-tag">MediaPipe</span>
+        </a>
+
+        <a href="mp/hand.html" class="demo-card">
+            <div class="icon-container">
+                <div class="icon">✋</div>
+            </div>
+            <h2>Hand Landmark Detection</h2>
+            <p>Precise hand tracking and finger position detection for interactive applications</p>
+            <span class="demo-tag">MediaPipe</span>
+        </a>
+
+        <a href="mp/fancy_hand.html" class="demo-card">
+            <div class="icon-container">
+                <div class="icon">✨</div>
+            </div>
+            <h2>Fancy Hand Art</h2>
+            <p>透過創意的視覺化特效，將手部動態轉化為流動的數位藝術與趣味體驗</p>
+            <span class="demo-tag">Creative Art</span>
+        </a>
+
+        <a href="mp/gesture.html" class="demo-card">
+            <div class="icon-container">
+                <div class="icon">👆</div>
+            </div>
+            <h2>Gesture Recognition</h2>
+            <p>Recognize and interpret hand gestures for intuitive human-computer interaction</p>
+            <span class="demo-tag">MediaPipe</span>
+        </a>
+
+        <a href="mp/object.html" class="demo-card">
+            <div class="icon-container">
+                <div class="icon">📦</div>
+            </div>
+            <h2>Object Detection</h2>
+            <p>Identify and locate multiple objects in real-time using COCO-SSD neural network</p>
+            <span class="demo-tag">TensorFlow.js</span>
+        </a>
+
+        <a href="mp/fancy_hand2.html" class="demo-card">
+            <div class="icon-container">
+                <div class="icon">✨✨✨</div>
+            </div>
+            <h2>Fancy Hand Art II</h2>
+            <p>手部動態轉化為更強烈的數位藝術與趣味體驗</p>
+            <span class="demo-tag">Creative Art</span>
+        </a>
+        
+    </div>
+
+    <div class="footer">
+        <p>All demos run entirely in your browser • No data is sent to any server</p>
+    </div>
+</body>
+</html>

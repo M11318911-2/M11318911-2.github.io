@@ -12,6 +12,10 @@ _這是我的長期記憶，記錄重要資訊_
 
 ## 重要設定
 
+### 對話規則
+- **語言**：全部使用繁體中文回答
+- **網路圖**：使用 D3.js 生成（不要用 Plotly）
+
 ### ElevenLabs 語音
 - API Key：環境變數 `$ElevenLabs`
 - Voice ID：`V2Qp7CrxJtLL0a5YYNap`
@@ -23,7 +27,7 @@ _這是我的長期記憶，記錄重要資訊_
   - use_speaker_boost: true
 - 用法：
   - 「用說的給我聽」→ 中文
-  - 「用說給我聽」或「請用英文說給我聽」→ 英文
+  - 「用英文說給我聽」→ 英文
 
 ### GitHub
 - Repository：`ntust2026/ntust2026.github.io`
@@ -39,6 +43,11 @@ _這是我的長期記憶，記錄重要資訊_
 - 格式：美觀的深色主題 HTML 頁面
 - 語音：中英文分開播放
 - 上傳：GitHub Pages /claw 目錄
+- **截圖**：前 3 則新聞的網站截圖（claw/screenshots/）
+
+### agent-browser
+- 安裝：`npm install -g agent-browser`（v0.21.4）
+- 用途：晨報截圖、互動式網頁操作
 
 ---
 
@@ -47,4 +56,4 @@ _這是我的長期記憶，記錄重要資訊_
 
 ---
 
-_更新日期：2026-03-18_
+_更新日期：2026-03-22_

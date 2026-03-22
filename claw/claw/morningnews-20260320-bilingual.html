@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>晨間科技新聞 | Morning Tech News</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft JhengHei', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #00d4ff, #7b2ff7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #888;
+            font-size: 1.1rem;
+        }
+        
+        .date {
+            color: #00d4ff;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        
+        .audio-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .audio-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+        
+        .audio-player {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .audio-player label {
+            min-width: 80px;
+            font-weight: 600;
+        }
+        
+        audio {
+            flex: 1;
+            height: 40px;
+            border-radius: 20px;
+        }
+        
+        audio::-webkit-media-controls-panel {
+            background: rgba(123, 47, 247, 0.2);
+        }
+        
+        .news-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .news-card h3 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(123, 47, 247, 0.5);
+        }
+        
+        .lang-section {
+            margin-bottom: 25px;
+        }
+        
+        .lang-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .lang-label {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .lang-zh .lang-label {
+            background: linear-gradient(90deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+        
+        .lang-en .lang-label {
+            background: linear-gradient(90deg, #00d4ff, #7b2ff7);
+            color: white;
+        }
+        
+        .news-content {
+            color: #ccc;
+            font-size: 1rem;
+            text-align: justify;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .container { padding: 20px 15px; }
+            .news-card { padding: 20px; }
+            .audio-player { flex-direction: column; align-items: flex-start; }
+            audio { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌐 晨間科技新聞</h1>
+            <p class="subtitle">Morning Tech News - Bilingual Edition</p>
+            <p class="date">2026年3月20日 | March 20, 2026</p>
+        </header>
+        
+        <div class="audio-section">
+            <h2>🎧 語音播放 | Audio Player</h2>
+            <div class="audio-player">
+                <label>🇨🇳 中文:</label>
+                <audio controls preload="metadata">
+                    <source src="morning-zh.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+            <div class="audio-player">
+                <label>🇺🇸 English:</label>
+                <audio controls preload="metadata">
+                    <source src="morning-en.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+        
+        <div class="news-card">
+            <h3>📱 NVIDIA GTC 2026 震撼發表 | NVIDIA GTC 2026 Keynote</h3>
+            
+            <div class="lang-section lang-zh">
+                <span class="lang-label">中文</span>
+                <div class="news-content">
+                    <p>輝達（NVIDIA）執行長黃仁勳於本週一在GTC 2026大会上發表長達近三小時的主題演講，揭露了這家全球市值最高晶片公司的2026年發展藍圖。黃仁勳宣布推出全新的Vera CPU和DLSS 5顯示技術，並透露預計到2027年，Blackwell和Vera Rubin系統的訂單金額將達到1兆美元，超過去年預測的5,000億美元收入機會。</p>
+                    <br>
+                    <p>本次大会還公布了多項重要合作夥伴關係，包括與T-Mobile、Adobe和Disney的合作。其中Disney基於《冰雪奇緣》雪人 Olaf 打造的機器人小綠人 Olaf droid 尤其引人注目。Google Cloud也在GTC上宣布，其G4 VM已支援NVIDIA Blackwell GPU，能夠實現更快速的多模態模型推理，並支援跨語言的即時回應。</p>
+                </div>
+            </div>
+            
+            <div class="lang-section lang-en">
+                <span class="lang-label">English</span>
+                <div class="news-content">
+                    <p>NVIDIA CEO Jensen Huang delivered a nearly three-hour keynote at GTC 2026 this Monday, unveiling the roadmap for the world's most valuable chip company in 2026. Huang announced the new Vera CPU and DLSS 5 graphics technology, revealing that orders for Blackwell and Vera Rubin systems are expected to reach $1 trillion through 2027, exceeding last year's projection of a $500 billion revenue opportunity.</p>
+                    <br>
+                    <p>The conference also announced major partnerships including T-Mobile, Adobe, and Disney. Disney's Olaf droid robot based on the Frozen snowman was particularly impressive. Google Cloud also announced at GTC that its G4 VMs now support NVIDIA Blackwell GPUs, enabling faster multimodal model inference with instant cross-language responses.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="news-card">
+            <h3>🚗 Uber 投資 Rivian 12.5 億美元布局自動駕駛 | Uber Invests $1.25B in Rivian</h3>
+            
+            <div class="lang-section lang-zh">
+                <span class="lang-label">中文</span>
+                <div class="news-content">
+                    <p>Uber Technologies Inc. 宣布將向電動車製造商Rivian Automotive Inc. 投資最多12.5億美元，作為在多個國家部署自動駕駛計程車車隊的合作一部分。這項協議將在2031年前於美國、加拿大和歐洲部署高達50,000輛全電動自動駕駛計程車。</p>
+                    <br>
+                    <p>這項策略性投資標誌著Uber在自動駕駛領域的重大布局，雙方將結合Uber的叫車平台與Rivian的R2自動駕駛車輛技術，為未來城市交通開創新的可能性。</p>
+                </div>
+            </div>
+            
+            <div class="lang-section lang-en">
+                <span class="lang-label">English</span>
+                <div class="news-content">
+                    <p>Uber Technologies Inc. announced it will invest up to $1.25 billion in electric vehicle maker Rivian Automotive Inc. as part of a deal to deploy autonomous taxi fleets in multiple countries. The agreement will deploy up to 50,000 all-electric robotaxis in the US, Canada, and Europe through 2031.</p>
+                    <br>
+                    <p>This strategic investment marks a significant move by Uber in the autonomous driving sector. The partnership combines Uber's ride-hailing platform with Rivian's R2 autonomous vehicle technology, creating new possibilities for future urban transportation.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="news-card">
+            <h3>🍎 Apple 中國智慧手機銷售逆勢成長 23% | Apple China Sales Jump 23%</h3>
+            
+            <div class="lang-section lang-zh">
+                <span class="lang-label">中文</span>
+                <div class="news-content">
+                    <p>根據最新市場數據，Apple在中國的智慧手機銷售在2026年初逆勢增長23%，成功打破行業趨勢。在中國智慧手機市場整體放緩的情況下，Apple仍能保持強勁成長態勢，顯示其品牌力和產品競爭力依然堅強。</p>
+                    <br>
+                    <p>這一成長主要歸功於iPhone Pro系列的高人氣，以及Apple在中國市場持續的在地化策略，包括與本地開發者合作及提供更具吸引力的分期付款方案。</p>
+                </div>
+            </div>
+            
+            <div class="lang-section lang-en">
+                <span class="lang-label">English</span>
+                <div class="news-content">
+                    <p>According to the latest market data, Apple's smartphone sales in China surged 23% at the start of 2026, defying industry trends. While China's smartphone market overall has slowed, Apple maintained strong growth momentum, demonstrating its brand strength and product competitiveness.</p>
+                    <br>
+                    <p>This growth is mainly attributed to the popularity of the iPhone Pro series and Apple's continued localization strategy in China, including partnerships with local developers and more attractive installment payment plans.</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>📅 每日更新 | Updated Daily</p>
+            <p>Powered by <a href="https://github.com/ntust2026/ntust2026.github.io">ntust2026.github.io</a></p>
+        </footer>
+    </div>
+</body>
+</html>

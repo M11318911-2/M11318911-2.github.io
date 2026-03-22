@@ -1,0 +1,50 @@
+=== 開始產生晨報: 2026-03-20 ===
+=== 開始產生晨報: 2026-03-20 ===
+📰 搜尋新聞中...
+   找到 5 條新聞
+📝 產生 HTML 晨報...
+✅ HTML 產生完成: /home/node/.openclaw/workspace/claw/daily-ai-2026-03-20.html
+🎙️ 產生語音...
+🎙️ 生成中文語音...
+✅ 中文語音: /home/node/.openclaw/workspace/claw/daily-ai-2026-03-20-zh.mp3
+🎙️ 生成英文語音...
+✅ 英文語音: /home/node/.openclaw/workspace/claw/daily-ai-2026-03-20-en.mp3
+📤 上傳到 GitHub...
+❌ Git 上傳失敗: To https://github.com/ntust2026/ntust2026.github.io.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/ntust2026/ntust2026.github.io.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+
+✅ 晨報產生完成！
+🔗 連結: https://ntust2026.github.io/claw/daily-ai-2026-03-20.html
+=== 晨報產生完成 ===
+=== 開始產生晨報: 2026-03-21 ===
+=== 開始產生晨報: 2026-03-21 ===
+📰 搜尋新聞中...
+   找到 5 條新聞
+📝 產生 HTML 晨報...
+✅ HTML 產生完成: /home/node/.openclaw/workspace/claw/daily-ai-2026-03-21.html
+🎙️ 產生語音...
+🎙️ 生成中文語音...
+✅ 中文語音: /home/node/.openclaw/workspace/claw/daily-ai-2026-03-21-zh.mp3
+🎙️ 生成英文語音...
+✅ 英文語音: /home/node/.openclaw/workspace/claw/daily-ai-2026-03-21-en.mp3
+📤 上傳到 GitHub...
+❌ Git 上傳失敗: To https://github.com/ntust2026/ntust2026.github.io.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/ntust2026/ntust2026.github.io.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+
+✅ 晨報產生完成！
+🔗 連結: https://ntust2026.github.io/claw/daily-ai-2026-03-21.html
+=== 晨報產生完成 ===
