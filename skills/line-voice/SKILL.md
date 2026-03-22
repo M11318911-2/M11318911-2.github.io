@@ -46,7 +46,7 @@ curl -s -X POST "https://api.elevenlabs.io/v1/text-to-speech/V2Qp7CrxJtLL0a5YYNa
 **Repository:** `ntust2026/ntust2026.github.io`
 **Branch:** `main`
 **Folder:** `claw/`
-**Token:** `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`
+**Token:** `<YOUR_GITHUB_TOKEN>`
 
 Generate filename:
 - Use date format: `voice-YYYYMMDD-HHMMSS.mp3`
@@ -54,7 +54,7 @@ Generate filename:
 
 **Upload via git:**
 ```bash
-cd /tmp && rm -rf voice_repo && git clone https://ntust2026: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@github.com/ntust2026/ntust2026.github.io.git voice_repo
+cd /tmp && rm -rf voice_repo && git clone https://ntust2026:<YOUR_GITHUB_TOKEN>@github.com/ntust2026/ntust2026.github.io.git voice_repo
 cd /tmp/voice_repo
 git config user.email "luarn2008@gmail.com"
 git config user.name "ntust2026"

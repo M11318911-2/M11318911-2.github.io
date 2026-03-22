@@ -4,8 +4,8 @@
 # Runs at 8 AM daily to fetch US tech news and generate HTML + audio
 
 REPO_DIR="/tmp/claw_daily"
-GITHUB_TOKEN="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"
-ELEVENLABS_KEY="sk_1566775f6c3e5e2e254a7e79a8ec898c5de5a8a3d54a773a"
+GITHUB_TOKEN="<YOUR_GITHUB_TOKEN>"
+ELEVENLABS_KEY="<YOUR_ELEVENLABS_KEY>"
 VOICE_ID="V2Qp7CrxJtLL0a5YYNap"
 
 # Get current date

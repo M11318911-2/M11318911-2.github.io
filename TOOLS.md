@@ -24,7 +24,7 @@ Things like:
 ### GitHub
 
 - Username: ntust2026
-- Token: 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
+- Token: <YOUR_GITHUB_TOKEN>
 
 ### TTS (ElevenLabs)
 
