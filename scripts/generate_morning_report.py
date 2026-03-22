@@ -111,6 +111,7 @@ def get_quality_news():
 def capture_screenshots(news_items):
     """使用 agent-browser 截圖新聞網站"""
     screenshots = {}
+    agent_browser = "/usr/local/bin/agent-browser"
     
     # 只截圖主要新聞來源（避免截太多）
     for news in news_items[:3]:
@@ -125,18 +126,18 @@ def capture_screenshots(news_items):
             print(f"   📸 截圖: {url}")
             # 使用 agent-browser 截圖
             # 先開啟瀏覽器
-            subprocess.run(["agent-browser", "open", url], 
+            subprocess.run([agent_browser, "open", url], 
                          capture_output=True, timeout=15)
             # 等待載入
             import time
             time.sleep(2)
             # 截圖
             result = subprocess.run(
-                ["agent-browser", "screenshot", screenshot_path],
+                [agent_browser, "screenshot", screenshot_path],
                 capture_output=True, text=True, timeout=30
             )
             # 關閉瀏覽器
-            subprocess.run(["agent-browser", "close"], capture_output=True)
+            subprocess.run([agent_browser, "close"], capture_output=True)
             
             if os.path.exists(screenshot_path):
                 screenshots[url] = screenshot_path
@@ -363,27 +364,47 @@ def generate_voice(news_items):
 def upload_to_github():
     """提交並上傳到 GitHub"""
     import subprocess
+    import os
+    
+    github_token = os.environ.get("GITHUB_TOKEN", "")
+    env = os.environ.copy()
+    
     try:
         os.chdir(CLAW_DIR)
         
+        # Set remote URL with token if GITHUB_TOKEN is available
+        if github_token:
+            subprocess.run([
+                "git", "remote", "set-url", "origin",
+                f"https://{github_token}@github.com/ntust2026/ntust2026.github.io.git"
+            ], capture_output=True, env=env)
+        
+        # Pull with rebase and autostash to handle local changes
+        result = subprocess.run(
+            ["git", "pull", "origin", "main", "--rebase", "--autostash"],
+            capture_output=True, text=True, env=env
+        )
+        if result.returncode != 0:
+            # If rebase fails, try force reset to remote state first
+            subprocess.run(["git", "fetch", "origin"], capture_output=True, env=env)
+            subprocess.run(["git", "reset", "--hard", "origin/main"], capture_output=True, env=env)
+            subprocess.run(["git", "stash", "pop"], capture_output=True, env=env)
+        
         # Add all new files
-        subprocess.run(["git", "add", f"morningnews-{TODAY_SHORT}-bilingual.html"], check=True, capture_output=True)
-        subprocess.run(["git", "add", f"morningnews-{TODAY_SHORT}.mp3"], check=True, capture_output=True)
-        subprocess.run(["git", "add", f"morningnews-{TODAY_SHORT}-en.mp3"], check=True, capture_output=True)
+        subprocess.run(["git", "add", f"morningnews-{TODAY_SHORT}-bilingual.html"], check=True, capture_output=True, env=env)
+        subprocess.run(["git", "add", f"morningnews-{TODAY_SHORT}.mp3"], check=True, capture_output=True, env=env)
+        subprocess.run(["git", "add", f"morningnews-{TODAY_SHORT}-en.mp3"], check=True, capture_output=True, env=env)
         # Add screenshots
-        subprocess.run(["git", "add", f"screenshots/"], check=True, capture_output=True)
+        subprocess.run(["git", "add", "claw/screenshots/"], check=True, capture_output=True, env=env)
         
         # Commit
         subprocess.run([
             "git", "commit", "-m",
             f"Add daily AI report for {TODAY}"
-        ], check=True, capture_output=True)
-        
-        # Pull first to get remote changes
-        subprocess.run(["git", "pull", "origin", "main", "--rebase"], check=True, capture_output=True)
+        ], check=True, capture_output=True, env=env)
         
         # Push
-        subprocess.run(["git", "push", "origin", "main"], check=True, capture_output=True)
+        subprocess.run(["git", "push", "origin", "main"], check=True, capture_output=True, env=env)
         
         print("✅ 已上傳到 GitHub")
         return True
