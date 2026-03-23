@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>欒斌教授學術影響力網路圖</title>
+    <title>欒斌教授 學術影響力網路圖</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
         * {
@@ -11,523 +11,485 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
             font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
             color: #fff;
+            overflow-x: hidden;
         }
+        
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
+        
         header {
             text-align: center;
             padding: 30px 0;
         }
+        
         h1 {
-            font-size: 2.5em;
+            font-size: 2.5rem;
             background: linear-gradient(90deg, #00d9ff, #00ff88);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 10px;
         }
+        
         .subtitle {
-            color: #888;
-            font-size: 1.1em;
+            color: #8892b0;
+            font-size: 1.1rem;
         }
-        .profile-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 25px;
-            margin: 20px 0;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00d9ff, #00ff88);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            font-weight: bold;
-        }
-        .profile-info h2 {
-            font-size: 1.8em;
-            color: #00d9ff;
-        }
-        .profile-info p {
-            color: #aaa;
-        }
-        .stats {
+        
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
         }
-        .stat-item {
-            background: rgba(0,217,255,0.1);
-            border-radius: 10px;
-            padding: 15px;
+        
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
             text-align: center;
+            backdrop-filter: blur(10px);
         }
+        
         .stat-value {
-            font-size: 1.8em;
+            font-size: 2rem;
             font-weight: bold;
             color: #00d9ff;
         }
+        
         .stat-label {
-            color: #888;
-            font-size: 0.9em;
+            color: #8892b0;
+            font-size: 0.9rem;
+            margin-top: 5px;
         }
-        .network-container {
-            background: rgba(255,255,255,0.02);
-            border-radius: 20px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
+        
         #network {
             width: 100%;
             height: 600px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
+        
         .legend {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
             justify-content: center;
-            margin-top: 20px;
+            gap: 20px;
+            margin: 20px 0;
             padding: 15px;
-            background: rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.05);
             border-radius: 10px;
         }
+        
         .legend-item {
             display: flex;
             align-items: center;
             gap: 8px;
         }
+        
         .legend-dot {
             width: 15px;
             height: 15px;
             border-radius: 50%;
         }
-        .sections {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .section-card {
+        
+        .info-panel {
+            margin-top: 30px;
+            padding: 25px;
             background: rgba(255,255,255,0.05);
             border-radius: 15px;
-            padding: 20px;
             border: 1px solid rgba(255,255,255,0.1);
         }
-        .section-card h3 {
-            color: #00ff88;
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-        .tag {
-            display: inline-block;
-            background: rgba(0,217,255,0.2);
+        
+        .info-panel h3 {
             color: #00d9ff;
-            padding: 5px 12px;
+            margin-bottom: 15px;
+        }
+        
+        .research-areas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 8px 16px;
             border-radius: 20px;
-            margin: 3px;
-            font-size: 0.85em;
+            font-size: 0.9rem;
         }
-        .award-tag {
-            background: rgba(255,215,0,0.2);
-            color: #ffd700;
+        
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
         }
-        ul {
-            list-style: none;
-            padding-left: 0;
+        
+        .achievement-item {
+            background: rgba(0,217,255,0.1);
+            border-left: 4px solid #00d9ff;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
         }
-        li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            color: #ccc;
-        }
-        li:last-child {
-            border-bottom: none;
-        }
+        
         .tooltip {
             position: absolute;
             background: rgba(0,0,0,0.9);
             color: #fff;
-            padding: 10px 15px;
+            padding: 12px;
             border-radius: 8px;
-            font-size: 0.9em;
+            font-size: 0.85rem;
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.3s;
             max-width: 250px;
             z-index: 100;
         }
-        @media (max-width: 768px) {
-            h1 { font-size: 1.8em; }
-            #network { height: 400px; }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #8892b0;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🎓 欒斌教授學術影響力網路圖</h1>
-            <p class="subtitle">Professor Pin Luarn - Academic Influence Network</p>
+            <h1>🦞 欒斌教授 學術影響力網路圖</h1>
+            <p class="subtitle">Pin Luarn - National Taiwan University of Science & Technology</p>
         </header>
-
-        <div class="profile-card">
-            <div class="profile-header">
-                <div class="avatar">欒</div>
-                <div class="profile-info">
-                    <h2>欒斌 教授 (Pin Luarn)</h2>
-                    <p>國立臺灣科技大學 管理學院 | School of Management, NTUST</p>
-                    <p>📧 mail.ntust.edu.tw | 🎓 University of Wisconsin-Madison Ph.D.</p>
-                </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">7,988</div>
+                <div class="stat-label">引用次數 (Citations)</div>
             </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-value">7,988</div>
-                    <div class="stat-label">引用次數 Citations</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">56+</div>
-                    <div class="stat-label">學術著作 Publications</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">🏆 2</div>
-                    <div class="stat-label">Emerald 獎項 Awards</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">🌍 Top 2%</div>
-                    <div class="stat-label">Stanford 科學家名人榜</div>
-                </div>
+            <div class="stat-card">
+                <div class="stat-value">50+</div>
+                <div class="stat-label">學術著作 (Publications)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3</div>
+                <div class="stat-label">高引用論文 (Highly Cited)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">🏆 2</div>
+                <div class="stat-label">Emerald 杰出论文奖</div>
             </div>
         </div>
-
-        <div class="network-container">
-            <h3 style="text-align:center; margin-bottom:20px; color:#00d9ff;">🔗 學術合作網路圖 Academic Collaboration Network</h3>
-            <div id="network"></div>
-            <div class="legend">
-                <div class="legend-item">
-                    <div class="legend-dot" style="background:#00d9ff;"></div>
-                    <span>欒斌教授</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-dot" style="background:#00ff88;"></div>
-                    <span>共同作者 Co-authors</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-dot" style="background:#ffd700;"></div>
-                    <span>發表期刊 Journals</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-dot" style="background:#ff6b6b;"></div>
-                    <span>研究領域 Fields</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-dot" style="background:#9b59b6;"></div>
-                    <span>獲獎論文 Awards</span>
-                </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #00d9ff;"></div>
+                <span>欒斌教授 (本人)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #ff6b6b;"></div>
+                <span>共同作者 (Co-authors)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #ffd93d;"></div>
+                <span>發表期刊 (Journals)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #6bcb77;"></div>
+                <span>研究領域 (Research Areas)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #c9b1ff;"></div>
+                <span>曾任職位 (Positions)</span>
             </div>
         </div>
-
-        <div class="sections">
-            <div class="section-card">
-                <h3>📚 研究領域 Research Areas</h3>
-                <div>
-                    <span class="tag">電子商務 Electronic Commerce</span>
-                    <span class="tag">網路行銷 Internet Marketing</span>
-                    <span class="tag">社群網路行銷 Social Network Marketing</span>
-                    <span class="tag">社群行為分析</span>
-                    <span class="tag">使用者行為 User Behavior</span>
+        
+        <div id="network"></div>
+        
+        <div class="info-panel">
+            <h3>📚 研究領域</h3>
+            <div class="research-areas">
+                <span class="tag">電子商務 E-commerce</span>
+                <span class="tag">網路行銷 Internet Marketing</span>
+                <span class="tag">社群網路行銷 Social Network Marketing</span>
+                <span class="tag">社群行為 Social Network Behavior</span>
+                <span class="tag">虛擬社群 Virtual Communities</span>
+                <span class="tag">資訊擴散 Information Diffusion</span>
+            </div>
+            
+            <h3 style="margin-top: 25px;">🏆 重要成就</h3>
+            <div class="achievements">
+                <div class="achievement-item">
+                    <strong>World's Top 2% Scientists</strong><br>
+                    <small>Stanford University, 2023</small>
+                </div>
+                <div class="achievement-item">
+                    <strong>Highly Commended Paper Award 2014</strong><br>
+                    <small>Emerald Publishing - "Speech or Silence"</small>
+                </div>
+                <div class="achievement-item">
+                    <strong>Highly Commended Paper Award 2015</strong><br>
+                    <small>Emerald Publishing - "Key Variables to Predict Tie Strength"</small>
+                </div>
+                <div class="achievement-item">
+                    <strong>113th Teacher's Award</strong><br>
+                    <small>Ministry of Education, Taiwan</small>
                 </div>
             </div>
-            <div class="section-card">
-                <h3>🏆 獲獎論文 Award-Winning Papers</h3>
-                <ul>
-                    <li><strong>2014 Emerald Highly Commended Paper</strong><br>"Speech or Silence: The Effect of User Anonymity and Member Familiarity on the Willingness to Express Opinions in Virtual Communities" - Online Information Review<br><em>共同作者: Ai-Yun Hsieh</em></li>
-                    <li><strong>2015 Emerald Highly Commended Paper</strong><br>"Key Variables to Predict Tie Strength on Social Network Sites" - Internet Research<br><em>共同作者: Yu-Ping Chiu</em></li>
-                </ul>
-            </div>
-            <div class="section-card">
-                <h3>📖 發表期刊 Publication Journals</h3>
-                <ul>
-                    <li>Computers in Human Behavior</li>
-                    <li>Internet Research</li>
-                    <li>Computers & Operations Research</li>
-                    <li>Information Systems Journal</li>
-                    <li>The Journal of Academic Librarianship</li>
-                    <li>Online Information Review</li>
-                    <li>Interfaces (INFORMS)</li>
-                </ul>
-            </div>
-            <div class="section-card">
-                <h3>👥 主要共同作者 Key Co-authors</h3>
-                <div>
-                    <span class="tag">Ai-Yun Hsieh 謝艾芸</span>
-                    <span class="tag">Yu-Ping Chiu 邱玉萍</span>
-                    <span class="tag">Hsien-Chlic 郭顯智</span>
-                    <span class="tag">Hong-Wen Lin 林宏文</span>
-                    <span class="tag">Ya-Cing Jhan 詹雅卿</span>
-                </div>
-            </div>
-            <div class="section-card">
-                <h3>🎓 學術經歷 Academic Positions</h3>
-                <ul>
-                    <li>管理學院院長 Dean (2016-2019)</li>
-                    <li>EMBA執行長 Director (2009-2016)</li>
-                    <li>學務長 Dean of Student Affairs (2007-2009)</li>
-                    <li>電子商務中心主任 Director</li>
-                    <li>104資訊科技獨立監察人</li>
-                </ul>
-            </div>
-            <div class="section-card">
-                <h3>🔬 實驗室 Lab</h3>
-                <ul>
-                    <li><strong>EcooLab</strong> - 電子商務與網路行銷實驗室<br>National Taiwan University of Science and Technology</li>
-                </ul>
-            </div>
+            
+            <h3 style="margin-top: 25px;">📖 代表性期刊發表</h3>
+            <ul style="margin-top: 10px; margin-left: 20px; color: #ccc; line-height: 1.8;">
+                <li>Computers in Human Behavior</li>
+                <li>Internet Research</li>
+                <li>Computers & Operations Research</li>
+                <li>Information Systems Journal</li>
+                <li>The Journal of Academic Librarianship</li>
+                <li>Online Information Review</li>
+                <li>Information Development</li>
+            </ul>
+            
+            <h3 style="margin-top: 25px;">👥 主要合作研究者</h3>
+            <ul style="margin-top: 10px; margin-left: 20px; color: #ccc; line-height: 1.8;">
+                <li>Ai-Yun Hsieh (謝艾芸) - 共同獲獎作者</li>
+                <li>Yu-Ping Chiu (邱玉萍) - 共同獲獎作者</li>
+            </ul>
         </div>
+        
+        <footer>
+            <p>資料來源：Google Scholar | NTUST | ResearchGate | 個人網站</p>
+            <p>生成時間：2026-03-09</p>
+        </footer>
     </div>
-
+    
     <div class="tooltip" id="tooltip"></div>
-
+    
     <script>
-        const data = {
-            nodes: [
-                // Central node - Pin Luarn
-                { id: "Pin Luarn", group: 1, info: "欒斌教授 - 國立臺灣科技大學管理學院\n引用次數: 7,988+\n56+ 學術著作", radius: 50 },
-                
-                // Co-authors
-                { id: "Ai-Yun Hsieh", group: 2, info: "謝艾芸\n共同作者\nSpeech or Silence (2014)", radius: 25 },
-                { id: "Yu-Ping Chiu", group: 2, info: "邱玉萍\n共同作者\nKey Variables to Predict Tie Strength (2015)", radius: 25 },
-                { id: "Hsien-Chih Kuo", group: 2, info: "郭顯智\n共同作者\nAnalyzing User Preferences Using Facebook Fan Pages", radius: 20 },
-                { id: "Hong-Wen Lin", group: 2, info: "林宏文\n共同作者\nAnalyzing User Preferences Using Facebook Fan Pages", radius: 20 },
-                { id: "Ya-Cing Jhan", group: 2, info: "詹雅卿\n共同作者\nAnalyzing User Preferences Using Facebook Fan Pages", radius: 20 },
-                
-                // Journals
-                { id: "Computers in Human Behavior", group: 3, info: " Computers in Human Behavior\nSSCI 期刊\n影響因子高", radius: 22 },
-                { id: "Internet Research", group: 3, info: "Internet Research\nSSCI 期刊\nEmerald 獲獎", radius: 22 },
-                { id: "Online Information Review", group: 3, info: "Online Information Review\nSSCI 期刊\nEmerald 獲獎", radius: 20 },
-                { id: "Computers & Operations Research", group: 3, info: "Computers & Operations Research\nSCI 期刊", radius: 18 },
-                { id: "Information Systems Journal", group: 3, info: "Information Systems Journal\nSSCI 期刊", radius: 18 },
-                { id: "Interfaces", group: 3, info: "Interfaces\nSSCI 期刊\nINFORMS", radius: 18 },
-                
-                // Research Fields
-                { id: "Electronic Commerce", group: 4, info: "電子商務\n研究領域", radius: 20 },
-                { id: "Internet Marketing", group: 4, info: "網路行銷\n研究領域", radius: 20 },
-                { id: "Social Network Marketing", group: 4, info: "社群網路行銷\n研究領域", radius: 20 },
-                { id: "User Behavior", group: 4, info: "使用者行為\n研究領域", radius: 18 },
-                
-                // Award papers
-                { id: "Speech or Silence", group: 5, info: "Speech or Silence (2014)\nEmerald Highly Commended Paper\nOnline Information Review", radius: 18 },
-                { id: "Tie Strength", group: 5, info: "Key Variables to Predict Tie Strength (2015)\nEmerald Highly Commended Paper\nInternet Research", radius: 18 },
-                { id: "Facebook Fan Pages", group: 5, info: "Analyzing User Preferences Using Facebook Fan Pages (2017)\nInterfaces (INFORMS)", radius: 18 },
-                
-                // Lab
-                { id: "EcooLab", group: 6, info: "EcooLab\n電子商務與網路行銷實驗室\nNTUST", radius: 20 },
-                
-                // Position
-                { id: "NTUST", group: 6, info: "國立臺灣科技大學\n管理學院", radius: 25 },
-                { id: "Stanford Top 2%", group: 6, info: "Stanford University\nWorld's Top 2% Scientists 2023", radius: 18 }
-            ],
-            links: [
-                // Pin Luarn connections
-                { source: "Pin Luarn", target: "Ai-Yun Hsieh" },
-                { source: "Pin Luarn", target: "Yu-Ping Chiu" },
-                { source: "Pin Luarn", target: "Hsien-Chih Kuo" },
-                { source: "Pin Luarn", target: "Hong-Wen Lin" },
-                { source: "Pin Luarn", target: "Ya-Cing Jhan" },
-                
-                // Journals
-                { source: "Pin Luarn", target: "Computers in Human Behavior" },
-                { source: "Pin Luarn", target: "Internet Research" },
-                { source: "Pin Luarn", target: "Online Information Review" },
-                { source: "Pin Luarn", target: "Computers & Operations Research" },
-                { source: "Pin Luarn", target: "Information Systems Journal" },
-                { source: "Pin Luarn", target: "Interfaces" },
-                
-                // Research Fields
-                { source: "Pin Luarn", target: "Electronic Commerce" },
-                { source: "Pin Luarn", target: "Internet Marketing" },
-                { source: "Pin Luarn", target: "Social Network Marketing" },
-                { source: "Pin Luarn", target: "User Behavior" },
-                
-                // Award papers
-                { source: "Pin Luarn", target: "Speech or Silence" },
-                { source: "Pin Luarn", target: "Tie Strength" },
-                { source: "Pin Luarn", target: "Facebook Fan Pages" },
-                
-                // Co-author connections to papers
-                { source: "Ai-Yun Hsieh", target: "Speech or Silence" },
-                { source: "Yu-Ping Chiu", target: "Tie Strength" },
-                { source: "Hsien-Chih Kuo", target: "Facebook Fan Pages" },
-                { source: "Hong-Wen Lin", target: "Facebook Fan Pages" },
-                { source: "Ya-Cing Jhan", target: "Facebook Fan Pages" },
-                
-                // Journal connections
-                { source: "Speech or Silence", target: "Online Information Review" },
-                { source: "Tie Strength", target: "Internet Research" },
-                { source: "Facebook Fan Pages", target: "Interfaces" },
-                
-                // Field connections
-                { source: "Electronic Commerce", target: "Internet Marketing" },
-                { source: "Internet Marketing", target: "Social Network Marketing" },
-                { source: "Social Network Marketing", target: "User Behavior" },
-                
-                // Lab and Position
-                { source: "Pin Luarn", target: "EcooLab" },
-                { source: "Pin Luarn", target: "NTUST" },
-                { source: "Pin Luarn", target: "Stanford Top 2%" },
-                { source: "EcooLab", target: "NTUST" }
-            ]
+        // Network data
+        const nodes = [
+            // Center: Pin Luarn
+            { id: "luarn", name: "欒斌 Pin Luarn", type: "main", info: "教授 | School of Management, NTUST | 7,988 citations" },
+            
+            // Co-authors
+            { id: "hsu", name: "Ai-Yun Hsieh\n謝艾芸", type: "author", info: "共同作者 | Highly Commended Paper Award 2014" },
+            { id: "chiu", name: "Yu-Ping Chiu\n邱玉萍", type: "author", info: "共同作者 | Highly Commended Paper Award 2015" },
+            { id: "chen", name: "Chen", type: "author", info: "共同作者" },
+            { id: "lin", name: "Lin", type: "author", info: "共同作者" },
+            { id: "wang", name: "Wang", type: "author", info: "共同作者" },
+            { id: "lee", name: "Lee", type: "author", info: "共同作者" },
+            { id: "huang", name: "Huang", type: "author", info: "共同作者" },
+            
+            // Journals
+            { id: "chb", name: "Computers in Human Behavior", type: "journal", info: "SSCI 期刊 | Impact Factor: 8.9" },
+            { id: "ir", name: "Internet Research", type: "journal", info: "SSCI 期刊 | ABDC: A" },
+            { id: "cor", name: "Computers & Operations Research", type: "journal", info: "SSCI 期刊 | Impact Factor: 4.8" },
+            { id: "isj", name: "Information Systems Journal", type: "journal", info: "SSCI 期刊 | ABDC: A*" },
+            { id: "jal", name: "Journal of Academic Librarianship", type: "journal", info: "SSCI 期刊" },
+            { id: "oir", name: "Online Information Review", type: "journal", info: "SSCI 期刊 | Emerald Publishing" },
+            { id: "id", name: "Information Development", type: "journal", info: "SSCI 期刊 | SAGE Publishing" },
+            
+            // Research Areas
+            { id: "ec", name: "電子商務\nE-commerce", type: "area", info: "主要研究領域" },
+            { id: "im", name: "網路行銷\nInternet Marketing", type: "area", info: "主要研究領域" },
+            { id: "snm", name: "社群網路行銷\nSocial Network Marketing", type: "area", info: "主要研究領域" },
+            { id: "snb", name: "社群行為\nSocial Behavior", type: "area", info: "主要研究領域" },
+            { id: "vc", name: "虛擬社群\nVirtual Communities", type: "area", info: "研究領域" },
+            { id: "id", name: "資訊擴散\nInformation Diffusion", type: "area", info: "研究領域" },
+            
+            // Positions
+            { id: "dean", name: "管理學院院長\n2016-2019", type: "position", info: "Dean of School of Management" },
+            { id: "emba", name: "EMBA執行長\n2009-2016", type: "position", info: "Director of EMBA Program" },
+            { id: "sao", name: "學務長\n2007-2002009", type: "position", info: "Dean of Student Affairs" },
+            { id: "ntust", name: "台灣科技大學\n現職", type: "position", info: "National Taiwan University of Science & Technology" },
+            
+            // Awards
+            { id: "top2", name: "World's Top 2%\nScientists", type: "award", info: "Stanford University 2023" },
+            { id: "hca2014", name: "Highly Commended\n2014", type: "award", info: "Emerald Publishing" },
+            { id: "hca2015", name: "Highly Commended\n2015", type: "award", info: "Emerald Publishing" },
+            { id: "tea", name: "師鐸獎\n第113屆", type: "award", info: "教育部 Taiwan Ministry of Education" }
+        ];
+        
+        const links = [
+            // Co-authors connections
+            { source: "luarn", target: "hsu", value: 5 },
+            { source: "luarn", target: "chiu", value: 5 },
+            { source: "luarn", target: "chen", value: 3 },
+            { source: "luarn", target: "lin", value: 3 },
+            { source: "luarn", target: "wang", value: 2 },
+            { source: "luarn", target: "lee", value: 2 },
+            { source: "luarn", target: "huang", value: 2 },
+            
+            // Journal connections
+            { source: "luarn", target: "chb", value: 4 },
+            { source: "luarn", target: "ir", value: 4 },
+            { source: "luarn", target: "cor", value: 3 },
+            { source: "luarn", target: "isj", value: 3 },
+            { source: "luarn", target: "jal", value: 2 },
+            { source: "luarn", target: "oir", value: 3 },
+            { source: "luarn", target: "id", value: 2 },
+            
+            // Research areas
+            { source: "luarn", target: "ec", value: 5 },
+            { source: "luarn", target: "im", value: 5 },
+            { source: "luarn", target: "snm", value: 5 },
+            { source: "luarn", target: "snb", value: 4 },
+            { source: "luarn", target: "vc", value: 4 },
+            { source: "luarn", target: "id", value: 3 },
+            
+            // Positions
+            { source: "luarn", target: "dean", value: 3 },
+            { source: "luarn", target: "emba", value: 3 },
+            { source: "luarn", target: "sao", value: 2 },
+            { source: "luarn", target: "ntust", value: 5 },
+            
+            // Awards
+            { source: "luarn", target: "top2", value: 4 },
+            { source: "luarn", target: "hca2014", value: 4 },
+            { source: "luarn", target: "hca2015", value: 4 },
+            { source: "luarn", target: "tea", value: 3 },
+            
+            // Interconnected
+            { source: "hsu", target: "oir", value: 2 },
+            { source: "chiu", target: "ir", value: 2 },
+            { source: "ec", target: "im", value: 3 },
+            { source: "snm", target: "snb", value: 3 },
+            { source: "vc", target: "snb", value: 2 }
+        ];
+        
+        // Color scheme
+        const colors = {
+            main: "#00d9ff",
+            author: "#ff6b6b",
+            journal: "#ffd93d",
+            area: "#6bcb77",
+            position: "#c9b1ff",
+            award: "#ff9f43"
         };
-
-        const colorScale = {
-            1: "#00d9ff",
-            2: "#00ff88",
-            3: "#ffd700",
-            4: "#ff6b6b",
-            5: "#9b59b6",
-            6: "#3498db"
-        };
-
-        const width = document.getElementById('network').clientWidth;
+        
+        // Create force simulation
+        const width = document.getElementById("network").clientWidth;
         const height = 600;
-
+        
         const svg = d3.select("#network")
             .append("svg")
             .attr("width", width)
             .attr("height", height);
-
-        const g = svg.append("g");
-
-        const zoom = d3.zoom()
-            .scaleExtent([0.3, 4])
-            .on("zoom", (event) => {
-                g.attr("transform", event.transform);
-            });
-
-        svg.call(zoom);
-
-        // Add arrow markers
-        svg.append("defs").selectAll("marker")
-            .data(["arrow"])
-            .enter().append("marker")
-            .attr("id", "arrow")
-            .attr("viewBox", "0 -5 10 10")
-            .attr("refX", 25)
-            .attr("refY", 0)
-            .attr("markerWidth", 6)
-            .attr("markerHeight", 6)
-            .attr("orient", "auto")
-            .append("path")
-            .attr("d", "M0,-5L10,0L0,5")
-            .attr("fill", "rgba(255,255,255,0.3)");
-
-        const simulation = d3.forceSimulation(data.nodes)
-            .force("link", d3.forceLink(data.links).id(d => d.id).distance(100))
-            .force("charge", d3.forceManyBody().strength(-400))
+        
+        const simulation = d3.forceSimulation(nodes)
+            .force("link", d3.forceLink(links).id(d => d.id).distance(80))
+            .force("charge", d3.forceManyBody().strength(-300))
             .force("center", d3.forceCenter(width / 2, height / 2))
-            .force("collision", d3.forceCollide().radius(d => d.radius + 10));
-
-        const links = g.append("g")
+            .force("collision", d3.forceCollide().radius(40));
+        
+        // Draw links
+        const link = svg.append("g")
             .selectAll("line")
-            .data(data.links)
-            .enter().append("line")
+            .data(links)
+            .enter()
+            .append("line")
             .attr("stroke", "rgba(255,255,255,0.2)")
-            .attr("stroke-width", 1.5)
-            .attr("marker-end", "url(#arrow)");
-
-        const nodes = g.append("g")
-            .selectAll("circle")
-            .data(data.nodes)
-            .enter().append("circle")
-            .attr("r", d => d.radius)
-            .attr("fill", d => colorScale[d.group])
-            .attr("stroke", "rgba(255,255,255,0.3)")
-            .attr("stroke-width", 2)
-            .style("cursor", "pointer")
+            .attr("stroke-width", d => Math.sqrt(d.value));
+        
+        // Draw nodes
+        const node = svg.append("g")
+            .selectAll("g")
+            .data(nodes)
+            .enter()
+            .append("g")
             .call(d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)
                 .on("end", dragended));
-
-        const labels = g.append("g")
-            .selectAll("text")
-            .data(data.nodes)
-            .enter().append("text")
-            .text(d => d.id)
-            .attr("font-size", d => d.group === 1 ? "14px" : "11px")
-            .attr("fill", "#fff")
+        
+        // Add circles to nodes
+        node.append("circle")
+            .attr("r", d => {
+                if (d.type === "main") return 35;
+                if (d.type === "author") return 20;
+                if (d.type === "journal") return 18;
+                if (d.type === "area") return 16;
+                if (d.type === "position") return 14;
+                return 12;
+            })
+            .attr("fill", d => colors[d.type] || "#888")
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 2)
+            .style("cursor", "pointer")
+            .on("mouseover", showTooltip)
+            .on("mouseout", hideTooltip);
+        
+        // Add labels
+        node.append("text")
+            .text(d => d.name)
+            .attr("x", 0)
+            .attr("y", d => (d.type === "main" ? 45 : 30))
             .attr("text-anchor", "middle")
-            .attr("dy", d => d.radius + 15)
-            .style("pointer-events", "none")
-            .style("text-shadow", "1px 1px 2px rgba(0,0,0,0.8)");
-
-        const tooltip = document.getElementById('tooltip');
-
-        nodes.on("mouseover", (event, d) => {
+            .attr("fill", "#fff")
+            .attr("font-size", d => d.type === "main" ? "12px" : "9px")
+            .attr("font-weight", d => d.type === "main" ? "bold" : "normal")
+            .style("pointer-events", "none");
+        
+        // Tooltip functions
+        const tooltip = document.getElementById("tooltip");
+        
+        function showTooltip(event, d) {
+            tooltip.innerHTML = `<strong>${d.name.replace('\n', ' ')}</strong><br>${d.info}`;
             tooltip.style.opacity = 1;
-            tooltip.innerHTML = d.info.replace(/\n/g, "<br>");
             tooltip.style.left = (event.pageX + 10) + "px";
             tooltip.style.top = (event.pageY - 10) + "px";
-        })
-        .on("mouseout", () => {
+        }
+        
+        function hideTooltip() {
             tooltip.style.opacity = 0;
-        });
-
+        }
+        
+        // Simulation tick
         simulation.on("tick", () => {
-            links
+            link
                 .attr("x1", d => d.source.x)
                 .attr("y1", d => d.source.y)
                 .attr("x2", d => d.target.x)
                 .attr("y2", d => d.target.y);
-
-            nodes
-                .attr("cx", d => d.x)
-                .attr("cy", d => d.y);
-
-            labels
-                .attr("x", d => d.x)
-                .attr("y", d => d.y);
+            
+            node.attr("transform", d => `translate(${d.x},${d.y})`);
         });
-
-        function dragstarted(event, d) {
+        
+        // Drag functions
+        function dragstarted(event) {
             if (!event.active) simulation.alphaTarget(0.3).restart();
-            d.fx = d.x;
-            d.fy = d.y;
+            event.subject.fx = event.subject.x;
+            event.subject.fy = event.subject.y;
         }
-
-        function dragged(event, d) {
-            d.fx = event.x;
-            d.fy = event.y;
+        
+        function dragged(event) {
+            event.subject.fx = event.x;
+            event.subject.fy = event.y;
         }
-
-        function dragended(event, d) {
+        
+        function dragended(event) {
             if (!event.active) simulation.alphaTarget(0);
-            d.fx = null;
-            d.fy = null;
+            event.subject.fx = null;
+            event.subject.fy = null;
         }
-
-        // Initial position - center the main node
-        data.nodes[0].x = width / 2;
-        data.nodes[0].y = height / 2;
+        
+        // Responsive
+        window.addEventListener('resize', () => {
+            const newWidth = document.getElementById("network").clientWidth;
+            svg.attr("width", newWidth);
+            simulation.force("center", d3.forceCenter(newWidth / 2, height / 2));
+            simulation.alpha(0.3).restart();
+        });
     </script>
 </body>
 </html>

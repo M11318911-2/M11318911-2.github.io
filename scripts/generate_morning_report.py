@@ -171,7 +171,7 @@ def generate_html(news_items, screenshots=None):
             screenshot_filename = os.path.basename(screenshots[safe_url])
             screenshot_html = f'''
     <div class="screenshot-preview">
-        <img src="screenshots/{screenshot_filename}" alt="{news['title']}" loading="lazy">
+        <img src="../screenshots/{screenshot_filename}" alt="{news['title']}" loading="lazy">
     </div>
 '''
         
@@ -395,7 +395,7 @@ def upload_to_github():
         subprocess.run(["git", "add", f"morningnews-{TODAY_SHORT}.mp3"], check=True, capture_output=True, env=env)
         subprocess.run(["git", "add", f"morningnews-{TODAY_SHORT}-en.mp3"], check=True, capture_output=True, env=env)
         # Add screenshots
-        subprocess.run(["git", "add", "claw/screenshots/"], check=True, capture_output=True, env=env)
+        subprocess.run(["git", "add", "screenshots/"], check=True, capture_output=True, env=env)
         
         # Commit
         subprocess.run([
