@@ -3,581 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>晨間科技新聞雙語版 | 2026年3月23日</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>每日 AI 資訊 - 2026年03月23日</title>
     <style>
-        :root {
-            --bg-primary: #0f0f14;
-            --bg-secondary: #1a1a24;
-            --bg-card: #22222e;
-            --bg-card-hover: #2a2a38;
-            --accent: #6366f1;
-            --accent-secondary: #8b5cf6;
-            --accent-glow: rgba(99, 102, 241, 0.3);
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --border: #2e2e3e;
-            --success: #22c55e;
-            --warning: #f59e0b;
-            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        @page { size: A4; margin: 2.5cm; }
         body {
-            font-family: 'Inter', 'Noto Sans TC', -apple-system, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.7;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .date-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, var(--text-primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .subtitle {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-
-        /* Audio Player Section */
-        .audio-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 50px;
-        }
-
-        .audio-card {
-            background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 28px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .audio-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-        }
-
-        .audio-card.en::before {
-            background: linear-gradient(90deg, #3b82f6, #06b6d4);
-        }
-
-        .audio-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .audio-label .flag {
-            font-size: 1.5rem;
-        }
-
-        .audio-label span {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .audio-label .lang-tag {
-            margin-left: auto;
-            background: var(--bg-secondary);
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .audio-player {
-            width: 100%;
-            height: 48px;
-            border-radius: 12px;
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-        }
-
-        .audio-player::-webkit-media-controls-panel {
-            background: var(--bg-primary);
-        }
-
-        /* News Grid */
-        .news-grid {
-            display: grid;
-            gap: 32px;
-        }
-
-        .news-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: var(--card-shadow);
-        }
-
-        .news-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent);
-            box-shadow: 0 8px 40px rgba(99, 102, 241, 0.15);
-        }
-
-        .news-card-header {
-            padding: 24px 28px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-        }
-
-        .news-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            flex-shrink: 0;
-        }
-
-        .news-meta {
-            flex: 1;
-        }
-
-        .news-category {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent);
-            margin-bottom: 6px;
-        }
-
-        .news-title-zh {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-            line-height: 1.4;
-        }
-
-        .news-title-en {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .news-content {
-            padding: 20px 28px 28px;
-        }
-
-        .news-content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-
-        .content-block {
-            padding: 20px;
-            background: var(--bg-secondary);
-            border-radius: 16px;
-            position: relative;
-        }
-
-        .content-block::before {
-            content: attr(data-lang);
-            position: absolute;
-            top: 12px;
-            right: 14px;
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-        }
-
-        .content-block.zh::before {
-            content: '中文';
-            color: #f59e0b;
-        }
-
-        .content-block.en::before {
-            content: 'EN';
-            color: #3b82f6;
-        }
-
-        .content-block p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
+            font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", Arial, sans-serif;
             line-height: 1.8;
+            color: #1a1a1a;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            font-size: 12pt;
+            background: #fafafa;
         }
-
-        .content-block.zh p {
-            font-family: 'Noto Sans TC', sans-serif;
-        }
-
-        .source-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 16px;
-            padding: 6px 12px;
-            background: var(--bg-card);
-            border-radius: 8px;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .source-tag::before {
-            content: '📰';
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            padding: 30px;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        @media (max-width: 768px) {
-            .audio-section {
-                grid-template-columns: 1fr;
-            }
-
-            .news-content-grid {
-                grid-template-columns: 1fr;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .news-card-header {
-                flex-direction: column;
-            }
-        }
-
-        .wave-animation {
-            display: flex;
-            align-items: center;
-            gap: 3px;
-            height: 24px;
-        }
-
-        .wave-animation span {
-            width: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-            animation: wave 1s ease-in-out infinite;
-        }
-
-        .wave-animation span:nth-child(1) { animation-delay: 0s; height: 8px; }
-        .wave-animation span:nth-child(2) { animation-delay: 0.1s; height: 16px; }
-        .wave-animation span:nth-child(3) { animation-delay: 0.2s; height: 12px; }
-        .wave-animation span:nth-child(4) { animation-delay: 0.3s; height: 20px; }
-        .wave-animation span:nth-child(5) { animation-delay: 0.4s; height: 10px; }
-
-        @keyframes wave {
-            0%, 100% { transform: scaleY(0.5); }
-            50% { transform: scaleY(1); }
-        }
+        h1 { color: #1a5f7a; border-bottom: 4px solid #1a5f7a; padding-bottom: 15px; text-align: center; font-size: 28pt; margin-bottom: 10px; }
+        h2 { color: #0f4c75; border-left: 5px solid #0f4c75; padding-left: 15px; margin-top: 40px; font-size: 16pt; }
+        h3 { color: #1a5f7a; background: linear-gradient(90deg, #f0f4f8 0%, #e8eef4 100%); padding: 12px 15px; border-radius: 6px; margin-top: 30px; font-size: 14pt; }
+        .week-header { background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%); color: white; padding: 18px 25px; border-radius: 10px; margin: 40px 0 25px 0; font-size: 16pt; font-weight: bold; }
+        .info-box { background-color: #bee3f8; padding: 15px; border-radius: 8px; border-left: 4px solid #3182ce; margin: 15px 0; }
+        .teaching { background-color: #fed7e2; padding: 15px; border-radius: 8px; border-left: 4px solid #ed64a6; margin: 15px 0; }
+        .source-tag { display: inline-block; background-color: #e2e8f0; padding: 3px 10px; border-radius: 12px; font-size: 10pt; margin-right: 8px; }
+        .screenshot-preview { margin: 15px 0; text-align: center; }
+        .screenshot-preview img { max-width: 100%; max-height: 300px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; transition: transform 0.2s; }
+        .screenshot-preview img:hover { transform: scale(1.02); }
+        .source-link { font-size: 11pt; color: #3182ce; }
+        .source-link a { color: #3182ce; text-decoration: none; }
+        .source-link a:hover { text-decoration: underline; }
+        .download-btn { position: fixed; top: 20px; right: 20px; background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%); color: white; padding: 12px 20px; border: none; border-radius: 25px; cursor: pointer; font-size: 13px; font-weight: bold; }
+        hr { border: 0; height: 2px; background: linear-gradient(90deg, transparent, #3182ce, transparent); margin: 40px 0; }
+        .voice-player { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px; text-align: center; margin-bottom: 30px; }
+        .voice-player h3 { background: none; color: white; margin-top: 0; }
+        audio { width: 100%; margin: 10px 0; }
+        .footer { text-align: center; color: #718096; font-size: 10pt; margin-top: 40px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="date-badge">📅 2026年3月23日 | March 23, 2026</div>
-            <h1>🌙 晨間科技新聞</h1>
-            <p class="subtitle">美國最新科技動態 | Latest US Tech News</p>
-        </header>
+    <button class="download-btn" onclick="window.print()">🖨️ 下載/列印 PDF</button>
+    
+    <h1>🤖 每日 AI 資訊</h1>
+    <p style="text-align: center; font-size: 14pt; color: #4a5568;">2026年03月23日</p>
+    <p style="text-align: center; color: #718096;">來源：MIT News、The New Stack、The Hacker News</p>
 
-        <section class="audio-section">
-            <div class="audio-card">
-                <div class="audio-label">
-                    <span class="flag">🇨🇳</span>
-                    <span>中文語音</span>
-                    <span class="lang-tag">eleven_multilingual_v2</span>
-                </div>
-                <audio controls class="audio-player" preload="metadata">
-                    <source src="morning-zh.mp3" type="audio/mpeg">
-                    您的瀏覽器不支援音訊播放。
-                </audio>
-            </div>
-            <div class="audio-card en">
-                <div class="audio-label">
-                    <span class="flag">🇺🇸</span>
-                    <span>English Audio</span>
-                    <span class="lang-tag">eleven_turbo_v2_5</span>
-                </div>
-                <audio controls class="audio-player" preload="metadata">
-                    <source src="morning-en.mp3" type="audio/mpeg">
-                    Your browser does not support audio playback.
-                </audio>
-            </div>
-        </section>
+    <!-- 語音播放器 -->
+    <div class="voice-player">
+        <h3>🎧 語音播放</h3>
+        <p>中文版本：</p>
+        <audio controls>
+            <source src="https://ntust2026.github.io/claw/morningnews-20260323.mp3" type="audio/mpeg">
+            您的瀏覽器不支援音訊播放
+        </audio>
+        <p>English Version：</p>
+        <audio controls>
+            <source src="https://ntust2026.github.io/claw/morningnews-20260323-en.mp3" type="audio/mpeg">
+            Your browser does not support audio playback
+        </audio>
+    </div>
 
-        <div class="news-grid">
-            <!-- News 1 -->
-            <article class="news-card">
-                <div class="news-card-header">
-                    <div class="news-icon">🛡️</div>
-                    <div class="news-meta">
-                        <div class="news-category">網路安全</div>
-                        <h2 class="news-title-zh">美國搗毀感染逾300萬設備的殭屍網絡</h2>
-                        <p class="news-title-en">U.S. Disrupts Botnets Infecting Over 3 Million Devices</p>
-                    </div>
-                </div>
-                <div class="news-content">
-                    <div class="news-content-grid">
-                        <div class="content-block zh" data-lang="中文">
-                            <p>美國執法部門宣布成功搗毀一個已感染全球超過300萬台設備的殭屍網絡，這是近年來規模最大的網路安全執法行動之一。專家警告，消費電子產品、小型企業設備及物聯網系統都可能成為攻擊目標。隨著人工智慧技術應用於網路攻擊，瓦解大型殭屍網絡變得更加緊迫。</p>
-                            <div class="source-tag">來源：Reuters</div>
-                        </div>
-                        <div class="content-block en" data-lang="EN">
-                            <p>U.S. authorities disrupted botnets that infected over 3 million devices worldwide, marking one of the largest recent cyber enforcement actions. Experts warn that consumer electronics, small business devices, and IoT systems are all potential targets. As AI-enabled automation enters cyber operations, dismantling large botnets becomes increasingly urgent.</p>
-                            <div class="source-tag">Source: Reuters</div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+    <!-- 新聞內容 -->
+    <div class="week-header">📰 今日 AI 新聞</div>
 
-            <!-- News 2 -->
-            <article class="news-card">
-                <div class="news-card-header">
-                    <div class="news-icon">💻</div>
-                    <div class="news-meta">
-                        <div class="news-category">出口管制</div>
-                        <h2 class="news-title-zh">美起訴三人涉嫌透過超微走私AI晶片至中國</h2>
-                        <p class="news-title-en">U.S. Charges Three in Alleged Scheme to Smuggle AI Chips to China</p>
-                    </div>
-                </div>
-                <div class="news-content">
-                    <div class="news-content-grid">
-                        <div class="content-block zh" data-lang="中文">
-                            <p>美國檢察官起訴三名與超微電腦有關聯的人士，涉嫌透過東南亞路線將先進的輝達AI晶片非法運往中國。案情涉及使用這些晶片組裝的伺服器。此案顯示，AI運算能力已成為地緣政治資產，出口管制正成為AI競爭的核心戰場。</p>
-                            <div class="source-tag">來源：Reuters</div>
-                        </div>
-                        <div class="content-block en" data-lang="EN">
-                            <p>U.S. prosecutors charged three individuals tied to Super Micro Computer in an alleged scheme to divert advanced Nvidia AI chips to China through Southeast Asia. The case highlights how AI compute has become a geopolitical asset, with export controls emerging as a central battlefield in the AI race.</p>
-                            <div class="source-tag">Source: Reuters</div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+    <h2>1. Anthropic 澄清 Claude Code 使用條款 - 個人用戶不受影響</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 The New Stack</span>
+    </div>
 
-            <!-- News 3 -->
-            <article class="news-card">
-                <div class="news-card-header">
-                    <div class="news-icon">🤖</div>
-                    <div class="news-meta">
-                        <div class="news-category">AI 程式開發</div>
-                        <h2 class="news-title-zh">AI程式工具Cursor準備發布新模型挑戰OpenAI</h2>
-                        <p class="news-title-en">Cursor Prepares New AI Coding Model to Challenge OpenAI and Anthropic</p>
-                    </div>
-                </div>
-                <div class="news-content">
-                    <div class="news-content-grid">
-                        <div class="content-block zh" data-lang="中文">
-                            <p>AI程式工具新創公司Cursor即將推出Composer 2，這是一款更高效的人工智慧模型，能處理更複雜的軟體開發任務。該公司自2023年推出以來快速成長，目前每天服務超過100萬名用戶及5萬家企業客戶，包括Stripe和Figma等知名公司。</p>
-                            <div class="source-tag">來源：Bloomberg</div>
-                        </div>
-                        <div class="content-block en" data-lang="EN">
-                            <p>AI coding startup Cursor is launching Composer 2, a more efficient AI model designed to handle longer, more involved software development tasks. The company has grown rapidly since launching in 2023, now serving over 1 million daily users and 50,000 businesses including Stripe and Figma.</p>
-                            <div class="source-tag">Source: Bloomberg</div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+    <div class="screenshot-preview">
+        <img src="../screenshots/20260323-the-new-stack.png" alt="Anthropic 澄清 Claude Code 使用條款 - 個人用戶不受影響" loading="lazy">
+    </div>
 
-            <!-- News 4 -->
-            <article class="news-card">
-                <div class="news-card-header">
-                    <div class="news-icon">⚡</div>
-                    <div class="news-meta">
-                        <div class="news-category">企業併購</div>
-                        <h2 class="news-title-zh">OpenAI收購Python工具新創Astral強化Coding能力</h2>
-                        <p class="news-title-en">OpenAI Acquires Python Startup Astral to Deepen Coding Push</p>
-                    </div>
-                </div>
-                <div class="news-content">
-                    <div class="news-content-grid">
-                        <div class="content-block zh" data-lang="中文">
-                            <p>OpenAI宣布收購Python開發工具新創公司Astral，將其團隊整合至OpenAI的Codex計畫中。OpenAI表示，Codex目前已有超過200萬用戶，是年初的三倍。此收購顯示AI公司正從聊天和模型存取擴展至完整的開發者工具生態系統。</p>
-                            <div class="source-tag">來源：Bloomberg</div>
-                        </div>
-                        <div class="content-block en" data-lang="EN">
-                            <p>OpenAI plans to acquire Astral, a startup that builds Python tools for developers, bringing the team into OpenAI's Codex effort. OpenAI says Codex now has over 2 million users, triple the number at the start of the year. The acquisition signals AI companies are expanding beyond chat into full developer stacks.</p>
-                            <div class="source-tag">Source: Bloomberg</div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+    <p>Anthropic 澄清其 Claude Code 政策的更新不會影響個人用戶使用訂閱帳號運行 OpenClaw、NanoClaw 等開源 Agent 工具。先前的文件更新引發社區討論，Anthropic 強調「 Nothing changes around how customers have been using their account」。</p>
+    <p class="source-link">🔗 <a href="https://thenewstack.io/anthropic-agent-sdk-confusion/" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
 
-            <!-- News 5 -->
-            <article class="news-card">
-                <div class="news-card-header">
-                    <div class="news-icon">📦</div>
-                    <div class="news-meta">
-                        <div class="news-category">機器人技術</div>
-                        <h2 class="news-title-zh">亞馬遜收購會爬樓梯的送貨機器人新創Rivr</h2>
-                        <p class="news-title-en">Amazon Acquires Stair-Climbing Delivery Robot Startup Rivr</p>
-                    </div>
-                </div>
-                <div class="news-content">
-                    <div class="news-content-grid">
-                        <div class="content-block zh" data-lang="中文">
-                            <p>亞馬遜收購了瑞士機器人新創公司Rivr，該公司開發了一款能爬樓梯的四輪配送機器人，專為最後一哩配送設計。Rivr執行長表示，這筆交易將幫助公司加速實際部署。此收購顯示電子商務物流仍是最大的未開發機器人市場之一。</p>
-                            <div class="source-tag">來源：TechCrunch</div>
-                        </div>
-                        <div class="content-block en" data-lang="EN">
-                            <p>Amazon has acquired Rivr, a Zurich-based robotics startup known for developing a stair-climbing delivery robot for last-mile logistics. The CEO says the deal should help scale real-world deployment faster. E-commerce logistics remains one of the largest untapped robotics markets.</p>
-                            <div class="source-tag">Source: TechCrunch</div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+    <h2>2. NVIDIA 推出 NemoClaw - 開源 AI Agent 平台</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 The New Stack</span>
+    </div>
 
-            <!-- News 6 -->
-            <article class="news-card">
-                <div class="news-card-header">
-                    <div class="news-icon">💬</div>
-                    <div class="news-meta">
-                        <div class="news-category">社群媒體</div>
-                        <h2 class="news-title-zh">Pinterest執行長呼籲禁止16歲以下青少年使用社群媒體</h2>
-                        <p class="news-title-en">Pinterest CEO Calls for Ban on Social Media for Youth Under 16</p>
-                    </div>
-                </div>
-                <div class="news-content">
-                    <div class="news-content-grid">
-                        <div class="content-block zh" data-lang="中文">
-                            <p>Pinterest執行長公開呼籲立法禁止16歲以下青少年使用社群媒體平台。他指出，研究顯示社群媒體對未成年人的心理健康產生負面影響，包括焦慮、憂鬱和睡眠品質下降等問題。此呼籲獲得越來越多科技業領袖的支持。</p>
-                            <div class="source-tag">來源：Reuters</div>
-                        </div>
-                        <div class="content-block en" data-lang="EN">
-                            <p>Pinterest's CEO has called for legislation to ban social media for users under 16, citing research showing negative mental health impacts on minors including anxiety, depression, and sleep quality degradation. This call is gaining support from more tech industry leaders.</p>
-                            <div class="source-tag">Source: Reuters</div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+    <div class="screenshot-preview">
+        <img src="../screenshots/20260323-the-new-stack.png" alt="NVIDIA 推出 NemoClaw - 開源 AI Agent 平台" loading="lazy">
+    </div>
 
-            <!-- News 7 -->
-            <article class="news-card">
-                <div class="news-card-header">
-                    <div class="news-icon">📱</div>
-                    <div class="news-meta">
-                        <div class="news-category">AI 助理</div>
-                        <h2 class="news-title-zh">Apple宣布2026年將推出AI驅動的全新Siri</h2>
-                        <p class="news-title-en">Apple Announces AI-Powered Siri Redesign for 2026</p>
-                    </div>
-                </div>
-                <div class="news-content">
-                    <div class="news-content-grid">
-                        <div class="content-block zh" data-lang="中文">
-                            <p>Apple正式宣布將於2026年推出由人工智慧驅動的全新版本Siri。這項根本性的轉型將使Siri成為具備「螢幕感知」能力的上下文助理，能夠理解並回應螢幕上顯示的內容，為用戶提供更智慧、更個人化的互動體驗。</p>
-                            <div class="source-tag">來源：Crescendo AI</div>
-                        </div>
-                        <div class="content-block en" data-lang="EN">
-                            <p>Apple has officially announced that an AI-powered version of Siri will debut in 2026. This fundamental transformation will see Siri become a context-aware assistant capable of "on-screen awareness," able to understand and respond to content displayed on the screen.</p>
-                            <div class="source-tag">Source: Crescendo AI</div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+    <p>NVIDIA 宣布推出 NemoClaw，這是一個開源平台，旨在幫助開發者構建和部署 AI Agents。該平台整合了 NVIDIA 的 GPU 加速技術，為企業級 AI 應用提供更強大的支援。</p>
+    <p class="source-link">🔗 <a href="https://thenewstack.io/nvidia-nemoclaw-launch/" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
 
-            <!-- News 8 -->
-            <article class="news-card">
-                <div class="news-card-header">
-                    <div class="news-icon">💾</div>
-                    <div class="news-meta">
-                        <div class="news-category">半導體</div>
-                        <h2 class="news-title-zh">美光財報亮眼 AI需求帶動營收暴增近2倍</h2>
-                        <p class="news-title-en">Micron Earnings Beat Expectations as AI Demand Drives Near 2x Revenue Growth</p>
-                    </div>
-                </div>
-                <div class="news-content">
-                    <div class="news-content-grid">
-                        <div class="content-block zh" data-lang="中文">
-                            <p>美國記憶體大廠美光科技公佈季度財報，在人工智慧需求強勁帶動下，營收較去年同期暴增近2倍，大幅超越市場預期。公司宣布將2026年資本支出增加50億美元至超過250億美元，以擴大產能滿足AI需求。</p>
-                            <div class="source-tag">來源：鉅亨網</div>
-                        </div>
-                        <div class="content-block en" data-lang="EN">
-                            <p>Micron Technology reported quarterly earnings with revenue nearly doubling year-over-year, crushing expectations as AI demand surged. The company announced plans to increase 2026 capital spending by $5 billion to over $25 billion to meet AI-driven demand.</p>
-                            <div class="source-tag">Source: CNYES</div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
+    <h2>3. AI 程式碼審查工具爆發 - OpenAI Codex Security 掃描百萬提交</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 The Hacker News</span>
+    </div>
 
-        <footer>
-            <p>🌙 晨間科技新聞 | Morning Tech News | 2026年3月23日</p>
-            <p style="margin-top: 8px;">使用 <a href="https://elevenlabs.io" target="_blank">ElevenLabs</a> AI 語音生成</p>
-        </footer>
+    <div class="screenshot-preview">
+        <img src="../screenshots/20260323-the-hacker-news.png" alt="AI 程式碼審查工具爆發 - OpenAI Codex Security 掃描百萬提交" loading="lazy">
+    </div>
+
+    <p>OpenAI 推出 Codex Security AI 代理工具，掃描了 120 萬個代碼提交，發現 792 個關鍵漏洞和 10,561 個高嚴重性漏洞。這顯示 AI 在資安領域的應用正在快速發展。</p>
+    <p class="source-link">🔗 <a href="https://thehackernews.com/2026/03/openai-codex-security-scans.html" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
+
+    <h2>4. MIT 推出新 AI 課程 - 使用人類學改善聊天機器人</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 MIT News</span>
+    </div>
+
+    <p>MIT 電腦科學學生設計 AI 聊天機器人，幫助年輕用戶變得更善於社交。這門新課程結合了人類學與 AI 技術，展示跨學科 AI 設計的潛力。</p>
+    <p class="source-link">🔗 <a href="https://news.mit.edu/2026/0311/ai-anthropology-chatbots" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
+
+    <h2>5. AI 醫療突破 - MIT 開發心臟衰竭預測模型</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 MIT News</span>
+    </div>
+
+    <p>MIT、Mass General Brigham 和哈佛醫學院的研究人員開發深度學習模型，可提前一年預測心臟衰竭患者的病情惡化。這是 AI 在醫療領域的重要應用案例。</p>
+    <p class="source-link">🔗 <a href="https://news.mit.edu/2026/0312/ai-heart-failure-prediction" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
+
+
+    <hr>
+    <div class="footer">
+        <p>每日 AI 資訊簡報 | 由 OpenClaw 自動產生</p>
+        <p>更新時間：2026-03-23 03:39:55</p>
     </div>
 </body>
 </html>
