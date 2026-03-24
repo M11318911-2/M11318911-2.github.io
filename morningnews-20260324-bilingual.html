@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科技新聞晨報 | 2026年03月24日</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .header .date {
+            color: #a0a0a0;
+            font-size: 1.1rem;
+        }
+        
+        /* Voice Players */
+        .voice-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .voice-section h2 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .voice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .voice-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .voice-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .voice-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        
+        .voice-card audio {
+            width: 100%;
+            height: 40px;
+            border-radius: 20px;
+        }
+        
+        .voice-card audio::-webkit-media-controls-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        /* News Cards */
+        .news-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+        
+        .news-card .news-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 700;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .news-card h3 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .news-card .source {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 5px 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+        
+        .news-card .screenshot-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .news-card .screenshot-container img {
+            max-width: 100%;
+            max-height: 280px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        
+        .news-card .screenshot-container img:hover {
+            transform: scale(1.02);
+        }
+        
+        .news-card .content-block {
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .news-card .content-zh {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+        }
+        
+        .news-card .content-en {
+            background: linear-gradient(135deg, rgba(118, 75, 162, 0.1) 0%, rgba(240, 147, 251, 0.1) 100%);
+            border-left: 4px solid #764ba2;
+        }
+        
+        .news-card .content-block p {
+            color: #c0c0c0;
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+        
+        .news-card .content-block .lang-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            color: #888;
+        }
+        
+        .news-card .why-matter {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 152, 0, 0.1) 100%);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-top: 20px;
+        }
+        
+        .news-card .why-matter .label {
+            font-weight: 700;
+            color: #ffc107;
+            margin-bottom: 8px;
+        }
+        
+        .news-card .why-matter p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+        }
+        
+        .news-card .source-link {
+            margin-top: 20px;
+        }
+        
+        .news-card .source-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        
+        .news-card .source-link a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .voice-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .news-card {
+                padding: 20px;
+            }
+            
+            .news-card h3 {
+                font-size: 1.3rem;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .voice-section, .screenshot-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>科技新聞晨報</h1>
+            <p class="date">2026年03月24日 | March 24, 2026</p>
+        </div>
+        
+        <!-- Voice Players -->
+        <div class="voice-section">
+            <h2>音訊播放 | Audio Playback</h2>
+            <div class="voice-grid">
+                <div class="voice-card">
+                    <h3>中文</h3>
+                    <audio controls>
+                        <source src="https://ntust2026.github.io/claw/morningnews-20260324.mp3" type="audio/mpeg">
+                        您的瀏覽器不支援音訊播放
+                    </audio>
+                </div>
+                <div class="voice-card">
+                    <h3>English</h3>
+                    <audio controls>
+                        <source src="https://ntust2026.github.io/claw/morningnews-20260324-en.mp3" type="audio/mpeg">
+                        Your browser does not support audio playback
+                    </audio>
+                </div>
+            </div>
+        </div>
+        
+        <!-- News Card 1 -->
+        <div class="news-card">
+            <span class="news-number">新聞 1</span>
+            <h3>OpenAI 與 Anthropic 爭奪私募股权投资：企業 AI 市場地盤戰開打</h3>
+            <span class="source">Reuters</span>
+            
+            <div class="screenshot-container">
+                <img src="../screenshots/20260323-reuters.png" alt="Reuters" loading="lazy">
+            </div>
+            
+            <div class="content-block content-zh">
+                <p class="lang-label">中文</p>
+                <p>OpenAI 正在向私募股权投资公司提供比竞争对手 Anthropic 更優惠的條件，兩家人工智慧公司都在爭取與收購基金公司建立合資企業，以快速向私募股权支持的數百家私人企業推廣其 AI 工具。這場企業地盤戰顯示，隨著 AI 技術走向成熟，大型語言模型公司之間的競爭已從模型效能轉向商業落地與變現能力的較量。</p>
+            </div>
+            
+            <div class="content-block content-en">
+                <p class="lang-label">English</p>
+                <p>OpenAI is offering private-equity firms a sweeter deal than rival Anthropic as both artificial intelligence companies court buyout firms to form joint ventures aimed at raising fresh capital and quickly rolling out their AI tools to potentially hundreds of private companies owned by buyout firms. This enterprise turf war signals that as AI technology matures, competition among large language model companies has shifted from raw model performance to business deployment and monetization capabilities.</p>
+            </div>
+            
+            <div class="why-matter">
+                <p class="label">為何重要</p>
+                <p>這場競爭顯示 AI 從實驗室走向商業應用的關鍵轉折，私募股权基金的龐大企業網絡將成為 AI 工具普及的關鍵戰場。</p>
+            </div>
+            
+            <div class="source-link">
+                <a href="https://www.reuters.com/business/openai-sweetens-private-equity-pitch-amid-enterprise-turf-war-with-anthropic-2026-03-23/" target="_blank">閱讀原文 | Read Original</a>
+            </div>
+        </div>
+        
+        <!-- News Card 2 -->
+        <div class="news-card">
+            <span class="news-number">新聞 2</span>
+            <h3>馬斯克宣布德州 Terafab 晶片廠：200億美元超級工廠瞄準 AI 硬體霸主</h3>
+            <span class="source">Tech Startups</span>
+            
+            <div class="screenshot-container">
+                <img src="../screenshots/20260323-techstartups.png" alt="Tech Startups" loading="lazy">
+            </div>
+            
+            <div class="content-block content-zh">
+                <p class="lang-label">中文</p>
+                <p>馬斯克宣布 Terafab，這是一座由特斯拉、SpaceX 和 xAI 合資超過 200 億美元在德州奧斯汀建設的半導體超級工廠。該工廠將生產專為電動車、Optimus 人形機器人和高效能 AI 計算優化的客製化晶片，目標是達到兆瓦級功率輸出。此舉直接解決了困扰馬斯克 AI 訓練和機器人時間表的全球晶片短缺問題。</p>
+            </div>
+            
+            <div class="content-block content-en">
+                <p class="lang-label">English</p>
+                <p>Elon Musk announced Terafab, a joint $20 billion-plus semiconductor fabrication facility in Austin, Texas, developed by Tesla, SpaceX, and xAI. The plant will manufacture custom chips optimized for electric vehicles, Optimus humanoid robots, and high-performance AI computing, with ambitions to reach terawatt-scale power output. This vertical integration move strengthens Musk's ecosystem against supply-chain vulnerabilities and accelerates development cycles across his companies.</p>
+            </div>
+            
+            <div class="why-matter">
+                <p class="label">為何重要</p>
+                <p>Terafab 的規模可能緩解 AI 計算瓶頸，同時推進機器人和太空技術的自給自足，象徵著半導體製造的回歸美國本土趨勢。</p>
+            </div>
+            
+            <div class="source-link">
+                <a href="https://techstartups.com/2026/03/23/elon-musk-launches-terafab-a-25-billion-austin-chip-megafactory-to-power-tesla-xai-and-spacex-ai-and-robotics-ambitions/" target="_blank">閱讀原文 | Read Original</a>
+            </div>
+        </div>
+        
+        <!-- News Card 3 -->
+        <div class="news-card">
+            <span class="news-number">新聞 3</span>
+            <h3>伊朗戰爭暴露全球 AI 熱潮的脆弱性：能源與供應鏈風險浮現</h3>
+            <span class="source">Financial Times / Tech Startups</span>
+            
+            <div class="content-block content-zh">
+                <p class="lang-label">中文</p>
+                <p>金融時報報導，伊朗戰爭正在威脅 AI 熱潮，暴露了支撐這個產業的能源和晶片密集型供應鏈的弱點。東亞的記憶體和先進晶片生產商嚴重依賴中東的能源和工業原料，而荷莫茲海峽的關閉正在推動牛仔半導體生產所需的石油、液化天然氣和化工品價格飆升。</p>
+            </div>
+            
+            <div class="content-block content-en">
+                <p class="lang-label">English</p>
+                <p>The Financial Times reported that the war in Iran is threatening the AI boom by exposing weak points in the energy- and chip-heavy supply chain that powers the industry. East Asia's memory and advanced chip producers depend heavily on Middle Eastern energy and industrial inputs, while the closure of the Strait of Hormuz is driving up pressure across oil, LNG, and chemical flows needed for semiconductor production.</p>
+            </div>
+            
+            <div class="why-matter">
+                <p class="label">為何重要</p>
+                <p>AI 基礎設施並非與地緣政治隔離，資料中心依賴充足電力，晶片製造依賴穩定的材料供應，長期的能源衝擊可能比許多投資者預期的更快打擊這個產業。</p>
+            </div>
+        </div>
+        
+        <!-- News Card 4 -->
+        <div class="news-card">
+            <span class="news-number">新聞 4</span>
+            <h3>Meta 執行長薩克柏親自打造 AI 代理：CEO 副駕駛成為企業軟體新類別</h3>
+            <span class="source">Wall Street Journal / Tech Startups</span>
+            
+            <div class="content-block content-zh">
+                <p class="lang-label">中文</p>
+                <p>華爾街日报報導，馬克·薩克柏正在打造一款專為幫助他執行長工作而設計的 AI 代理。這項舉動顯示未來頂級執行長將依賴客製化 AI 系統，不僅用於個人生产力，更用於資訊分類、決策支援和管理龐大的組織營運輸入。這也可能加速針對領導團隊、銷售組織、營運和產品策略的內部 AI 代理需求。</p>
+            </div>
+            
+            <div class="content-block content-en">
+                <p class="lang-label">English</p>
+                <p>The Wall Street Journal reported that Mark Zuckerberg is building an AI agent designed to help him as CEO. The idea points to a future where top executives rely on custom AI systems not just for productivity, but for information triage, decision support, and managing the flood of operational inputs. If the concept works, it could accelerate demand for internal AI agents tailored to leadership teams, sales organizations, operations, and product strategy.</p>
+            </div>
+            
+            <div class="why-matter">
+                <p class="label">為何重要</p>
+                <p>當大型科技公司的執行長開始為自己打造 AI 代理，這信號顯示 AI 助手正從新奇玩意轉變為核心管理基礎設施，CEO 副駕駛可能成為下一個企業軟體類別。</p>
+            </div>
+        </div>
+        
+        <!-- News Card 5 -->
+        <div class="news-card">
+            <span class="news-number">新聞 5</span>
+            <h3>Blue Origin 申請巨型衛星星座：為軌道 AI 資料中心铺路</h3>
+            <span class="source">GeekWire / Tech Startups</span>
+            
+            <div class="screenshot-container">
+                <img src="../screenshots/20260323-techcrunch.png" alt="TechCrunch" loading="lazy">
+            </div>
+            
+            <div class="content-block content-zh">
+                <p class="lang-label">中文</p>
+                <p>Blue Origin 詳述了「日出計劃」，這是一個包含最多 51,600 顆衛星的提議星座，旨在創建用於 AI 處理和低延遲運算的軌道資料中心。該計畫大綱利用太陽能和先進熱管理在太空處理密集型 AI 工作負載，繞過地面能源限制。監管文件顯示，初始發射可能在兩年內開始。</p>
+            </div>
+            
+            <div class="content-block content-en">
+                <p class="lang-label">English</p>
+                <p>Blue Origin detailed Project Sunrise, a proposed constellation of up to 51,600 satellites intended to create orbital data centers for AI processing and low-latency computing. The filing outlines plans for space-based infrastructure to handle intensive AI workloads with solar power and advanced thermal management, bypassing terrestrial energy constraints. Regulatory filings indicate initial launches could begin within two years.</p>
+            </div>
+            
+            <div class="why-matter">
+                <p class="label">為何重要</p>
+                <p>軌道資料中心代表 AI 可扩展性的典範轉移，可能在不佔用地球資源的情況下解鎖新一代運算能力，同時大幅降低全球 AI 應用的延遲。</p>
+            </div>
+            
+            <div class="source-link">
+                <a href="https://techcrunch.com/" target="_blank">閱讀原文 | Read Original</a>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>科技新聞晨報 | 由 OpenClaw AI 自動產生</p>
+            <p>更新時間：2026年03月24日 02:15 UTC</p>
+            <p><a href="https://ntust2026.github.io/claw/" target="_blank">ntust2026.github.io/claw</a></p>
+        </div>
+    </div>
+</body>
+</html>
