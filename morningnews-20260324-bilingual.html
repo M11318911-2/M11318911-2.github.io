@@ -3,443 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>科技新聞晨報 | 2026年03月24日</title>
+    <title>晨間科技新聞雙語版 | 2026年3月24日</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg-primary: #0f0f14;
+            --bg-secondary: #1a1a24;
+            --bg-card: #22222e;
+            --bg-card-hover: #2a2a38;
+            --accent: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-glow: rgba(99, 102, 241, 0.3);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #2e2e3e;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
         }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Noto Sans TC', 'Microsoft JhengHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Inter', 'Noto Sans TC', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
             min-height: 100vh;
-            color: #e0e0e0;
-            line-height: 1.8;
         }
-        
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        /* Header */
-        .header {
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+        header {
             text-align: center;
             margin-bottom: 50px;
+            position: relative;
         }
-        
-        .header h1 {
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
             font-size: 2.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 10px;
         }
-        
-        .header .date {
-            color: #a0a0a0;
-            font-size: 1.1rem;
-        }
-        
-        /* Voice Players */
-        .voice-section {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .voice-section h2 {
-            color: #667eea;
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .voice-grid {
+
+        .subtitle { color: var(--text-secondary); font-size: 1.1rem; }
+
+        /* Audio Player Section */
+        .audio-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 24px;
+            margin-bottom: 50px;
         }
-        
-        .voice-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+
+        .audio-card {
+            background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .voice-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+
+        .audio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
         }
-        
-        .voice-card h3 {
+
+        .audio-card.en::before {
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+        }
+
+        .audio-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .audio-label span {
             font-size: 1.1rem;
-            margin-bottom: 15px;
-            color: #667eea;
-        }
-        
-        .voice-card audio {
-            width: 100%;
-            height: 40px;
-            border-radius: 20px;
-        }
-        
-        .voice-card audio::-webkit-media-controls-panel {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        /* News Cards */
-        .news-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            border-color: rgba(102, 126, 234, 0.5);
-        }
-        
-        .news-card .news-number {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
             font-weight: 700;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
+            color: var(--text-primary);
         }
-        
-        .news-card h3 {
-            font-size: 1.5rem;
-            color: #ffffff;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-        
-        .news-card .source {
-            display: inline-block;
-            background: rgba(102, 126, 234, 0.2);
-            color: #667eea;
-            padding: 5px 12px;
+
+        .audio-icon {
+            width: 36px;
+            height: 36px;
             border-radius: 10px;
-            font-size: 0.85rem;
-            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
         }
-        
-        .news-card .screenshot-container {
-            margin: 20px 0;
-            text-align: center;
-        }
-        
-        .news-card .screenshot-container img {
-            max-width: 100%;
-            max-height: 280px;
+
+        .audio-card:first-child .audio-icon { background: linear-gradient(135deg, var(--accent), var(--accent-secondary)); }
+        .audio-card.en .audio-icon { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+
+        audio {
+            width: 100%;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
+            outline: none;
+            height: 40px;
         }
-        
-        .news-card .screenshot-container img:hover {
-            transform: scale(1.02);
+
+        audio::-webkit-media-controls-panel { background: var(--bg-secondary); }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            gap: 32px;
         }
-        
-        .news-card .content-block {
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 15px;
+
+        .news-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--card-shadow);
         }
-        
-        .news-card .content-zh {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            border-left: 4px solid #667eea;
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
         }
-        
-        .news-card .content-en {
-            background: linear-gradient(135deg, rgba(118, 75, 162, 0.1) 0%, rgba(240, 147, 251, 0.1) 100%);
-            border-left: 4px solid #764ba2;
+
+        .news-card-header {
+            position: relative;
+            overflow: hidden;
         }
-        
-        .news-card .content-block p {
-            color: #c0c0c0;
-            font-size: 1rem;
-            line-height: 1.9;
+
+        .news-card-header img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
         }
-        
-        .news-card .content-block .lang-label {
+
+        .news-card:hover .news-card-header img { transform: scale(1.03); }
+
+        .news-card-header .source-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
             font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 10px;
-            color: #888;
+            letter-spacing: 0.3px;
         }
-        
-        .news-card .why-matter {
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 152, 0, 0.1) 100%);
-            border: 1px solid rgba(255, 193, 7, 0.3);
-            border-radius: 12px;
-            padding: 15px 20px;
-            margin-top: 20px;
+
+        .news-card-body { padding: 28px; }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
         }
-        
-        .news-card .why-matter .label {
+
+        .news-tag {
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .news-card h2 {
+            font-size: 1.4rem;
             font-weight: 700;
-            color: #ffc107;
             margin-bottom: 8px;
+            color: var(--text-primary);
         }
-        
-        .news-card .why-matter p {
-            color: #b0b0b0;
-            font-size: 0.95rem;
+
+        .lang-block { margin: 18px 0; }
+        .lang-block h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
-        
-        .news-card .source-link {
+        .lang-block.zh h3 { color: var(--accent); }
+        .lang-block.en h3 { color: #3b82f6; }
+
+        .lang-block p {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            line-height: 1.8;
+        }
+
+        .lang-block.en p { fontStyle: italic; }
+
+        .news-source {
             margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
         }
-        
-        .news-card .source-link a {
-            color: #667eea;
+
+        .news-source a {
+            color: var(--accent);
             text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
         }
-        
-        .news-card .source-link a:hover {
-            color: #764ba2;
-            text-decoration: underline;
-        }
-        
-        /* Footer */
-        .footer {
+
+        .news-source a:hover { color: var(--accent-secondary); }
+
+        footer {
             text-align: center;
-            padding: 40px 0;
-            color: #666;
+            margin-top: 60px;
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
-        
-        .footer a {
-            color: #667eea;
-            text-decoration: none;
-        }
-        
-        /* Responsive */
+
+        footer a { color: var(--accent); text-decoration: none; }
+
         @media (max-width: 768px) {
-            .voice-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .news-card {
-                padding: 20px;
-            }
-            
-            .news-card h3 {
-                font-size: 1.3rem;
-            }
-        }
-        
-        /* Print styles */
-        @media print {
-            body {
-                background: white;
-                color: black;
-            }
-            
-            .voice-section, .screenshot-container {
-                display: none;
-            }
+            .audio-section { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1>科技新聞晨報</h1>
-            <p class="date">2026年03月24日 | March 24, 2026</p>
-        </div>
-        
-        <!-- Voice Players -->
-        <div class="voice-section">
-            <h2>音訊播放 | Audio Playback</h2>
-            <div class="voice-grid">
-                <div class="voice-card">
-                    <h3>中文</h3>
-                    <audio controls>
-                        <source src="https://ntust2026.github.io/morningnews-20260324.mp3" type="audio/mpeg">
-                        您的瀏覽器不支援音訊播放
-                    </audio>
+        <header>
+            <div class="date-badge">2026年3月24日</div>
+            <h1>Morning Tech Briefing</h1>
+            <p class="subtitle">晨間科技新聞雙語版 — 美國科技動態</p>
+        </header>
+
+        <!-- Audio Players -->
+        <div class="audio-section">
+            <div class="audio-card">
+                <div class="audio-label">
+                    <div class="audio-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                    </div>
+                    <span>中文</span>
                 </div>
-                <div class="voice-card">
-                    <h3>English</h3>
-                    <audio controls>
-                        <source src="https://ntust2026.github.io/morningnews-20260324-en.mp3" type="audio/mpeg">
-                        Your browser does not support audio playback
-                    </audio>
+                <audio controls controlsList="nodownload">
+                    <source src="morningnews-20260324.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+            <div class="audio-card en">
+                <div class="audio-label">
+                    <div class="audio-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                    </div>
+                    <span>English</span>
                 </div>
+                <audio controls controlsList="nodownload">
+                    <source src="morningnews-20260324-en.mp3" type="audio/mpeg">
+                </audio>
             </div>
         </div>
-        
-        <!-- News Card 1 -->
-        <div class="news-card">
-            <span class="news-number">新聞 1</span>
-            <h3>OpenAI 與 Anthropic 爭奪私募股权投资：企業 AI 市場地盤戰開打</h3>
-            <span class="source">Reuters</span>
-            
-            <div class="screenshot-container">
-                <img src="https://ntust2026.github.io/screenshots/20260323-reuters.png" alt="Reuters" loading="lazy">
-            </div>
-            
-            <div class="content-block content-zh">
-                <p class="lang-label">中文</p>
-                <p>OpenAI 正在向私募股权投资公司提供比竞争对手 Anthropic 更優惠的條件，兩家人工智慧公司都在爭取與收購基金公司建立合資企業，以快速向私募股权支持的數百家私人企業推廣其 AI 工具。這場企業地盤戰顯示，隨著 AI 技術走向成熟，大型語言模型公司之間的競爭已從模型效能轉向商業落地與變現能力的較量。</p>
-            </div>
-            
-            <div class="content-block content-en">
-                <p class="lang-label">English</p>
-                <p>OpenAI is offering private-equity firms a sweeter deal than rival Anthropic as both artificial intelligence companies court buyout firms to form joint ventures aimed at raising fresh capital and quickly rolling out their AI tools to potentially hundreds of private companies owned by buyout firms. This enterprise turf war signals that as AI technology matures, competition among large language model companies has shifted from raw model performance to business deployment and monetization capabilities.</p>
-            </div>
-            
-            <div class="why-matter">
-                <p class="label">為何重要</p>
-                <p>這場競爭顯示 AI 從實驗室走向商業應用的關鍵轉折，私募股权基金的龐大企業網絡將成為 AI 工具普及的關鍵戰場。</p>
-            </div>
-            
-            <div class="source-link">
-                <a href="https://www.reuters.com/business/openai-sweetens-private-equity-pitch-amid-enterprise-turf-war-with-anthropic-2026-03-23/" target="_blank">閱讀原文 | Read Original</a>
-            </div>
+
+        <!-- News Cards -->
+        <div class="news-grid">
+
+            <!-- News 1 -->
+            <article class="news-card">
+                <div class="news-card-header">
+                    <img src="../screenshots/morningnews-20260324-apple-macbookair.png" alt="Apple MacBook Air M5">
+                    <span class="source-badge">Apple Newsroom</span>
+                </div>
+                <div class="news-card-body">
+                    <div class="news-meta">
+                        <span class="news-tag">硬體</span>
+                    </div>
+                    <h2>蘋果發布全新 MacBook Air 搭載 M5 晶片</h2>
+                    <div class="lang-block zh">
+                        <h3>中文</h3>
+                        <p>蘋果今日發布全新 MacBook Air，搭載 M5 晶片，帶來卓越效能與擴展的 AI 能力。M5 採用更快的 CPU 與下一代 GPU，每個核心皆配備神經網路加速器。MacBook Air 標準容量翻倍至 512GB，並可選配高達 4TB。搭載 Apple N1 無線晶片，支援 Wi-Fi 7 與藍牙 6。配備 12MP Center Stage 相機、最長 18 小時電池續航，以及兩個 Thunderbolt 4 埠。共有天藍、午夜、星光、銀色四種顏色，13 吋與 15 吋兩種尺寸。預購明日開始，3 月 11 日正式上市。</p>
+                    </div>
+                    <div class="lang-block en">
+                        <h3>English</h3>
+                        <p>Apple today announced the new MacBook Air with M5, bringing exceptional performance and expanded AI capabilities to the world's most popular laptop. M5 features a faster CPU and next-generation GPU with a Neural Accelerator in each core. MacBook Air now comes standard with double the starting storage at 512GB, configurable up to 4TB. Apple's N1 wireless chip delivers Wi-Fi 7 and Bluetooth 6. It features a 12MP Center Stage camera, up to 18 hours of battery life, and two Thunderbolt 4 ports. Available in sky blue, midnight, starlight, and silver in 13- and 15-inch models. Pre-orders start tomorrow, with availability beginning March 11.</p>
+                    </div>
+                    <div class="news-source">
+                        <a href="https://www.apple.com/newsroom/2026/03/apple-introduces-the-new-macbook-air-with-m5/" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6v2H5v11h11v-5h2v6a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1h6zm11-3v8h-2V6.413l-7.793 7.794-1.414-1.414L17.585 5H13V3h8z"/></svg>
+                            閱讀原始文章 — Read original article
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- News 2 -->
+            <article class="news-card">
+                <div class="news-card-header">
+                    <img src="../screenshots/morningnews-20260324-nvidia-gtc.png" alt="NVIDIA GTC 2026">
+                    <span class="source-badge">NVIDIA Blog</span>
+                </div>
+                <div class="news-card-body">
+                    <div class="news-meta">
+                        <span class="news-tag">AI 運算</span>
+                    </div>
+                    <h2>NVIDIA GTC 2026：AI 演唱會與實體 AI 突破</h2>
+                    <div class="lang-block zh">
+                        <h3>中文</h3>
+                        <p>NVIDIA 在 GTC 2026 主題演講中發布多項 AI 創新，涵蓋加速運算、實體 AI、醫療保健、機器人技術與自駕車等領域。閉幕時，員工機器人在營火晚會上以 AI 創作歌曲總結大會亮點。這段驚喜影片由 NVIDIA 創意團隊使用生成式 AI 工具製作，結合多種 AI 模型進行影像生成、影片編輯與 AI 音樂創作。機器人分別獲得鼓、吉他與沙槌音色，慶祝環節還加入了向 NVIDIA NemoClaw 致敬的龍蝦角色。</p>
+                    </div>
+                    <div class="lang-block en">
+                        <h3>English</h3>
+                        <p>NVIDIA's GTC 2026 keynote unveiled AI breakthroughs spanning accelerated computing, physical AI, healthcare, robotics, and autonomous vehicles. The show closed with a campfire gathering of employee robots singing an AI-composed song recapping the event's biggest announcements. The surprise finale was designed by NVIDIA's creative team using generative AI tools, combining multiple AI models for image and video generation, editing, and AI music creation. The robots were assigned drums, guitars, and maracas, with a lobster added as a tribute to NVIDIA NemoClaw.</p>
+                    </div>
+                    <div class="news-source">
+                        <a href="https://blogs.nvidia.com/blog/gtc-2026-news/" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6v2H5v11h11v-5h2v6a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1h6zm11-3v8h-2V6.413l-7.793 7.794-1.414-1.414L17.585 5H13V3h8z"/></svg>
+                            閱讀原始文章 — Read original article
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- News 3 -->
+            <article class="news-card">
+                <div class="news-card-header">
+                    <img src="../screenshots/morningnews-20260324-9to5mac-wwdc.png" alt="Apple WWDC 2026">
+                    <span class="source-badge">9to5Mac</span>
+                </div>
+                <div class="news-card-body">
+                    <div class="news-meta">
+                        <span class="news-tag">開發者大会</span>
+                    </div>
+                    <h2>Apple WWDC 2026 定於 6 月 8 日登場，AI 成焦點</h2>
+                    <div class="lang-block zh">
+                        <h3>中文</h3>
+                        <p>Apple 正式宣布 WWDC 2026 将於 6 月 8 日至 12 日舉行。在新聞稿中，Apple 明確預告「AI 進展」將是本屆大会的重點亮點。繼去年 WWDC AI 存在感相對低調之後，今年 Apple 似乎準備大幅強化其 AI 佈局。隨著 Apple 與 Google Gemini 的合作即將揭曉，經過大幅改革的 Siri 功能有望正式亮相。據悉 iOS 27 也將帶來多項重大 AI 改版，為用戶提供更智能的使用體驗。</p>
+                    </div>
+                    <div class="lang-block en">
+                        <h3>English</h3>
+                        <p>Apple officially announced WWDC 2026 will take place June 8–12. In the press release, Apple explicitly teased that "AI advancements" will be a key highlight. After a more muted AI presence at last year's WWDC, Apple appears set to significantly strengthen its AI strategy this year. With the Apple-Google Gemini partnership nearing reveal, a overhauled Siri is expected to finally make its debut. iOS 27 is also reportedly bringing multiple major AI improvements for a smarter user experience.</p>
+                    </div>
+                    <div class="news-source">
+                        <a href="https://9to5mac.com/2026/03/23/apple-promises-ai-advancements-to-be-unveiled-at-wwdc-this-year/" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6v2H5v11h11v-5h2v6a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1h6zm11-3v8h-2V6.413l-7.793 7.794-1.414-1.414L17.585 5H13V3h8z"/></svg>
+                            閱讀原始文章 — Read original article
+                        </a>
+                    </div>
+                </div>
+            </article>
+
         </div>
-        
-        <!-- News Card 2 -->
-        <div class="news-card">
-            <span class="news-number">新聞 2</span>
-            <h3>馬斯克宣布德州 Terafab 晶片廠：200億美元超級工廠瞄準 AI 硬體霸主</h3>
-            <span class="source">Tech Startups</span>
-            
-            <div class="screenshot-container">
-                <img src="https://ntust2026.github.io/screenshots/20260323-techstartups.png" alt="Tech Startups" loading="lazy">
-            </div>
-            
-            <div class="content-block content-zh">
-                <p class="lang-label">中文</p>
-                <p>馬斯克宣布 Terafab，這是一座由特斯拉、SpaceX 和 xAI 合資超過 200 億美元在德州奧斯汀建設的半導體超級工廠。該工廠將生產專為電動車、Optimus 人形機器人和高效能 AI 計算優化的客製化晶片，目標是達到兆瓦級功率輸出。此舉直接解決了困扰馬斯克 AI 訓練和機器人時間表的全球晶片短缺問題。</p>
-            </div>
-            
-            <div class="content-block content-en">
-                <p class="lang-label">English</p>
-                <p>Elon Musk announced Terafab, a joint $20 billion-plus semiconductor fabrication facility in Austin, Texas, developed by Tesla, SpaceX, and xAI. The plant will manufacture custom chips optimized for electric vehicles, Optimus humanoid robots, and high-performance AI computing, with ambitions to reach terawatt-scale power output. This vertical integration move strengthens Musk's ecosystem against supply-chain vulnerabilities and accelerates development cycles across his companies.</p>
-            </div>
-            
-            <div class="why-matter">
-                <p class="label">為何重要</p>
-                <p>Terafab 的規模可能緩解 AI 計算瓶頸，同時推進機器人和太空技術的自給自足，象徵著半導體製造的回歸美國本土趨勢。</p>
-            </div>
-            
-            <div class="source-link">
-                <a href="https://techstartups.com/2026/03/23/elon-musk-launches-terafab-a-25-billion-austin-chip-megafactory-to-power-tesla-xai-and-spacex-ai-and-robotics-ambitions/" target="_blank">閱讀原文 | Read Original</a>
-            </div>
-        </div>
-        
-        <!-- News Card 3 -->
-        <div class="news-card">
-            <span class="news-number">新聞 3</span>
-            <h3>伊朗戰爭暴露全球 AI 熱潮的脆弱性：能源與供應鏈風險浮現</h3>
-            <span class="source">Financial Times / Tech Startups</span>
-            
-            <div class="content-block content-zh">
-                <p class="lang-label">中文</p>
-                <p>金融時報報導，伊朗戰爭正在威脅 AI 熱潮，暴露了支撐這個產業的能源和晶片密集型供應鏈的弱點。東亞的記憶體和先進晶片生產商嚴重依賴中東的能源和工業原料，而荷莫茲海峽的關閉正在推動牛仔半導體生產所需的石油、液化天然氣和化工品價格飆升。</p>
-            </div>
-            
-            <div class="content-block content-en">
-                <p class="lang-label">English</p>
-                <p>The Financial Times reported that the war in Iran is threatening the AI boom by exposing weak points in the energy- and chip-heavy supply chain that powers the industry. East Asia's memory and advanced chip producers depend heavily on Middle Eastern energy and industrial inputs, while the closure of the Strait of Hormuz is driving up pressure across oil, LNG, and chemical flows needed for semiconductor production.</p>
-            </div>
-            
-            <div class="why-matter">
-                <p class="label">為何重要</p>
-                <p>AI 基礎設施並非與地緣政治隔離，資料中心依賴充足電力，晶片製造依賴穩定的材料供應，長期的能源衝擊可能比許多投資者預期的更快打擊這個產業。</p>
-            </div>
-        </div>
-        
-        <!-- News Card 4 -->
-        <div class="news-card">
-            <span class="news-number">新聞 4</span>
-            <h3>Meta 執行長薩克柏親自打造 AI 代理：CEO 副駕駛成為企業軟體新類別</h3>
-            <span class="source">Wall Street Journal / Tech Startups</span>
-            
-            <div class="content-block content-zh">
-                <p class="lang-label">中文</p>
-                <p>華爾街日报報導，馬克·薩克柏正在打造一款專為幫助他執行長工作而設計的 AI 代理。這項舉動顯示未來頂級執行長將依賴客製化 AI 系統，不僅用於個人生产力，更用於資訊分類、決策支援和管理龐大的組織營運輸入。這也可能加速針對領導團隊、銷售組織、營運和產品策略的內部 AI 代理需求。</p>
-            </div>
-            
-            <div class="content-block content-en">
-                <p class="lang-label">English</p>
-                <p>The Wall Street Journal reported that Mark Zuckerberg is building an AI agent designed to help him as CEO. The idea points to a future where top executives rely on custom AI systems not just for productivity, but for information triage, decision support, and managing the flood of operational inputs. If the concept works, it could accelerate demand for internal AI agents tailored to leadership teams, sales organizations, operations, and product strategy.</p>
-            </div>
-            
-            <div class="why-matter">
-                <p class="label">為何重要</p>
-                <p>當大型科技公司的執行長開始為自己打造 AI 代理，這信號顯示 AI 助手正從新奇玩意轉變為核心管理基礎設施，CEO 副駕駛可能成為下一個企業軟體類別。</p>
-            </div>
-        </div>
-        
-        <!-- News Card 5 -->
-        <div class="news-card">
-            <span class="news-number">新聞 5</span>
-            <h3>Blue Origin 申請巨型衛星星座：為軌道 AI 資料中心铺路</h3>
-            <span class="source">GeekWire / Tech Startups</span>
-            
-            <div class="screenshot-container">
-                <img src="https://ntust2026.github.io/screenshots/20260323-techcrunch.png" alt="TechCrunch" loading="lazy">
-            </div>
-            
-            <div class="content-block content-zh">
-                <p class="lang-label">中文</p>
-                <p>Blue Origin 詳述了「日出計劃」，這是一個包含最多 51,600 顆衛星的提議星座，旨在創建用於 AI 處理和低延遲運算的軌道資料中心。該計畫大綱利用太陽能和先進熱管理在太空處理密集型 AI 工作負載，繞過地面能源限制。監管文件顯示，初始發射可能在兩年內開始。</p>
-            </div>
-            
-            <div class="content-block content-en">
-                <p class="lang-label">English</p>
-                <p>Blue Origin detailed Project Sunrise, a proposed constellation of up to 51,600 satellites intended to create orbital data centers for AI processing and low-latency computing. The filing outlines plans for space-based infrastructure to handle intensive AI workloads with solar power and advanced thermal management, bypassing terrestrial energy constraints. Regulatory filings indicate initial launches could begin within two years.</p>
-            </div>
-            
-            <div class="why-matter">
-                <p class="label">為何重要</p>
-                <p>軌道資料中心代表 AI 可扩展性的典範轉移，可能在不佔用地球資源的情況下解鎖新一代運算能力，同時大幅降低全球 AI 應用的延遲。</p>
-            </div>
-            
-            <div class="source-link">
-                <a href="https://techcrunch.com/" target="_blank">閱讀原文 | Read Original</a>
-            </div>
-        </div>
-        
-        <!-- Footer -->
-        <div class="footer">
-            <p>科技新聞晨報 | 由 OpenClaw AI 自動產生</p>
-            <p>更新時間：2026年03月24日 02:15 UTC</p>
-            <p><a href="https://ntust2026.github.io/claw/" target="_blank">ntust2026.github.io/claw</a></p>
-        </div>
+
+        <footer>
+            <p>晨間科技新聞雙語版 | Morning Tech Briefing — 2026年3月24日</p>
+            <p style="margin-top:8px; font-size:0.8rem;">由 OpenClaw 自動生成 | Generated by OpenClaw</p>
+        </footer>
     </div>
 </body>
 </html>
