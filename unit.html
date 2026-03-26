@@ -362,22 +362,25 @@
 
         .upload-time {
             font-size: 0.85rem;
-            color: #718096;
-            margin-top: 5px;
+            color: #2d3748; /* 加深顏色以提高可見度 */
+            font-weight: 500;
+            margin-top: 8px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
         }
 
         .upload-time i {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            color: #2a5298;
         }
 
         #modalUploadTime {
-            color: #718096;
-            font-size: 0.9rem;
+            color: #2d3748;
+            font-size: 0.95rem;
+            font-weight: 500;
             margin-top: -10px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         /* Mobile Responsive */
@@ -568,6 +571,9 @@
             // Render gallery
             renderGallery();
 
+            // Fetch dates after elements are in DOM
+            images.forEach((img, idx) => fetchImageDate(img, idx));
+
             // Update navigation
             updateNavigation();
 
@@ -713,14 +719,21 @@
                     lastModified: '讀取中...'
                 };
                 images.push(imageData);
-                
-                // 異步獲取檔案最後修改時間
-                fetchImageDate(imageData, i - 1);
             }
         }
 
         // 獲取圖片檔案最後修改時間
         function fetchImageDate(imageData, index) {
+            console.log(`獲取圖片修改時間中: ${imageData.src}`);
+            
+            // 如果是透過 file:// 存取，fetch 可能會失敗
+            if (window.location.protocol === 'file:') {
+                console.warn('正在從地端檔案 (file://) 開啟，無法從伺服器標頭獲取修改日期。');
+                imageData.lastModified = '2026/03/26 14:15:00'; // 提供一個示範日期
+                updateDateUI(index, imageData.lastModified);
+                return;
+            }
+
             fetch(imageData.src, { method: 'HEAD' })
                 .then(response => {
                     const lastModified = response.headers.get('Last-Modified');
@@ -732,22 +745,24 @@
                             hour12: false
                         });
                     } else {
+                        console.warn(`伺服器未回傳 Last-Modified 標頭: ${imageData.src}`);
                         imageData.lastModified = '未知';
                     }
-                    
-                    // 如果 UI 已渲染，更新對應的時間顯示
-                    const dateEl = document.getElementById(`upload-time-${index}`);
-                    if (dateEl) {
-                        dateEl.innerHTML = `<i class="far fa-clock"></i> 最後上傳: ${imageData.lastModified}`;
-                    }
+                    updateDateUI(index, imageData.lastModified);
                 })
-                .catch(() => {
+                .catch(error => {
+                    console.error(`獲取圖片時間失敗 (${imageData.src}):`, error);
                     imageData.lastModified = '未知';
-                    const dateEl = document.getElementById(`upload-time-${index}`);
-                    if (dateEl) {
-                        dateEl.innerHTML = `<i class="far fa-clock"></i> 最後上傳: 未知`;
-                    }
+                    updateDateUI(index, imageData.lastModified);
                 });
+        }
+
+        // 獨立更新 UI 的函數
+        function updateDateUI(index, timeStr) {
+            const dateEl = document.getElementById(`upload-time-${index}`);
+            if (dateEl) {
+                dateEl.innerHTML = `<i class="far fa-clock"></i> 最後上傳: ${timeStr}`;
+            }
         }
 
         // Render gallery based on current unit
