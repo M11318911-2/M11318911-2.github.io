@@ -490,27 +490,37 @@
     <!-- Project Header -->
     <section class="project-header">
         <div class="container">
-            <a href="index.html#projects" class="back-btn">
-                <i class="fas fa-arrow-left"></i>
-                <span>返回專案列表</span>
-            </a>
+            <div class="d-flex justify-content-between align-items-end flex-wrap gap-3">
+                <div>
+                    <a href="index.html#projects" class="back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>返回專案列表</span>
+                    </a>
 
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="index.html">首頁</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="index.html#projects">專案</a>
-                    </li>
-                    <li class="breadcrumb-item active" id="breadcrumb-unit">單元</li>
-                </ol>
-            </nav>
+                    <nav aria-label="breadcrumb" class="mt-3">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">首頁</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="index.html#projects">專案</a>
+                            </li>
+                            <li class="breadcrumb-item active" id="breadcrumb-unit">單元</li>
+                        </ol>
+                    </nav>
 
-            <h1 class="project-title" id="project-title">單元</h1>
-            <p class="project-subtitle" id="project-subtitle">
-                單元作業
-            </p>
+                    <h1 class="project-title" id="project-title">單元</h1>
+                    <p class="project-subtitle" id="project-subtitle">
+                        單元作業
+                    </p>
+                </div>
+                <div class="mb-4">
+                    <button class="btn btn-outline-light rounded-pill px-4" id="updateDatesBtn" onclick="syncDatesFromGitHub()">
+                        <i class="fas fa-sync-alt me-2"></i> 同步 GitHub 更新
+                    </button>
+                    <div id="syncStatus" class="text-white-50 mt-2 text-end" style="font-size: 0.75rem;"></div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -601,6 +611,60 @@
                         .then(data => { imageMetadata = data; })
                         .catch(() => console.warn("找不到 Metadata JSON，將採回 HEAD 請求方式。"));
                 });
+        }
+
+        // 當使用者按一下 Update 按鈕時，直接呼叫 GitHub API 更新當前單元的日期
+        async function syncDatesFromGitHub() {
+            const btn = document.getElementById('updateDatesBtn');
+            const status = document.getElementById('syncStatus');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> 同步中...';
+            status.textContent = '正在向 GitHub 查詢最新的提交資訊...';
+
+            let count = 0;
+            // 僅針對當前單元的圖片進行更新，避免觸發 API 頻率限制
+            for (let i = 0; i < images.length; i++) {
+                const img = images[i];
+                const fileName = img.src.split('/').pop();
+                const filePath = `pic/${fileName}`;
+                
+                try {
+                    // 呼叫 GitHub Commits API 
+                    const apiURL = `https://api.github.com/repos/ntust2026/ntust2026.github.io/commits?path=${filePath}&page=1&per_page=1`;
+                    const response = await fetch(apiURL);
+                    
+                    if (response.ok) {
+                        const commits = await response.json();
+                        if (commits && commits.length > 0) {
+                            const dateStr = commits[0].commit.committer.date;
+                            const dt = new Date(dateStr);
+                            const formattedDate = dt.toLocaleString('zh-TW', {
+                                year: 'numeric', month: '2-digit', day: '2-digit',
+                                hour: '2-digit', minute: '2-digit', second: '2-digit',
+                                hour12: false
+                            });
+                            
+                            // 更新內存與 UI
+                            img.lastModified = formattedDate;
+                            imageMetadata[fileName] = formattedDate;
+                            updateDateUI(i, formattedDate);
+                            count++;
+                        }
+                    } else if (response.status === 403) {
+                        status.textContent = 'GitHub API 呼叫頻率達上限，請一小時後再試。';
+                        break;
+                    }
+                } catch (e) {
+                    console.error('GitHub Sync Error:', e);
+                }
+            }
+
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-sync-alt me-2"></i> 同步 GitHub 更新';
+            if (status.textContent.indexOf('上限') === -1) {
+                status.textContent = `同步完成！已更新 ${count} 張圖片的時間。`;
+                setTimeout(() => { status.textContent = ''; }, 3000);
+            }
         }
 
 
