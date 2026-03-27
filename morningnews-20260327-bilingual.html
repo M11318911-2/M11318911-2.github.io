@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>晨報 | Morning News - 2026年3月27日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        .date {
+            color: #888;
+            font-size: 1.1rem;
+        }
+        .audio-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .audio-players {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .audio-player {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            min-width: 280px;
+            text-align: center;
+        }
+        .audio-player h3 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        audio {
+            width: 100%;
+            height: 40px;
+            border-radius: 20px;
+        }
+        audio::-webkit-media-controls-panel {
+            background: linear-gradient(90deg, #1a1a2e, #2d2d44);
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .news-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .card-screenshot {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .card-content {
+            padding: 1.5rem;
+        }
+        .card-title-zh {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        .card-title-en {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        .card-desc-zh {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+        .card-desc-en {
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,212,255,0.5), transparent);
+            margin: 1rem 0;
+        }
+        .source-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #7b2cbf;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .source-link:hover {
+            color: #00d4ff;
+        }
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            .audio-players {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Morning News 晨報</h1>
+            <p class="date">2026年3月27日 | March 27, 2026</p>
+        </header>
+
+        <section class="audio-section">
+            <div class="audio-players">
+                <div class="audio-player">
+                    <h3>中文</h3>
+                    <audio controls>
+                        <source src="morningnews-20260327.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <div class="audio-player">
+                    <h3>English</h3>
+                    <audio controls>
+                        <source src="morningnews-20260327-en.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </section>
+
+        <section class="news-grid">
+            <article class="news-card">
+                <img src="../screenshots/morningnews-20260327-apple.jpg" alt="Apple iPhone 17e" class="card-screenshot">
+                <div class="card-content">
+                    <h2 class="card-title-zh">Apple 推出 iPhone 17e：強大且實惠的新選擇</h2>
+                    <h2 class="card-title-en">Apple Introduces iPhone 17e: Powerful and Affordable</h2>
+                    <div class="divider"></div>
+                    <p class="card-desc-zh">蘋果今日發表 iPhone 17e，為 iPhone 17 系列增添一款強大且實惠的新成員。iPhone 17e 搭載最新的 A19 晶片，配備 Apple 設計的 C1X 數據機，比前代快 2 倍。48MP Fusion 相機支援 2 倍光學變焦，6.1 吋 Super Retina XDR 顯示器採用 Ceramic Shield 2，耐刮程度提升 3 倍。建議售價從 256GB 儲存容量起跳，僅 599 美元。</p>
+                    <div class="divider"></div>
+                    <p class="card-desc-en">Apple today announced iPhone 17e, a powerful and affordable addition to the iPhone 17 lineup. iPhone 17e features the latest-generation A19 chip with Apple's C1X cellular modem, which is up to 2x faster than C1. The 48MP Fusion camera enables optical-quality 2x Telephoto. The 6.1-inch Super Retina XDR display features Ceramic Shield 2, offering 3x better scratch resistance. Starting at just $599 for 256GB storage.</p>
+                    <a href="https://www.apple.com/newsroom/2026/03/apple-introduces-iphone-17e/" target="_blank" class="source-link">來源 Source</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="../screenshots/morningnews-20260327-wwdc.jpg" alt="Apple WWDC 2026" class="card-screenshot">
+                <div class="card-content">
+                    <h2 class="card-title-zh">Apple WWDC 2026 宣佈：6月8日揭幕</h2>
+                    <h2 class="card-title-en">Apple WWDC 2026 Announced: June 8 Kickoff</h2>
+                    <div class="divider"></div>
+                    <p class="card-desc-zh">蘋果宣佈將於 6 月 8 日至 12 日舉辦全球開發者大會（WWDC），採全線上形式進行。作為蘋果年度最重要的開發者盛會，WWDC 將展示 iOS、macOS、watchOS、tvOS 及 visionOS 等作業系統的最新功能，同時發布開發者工具的重大更新。蘋果也將在大会期间揭晓本年度的 Swift Student Challenge 获奖者。</p>
+                    <div class="divider"></div>
+                    <p class="card-desc-en">Apple announced it will host its Worldwide Developers Conference online from June 8-12. As Apple's most important annual developer event, WWDC will showcase the latest features for iOS, macOS, watchOS, tvOS, and visionOS, along with major updates to developer tools. Apple will also announce winners of this year's Swift Student Challenge during the conference.</p>
+                    <a href="https://www.apple.com/newsroom/2026/03/apples-worldwide-developers-conference-returns-the-week-of-june-8/" target="_blank" class="source-link">來源 Source</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="../screenshots/morningnews-20260327-cnn.jpg" alt="AI Robot at White House" class="card-screenshot">
+                <div class="card-content">
+                    <h2 class="card-title-zh">AI 人形機器人現身白宮引發關注</h2>
+                    <h2 class="card-title-en">AI Humanoid Robot Debuts at White House</h2>
+                    <div class="divider"></div>
+                    <p class="card-desc-zh">美國第一夫人梅拉尼亞·川普在「促進未來全球聯盟峰會」第二天舉辦的圓桌會議上，展示了一款由 AI 驅動的人形機器人。這款創新科技的亮相，引發外界對於 AI 機器人在政府正式場合應用的热烈討論，也讓人思考未來科技在政治領域可能扮演的角色。</p>
+                    <div class="divider"></div>
+                    <p class="card-desc-en">First Lady Melania Trump brought an AI-powered humanoid robot to a roundtable event at the White House during the second day of the Fostering the Future Together Global Coalition Summit. The debut of this innovative technology has sparked discussions about the application of AI robots in formal government settings and their potential role in the political sphere.</p>
+                    <a href="https://www.cnn.com/2026/03/26/us/5-things-to-know-for-march-26-travel-chaos-landmark-verdict-robot-at-the-white-house-kharg-island-climate" target="_blank" class="source-link">來源 Source</a>
+                </div>
+            </article>
+        </section>
+
+        <footer>
+            <p>Generated by OpenClaw | 晨報自動生成</p>
+        </footer>
+    </div>
+</body>
+</html>
