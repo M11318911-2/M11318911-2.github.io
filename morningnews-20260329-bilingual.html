@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美國科技新聞晨報 | 2026年3月29日</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-card: #1c2128;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --accent-secondary: #3fb950;
+            --border: #30363d;
+            --gradient-start: #1a1f35;
+            --gradient-end: #0d1117;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .date {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+        }
+        
+        .audio-section {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+        
+        .audio-section h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        
+        .audio-player {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .player-card {
+            flex: 1;
+            min-width: 280px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+        
+        .player-label {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .player-label::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+        
+        .label-zh::before {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        }
+        
+        .label-en::before {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+        }
+        
+        audio {
+            width: 100%;
+            height: 40px;
+            border-radius: 20px;
+            outline: none;
+        }
+        
+        audio::-webkit-media-controls-panel {
+            background: var(--bg-secondary);
+        }
+        
+        .news-grid {
+            display: grid;
+            gap: 25px;
+        }
+        
+        .news-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .news-screenshot {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-title-zh {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        .news-title-en {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .news-summary-zh {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+        
+        .news-summary-en {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+        
+        .news-source {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: var(--accent);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: background 0.2s ease;
+        }
+        
+        .news-source:hover {
+            background: var(--bg-primary);
+        }
+        
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 20px 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 1.6em; }
+            .container { padding: 15px; }
+            .news-content { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>美國科技新聞晨報</h1>
+            <p class="date">2026年3月29日 星期日</p>
+        </header>
+        
+        <section class="audio-section">
+            <h2>語音播放</h2>
+            <div class="audio-player">
+                <div class="player-card">
+                    <div class="player-label label-zh">中文</div>
+                    <audio controls>
+                        <source src="morningnews-20260329.mp3" type="audio/mpeg">
+                        您的瀏覽器不支援音訊播放
+                    </audio>
+                </div>
+                <div class="player-card">
+                    <div class="player-label label-en">English</div>
+                    <audio controls>
+                        <source src="morningnews-20260329-en.mp3" type="audio/mpeg">
+                        Your browser does not support audio playback
+                    </audio>
+                </div>
+            </div>
+        </section>
+        
+        <div class="news-grid">
+            <!-- News 1 -->
+            <article class="news-card">
+                <img src="../screenshots/morningnews-20260329-01-apple-iphone17e.png" alt="Apple iPhone 17e" class="news-screenshot">
+                <div class="news-content">
+                    <h2 class="news-title-zh">蘋果發表 iPhone 17e：強大且實惠的新選擇</h2>
+                    <h3 class="news-title-en">Apple Introduces iPhone 17e: A Powerful and Affordable Addition</h3>
+                    <p class="news-summary-zh">蘋果今日宣布推出 iPhone 17e，這是 iPhone 17 系列中強大且實惠的新成員。iPhone 17e 配備最新一代 A19 晶片，帶來出色的效能表現。相機系統升級至 4800 萬像素 Fusion 相機，支援新一代人像模式和 4K Dolby Vision 影片拍攝。全新 C1X 數據晶片比上一代快達 2 倍。6.1 吋 Super Retina XDR 顯示器採用陶瓷盾 2.0，耐磨損程度提升 3 倍。容量從 256GB 起跳，售價僅 599 美元起。</p>
+                    <p class="news-summary-en">Apple today announced iPhone 17e, a powerful and more affordable addition to the iPhone 17 lineup. It features the latest-generation A19 chip, a 48MP Fusion camera with next-generation portraits and 4K Dolby Vision video, and the new C1X modem offering up to 2x faster performance. The 6.1-inch Super Retina XDR display features Ceramic Shield 2 with 3x better scratch resistance. Starting at just $599 with 256GB storage.</p>
+                    <a href="https://www.apple.com/newsroom/2026/03/apple-introduces-iphone-17e/" target="_blank" class="news-source">Apple Newsroom</a>
+                </div>
+            </article>
+            
+            <!-- News 2 -->
+            <article class="news-card">
+                <img src="../screenshots/morningnews-20260329-02-apple-macbookair.png" alt="Apple MacBook Air with M5" class="news-screenshot">
+                <div class="news-content">
+                    <h2 class="news-title-zh">蘋果發表全新 MacBook Air：搭載 M5 晶片</h2>
+                    <h3 class="news-title-en">Apple Introduces New MacBook Air with M5 Chip</h3>
+                    <p class="news-summary-zh">蘋果今日發表全新 MacBook Air，搭載 M5 晶片，為全球最受歡迎的筆電帶來卓越效能和增強的 AI 能力。M5 配備更快速的 CPU 和下一代 GPU，每個核心都配備神經網路加速器，可輕鬆處理各種工作流程。標準儲存容量加倍至 512GB，支援 Wi-Fi 7 和藍牙 6。提供 13 吋和 15 吋兩種尺寸，天空藍、午夜、星光和銀色四種顏色選擇。預訂起價 999 美元。</p>
+                    <p class="news-summary-en">Apple today announced the new MacBook Air with M5, bringing exceptional performance and expanded AI capabilities to the world's most popular laptop. M5 features a faster CPU and next-generation GPU with a Neural Accelerator in each core. Standard storage doubles to 512GB with Wi-Fi 7 and Bluetooth 6. Available in 13- and 15-inch models in sky blue, midnight, starlight, and silver. Starting at $999.</p>
+                    <a href="https://www.apple.com/newsroom/2026/03/apple-introduces-the-new-macbook-air-with-m5/" target="_blank" class="news-source">Apple Newsroom</a>
+                </div>
+            </article>
+            
+            <!-- News 3 -->
+            <article class="news-card">
+                <img src="../screenshots/morningnews-20260329-03-micron.png" alt="Micron Technology" class="news-screenshot">
+                <div class="news-content">
+                    <h2 class="news-title-zh">美光科技股價重挫 15.5%：AI 需求疑慮衝擊市場</h2>
+                    <h3 class="news-title-en">Micron Technology Plunges 15.5%: AI Demand Jitters Shake Market</h3>
+                    <p class="news-summary-zh">美光科技公佈強勁的季度財報後，股價反而重挫 15.5%。根據分析，投資人對 AI 需求放緩的擔憂加劇。美光第二季營收表現亮眼，並預估第三季營收將達 335 億美元，每股盈餘約 18.90 美元，同時宣布將季度股息提高至每股 0.15 美元。然而，市場情緒仍受到 AI 需求不確定性的影響。</p>
+                    <p class="news-summary-en">Micron Technology reported strong quarterly results but saw its stock drop 15.5% as investors worry about slowing AI demand. Despite reporting solid Q2 results with bullish Q3 guidance of approximately $33.5 billion in revenue and EPS of $18.90, and raising its quarterly dividend to $0.15 per share, market sentiment remains pressured by AI demand uncertainty.</p>
+                    <a href="https://simplywall.st/stocks/us/semiconductors/nasdaq-mu/micron-technology/news/micron-technology-mu-is-down-155-after-turboquant-ai-demand" target="_blank" class="news-source">Simply Wall St</a>
+                </div>
+            </article>
+        </div>
+        
+        <footer>
+            <p>美國科技新聞晨報 | 每日自動更新</p>
+            <p>Generated by OpenClaw AI Assistant</p>
+        </footer>
+    </div>
+</body>
+</html>
