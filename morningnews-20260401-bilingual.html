@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>晨報｜Morning News — 2026年4月1日</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #111827;
+      --bg-card: #1a2235;
+      --bg-card-hover: #1f2a40;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.3);
+      --accent2: #8b5cf6;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border: #1e293b;
+      --border-light: #334155;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --gradient-blue: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      --gradient-dark: linear-gradient(180deg, #0a0e17, #111827);
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background: var(--gradient-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      background: rgba(10, 14, 23, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--gradient-blue);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .brand-name {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-name span {
+      color: var(--accent);
+    }
+
+    .header-date {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 32px;
+      text-align: center;
+    }
+
+    .hero-date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 12px;
+      color: var(--accent);
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #f1f5f9 0%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-secondary);
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 32px;
+    }
+
+    /* ── Audio Players ── */
+    .audio-section {
+      max-width: 700px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .audio-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .audio-card:hover {
+      border-color: var(--border-light);
+      box-shadow: var(--shadow);
+    }
+
+    .audio-card.zh { border-top: 3px solid var(--accent); }
+    .audio-card.en { border-top: 3px solid var(--accent2); }
+
+    .audio-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.3px;
+    }
+
+    .audio-card.zh .audio-label { color: var(--accent); }
+    .audio-card.en .audio-label { color: var(--accent2); }
+
+    .audio-label-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+    }
+
+    .audio-card.zh .audio-label-dot { background: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
+    .audio-card.en .audio-label-dot { background: var(--accent2); box-shadow: 0 0 8px rgba(139,92,246,0.4); }
+
+    audio {
+      width: 100%;
+      height: 36px;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    audio::-webkit-media-controls-panel {
+      background: var(--bg-secondary);
+    }
+
+    /* ── Main Content ── */
+    .main-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+
+    /* ── News Cards ── */
+    .news-grid {
+      display: grid;
+      gap: 28px;
+      margin-top: 36px;
+    }
+
+    .news-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+    }
+
+    .news-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-light);
+    }
+
+    .card-screenshot {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--border);
+      display: block;
+    }
+
+    .card-body {
+      padding: 28px 32px;
+    }
+
+    .card-lang-toggle {
+      display: inline-flex;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      padding: 3px;
+      margin-bottom: 16px;
+    }
+
+    .lang-btn {
+      padding: 4px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+      background: transparent;
+      color: var(--text-muted);
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    .lang-btn.en-btn.active { background: var(--accent2); }
+
+    .card-content { display: block; }
+    .card-content.hidden { display: none; }
+
+    .news-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .news-category.v { color: var(--accent2); }
+
+    .news-title {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .news-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .news-source {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .news-source a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .news-source a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .audio-section { grid-template-columns: 1fr; }
+      .card-body { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="brand-icon">📡</div>
+        <div class="brand-name">科技晨報 <span>Tech Morning</span></div>
+      </div>
+      <div class="header-date">2026.04.01</div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-date-badge">
+      <span>🌏</span> 美國科技最新動態
+    </div>
+    <h1>2026 年 4 月 1 日｜晨間科技新聞</h1>
+    <p class="hero-sub">Daily Tech News Briefing — Your morning dose of US tech headlines</p>
+
+    <!-- Audio Players -->
+    <div class="audio-section">
+      <div class="audio-card zh">
+        <div class="audio-label">
+          <div class="audio-label-dot"></div>
+          中文
+        </div>
+        <audio controls>
+          <source src="morningnews-20260401.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+      <div class="audio-card en">
+        <div class="audio-label">
+          <div class="audio-label-dot"></div>
+          English
+        </div>
+        <audio controls>
+          <source src="morningnews-20260401-en.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+  </section>
+
+  <!-- News Cards -->
+  <main class="main-content">
+    <div class="news-grid">
+
+      <!-- Card 1: Apple MacBook Air M5 -->
+      <article class="news-card">
+        <img class="card-screenshot" src="../screenshots/morningnews-20260401-01-apple.png" alt="Apple Newsroom - MacBook Air M5" loading="lazy">
+        <div class="card-body">
+          <div class="card-lang-toggle">
+            <button class="lang-btn zh-btn active" onclick="showLang(this, 'zh1')">中文</button>
+            <button class="lang-btn en-btn" onclick="showLang(this, 'en1')">English</button>
+          </div>
+
+          <div class="card-content" id="zh1">
+            <div class="news-category">💻 蘋果</div>
+            <h2 class="news-title">蘋果發表全新 MacBook Air 配備 M5 晶片，效能與 AI 能力大升級</h2>
+            <p class="news-desc">
+              蘋果今日發表全新 MacBook Air，搭載 M5 晶片，為全球最受歡迎的筆電帶來卓越效能與更強大的 AI 能力。M5 採用更快速的 CPU 與下一代 GPU，內建神經網路加速器，可輕鬆應對創意專案與複雜的 AI 任務。在 Topaz Video 中，AI 影片增強效能比 M1 快達 6.9 倍；在 Blender 中，3D 渲染比 M1 快達 6.5 倍。<br><br>
+              儲存容量加倍，起始容量提升至 512GB，並配備更快速的 SSD，可擴充至 4TB。配備 Apple N1 無線晶片，支援 Wi-Fi 7 與藍牙 6。macOS Tahoe 與 Apple Intelligence 的結合，為大學生、創意專業人士與商務用戶提供無與倫比的價值。13 吋與 15 吋兩種尺寸，提供天藍色、午夜色、星光色與銀色四款顏色，明日起開放預購，3 月 11 日正式開賣。
+            </p>
+            <div class="news-source">📰 來源：<a href="https://www.apple.com/newsroom/2026/03/apple-introduces-the-new-macbook-air-with-m5/" target="_blank">Apple Newsroom</a></div>
+          </div>
+
+          <div class="card-content hidden" id="en1">
+            <div class="news-category v">💻 Apple</div>
+            <h2 class="news-title">Apple Unveils New MacBook Air with M5 Chip, Supercharging Performance and AI</h2>
+            <p class="news-desc">
+              Apple today announced the new MacBook Air with M5, bringing exceptional performance and expanded AI capabilities to the world's most popular laptop. M5 features a faster CPU and next-generation GPU with a Neural Accelerator in each core, enabling MacBook Air to power through creative projects and complex AI tasks. In Topaz Video, AI video enhancement is up to 6.9x faster than M1; in Blender, 3D rendering is up to 6.5x faster than M1.<br><br>
+              Storage doubles to 512GB with a faster SSD, configurable up to 4TB. The Apple N1 wireless chip delivers Wi-Fi 7 and Bluetooth 6. Combined with macOS Tahoe and Apple Intelligence, MacBook Air delivers unmatched value for college students, creative professionals, and business users. Available in 13-inch and 15-inch models in sky blue, midnight, starlight, and silver, pre-orders open tomorrow with availability starting March 11.
+            </p>
+            <div class="news-source">Source: <a href="https://www.apple.com/newsroom/2026/03/apple-introduces-the-new-macbook-air-with-m5/" target="_blank">Apple Newsroom</a></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2: Nvidia Marvell -->
+      <article class="news-card">
+        <img class="card-screenshot" src="../screenshots/morningnews-20260401-02-reuters-nvidia.png" alt="Reuters - Nvidia Marvell" loading="lazy">
+        <div class="card-body">
+          <div class="card-lang-toggle">
+            <button class="lang-btn zh-btn active" onclick="showLang(this, 'zh2')">中文</button>
+            <button class="lang-btn en-btn" onclick="showLang(this, 'en2')">English</button>
+          </div>
+
+          <div class="card-content" id="zh2">
+            <div class="news-category">🤖 人工智慧</div>
+            <h2 class="news-title">輝達宣佈對 Marvell 投資 20 億美元，強化 AI 晶片合作夥伴關係</h2>
+            <p class="news-desc">
+              輝達今日宣佈向 Marvell Technology 投資 20 億美元，進一步拓展 AI 晶片合作夥伴關係。輝達將把 Marvell 整合至其 AI 工廠與 AI-RAN 生態系，透過 NVLink Fusion 強化客製化 AI 晶片與網路設備的整合能力。<br><br>
+              Marvell 近期財報顯示年度營收成長 42%，資料中心營收達 15.2 億美元，佔總營收的 73%。輝達與 Marvell 的這項策略性合作，將深化 AI 基礎設施領域的垂直整合，對整個產業的發展具有深遠意義。
+            </p>
+            <div class="news-source">📰 來源：<a href="https://www.reuters.com/technology/nvidia-invests-2-billion-marvell-launches-ai-partnership-2026-03-31/" target="_blank">Reuters</a></div>
+          </div>
+
+          <div class="card-content hidden" id="en2">
+            <div class="news-category v">🤖 Artificial Intelligence</div>
+            <h2 class="news-title">Nvidia Announces $2 Billion Investment in Marvell, Strengthening AI Chip Partnership</h2>
+            <p class="news-desc">
+              Nvidia today announced a $2 billion investment in Marvell Technology, further expanding its AI chip partnership. Nvidia will integrate Marvell into its AI factory and AI-RAN ecosystem through NVLink Fusion, enhancing the integration of custom AI chips and networking equipment.<br><br>
+              Marvell's recent earnings show annual revenue growth of 42 percent, with data center revenue reaching $1.52 billion, accounting for 73 percent of total revenue. This strategic partnership will deepen vertical integration in AI infrastructure, carrying profound implications for the entire industry.
+            </p>
+            <div class="news-source">Source: <a href="https://www.reuters.com/technology/nvidia-invests-2-billion-marvell-launches-ai-partnership-2026-03-31/" target="_blank">Reuters</a></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3: CES 2026 -->
+      <article class="news-card">
+        <img class="card-screenshot" src="../screenshots/morningnews-20260401-03-ces.png" alt="CES 2026 - PR Newswire" loading="lazy">
+        <div class="card-body">
+          <div class="card-lang-toggle">
+            <button class="lang-btn zh-btn active" onclick="showLang(this, 'zh3')">中文</button>
+            <button class="lang-btn en-btn" onclick="showLang(this, 'en3')">English</button>
+          </div>
+
+          <div class="card-content" id="zh3">
+            <div class="news-category">🎉 消費電子展</div>
+            <h2 class="news-title">CES 2026 參與人數再創新高，AI 與機器人技術成為全場焦點</h2>
+            <p class="news-desc">
+              消費電子展 CES 2026 今日公佈獨立稽核數據，總參與人數達 148,392 人，較去年成長 4%。其中 55,841 人來自 141 個國家，佔比 37.6%。超過 4,000 家參展商在超過 260 萬平方英尺的展場中展示最新科技，包含 1,200 家新創公司。<br><br>
+              AI 相關參與人數年增 22% 達 39,929 人，機器人技術成長 26% 至 19,605 人，高階主管佔與會者的 52%。CES 已成為全球科技創新與商業合作的核心平台，見證 AI 與自動化技術正在快速重塑各個產業。
+            </p>
+            <div class="news-source">📰 來源：<a href="https://www.prnewswire.com/news-releases/ces-2026-audit-shows-four-percent-growth-in-participation-as-innovators-showed-up-in-las-vegas-302729556.html" target="_blank">PR Newswire / CTA</a></div>
+          </div>
+
+          <div class="card-content hidden" id="en3">
+            <div class="news-category v">🎉 Consumer Electronics</div>
+            <h2 class="news-title">CES 2026 Attendance Hits New High, AI and Robotics Take Center Stage</h2>
+            <p class="news-desc">
+              CES 2026 released independently audited data today, showing total attendance of 148,392 participants, growing 4 percent from last year. Of these, 55,841 came from 141 countries, accounting for 37.6 percent. Over 4,000 exhibitors showcased the latest technology across more than 2.6 million square feet of exhibition space, including 1,200 startups.<br><br>
+              AI-related attendance grew 22 percent year-over-year to 39,929, while robotics grew 26 percent to 19,605. Senior-level executives accounted for 52 percent of attendees. CES has become the core platform for global tech innovation and business collaboration, witnessing how AI and automation technologies are rapidly reshaping industries.
+            </p>
+            <div class="news-source">Source: <a href="https://www.prnewswire.com/news-releases/ces-2026-audit-shows-four-percent-growth-in-participation-as-innovators-showed-up-in-las-vegas-302729556.html" target="_blank">PR Newswire / CTA</a></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    晨報由 OpenClaw 自動生成｜Generated by OpenClaw &nbsp;·&nbsp; 2026 年 4 月 1 日
+  </footer>
+
+  <script>
+    function showLang(btn, id) {
+      // Get parent card-body
+      const card = btn.closest('.card-body');
+      // Hide all content in this card
+      card.querySelectorAll('.card-content').forEach(el => el.classList.add('hidden'));
+      // Show selected
+      card.querySelector('#' + id).classList.remove('hidden');
+      // Update active state for this card's buttons
+      card.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>
