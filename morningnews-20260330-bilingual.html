@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>晨間科技快訊 Morning Tech News - 2026年3月30日</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #38bdf8;
+            --accent-secondary: #818cf8;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .date {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .audio-section {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .audio-player {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .audio-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+        
+        audio {
+            height: 40px;
+            border-radius: 8px;
+        }
+        
+        audio::-webkit-media-controls-panel {
+            background: var(--bg-secondary);
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .news-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: var(--bg-card);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-title-zh {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        
+        .card-title-en {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .card-text-zh {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+        }
+        
+        .card-text-en {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-style: italic;
+            border-left: 3px solid var(--accent);
+            padding-left: 1rem;
+        }
+        
+        .source-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        
+        .source-tag:hover {
+            background: var(--accent-secondary);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 3rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--text-primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .audio-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>晨間科技快訊</h1>
+            <p class="date">Morning Tech Briefing — March 30, 2026</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="audio-section">
+            <div class="audio-player">
+                <span class="audio-label">中文</span>
+                <audio controls>
+                    <source src="morningnews-20260330.mp3" type="audio/mpeg">
+                    您的瀏覽器不支援音訊播放。
+                </audio>
+            </div>
+            <div class="audio-player">
+                <span class="audio-label">English</span>
+                <audio controls>
+                    <source src="morningnews-20260330-en.mp3" type="audio/mpeg">
+                    Your browser does not support audio playback.
+                </audio>
+            </div>
+        </div>
+        
+        <h2 class="section-title">最新新聞 Latest News</h2>
+        
+        <div class="news-grid">
+            
+            <article class="news-card">
+                <img src="../screenshots/morningnews-20260330-01.jpg" alt="Neural Implant" class="card-image" onerror="this.style.display='none'">
+                <div class="card-content">
+                    <h3 class="card-title-zh">1. 芝麻粒大小的神經植入物：可追蹤並無線傳輸腦活動超過一年</h3>
+                    <p class="card-title-en">Grain-of-Salt Neural Implant Tracks Brain Activity Wirelessly</p>
+                    <p class="card-text-zh">科學家研發出一款極微小的神經植入物，體積小到可以放在芝麻粒上，卻能追蹤並無線傳輸腦活動超過一年。它由安全的雷射光供電，透過組織傳輸資料。這項突破可能徹底改變腦機介面的發展。</p>
+                    <p class="card-text-en">Scientists have developed an incredibly small neural implant, small enough to rest on a grain of salt, that can track and wirelessly transmit brain activity for over a year. Powered by safe laser light that passes through tissue, this breakthrough could revolutionize brain-computer interfaces.</p>
+                    <a href="https://www.sciencedaily.com/news/top/technology/" target="_blank" class="source-tag">ScienceDaily</a>
+                </div>
+            </article>
+            
+            <article class="news-card">
+                <img src="../screenshots/morningnews-20260330-02.jpg" alt="AI Drug Development" class="card-image" onerror="this.style.display='none'">
+                <div class="card-content">
+                    <h3 class="card-title-zh">2. 禮來製藥與AI生物科技公司Insilico簽署20億美元合作協議</h3>
+                    <p class="card-title-en">Eli Lilly Signs $2 Billion AI Drug Development Deal</p>
+                    <p class="card-text-zh">美國製藥巨頭禮來公司將與香港上市的AI藥物開發公司Insilico Medicine簽署為期多年的20億美元合作協議。Insilico使用人工智慧進行藥物研發，此次合作將加速創新藥物的開發流程。</p>
+                    <p class="card-text-en">U.S. pharmaceutical giant Eli Lilly will sign a multi-year $2 billion deal with Hong Kong-listed Insilico Medicine, which uses artificial intelligence for drug discovery. This partnership will accelerate the development of innovative medicines.</p>
+                    <a href="https://finance.yahoo.com/sectors/healthcare/articles/eli-lilly-sign-2-billion-111540465.html" target="_blank" class="source-tag">Yahoo Finance</a>
+                </div>
+            </article>
+            
+            <article class="news-card">
+                <img src="../screenshots/morningnews-20260330-03.jpg" alt="Quantum Computing" class="card-image" onerror="this.style.display='none'">
+                <div class="card-content">
+                    <h3 class="card-title-zh">3. SBQuantum將發射金剛石量子磁力計參與MagQuest挑戰</h3>
+                    <p class="card-title-en">SBQuantum Launches Diamond Quantum Magnetometer for MagQuest</p>
+                    <p class="card-text-zh">SBQuantum將與Spire Global合作，將金剛石量子磁力計發射到太空，用於監測地球磁場。這項任務利用合成金剛石中的氮空位中心，提供微型化、高精度的監測能力，為GPS提供量子替代方案。</p>
+                    <p class="card-text-en">SBQuantum is scheduled to launch a diamond quantum magnetometer into space to monitor Earth's magnetic field in partnership with Spire Global. Utilizing nitrogen-vacancy centers in synthetic diamonds, this mission provides miniaturized, high-precision monitoring as a quantum alternative to GPS.</p>
+                    <a href="https://quantumcomputingreport.com/news/" target="_blank" class="source-tag">Quantum Computing Report</a>
+                </div>
+            </article>
+            
+            <article class="news-card">
+                <div class="card-content">
+                    <h3 class="card-title-zh">4. 頂尖AI會議撤銷對美制裁實體論文的禁令</h3>
+                    <p class="card-title-en">Top AI Conference Lifts Ban on Papers from US-Sanctioned Entities</p>
+                    <p class="card-text-zh">在一場中國抵制後，全球頂尖AI會議撤銷了對來自美國制裁實體論文的禁令。這項決定標誌著學術自由與地緣政治之間的複雜平衡，也反映了AI研究領域的國際化特質。</p>
+                    <p class="card-text-en">After a Chinese boycott, a top AI conference reversed its ban on papers from US-sanctioned entities. This decision highlights the complex balance between academic freedom and geopolitics, reflecting the international nature of AI research.</p>
+                    <a href="https://www.reuters.com/technology/" target="_blank" class="source-tag">Reuters</a>
+                </div>
+            </article>
+            
+            <article class="news-card">
+                <div class="card-content">
+                    <h3 class="card-title-zh">5. 科學家發現超冷水的隱藏臨界點</h3>
+                    <p class="card-title-en">Scientists Discover Hidden Critical Point in Supercooled Water</p>
+                    <p class="card-text-zh">科學家終於發現了超冷水中一個隱藏的「臨界點」，這個發現解釋了為何水在冷卻到冰點以下時表現得如此奇特。在這個臨界點上，兩種不同的液態形式合併，引發一系列異常特性。</p>
+                    <p class="card-text-en">Scientists have finally found a hidden "critical point" in supercooled water that explains why it behaves so strangely. At this point, two different liquid forms of water merge, triggering unusual properties that have puzzled researchers for decades.</p>
+                    <a href="https://www.sciencedaily.com/news/top/technology/" target="_blank" class="source-tag">ScienceDaily</a>
+                </div>
+            </article>
+            
+            <article class="news-card">
+                <div class="card-content">
+                    <h3 class="card-title-zh">6. Google在量子計算領域的雙軌策略</h3>
+                    <p class="card-title-en">Google's Dual-Track Approach to Quantum Computing</p>
+                    <p class="card-text-zh">Google正在採用雙軌策略來實現商用量子計算機。Adam Kaufman將在科羅拉多州博爾德領導新團隊，結合兩種方法以最快速度達到實用量子運算能力。這顯示量子運算的商業化進程正在加速。</p>
+                    <p class="card-text-en">Google is betting that a two-pronged approach is the fastest way to reach a commercially useful quantum computer. Adam Kaufman will lead a new team in Boulder, Colorado, combining two methods to accelerate the path to practical quantum computing capabilities.</p>
+                    <a href="https://quantumcomputingreport.com/news/" target="_blank" class="source-tag">Quantum Computing Report</a>
+                </div>
+            </article>
+            
+        </div>
+    </div>
+    
+    <footer>
+        <p>晨間科技快訊 | Morning Tech Briefing</p>
+        <p>Generated by AI Assistant | 2026-03-30</p>
+    </footer>
+</body>
+</html>

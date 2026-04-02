@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>科技晨報 Morning News — 2026年3月31日</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent: #58a6ff;
+    --accent2: #bc8cff;
+    --tag-bg: #1f2937;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+
+  /* Header */
+  header {
+    text-align: center;
+    padding: 2.5rem 1rem 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+  header .date {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.3rem;
+  }
+  header .subtitle { color: var(--text-secondary); font-size: 0.95rem; }
+
+  /* Voice Players */
+  .voice-section {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .voice-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 200px;
+  }
+  .voice-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+  }
+  .voice-label.en { color: var(--accent2); }
+  audio {
+    width: 260px;
+    height: 38px;
+    border-radius: 20px;
+    outline: none;
+  }
+  audio::-webkit-media-controls-panel { background: var(--tag-bg); }
+
+  /* News Cards */
+  .news-list { display: flex; flex-direction: column; gap: 1.8rem; }
+  .news-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s;
+  }
+  .news-card:hover { transform: translateY(-2px); }
+  .card-header {
+    padding: 1.2rem 1.4rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .news-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+  .tag-nvidia { background: #1a4d2e; color: #4ade80; }
+  .tag-microsoft { background: #1a2d4d; color: #60a5fa; }
+  .tag-europe { background: #2d1a4d; color: #c084fc; }
+  .tag-deepseek { background: #4d1a1a; color: #f87171; }
+  .tag-google { background: #1a3d4d; color: #38bdf8; }
+  .tag-openai { background: #3d3a1a; color: #fbbf24; }
+  .news-title-zh {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+  .card-body { padding: 1.2rem 1.4rem; }
+  .lang-block { margin-bottom: 1.2rem; }
+  .lang-block:last-child { margin-bottom: 0; }
+  .lang-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .lang-tag.zh { color: #f97316; }
+  .lang-tag.en { color: var(--accent2); }
+  .lang-block p { color: var(--text-secondary); font-size: 0.95rem; }
+  .lang-block.en p { color: #c9d1d9; }
+  .divider { border: none; border-top: 1px dashed var(--border); margin: 1.2rem 0; }
+  .screenshot-wrap {
+    margin-top: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .screenshot-wrap img {
+    width: 100%;
+    display: block;
+    max-height: 280px;
+    object-fit: cover;
+  }
+  .screenshot-caption {
+    background: var(--tag-bg);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+  .card-footer {
+    padding: 0.8rem 1.4rem;
+    border-top: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+  .source-link {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  .source-link:hover { color: var(--accent); }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="date">2026 年 3 月 31 日  ·  Tuesday, March 31, 2026</div>
+  <h1>科技晨報 Tech Morning Briefing</h1>
+  <div class="subtitle">美國最新科技新聞雙語摘要</div>
+</header>
+
+<!-- Voice Players -->
+<div class="voice-section">
+  <div class="voice-card">
+    <span class="voice-label">中文</span>
+    <audio controls preload="none">
+      <source src="morningnews-20260331.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="voice-card">
+    <span class="voice-label en">English</span>
+    <audio controls preload="none">
+      <source src="morningnews-20260331-en.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</div>
+
+<!-- News Cards -->
+<div class="news-list">
+
+  <!-- Card 1 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="news-tag tag-nvidia">AI · 硬體</span>
+      <div class="news-title-zh">NVIDIA GTC 2026 揭幕：Vera Rubin 平台正式登場，Feynman 架構預覽</div>
+    </div>
+    <div class="card-body">
+      <div class="lang-block">
+        <span class="lang-tag zh">中文</span>
+        <p>NVIDIA 執行長黃仁勳在 GTC 2026 主題演講中慶祝 CUDA 20 週年，並發表全新 Vera Rubin 平台。該平台整合七顆晶片、五套機架級系統與一台超級電腦，專為代理式 AI 打造。黃仁勳指出，過去幾年運算需求增長百萬倍，NVIDIA 預計 2025 至 2027 年間將創造 1 兆美元營收。大會同時預覽未來架構 Feynman 與 Rosa CPU。</p>
+      </div>
+      <hr class="divider">
+      <div class="lang-block en">
+        <span class="lang-tag en">English</span>
+        <p>NVIDIA CEO Jensen Huang opened GTC 2026 with a keynote celebrating 20 years of CUDA and unveiling the all-new Vera Rubin platform — a full-stack computing platform with seven chips, five rack-scale systems, and one supercomputer, purpose-built for agentic AI. Huang noted computing demand has surged a million-fold, with NVIDIA projecting $1 trillion in revenue from 2025 through 2027. The conference also previewed the future Feynman architecture and the Rosa CPU.</p>
+      </div>
+      <div class="screenshot-wrap">
+        <img src="screenshots/morningnews-20260331-01-nvidia-gtc.png" alt="NVIDIA GTC 2026" loading="lazy">
+        <div class="screenshot-caption">來源：NVIDIA Blog</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="source-link" href="https://blogs.nvidia.com/blog/gtc-2026-news/" target="_blank">NVIDIA GTC 2026 Live Updates</a>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="news-tag tag-microsoft">AI · 軟體</span>
+      <div class="news-title-zh">微軟 Copilot 支援多模型同時工作，AI 助手整合再升級</div>
+    </div>
+    <div class="card-body">
+      <div class="lang-block">
+        <span class="lang-tag zh">中文</span>
+        <p>微軟於 3 月 30 日宣布為 Copilot 推出全新功能：使用者現在可在同一工作流程中同時調用多個 AI 模型。此舉是大型科技公司持續深化 AI 佈局的最新動作，讓 AI 助手在同一工作流程中可灵活调度不同模型，提升效率與使用彈性。</p>
+      </div>
+      <hr class="divider">
+      <div class="lang-block en">
+        <span class="lang-tag en">English</span>
+        <p>Microsoft announced on March 30th a new Copilot feature allowing users to simultaneously run multiple AI models within the same workflow. The move represents the tech giant's latest step to deepen its AI offering, enabling the assistant to flexibly dispatch different models within a single task for greater efficiency and versatility.</p>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="source-link" href="https://www.reuters.com/technology/" target="_blank">Reuters Technology</a>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="news-tag tag-europe">歐洲 · AI</span>
+      <div class="news-title-zh">Mistral 獲 8.3 億美元融資，歐洲 AI 自立拉響號角</div>
+    </div>
+    <div class="card-body">
+      <div class="lang-block">
+        <span class="lang-tag zh">中文</span>
+        <p>法國 AI 新創 Mistral 宣布完成 8.3 億美元債務融資，將採購 1.38 萬顆 NVIDIA 晶片，在巴黎近郊興建大型資料中心。Mistral 計劃在 2027 年底前於歐洲部署 200 百萬瓦算力，並擴展至瑞典。這是歐洲想在 AI 領域建立自主供應鏈的最明確訊號。</p>
+      </div>
+      <hr class="divider">
+      <div class="lang-block en">
+        <span class="lang-tag en">English</span>
+        <p>French AI startup Mistral announced an $830 million debt financing deal to purchase 13,800 NVIDIA chips for a major data center near Paris. Mistral plans to deploy 200 megawatts of compute across Europe by end of 2027, with expansion into Sweden. This is one of the clearest signals yet that Europe intends to build its own AI supply chain, from models to compute.</p>
+      </div>
+      <div class="screenshot-wrap">
+        <img src="screenshots/morningnews-20260331-02-techstartups.png" alt="Mistral AI" loading="lazy">
+        <div class="screenshot-caption">來源：TechStartups</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="source-link" href="https://techstartups.com/2026/03/30/mistral-raises-830m-in-funding-to-build-and-scale-nvidia-powered-ai-data-centers-in-europe/" target="_blank">TechStartups — Mistral $830M Deal</a>
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="news-tag tag-deepseek">中國 · AI</span>
+      <div class="news-title-zh">DeepSeek 遭遇史上最長故障，7 小時服務中斷引發營運質疑</div>
+    </div>
+    <div class="card-body">
+      <div class="lang-block">
+        <span class="lang-tag zh">中文</span>
+        <p>中國 AI 實驗室 DeepSeek 的聊天服務在 3 月 30 日中斷長達 7 小時 13 分鐘，是自 2025 年初爆紅以來最嚴重的一次停機。DeepSeek 以快速迭代聞名，但此次故障顯示其營運基礎設施正面臨考驗。業界分析指出，AI 實驗室已從純技術競賽，進入必須同時重視服務穩定性的新階段。</p>
+      </div>
+      <hr class="divider">
+      <div class="lang-block en">
+        <span class="lang-tag en">English</span>
+        <p>Chinese AI lab DeepSeek's chatbot service suffered a 7-hour and 13-minute outage on March 30th — its longest disruption since its breakout in early 2025. Known for rapid iteration, the incident raises questions about its operational infrastructure. Analysts say AI labs are transitioning from pure performance competition to needing enterprise-grade reliability as they scale.</p>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="source-link" href="https://www.reuters.com/technology/chinas-deepseek-ai-chatbot-suffers-longest-outage-since-viral-rise-early-2025-2026-03-30/" target="_blank">Reuters — DeepSeek Outage</a>
+    </div>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="news-tag tag-google">Android · 更新</span>
+      <div class="news-title-zh">Google 3 月系統更新來襲：Android 用戶迎來多項新功能</div>
+    </div>
+    <div class="card-body">
+      <div class="lang-block">
+        <span class="lang-tag zh">中文</span>
+        <p>Google 發布 3 月系統更新，多項新功能涵蓋 Android 生態系：Fast Pair 新增大螢幕同步功能，支援將設備快速連接至桌面電腦；無線緊急警報新增地圖視圖；Google Wallet 擴展數位憑證支援，Wear OS 用戶可在零售門市用手錶完成支付。</p>
+      </div>
+      <hr class="divider">
+      <div class="lang-block en">
+        <span class="lang-tag en">English</span>
+        <p>Google's March system update brings multiple new features across the Android ecosystem: Fast Pair gains large screen sync for quick device connection to desktop computers; Wireless Emergency Alerts add a map view; Google Wallet expands digital credential support, and Wear OS users can now pay at retail stores directly from their watch.</p>
+      </div>
+      <div class="screenshot-wrap">
+        <img src="screenshots/morningnews-20260331-03-google-updates.png" alt="Google March 2026 Updates" loading="lazy">
+        <div class="screenshot-caption">來源：9to5Google</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="source-link" href="https://9to5google.com/2026/03/30/march-2026-google-system-updates/" target="_blank">9to5Google — March 2026 Updates</a>
+    </div>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="news-card">
+    <div class="card-header">
+      <span class="news-tag tag-openai">AI · 產品</span>
+      <div class="news-title-zh">OpenAI 關閉 Sora 影片生成服務，GPU 算力重新分配</div>
+    </div>
+    <div class="card-body">
+      <div class="lang-block">
+        <span class="lang-tag zh">中文</span>
+        <p>據《華爾街日報》報導，OpenAI 已關閉 Sora 影片生成服務，並將其 GPU 算力重新分配給優先級更高的項目。Sora 此前因影片生成功能受到矚目，但始終未能獲得足夠的市場採用。此舉反映在算力受限的情況下，AI 公司開始對旗下產品進行戰略性取捨。</p>
+      </div>
+      <hr class="divider">
+      <div class="lang-block en">
+        <span class="lang-tag en">English</span>
+        <p>The Wall Street Journal reports that OpenAI has shut down its Sora video generation service and redirected its GPU compute to higher-priority projects. Sora drew attention for its video generation capabilities but never achieved sufficient market traction. The move reflects how AI companies are making strategic trade-offs on their product portfolios under constrained compute resources.</p>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="source-link" href="https://techstartups.com/2026/03/30/top-tech-news-today-march-30-2026/" target="_blank">TechStartups — OpenAI Shuts Down Sora</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>科技晨報 · 2026年3月31日 · 由 OpenClaw AI 整理</p>
+  <p style="margin-top:0.4rem;">新聞來源：<a href="https://blogs.nvidia.com/blog/gtc-2026-news/" target="_blank">NVIDIA</a> · <a href="https://www.reuters.com/technology/" target="_blank">Reuters</a> · <a href="https://techstartups.com/" target="_blank">TechStartups</a> · <a href="https://9to5google.com/" target="_blank">9to5Google</a></p>
+</footer>
+
+</div>
+</body>
+</html>

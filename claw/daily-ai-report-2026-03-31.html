@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日 AI 資訊簡報 2026-03-31</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --dark: #0a0a2e;
+            --accent: #00d4ff;
+            --card-bg: #ffffff;
+            --text-dark: #1a1a2e;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a2e 0%, #1a1a4e 50%, #0d1b3e 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: #e8e8f0;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, #0d6efd 0%, #6610f2 50%, #0a0a2e 100%);
+            border-bottom: 3px solid #00d4ff;
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 60%);
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .hero-title {
+            font-weight: 800;
+            font-size: 2.8rem;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 20px rgba(0,212,255,0.4);
+        }
+
+        .hero-date {
+            font-size: 1.1rem;
+            color: #a0d2ff;
+            font-weight: 500;
+        }
+
+        .section-card {
+            background: rgba(255,255,255,0.97);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .section-header.globe {
+            background: linear-gradient(90deg, #0d6efd, #6610f2);
+            color: white;
+        }
+
+        .section-header.taiwan {
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+            color: white;
+        }
+
+        .section-header.summary {
+            background: linear-gradient(90deg, #00c9a7, #0d6efd);
+            color: white;
+        }
+
+        .news-item {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #f0f0f5;
+            transition: background 0.15s ease;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-item:hover {
+            background: #f8f9ff;
+        }
+
+        .news-title {
+            font-weight: 600;
+            color: #1a1a2e;
+            font-size: 0.97rem;
+            line-height: 1.5;
+            margin-bottom: 0.3rem;
+        }
+
+        .news-desc {
+            font-size: 0.85rem;
+            color: #6c757d;
+            line-height: 1.55;
+        }
+
+        .news-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            margin-right: 0.4rem;
+        }
+
+        .tag-breaking { background: #ffe0e0; color: #dc3545; }
+        .tag-new { background: #e0f0ff; color: #0d6efd; }
+        .tag-analysis { background: #fff3e0; color: #e65100; }
+        .tag-health { background: #e8f5e9; color: #2e7d32; }
+        .tag-security { background: #fce4ec; color: #c62828; }
+        .tag-ipo { background: #ede7f6; color: #6a1b9a; }
+        .tag-regulation { background: #f3e5f5; color: #4a148c; }
+
+        .summary-box {
+            background: linear-gradient(135deg, #0d1b3e 0%, #1a2a6e 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+            color: #e0e8ff;
+            border: 1px solid rgba(0,212,255,0.2);
+        }
+
+        .summary-box h5 {
+            color: #00d4ff;
+            font-weight: 700;
+        }
+
+        .summary-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #d0daff;
+        }
+
+        .summary-text strong {
+            color: #ffffff;
+        }
+
+        .footer-bar {
+            background: rgba(10,10,46,0.9);
+            border-top: 1px solid rgba(0,212,255,0.2);
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+            color: #7a8ab8;
+            font-size: 0.85rem;
+        }
+
+        .glow-badge {
+            background: linear-gradient(135deg, #00d4ff, #0d6efd);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .icon-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .icon-globe { background: rgba(13,110,253,0.12); color: #0d6efd; }
+        .icon-taiwan { background: rgba(255,107,53,0.12); color: #ff6b35; }
+        .icon-summary { background: rgba(0,201,167,0.12); color: #00c9a7; }
+
+        .ticker {
+            background: rgba(0,212,255,0.08);
+            border-bottom: 1px solid rgba(0,212,255,0.15);
+            padding: 0.6rem 0;
+            font-size: 0.82rem;
+            color: #7aabdb;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ticker -->
+    <div class="ticker text-center">
+        <i class="bi bi-lightning-charge-fill me-2 text-warning"></i>
+        AI 資訊簡報&nbsp;|&nbsp;2026年3月31日&nbsp;|&nbsp;由 OpenClaw 機器人自動生成
+    </div>
+
+    <!-- Hero Header -->
+    <header class="hero-header">
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="glow-badge"><i class="bi bi-robot me-1"></i> AI Daily</div>
+                        <span class="hero-date"><i class="bi bi-calendar3 me-1"></i> 2026 年 3 月 31 日</span>
+                    </div>
+                    <h1 class="hero-title text-white mb-2">
+                        <i class="bi bi-cpu me-2"></i>每日 AI 資訊簡報
+                    </h1>
+                    <p class="text-white-50 mb-0 fs-6">國際 AI 最新動態 × 台灣 AI 產業焦點</p>
+                </div>
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                    <div class="d-inline-flex flex-column align-items-md-end gap-1">
+                        <span class="badge bg-light text-dark"><i class="bi bi-globe-americas me-1"></i> International</span>
+                        <span class="badge bg-light text-dark"><i class="bi bi-geo-alt me-1"></i> 台灣</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container py-4">
+
+        <!-- International AI News -->
+        <div class="section-card">
+            <div class="section-header globe">
+                <div class="icon-circle icon-globe"><i class="bi bi-globe-americas"></i></div>
+                <span>🌏 國際 AI 最新消息</span>
+                <span class="ms-auto badge bg-white text-primary fw-normal" style="font-size:0.75rem;">5+則</span>
+            </div>
+
+            <div class="news-item">
+                <div class="d-flex gap-2 mb-1">
+                    <span class="news-tag tag-breaking">獨家</span>
+                    <span class="news-tag tag-health">健康 AI</span>
+                </div>
+                <div class="news-title">Microsoft Copilot 升級健康追蹤功能，AI 助理正式進軍醫療領域</div>
+                <div class="news-desc">跟隨 Amazon 與 OpenAI 的腳步，微軟正式宣佈將其 AI 助理 Copilot 升級，加入健康資料追蹤功能。這項更新代表科技巨頭正式將 AI 助理從生產力工具拓展至個人健康管理的全新賽道，市場預期將掀起新一輪健康 AI 應用競爭。</div>
+            </div>
+
+            <div class="news-item">
+                <div class="d-flex gap-2 mb-1">
+                    <span class="news-tag tag-breaking">重磅</span>
+                    <span class="news-tag tag-ipo">IPO</span>
+                </div>
+                <div class="news-title">Anthropic 準備 IPO！Q4 可能掛牌上市，安全導向 AI 實驗室首登公開市場</div>
+                <div class="news-desc">Anthropic 正積極籌備 IPO，預計最快於 2026 年第四季上市。這將是全球首家以 AI 安全研究為核心掛牌的實驗室。與此同時，Anthropic 同步揭露全新「Mythos」模型層級，性能大幅超越 Opus，在軟體開發、學術推理與網路安全測試中展現戲劇性突破。</div>
+            </div>
+
+            <div class="news-item">
+                <div class="d-flex gap-2 mb-1">
+                    <span class="news-tag tag-new">新功能</span>
+                    <span class="news-tag tag-analysis">應用</span>
+                </div>
+                <div class="news-title">Google Live Translate 全面擴展！Gemini 驅動即時翻譯，任意耳機都能用</div>
+                <div class="news-desc">Google 宣佈將 Gemini 模型驅動的 Live Translate 功能擴展至所有耳機品牌，並同時登陸 iOS 與 Android 雙平台，支援更多國家。與蘋果 Siri 的封閉式方案不同，Google 的策略更具開放性，有望成為跨語言商業溝通的新標準工具。</div>
+            </div>
+
+            <div class="news-item">
+                <div class="d-flex gap-2 mb-1">
+                    <span class="news-tag tag-new">新產品</span>
+                </div>
+                <div class="news-title">OpenAI 廣告業務突破 1 億美元年化營收，AI 變現模式獲實證</div>
+                <div class="news-desc">OpenAI 的廣告試點業務年化營收已突破 1 億美元大關，標誌著 AI 從純技術產品走向商業化變現的重大里程碑。雖然從「反廣告」承諾到億元廣告收入引發外界議論，但這一數據顯示 AI 驅動的數位廣告生態正在快速成熟。</div>
+            </div>
+
+            <div class="news-item">
+                <div class="d-flex gap-2 mb-1">
+                    <span class="news-tag tag-regulation">法規</span>
+                </div>
+                <div class="news-title">加州州長簽署 AI 行政命令：爭取州政府合約須具備 AI 濫用防護機制</div>
+                <div class="news-desc">加州州長 Gavin Newsom 簽署行政命令，要求所有欲爭取州政府合約的企業提供 AI 安全保障措施，包括：防止生成非法內容、杜絕有害偏見，以及杜絕民事權利侵害。此命令被視為美國各州 AI 監管浪潮中的重要風向球。</div>
+            </div>
+
+            <div class="news-item">
+                <div class="d-flex gap-2 mb-1">
+                    <span class="news-tag tag-analysis">分析</span>
+                </div>
+                <div class="news-title">YC 冬季 2026 批次：14 家 AI 新創在 Demo Day 前已突破 100 萬美元 ARR</div>
+                <div class="news-desc">Y Combinator 冬季 2026 批次創下歷史紀錄，共有 14 家公司在正式 Demo Day 前即已達到 100 萬美元年度經常性收入（ARR）。這項數據被業界解讀為：AI First 新創正以前所未有的速度完成營收爬升，傳統「早期新創」的定義正在被徹底改寫。</div>
+            </div>
+        </div>
+
+        <!-- Taiwan AI News -->
+        <div class="section-card">
+            <div class="section-header taiwan">
+                <div class="icon-circle icon-taiwan"><i class="bi bi-geo-alt-fill"></i></div>
+                <span>🇹🇼 台灣 AI 產業動態</span>
+                <span class="ms-auto badge bg-white text-warning fw-normal" style="font-size:0.75rem;">3+則</span>
+            </div>
+
+            <div class="news-item">
+                <div class="d-flex gap-2 mb-1">
+                    <span class="news-tag" style="background:#fff3e0;color:#e65100;">半導體</span>
+                    <span class="news-tag" style="background:#e3f2fd;color:#1565c0;">供應鏈</span>
+                </div>
+                <div class="news-title">台積電 CoWoS 產能狂飆！2026 年底月產能估破 10 萬片，AI 晶片封裝需求吃緊</div>
+                <div class="news-desc">玉山投顧預估，台積電 CoWoS 月產能將在 2026 年底達到 10～10.5 萬片，對應年產能約 106.2 萬片，年增幅高達 67%。其中輝達預計消耗 59% 的總產能（約 68.3 萬片）。隨著 CoWoS 先進封裝外包比重提升，日月光投控也將同步受惠。</div>
+            </div>
+
+            <div class="news-item">
+                <div class="d-flex gap-2 mb-1">
+                    <span class="news-tag" style="background:#e8f5e9;color:#2e7d32;">產業調查</span>
+                </div>
+                <div class="news-title">台灣企業 AI 焦慮：95% 已導入 AI，卻未獲得理想投資回報</div>
+                <div class="news-desc">人工智慧科技基金會發布調查指出，多數台灣企業最迫切希望透過 AI 解決「成本與人力瓶頸」，但令人警醒的是，約 95% 的企業已導入 AI，卻未能獲得良好的投資回報（ROI）。顯示台灣產業正面臨「有引進、缺成效」的 AI 轉型盲點。</div>
+            </div>
+
+            <div class="news-item">
+                <div class="d-flex gap-2 mb-1">
+                    <span class="news-tag" style="background:#fce4ec;color:#c62828;">新技術</span>
+                    <span class="news-tag" style="background:#ede7f6;color:#6a1b9a;">趨勢</span>
+                </div>
+                <div class="news-title">資策會公佈 2026 年十大 AI 關鍵技術：Physical AI（小語言模型）成焦點</div>
+                <div class="news-desc">資策會（III）發布 2026 年十大 AI 關鍵技術趨勢，小語言模型（SLM）因具備低算力、高效能與即時互動特性，成為企業永續 AI 發展的核心工具，尤其適合醫療、金融等對資料外洩高度敏感的產業，並加速推動 AI 微服務化生態。</div>
+            </div>
+
+            <div class="news-item">
+                <div class="d-flex gap-2 mb-1">
+                    <span class="news-tag" style="background:#e0f7fa;color:#00695c;">光通訊</span>
+                </div>
+                <div class="news-title">2026 年 CPO 商轉元年：台積電 COUPE 技術引領「光進銅退」革命</div>
+                <div class="news-desc">AI 運算進入百萬 GPU 的大規模時代，傳統銅線傳輸已逼近物理瓶頸。共同封裝光學（CPO）技術結合台積電 COUPE 平台，正式在 2026 年進入大規模商業化階段，輝達、Spectrum-X 與博通同步卡位，台灣光通訊供應鏈迎來爆發性成長機會。</div>
+            </div>
+        </div>
+
+        <!-- Summary Box -->
+        <div class="section-card">
+            <div class="section-header summary">
+                <div class="icon-circle icon-summary"><i class="bi bi-lightbulb-fill"></i></div>
+                <span>💡 一句話點評摘要</span>
+            </div>
+            <div class="summary-box m-3">
+                <h5><i class="bi bi-chat-square-quote me-2"></i>今日觀點</h5>
+                <p class="summary-text mb-0">
+                    <strong>全球 AI 加速走向落地變現</strong>—— Anthropic 準備 IPO、OpenAI 廣告破億、YC AI 新創 ARR 記錄刷新，顯示 AI 從技術炫技轉向實質營收；<strong>台灣則在硬體供應鏈（台積電 CoWoS、CPO 光通訊）與軟體應用之間，仍面臨 95% 企業導入卻未獲 ROI 的結構性挑戰</strong>，2026 年將是台灣 AI 從「跟隨硬體紅利」走向「建立應用價值」的關鍵分水嶺。
+                </p>
+            </div>
+        </div>
+
+        <!-- Key Numbers -->
+        <div class="row g-3">
+            <div class="col-6 col-md-3">
+                <div class="section-card text-center py-3">
+                    <div class="text-primary fw-bold fs-2">59%</div>
+                    <div class="text-muted small">輝達佔台積電<br>CoWoS 產能比重</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="section-card text-center py-3">
+                    <div class="text-warning fw-bold fs-2">$1億</div>
+                    <div class="text-muted small">OpenAI 廣告業務<br>年化營收</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="section-card text-center py-3">
+                    <div class="text-success fw-bold fs-2">14家</div>
+                    <div class="text-muted small">YC W26 批次<br>破百萬美元 ARR</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="section-card text-center py-3">
+                    <div class="text-danger fw-bold fs-2">95%</div>
+                    <div class="text-muted small">台灣企業導入 AI<br>未獲理想 ROI</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-bar text-center">
+        <div class="container">
+            <p class="mb-1"><i class="bi bi-robot me-1"></i> 每日 AI 資訊簡報由 OpenClaw 自動生成 | 2026-03-31</p>
+            <p class="mb-0">資料來源：Reuters, TechCrunch, MIT Technology Review, 數位時代, 科技新報, 資策會, 玉山投顧</p>
+            <p class="mb-0 mt-1"><a href="https://ntust2026.github.io/claw/daily-ai-report-2026-03-31.html" class="text-info text-decoration-none">🌐 線上閱讀</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
