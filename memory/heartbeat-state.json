@@ -1,7 +1,10 @@
 {
   "lastChecks": {
-    "weather": 1705431650,
-    "heartbeat": 1705431650,
-    "github": 1705431650
+    "weather": 1744212600,
+    "heartbeat": 1744234200,
+    "github": 1744183200,
+    "system": 1744234200,
+    "news": 1744221600,
+    "cron_rerun": 1749101167
   }
 }

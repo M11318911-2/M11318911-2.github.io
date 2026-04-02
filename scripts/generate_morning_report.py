@@ -14,6 +14,8 @@ from pathlib import Path
 # 設定
 WORKSPACE = "/home/node/.openclaw/workspace"
 CLAW_DIR = f"{WORKSPACE}/claw"
+# Output to repo's claw/ subdirectory for GitHub Pages /claw/ URL
+REPO_CLAW_DIR = f"{CLAW_DIR}/claw"
 SCRIPT_DIR = f"{WORKSPACE}/scripts"
 TODAY = datetime.now().strftime("%Y-%m-%d")
 TODAY_SHORT = datetime.now().strftime("%Y%m%d")  # YYYYMMDD format for morningnews
@@ -120,7 +122,7 @@ def capture_screenshots(news_items):
         
         # 生成截圖檔名
         safe_name = ''.join(c for c in source if c.isalnum() or c in '-_')
-        screenshot_path = f"{CLAW_DIR}/screenshots/{TODAY_SHORT}-{safe_name}.png"
+        screenshot_path = f"{REPO_CLAW_DIR}/screenshots/{TODAY_SHORT}-{safe_name}.png"
         
         try:
             print(f"   📸 截圖: {url}")
@@ -171,7 +173,7 @@ def generate_html(news_items, screenshots=None):
             screenshot_filename = os.path.basename(screenshots[safe_url])
             screenshot_html = f'''
     <div class="screenshot-preview">
-        <img src="../screenshots/{screenshot_filename}" alt="{news['title']}" loading="lazy">
+        <img src="./screenshots/{screenshot_filename}" alt="{news['title']}" loading="lazy">
     </div>
 '''
         
@@ -263,7 +265,7 @@ def generate_html(news_items, screenshots=None):
     
     # 寫入檔案
     # 使用 morningnews 格式（GitHub Pages 可正常存取）
-    html_file = f"{CLAW_DIR}/morningnews-{TODAY_SHORT}-bilingual.html"
+    html_file = f"{REPO_CLAW_DIR}/morningnews-{TODAY_SHORT}-bilingual.html"
     with open(html_file, "w", encoding="utf-8") as f:
         f.write(html_content)
     
@@ -305,8 +307,8 @@ def generate_voice(news_items):
         f.write(zh_text)
     
     # 中英文語音檔案路徑
-    zh_mp3 = f"{CLAW_DIR}/morningnews-{TODAY_SHORT}.mp3"
-    en_mp3 = f"{CLAW_DIR}/morningnews-{TODAY_SHORT}-en.mp3"
+    zh_mp3 = f"{REPO_CLAW_DIR}/morningnews-{TODAY_SHORT}.mp3"
+    en_mp3 = f"{REPO_CLAW_DIR}/morningnews-{TODAY_SHORT}-en.mp3"
     
     # 生成中文語音 - 使用更好的設定
     try:
@@ -390,12 +392,12 @@ def upload_to_github():
             subprocess.run(["git", "reset", "--hard", "origin/main"], capture_output=True, env=env)
             subprocess.run(["git", "stash", "pop"], capture_output=True, env=env)
         
-        # Add all new files
-        subprocess.run(["git", "add", f"morningnews-{TODAY_SHORT}-bilingual.html"], check=True, capture_output=True, env=env)
-        subprocess.run(["git", "add", f"morningnews-{TODAY_SHORT}.mp3"], check=True, capture_output=True, env=env)
-        subprocess.run(["git", "add", f"morningnews-{TODAY_SHORT}-en.mp3"], check=True, capture_output=True, env=env)
+        # Add all new files - files are in claw/ subdirectory within the repo
+        subprocess.run(["git", "add", f"claw/morningnews-{TODAY_SHORT}-bilingual.html"], check=True, capture_output=True, env=env)
+        subprocess.run(["git", "add", f"claw/morningnews-{TODAY_SHORT}.mp3"], check=True, capture_output=True, env=env)
+        subprocess.run(["git", "add", f"claw/morningnews-{TODAY_SHORT}-en.mp3"], check=True, capture_output=True, env=env)
         # Add screenshots
-        subprocess.run(["git", "add", "screenshots/"], check=True, capture_output=True, env=env)
+        subprocess.run(["git", "add", "claw/screenshots/"], check=True, capture_output=True, env=env)
         
         # Commit
         subprocess.run([
