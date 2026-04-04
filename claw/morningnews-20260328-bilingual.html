@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>晨報 | Morning News — 2026年3月28日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 3rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            color: #888;
+            letter-spacing: 0.1em;
+        }
+        .audio-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .audio-players {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .audio-player {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            min-width: 280px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .audio-player h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .audio-player.zh h3 { color: #ff8c42; }
+        .audio-player.en h3 { color: #00d4ff; }
+        audio {
+            width: 100%;
+            height: 40px;
+            border-radius: 20px;
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .news-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,212,255,0.1);
+        }
+        .card-screenshot {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .card-body { padding: 1.8rem; }
+        .card-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+        .tag-ai { background: rgba(123,44,191,0.3); color: #c77dff; }
+        .tag-cloud { background: rgba(0,180,216,0.2); color: #00d4ff; }
+        .tag-apple { background: rgba(255,140,66,0.2); color: #ff8c42; }
+        .tag-academic { background: rgba(0,200,83,0.2); color: #00c853; }
+        .tag-finance { background: rgba(255,215,0,0.2); color: #ffd700; }
+        .card-title-zh {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        .card-title-en {
+            font-size: 0.95rem;
+            color: #aaaaaa;
+            margin-bottom: 1rem;
+            font-style: italic;
+            line-height: 1.4;
+        }
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            margin: 1rem 0;
+        }
+        .card-text-zh {
+            font-size: 0.95rem;
+            color: #cccccc;
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+        .card-text-en {
+            font-size: 0.9rem;
+            color: #999999;
+            line-height: 1.7;
+        }
+        .source-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0,212,255,0.1);
+            border: 1px solid rgba(0,212,255,0.3);
+            border-radius: 10px;
+            color: #00d4ff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background 0.3s;
+        }
+        .source-link:hover { background: rgba(0,212,255,0.2); }
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: #555;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 3rem;
+        }
+        @media (max-width: 600px) {
+            .audio-players { flex-direction: column; align-items: center; }
+            .news-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>晨報 Morning News</h1>
+            <p class="subtitle">2026年3月28日 星期六 | Saturday, March 28, 2026</p>
+        </header>
+
+        <section class="audio-section">
+            <div class="audio-players">
+                <div class="audio-player zh">
+                    <h3>中文</h3>
+                    <audio controls>
+                        <source src="morningnews-20260328.mp3" type="audio/mpeg">
+                        您的瀏覽器不支援音訊播放。
+                    </audio>
+                </div>
+                <div class="audio-player en">
+                    <h3>English</h3>
+                    <audio controls>
+                        <source src="morningnews-20260328-en.mp3" type="audio/mpeg">
+                        Your browser does not support audio playback.
+                    </audio>
+                </div>
+            </div>
+        </section>
+
+        <div class="news-grid">
+
+            <!-- News Card 1: OpenAI Superapp -->
+            <article class="news-card">
+                <img class="card-screenshot" src="../screenshots/morningnews-20260328-03-reuters.png" alt="OpenAI Superapp" loading="lazy">
+                <div class="card-body">
+                    <span class="card-tag tag-ai">AI</span>
+                    <h2 class="card-title-zh">OpenAI 宣佈推出「超級 App」：ChatGPT、Codex、Atlas 三合一</h2>
+                    <p class="card-title-en">OpenAI Merges ChatGPT, Codex & Atlas Into Desktop Superapp</p>
+                    <div class="divider"></div>
+                    <p class="card-text-zh">
+                        OpenAI 正式宣佈，將把 ChatGPT、程式碼開發平台 Codex 及 Atlas 網頁瀏覽器整合成單一桌面應用。高層坦言，過去分散的產品線拖慢了腳步。這次合併旨在將九億普通用戶轉化為付費進階用戶，加速 IPO 籌備。
+                    </p>
+                    <p class="card-text-en">
+                        OpenAI confirmed plans to fold ChatGPT, the Codex coding platform, and the Atlas browser into a single desktop application. Executives admitted that fragmented products had been slowing the company down. The consolidation aims to convert 900 million casual users into paying power users ahead of a potential IPO.
+                    </p>
+                    <a class="source-link" href="https://www.reuters.com/technology/openai/" target="_blank">閱讀來源 Read Source</a>
+                </div>
+            </article>
+
+            <!-- News Card 2: SoftBank $40B -->
+            <article class="news-card">
+                <div class="card-body">
+                    <span class="card-tag tag-finance">金融</span>
+                    <h2 class="card-title-zh">軟銀鎖定 400 億美元 Bridge Loan 再度加碼 OpenAI</h2>
+                    <p class="card-title-en">SoftBank Secures $40B Loan to Further Invest in OpenAI</p>
+                    <div class="divider"></div>
+                    <p class="card-text-zh">
+                        軟銀集團已鎖定 400 億美元 Bridge Loan，將進一步投資 OpenAI。摩根大通、高盛、三菱日聯等重量級金融機構均參與其中。分析指出，這顯示 AI 競賽已從純技術之爭，升級為資本實力之戰。
+                    </p>
+                    <p class="card-text-en">
+                        SoftBank Group has secured a $40 billion bridge loan to further invest in OpenAI. JPMorgan Chase, Goldman Sachs, and MUFG participated in the loan. Analysts say the move signals the AI race has evolved from a technology competition into a financing muscle contest.
+                    </p>
+                    <a class="source-link" href="https://www.reuters.com/business/media-telecom/softbank-secures-40-billion-loan-fund-further-openai-investment-2026-03-27/" target="_blank">閱讀來源 Read Source</a>
+                </div>
+            </article>
+
+            <!-- News Card 3: Microsoft Texas Data Center -->
+            <article class="news-card">
+                <div class="card-body">
+                    <span class="card-tag tag-cloud">雲端</span>
+                    <h2 class="card-title-zh">微軟接手德州 AI 資料中心：OpenAI 撤退、微軟進場</h2>
+                    <p class="card-title-en">Microsoft Takes Over Texas AI Data Center After OpenAI Backs Away</p>
+                    <div class="divider"></div>
+                    <p class="card-text-zh">
+                        OpenAI 本月初宣佈放棄德州阿比林資料中心擴建計畫後，微軟隨即接手。微軟的目標是打造全美最大 AI 資料中心園區之一。Crusoe 公司目前正為 OpenAI 和甲骨文建設六棟建築，預計今年底完工。
+                    </p>
+                    <p class="card-text-en">
+                        Microsoft is taking over an AI data center expansion project in Texas after OpenAI backed away earlier this month. Microsoft aims to build one of the largest AI data center campuses in the United States. Crusoe is currently constructing six buildings for OpenAI and Oracle, expected to be completed by the end of this year.
+                    </p>
+                    <a class="source-link" href="https://www.washingtontimes.com/news/2026/mar/27/microsoft-takes-texas-ai-data-center-expansion-openai-backs-away/" target="_blank">閱讀來源 Read Source</a>
+                </div>
+            </article>
+
+            <!-- News Card 4: Apple WWDC 2026 -->
+            <article class="news-card">
+                <img class="card-screenshot" src="../screenshots/morningnews-20260328-01-apple-wwdc.png" alt="Apple WWDC 2026" loading="lazy">
+                <div class="card-body">
+                    <span class="card-tag tag-apple">蘋果</span>
+                    <h2 class="card-title-zh">蘋果 WWDC 2026 來襲：Siri 將成 iPhone 主搜尋介面</h2>
+                    <p class="card-title-en">Apple WWDC 2026: Major Siri Overhaul, Spotlight to Be Replaced</p>
+                    <div class="divider"></div>
+                    <p class="card-text-zh">
+                        蘋果宣佈第 37 屆 WWDC 將於六月舉行。市場預期會上將發表全新獨立 Siri App、動態島整合，以及以 Siri 取代 Spotlight 成為 iPhone 主要搜尋介面。底層技術來自蘋果與 Google 的多年合作，採用 Gemini 模型。
+                    </p>
+                    <p class="card-text-en">
+                        Apple announced its 37th annual WWDC for June. Expectations include a standalone Siri app, Dynamic Island integration, and Siri replacing Spotlight as the primary iPhone search interface. The technology runs on Google's Gemini models through a multi-year Apple-Google partnership.
+                    </p>
+                    <a class="source-link" href="https://www.macrumors.com/2026/03/27/the-macrumors-show-wwdc-2026-announced/" target="_blank">閱讀來源 Read Source</a>
+                </div>
+            </article>
+
+            <!-- News Card 5: NeurIPS Boycott -->
+            <article class="news-card">
+                <div class="card-body">
+                    <span class="card-tag tag-academic">學術</span>
+                    <h2 class="card-title-zh">NeurIPS 2026 撤銷論文禁令：中國大學抵制後緊急轉向</h2>
+                    <p class="card-title-en">NeurIPS 2026 Reverses Ban After Chinese Universities Boycott</p>
+                    <div class="divider"></div>
+                    <p class="card-text-zh">
+                        國際頂尖 AI 學術會議 NeurIPS 2026 在中國多所重點大學發起集體抵制後，緊急撤回禁止向美國制裁實體提交論文的新規定。大會執行團隊承認是內部溝通失誤，反映了學術交流與地緣政治之間日益緊張的關係。
+                    </p>
+                    <p class="card-text-en">
+                        NeurIPS 2026 reversed its controversial ban on papers from US-sanctioned entities after major Chinese universities launched a boycott. Conference organizers acknowledged an internal miscommunication, highlighting growing tensions between academic freedom and geopolitics.
+                    </p>
+                    <a class="source-link" href="https://www.reuters.com/world/china/china-boycotts-top-ai-conference-after-ban-papers-us-sanctioned-entities-2026-03-27/" target="_blank">閱讀來源 Read Source</a>
+                </div>
+            </article>
+
+            <!-- News Card 6: AI Bubble Warning -->
+            <article class="news-card">
+                <img class="card-screenshot" src="../screenshots/morningnews-20260328-02-techstartups.png" alt="AI Bubble Warning" loading="lazy">
+                <div class="card-body">
+                    <span class="card-tag tag-finance">金融</span>
+                    <h2 class="card-title-zh">專家示警 AI 泡沫風險：2030 年基礎設施投資上看 5 兆美元</h2>
+                    <p class="card-title-en">Experts Warn of AI Bubble as Infrastructure Spending Projected at $5T</p>
+                    <div class="divider"></div>
+                    <p class="card-text-zh">
+                        摩根大通分析師預測，2030 年前全球 AI 基礎設施投資總額將達 5 兆美元。光是今年，亞馬遜、Alphabet、Meta 和微軟就計畫投入 6700 億美元。專家呼籲政策制定者現在就開始準備應對機制。
+                    </p>
+                    <p class="card-text-en">
+                        J.P. Morgan analysts project $5 trillion in AI infrastructure spending by 2030. This year alone, Amazon, Alphabet, Meta, and Microsoft plan to invest $670 billion combined. Experts are urging policymakers to prepare response mechanisms now to avoid a repeat of the 2008 financial crisis.
+                    </p>
+                    <a class="source-link" href="https://time.com/article/2026/03/26/we-must-prepare-for-an-ai-bubble-now/" target="_blank">閱讀來源 Read Source</a>
+                </div>
+            </article>
+
+        </div>
+
+        <footer>
+            <p>晨報由小小斌自動生成 | Generated by 小小斌 | 2026年3月28日</p>
+            <p style="margin-top:0.5rem; color:#333;">音檔存放 / Audio hosted on GitHub Pages</p>
+        </footer>
+    </div>
+</body>
+</html>

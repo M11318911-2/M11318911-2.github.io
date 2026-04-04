@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>晨報 | Morning News - 2026年3月25日</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0f0f14;
+      --bg-secondary: #1a1a24;
+      --bg-card: #232334;
+      --accent: #6c63ff;
+      --accent-hover: #8b85ff;
+      --text-primary: #ffffff;
+      --text-secondary: #b4b4c9;
+      --text-muted: #7a7a8c;
+      --border: #2d2d42;
+      --radius: 16px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.3);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', 'Noto Sans TC', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    header .date {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+    }
+    .audio-section {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .audio-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-width: 280px;
+    }
+    .audio-card .label {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+    }
+    .audio-card audio {
+      height: 40px;
+      border-radius: 20px;
+    }
+    .audio-card audio::-webkit-media-controls-panel {
+      background: var(--bg-secondary);
+    }
+    .news-grid { display: flex; flex-direction: column; gap: 2rem; }
+    .news-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .news-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .news-card .screenshot {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--border);
+    }
+    .news-card .content { padding: 1.8rem; }
+    .news-card .lang-block { margin-bottom: 1.5rem; }
+    .news-card .lang-block:last-child { margin-bottom: 0; }
+    .news-card .lang-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      padding: 0.2rem 0.6rem;
+      background: rgba(108,99,255,0.12);
+      border-radius: 6px;
+    }
+    .news-card h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+    }
+    .news-card p {
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+    }
+    .news-card .source {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      transition: color 0.2s;
+    }
+    .news-card .source:hover { color: var(--accent-hover); }
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.5rem 0;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.6rem; }
+      .audio-card { flex-direction: column; text-align: center; }
+      .news-card .content { padding: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>晨報 Morning News</h1>
+      <p class="date">2026年3月25日 Wednesday, March 25, 2026</p>
+    </header>
+
+    <section class="audio-section">
+      <div class="audio-card">
+        <span class="label">中文</span>
+        <audio controls preload="none" src="morningnews-20260325.mp3">
+          您的瀏覽器不支援音訊播放。
+        </audio>
+      </div>
+      <div class="audio-card">
+        <span class="label">English</span>
+        <audio controls preload="none" src="morningnews-20260325-en.mp3">
+          Your browser does not support audio playback.
+        </audio>
+      </div>
+    </section>
+
+    <main class="news-grid">
+
+      <!-- News 1 -->
+      <article class="news-card">
+        <img class="screenshot" src="../screenshots/news-apple-20260325.png" alt="Apple Newsroom" loading="lazy">
+        <div class="content">
+          <div class="lang-block">
+            <span class="lang-label">中文</span>
+            <h2>蘋果推出 iPhone 17e：強大且實惠的選擇</h2>
+            <p>蘋果今日宣布推出 iPhone 17e，這是 iPhone 17 系列中強大且實惠的新成員。iPhone 17e 配備最新一代 A19 晶片，效能出色。採用蘋果自行設計的 C1X 數據機，比 iPhone 16e 的 C1 快達兩倍。4800 萬像素 Fusion 相機可拍攝令人驚艷的照片，包括下一代人像模式和 4K Dolby Vision 影片。6.1 吋 Super Retina XDR 顯示器配備 Ceramic Shield 2，防刮能力比前代提升三倍。iPhone 17e 起始容量為 256GB，售價 599 美元，3 月 4 日開始預購，3 月 11 日正式上市。共有黑色、白色和全新粉色三種優雅顏色可選。</p>
+            <a class="source" href="https://www.apple.com/newsroom/2026/03/apple-introduces-iphone-17e/" target="_blank">Apple Newsroom</a>
+          </div>
+          <hr class="divider">
+          <div class="lang-block">
+            <span class="lang-label">English</span>
+            <h2>Apple Launches iPhone 17e: Powerful and Affordable Choice</h2>
+            <p>Apple today announced iPhone 17e, a powerful and affordable addition to the iPhone 17 lineup. iPhone 17e features the latest-generation A19 chip for exceptional performance. It comes with Apple's C1X cellular modem, which is up to two times faster than C1 in iPhone 16e. The 48-megapixel Fusion camera captures stunning photos, including next-generation portraits and 4K Dolby Vision video. The 6.1-inch Super Retina XDR display features Ceramic Shield 2, offering three times better scratch resistance than the previous generation. iPhone 17e starts at 256GB of storage for $599, available for pre-order starting March 4th and on sale starting March 11th. It comes in three elegant colors: black, white, and a beautiful new pink.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- News 2 -->
+      <article class="news-card">
+        <img class="screenshot" src="../screenshots/news-reuters-20260325.png" alt="Reuters Technology" loading="lazy">
+        <div class="content">
+          <div class="lang-block">
+            <span class="lang-label">中文</span>
+            <h2>AWS 中東區域受阻凸顯雲端基礎設施脆弱性</h2>
+            <p>AWS 巴林區域因無人機活動而中斷，突顯雲端基礎設施與實體風險的關聯。巴林是 AWS 在中東的重要區域樞紐，這次干擾對在政治敏感地區運行關鍵工作負載的企業發出警告。AI 熱潮使超大規模雲端區域更加關鍵，任何與戰爭、空域風險或區域穩定相關的干擾都可能成為企業持續營運的問題。專家預期，企業將更加審視多區域韌性、主權雲端規劃，以及 AI 基礎設施的地理集中度。</p>
+            <a class="source" href="https://www.reuters.com/technology/openai/" target="_blank">Reuters Technology</a>
+          </div>
+          <hr class="divider">
+          <div class="lang-block">
+            <span class="lang-label">English</span>
+            <h2>AWS Middle East Disruption Highlights Cloud Infrastructure Vulnerability</h2>
+            <p>AWS Bahrain region was disrupted by drone activity, highlighting how cloud infrastructure remains tied to physical risk. Bahrain is a key regional hub for AWS in the Middle East, and this disruption serves as a warning for companies running critical workloads in politically sensitive regions. The AI boom has made hyperscale cloud regions even more strategic, making any disruption related to war, airspace risk, or regional instability a business continuity issue. Experts expect more scrutiny on multi-region resilience, sovereign cloud planning, and the geographic concentration of AI infrastructure.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- News 3 -->
+      <article class="news-card">
+        <img class="screenshot" src="../screenshots/news-techstartups-20260325.png" alt="Tech Startups" loading="lazy">
+        <div class="content">
+          <div class="lang-block">
+            <span class="lang-label">中文</span>
+            <h2>美國 AI 晶片供應鏈緊繃：Broadcom 警告產能瓶頸</h2>
+            <p>Broadcom 表示，由於 AI 晶片需求持續攀升，供應鏈和台積電產能都出現緊繃狀況。Broadcom 深入基礎設施領域，觸及網路、自訂晶片和資料中心硬體等各個層面。這種供應限制凸顯 AI 競爭已不僅是模型品質或 GPU 存取權的較量，而是誰能確保晶圓製造、封裝、記憶體和相關元件的產能規模。專家指出，下一階段的競爭將在供應鏈和製造關係中決定勝負。</p>
+            <a class="source" href="https://techstartups.com/2026/03/24/top-tech-news-today-march-24-2026/" target="_blank">Tech Startups</a>
+          </div>
+          <hr class="divider">
+          <div class="lang-block">
+            <span class="lang-label">English</span>
+            <h2>US AI Chip Supply Chain Under Strain: Broadcom Warns of Capacity Bottlenecks</h2>
+            <p>Broadcom says it is seeing supply constraints across the tech sector, including bottlenecks at manufacturing partner TSMC, as demand for AI chips keeps climbing. Broadcom sits deep inside the infrastructure stack, touching networking, custom silicon, and data-center hardware. This reinforces that the next phase of competition may be won in supply chains and manufacturing relationships as much as in research labs. Experts note that the competition will be decided in supply chains and manufacturing relationships.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- News 4 -->
+      <article class="news-card">
+        <div class="content">
+          <div class="lang-block">
+            <span class="lang-label">中文</span>
+            <h2>蘋果發表全新 MacBook Air 配備 M5 晶片</h2>
+            <p>MacBook Air 是全球最受歡迎的筆記型電腦，現在配備 M5 晶片，帶來卓越效能和更強大的 AI 能力。M5 採用更快速的 CPU 和下一代 GPU，每個核心都配備神經網路加速器。標準儲存容量加倍至 512GB，支援 Wi-Fi 7 和 Bluetooth 6。配備 12MP Center Stage 相機，電池續航力最長達 18 小時。13 吋和 15 吋兩種尺寸可選，有天空藍、午夜、星光和銀色四種顏色，3 月 4 日開始預購，3 月 11 日上市。</p>
+            <a class="source" href="https://www.apple.com/newsroom/2026/03/apple-introduces-the-new-macbook-air-with-m5/" target="_blank">Apple Newsroom</a>
+          </div>
+          <hr class="divider">
+          <div class="lang-block">
+            <span class="lang-label">English</span>
+            <h2>Apple Unveils New MacBook Air with M5 Chip</h2>
+            <p>The MacBook Air is the world's most popular laptop, now featuring the M5 chip for exceptional performance and expanded AI capabilities. M5 features a faster CPU and next-generation GPU with a Neural Accelerator in each core. Standard storage doubles to 512GB with support for Wi-Fi 7 and Bluetooth 6. It includes a 12-megapixel Center Stage camera and up to 18 hours of battery life. Available in 13-inch and 15-inch models in sky blue, midnight, starlight, and silver, pre-orders start March 4th with availability from March 11th.</p>
+          </div>
+        </div>
+      </article>
+
+    </main>
+
+    <footer>
+      <p>美國科技晨報 | US Tech Morning News &middot; 2026年3月25日</p>
+    </footer>
+  </div>
+</body>
+</html>

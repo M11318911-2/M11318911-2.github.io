@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>臺科精誠匯 LOGO 創意提案 v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;900&family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070B12;
+    --surface: #0D1520;
+    --border: rgba(255,255,255,0.07);
+    --gold: #C4933A;
+    --gold-lt: #E8C97A;
+    --blue: #0059A8;
+    --blue-lt: #3A87CC;
+    --teal: #00818A;
+    --ink: #0A1628;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #fff;
+    padding: 0 24px 80px;
+  }
+
+  /* ── HERO ───────────────────────────────────── */
+  .hero {
+    text-align: center;
+    padding: 90px 0 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content:'';
+    position:absolute; inset:0;
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,89,168,0.18) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    border: 1px solid rgba(196,147,58,0.45);
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: .45em;
+    padding: 5px 18px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(28px,4vw,48px);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: .12em;
+  }
+  .hero-line {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 32px auto 0;
+  }
+
+  /* ── CONCEPT SECTION ────────────────────────── */
+  .concept {
+    margin-bottom: 120px;
+  }
+
+  .concept-intro {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 56px;
+    padding: 28px 36px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .concept-intro::before {
+    content:'';
+    position:absolute; left:0; top:0; bottom:0; width:4px;
+  }
+  .concept-A .concept-intro::before { background: linear-gradient(180deg,#3A87CC,#00818A); }
+  .concept-B .concept-intro::before { background: linear-gradient(180deg,#C4933A,#E8C97A); }
+  .concept-C .concept-intro::before { background: linear-gradient(180deg,#0059A8,#C4933A); }
+
+  .concept-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    font-style: italic;
+    line-height:1;
+    opacity: .18;
+  }
+  .concept-A .concept-num { color: var(--blue-lt); }
+  .concept-B .concept-num { color: var(--gold-lt); }
+  .concept-C .concept-num { color: var(--blue); }
+
+  .concept-text h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 22px; font-weight: 900;
+    margin-bottom: 6px;
+  }
+  .concept-text p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.7;
+    max-width: 520px;
+  }
+  .concept-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(255,255,255,0.2);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* ── GRID ───────────────────────────────────── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .card {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: all .25s ease;
+    cursor: default;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(196,147,58,.35);
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  }
+  .display {
+    display:flex; align-items:center; justify-content:center;
+    min-height: 210px;
+    padding: 24px 16px;
+    position: relative;
+  }
+  .label {
+    padding: 9px 14px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: .1em;
+    background: rgba(0,0,0,.25);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── PAGE FOOTER ────────────────────────────── */
+  footer {
+    text-align:center;
+    padding: 60px 0;
+    border-top: 1px solid var(--border);
+  }
+  footer p { font-size:11px; color:rgba(255,255,255,.18); letter-spacing:.2em; margin-top:8px; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">NTUST Executive E Program — Brand Identity</div>
+  <h1>臺科精誠匯<br>品牌識別系統</h1>
+  <div class="hero-sub">3 原創概念 × 9 版型 — 精於管理・誠於實踐</div>
+  <div class="hero-line"></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     CONCEPT A ── 匯流之源
+     ICON: Three streams converging upward into a unified peak
+     → 象徵各路領袖匯聚一堂，向上精進
+     COLOR: Deep ocean teal + ink
+═══════════════════════════════════════════════════════ -->
+<div class="concept concept-A">
+  <div class="concept-intro">
+    <div class="concept-num">A</div>
+    <div class="concept-text">
+      <h2>概念 A ── 匯流之源</h2>
+      <p>三道流線由四面八方匯入同一頂點，象徵各路精英領袖齊聚「匯」處、向上精進。幾何中蘊含「水」的動感，呼應「匯」字本義，以孔雀藍為主色，傳遞深度、智慧與永續。</p>
+    </div>
+    <div class="concept-tag">Confluence<br>匯流之源</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- A1 全彩直版 -->
+    <div class="card">
+      <div class="display" style="background:#04111E;">
+        <svg width="160" height="180" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="tG1" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0%" stop-color="#00818A"/>
+              <stop offset="100%" stop-color="#3ABFCC"/>
+            </linearGradient>
+            <linearGradient id="tG2" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0%" stop-color="#0059A8"/>
+              <stop offset="100%" stop-color="#3A87CC"/>
+            </linearGradient>
+          </defs>
+          <!-- ICON: three converging streams -->
+          <!-- left stream -->
+          <path d="M28,96 C28,96 38,80 62,68 L80,54" stroke="url(#tG2)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <!-- right stream -->
+          <path d="M132,96 C132,96 122,80 98,68 L80,54" stroke="url(#tG1)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <!-- center stream from below -->
+          <path d="M80,106 L80,54" stroke="url(#tG1)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <!-- apex diamond -->
+          <polygon points="80,38 90,54 80,70 70,54" fill="url(#tG2)"/>
+          <!-- base spread lines -->
+          <line x1="26" y1="104" x2="46" y2="96" stroke="rgba(58,191,204,0.3)" stroke-width="1.5"/>
+          <line x1="134" y1="104" x2="114" y2="96" stroke="rgba(58,135,204,0.3)" stroke-width="1.5"/>
+          <line x1="80" y1="112" x2="80" y2="104" stroke="rgba(58,191,204,0.3)" stroke-width="1.5"/>
+          <!-- horizontal rule -->
+          <line x1="24" y1="118" x2="136" y2="118" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <text x="80" y="138" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="20" font-weight="900" fill="white">臺科精誠匯</text>
+          <text x="80" y="156" text-anchor="middle" font-family="'Noto Sans TC',sans-serif" font-size="9" fill="rgba(58,191,204,0.8)" letter-spacing="2">精於管理・誠於實踐</text>
+          <text x="80" y="172" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="rgba(255,255,255,0.2)" letter-spacing="2">NTUST · E PROGRAM</text>
+        </svg>
+      </div>
+      <div class="label">A-1 全彩直排 深色主版</div>
+    </div>
+
+    <!-- A2 橫排完整版 -->
+    <div class="card">
+      <div class="display" style="background:#020D18;">
+        <svg width="230" height="80" viewBox="0 0 230 80" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="aG2a" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0%" stop-color="#00818A"/><stop offset="100%" stop-color="#3ABFCC"/>
+            </linearGradient>
+          </defs>
+          <!-- icon compact -->
+          <path d="M14,56 C14,56 22,44 36,36 L46,28" stroke="#3A87CC" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M78,56 C78,56 70,44 56,36 L46,28" stroke="#00818A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <line x1="46" y1="62" x2="46" y2="28" stroke="url(#aG2a)" stroke-width="2.5" stroke-linecap="round"/>
+          <polygon points="46,16 54,28 46,40 38,28" fill="#3A87CC"/>
+          <line x1="8" y1="68" x2="84" y2="68" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+          <!-- divider -->
+          <line x1="100" y1="10" x2="100" y2="70" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <!-- text -->
+          <text x="114" y="26" font-family="'Noto Serif TC',serif" font-size="22" font-weight="900" fill="white">臺科精誠匯</text>
+          <text x="114" y="46" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="rgba(58,191,204,0.65)" letter-spacing="3">NTUST · EXECUTIVE · E PROGRAM</text>
+          <text x="114" y="63" font-family="'Noto Serif TC',serif" font-size="11" fill="rgba(255,255,255,0.45)" letter-spacing="1">精於管理・誠於實踐</text>
+        </svg>
+      </div>
+      <div class="label">A-2 橫排完整版 黑底</div>
+    </div>
+
+    <!-- A3 白底印刷版 -->
+    <div class="card">
+      <div class="display" style="background:#F6F8FA;">
+        <svg width="160" height="175" viewBox="0 0 160 175" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30,90 C30,90 42,74 60,64 L80,50" stroke="#0059A8" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M130,90 C130,90 118,74 100,64 L80,50" stroke="#00818A" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <line x1="80" y1="50" x2="80" y2="98" stroke="#0059A8" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="80,34 92,50 80,66 68,50" fill="#0059A8"/>
+          <circle cx="30" cy="92" r="4" fill="#0059A8" opacity=".35"/>
+          <circle cx="130" cy="92" r="4" fill="#00818A" opacity=".35"/>
+          <circle cx="80" cy="100" r="4" fill="#00818A" opacity=".35"/>
+          <line x1="20" y1="116" x2="140" y2="116" stroke="#E0E6EE" stroke-width="1"/>
+          <text x="80" y="136" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="20" font-weight="900" fill="#0A1628">臺科精誠匯</text>
+          <text x="80" y="155" text-anchor="middle" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#0059A8" letter-spacing="1">精於管理・誠於實踐</text>
+          <text x="80" y="170" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="#C4933A" letter-spacing="2">NTUST E Program</text>
+        </svg>
+      </div>
+      <div class="label">A-3 白底印刷全版</div>
+    </div>
+
+    <!-- A4 圓形徽章 -->
+    <div class="card">
+      <div class="display" style="background:#0A1E30;">
+        <svg width="170" height="170" viewBox="0 0 170 170" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="aG4" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#3A87CC"/><stop offset="100%" stop-color="#00818A"/>
+            </linearGradient>
+          </defs>
+          <circle cx="85" cy="85" r="80" fill="none" stroke="url(#aG4)" stroke-width="1.8"/>
+          <circle cx="85" cy="85" r="72" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          <!-- icon inside -->
+          <path d="M44,96 C44,96 54,80 68,70 L85,57" stroke="#3A87CC" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+          <path d="M126,96 C126,96 116,80 102,70 L85,57" stroke="#00818A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+          <line x1="85" y1="57" x2="85" y2="100" stroke="url(#aG4)" stroke-width="2.8" stroke-linecap="round"/>
+          <polygon points="85,42 95,57 85,72 75,57" fill="url(#aG4)"/>
+          <line x1="30" y1="112" x2="140" y2="112" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+          <text x="85" y="130" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="17" font-weight="700" fill="white">臺科精誠匯</text>
+          <text x="85" y="148" text-anchor="middle" font-family="'Noto Sans TC',sans-serif" font-size="9" fill="rgba(58,191,204,0.7)" letter-spacing="1">精於管理・誠於實踐</text>
+        </svg>
+      </div>
+      <div class="label">A-4 圓形徽章 漸層邊框</div>
+    </div>
+
+    <!-- A5 App Icon -->
+    <div class="card">
+      <div class="display" style="background:#111;">
+        <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="aApp" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0059A8"/><stop offset="100%" stop-color="#00818A"/>
+            </linearGradient>
+          </defs>
+          <rect width="100" height="100" rx="22" fill="url(#aApp)"/>
+          <!-- icon white -->
+          <path d="M22,62 C22,62 32,48 48,40 L50,38" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85"/>
+          <path d="M78,62 C78,62 68,48 52,40 L50,38" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85"/>
+          <line x1="50" y1="38" x2="50" y2="68" stroke="white" stroke-width="3" stroke-linecap="round" opacity=".85"/>
+          <polygon points="50,22 60,38 50,54 40,38" fill="white"/>
+        </svg>
+      </div>
+      <div class="label">A-5 App 圖標版</div>
+    </div>
+
+    <!-- A6 反白版 -->
+    <div class="card">
+      <div class="display" style="background:white;">
+        <svg width="210" height="68" viewBox="0 0 210 68" xmlns="http://www.w3.org/2000/svg">
+          <!-- left accent bar -->
+          <rect x="0" y="0" width="4" height="68" fill="#0059A8"/>
+          <!-- icon -->
+          <path d="M16,44 C16,44 24,34 36,28 L44,22" stroke="#0059A8" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <path d="M72,44 C72,44 64,34 52,28 L44,22" stroke="#00818A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <line x1="44" y1="22" x2="44" y2="50" stroke="#00818A" stroke-width="2.2" stroke-linecap="round"/>
+          <polygon points="44,10 52,22 44,34 36,22" fill="#0059A8"/>
+          <!-- sep -->
+          <line x1="86" y1="10" x2="86" y2="58" stroke="#E8EDF3" stroke-width="1"/>
+          <text x="98" y="26" font-family="'Noto Serif TC',serif" font-size="18" font-weight="700" fill="#0A1628">臺科精誠匯</text>
+          <text x="98" y="43" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#0059A8" letter-spacing="1">精於管理・誠於實踐</text>
+          <text x="98" y="59" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="#C4933A" letter-spacing="2">NTUST · E PROGRAM</text>
+        </svg>
+      </div>
+      <div class="label">A-6 白底正式文件版</div>
+    </div>
+
+    <!-- A7 方形印章 -->
+    <div class="card">
+      <div class="display" style="background:#04111E;">
+        <svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="aG7" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#00818A"/><stop offset="100%" stop-color="#3A87CC"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="136" height="136" rx="10" fill="none" stroke="url(#aG7)" stroke-width="1.5"/>
+          <rect x="8" y="8" width="124" height="124" rx="8" fill="none" stroke="rgba(58,191,204,0.1)" stroke-width="0.8"/>
+          <text x="70" y="20" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="7" fill="rgba(58,191,204,0.5)" letter-spacing="3">NTUST · E PROGRAM</text>
+          <line x1="18" y1="24" x2="122" y2="24" stroke="rgba(58,191,204,0.12)" stroke-width="0.5"/>
+          <!-- icon -->
+          <path d="M32,76 C32,76 40,62 54,54 L70,44" stroke="#3A87CC" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M108,76 C108,76 100,62 86,54 L70,44" stroke="#00818A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <line x1="70" y1="44" x2="70" y2="82" stroke="url(#aG7)" stroke-width="2.5" stroke-linecap="round"/>
+          <polygon points="70,30 80,44 70,58 60,44" fill="url(#aG7)"/>
+          <line x1="18" y1="94" x2="122" y2="94" stroke="rgba(58,191,204,0.12)" stroke-width="0.5"/>
+          <text x="70" y="112" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="16" font-weight="700" fill="white">臺科精誠匯</text>
+          <text x="70" y="128" text-anchor="middle" font-family="'Noto Sans TC',sans-serif" font-size="8.5" fill="rgba(58,191,204,0.6)" letter-spacing="1">精於管理・誠於實踐</text>
+        </svg>
+      </div>
+      <div class="label">A-7 方形印章 深色版</div>
+    </div>
+
+    <!-- A8 金色特殊版 -->
+    <div class="card">
+      <div class="display" style="background:linear-gradient(135deg,#C4933A 0%,#8A5E00 100%);">
+        <svg width="175" height="80" viewBox="0 0 175 80" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10,52 C10,52 20,38 36,30 L46,22" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".9"/>
+          <path d="M82,52 C82,52 72,38 56,30 L46,22" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".9"/>
+          <line x1="46" y1="22" x2="46" y2="56" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity=".9"/>
+          <polygon points="46,8 56,22 46,36 36,22" fill="white" opacity=".9"/>
+          <line x1="96" y1="8" x2="96" y2="72" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <text x="108" y="26" font-family="'Noto Serif TC',serif" font-size="20" font-weight="900" fill="white">臺科精誠匯</text>
+          <text x="108" y="46" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" letter-spacing="1">精於管理・誠於實踐</text>
+          <text x="108" y="63" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="rgba(255,255,255,0.5)" letter-spacing="2">NTUST E Program</text>
+        </svg>
+      </div>
+      <div class="label">A-8 金底白字 特殊場合版</div>
+    </div>
+
+    <!-- A9 純圖標組合 -->
+    <div class="card">
+      <div class="display" style="background:#0D1A26;">
+        <svg width="220" height="80" viewBox="0 0 220 80" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="aG9" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0%" stop-color="#00818A"/><stop offset="100%" stop-color="#3A87CC"/>
+            </linearGradient>
+          </defs>
+          <!-- large icon left -->
+          <path d="M20,56 C20,56 32,40 50,30 L60,22" stroke="#3A87CC" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+          <path d="M100,56 C100,56 88,40 70,30 L60,22" stroke="#00818A" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+          <line x1="60" y1="22" x2="60" y2="62" stroke="url(#aG9)" stroke-width="3.2" stroke-linecap="round"/>
+          <polygon points="60,6 72,22 60,38 48,22" fill="url(#aG9)"/>
+          <!-- text stacked right -->
+          <text x="118" y="26" font-family="'Noto Serif TC',serif" font-size="24" font-weight="900" fill="white">精誠匯</text>
+          <text x="118" y="46" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="rgba(255,255,255,0.35)" letter-spacing="1">臺科大後 E Program</text>
+          <text x="118" y="64" font-family="'Noto Serif TC',serif" font-size="10" fill="rgba(58,191,204,0.6)" letter-spacing="2">精於管理・誠於實踐</text>
+        </svg>
+      </div>
+      <div class="label">A-9 大字簡稱版 橫排</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     CONCEPT B ── 精鑽之心
+     ICON: Faceted diamond gemstone — precision cut leadership
+     → 鑽石的精密切割 = 精益求精；硬度 = 誠信磐石
+     COLOR: Midnight ink + champagne gold
+═══════════════════════════════════════════════════════ -->
+<div class="concept concept-B">
+  <div class="concept-intro">
+    <div class="concept-num">B</div>
+    <div class="concept-text">
+      <h2>概念 B ── 精鑽之心</h2>
+      <p>以切割鑽石的幾何構成為主體，鑽石的精密刻面對應「精益求精」，無可撼動的硬度對應「誠信磐石」。寶石頂部輪廓由三角刻面拼合，彰顯高階領袖的多維視角與卓越品格。午夜墨藍底配以香檳金，奢而不浮。</p>
+    </div>
+    <div class="concept-tag">Faceted<br>精鑽之心</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- B1 -->
+    <div class="card">
+      <div class="display" style="background:#06090F;">
+        <svg width="165" height="188" viewBox="0 0 165 188" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bG1a" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#E8C97A"/><stop offset="100%" stop-color="#C4933A"/>
+            </linearGradient>
+            <linearGradient id="bG1b" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C4933A"/><stop offset="100%" stop-color="#7A5800"/>
+            </linearGradient>
+          </defs>
+          <!-- Diamond facets: top girdle = hexagon, pavilion = pointed bottom -->
+          <!-- Crown top facets -->
+          <polygon points="82,18 60,38 104,38" fill="url(#bG1a)" opacity=".95"/>
+          <polygon points="82,18 60,38 40,30" fill="url(#bG1b)" opacity=".85"/>
+          <polygon points="82,18 104,38 124,30" fill="#E8C97A" opacity=".7"/>
+          <!-- girdle band -->
+          <polygon points="40,30 60,38 104,38 124,30 118,54 46,54" fill="url(#bG1b)" opacity=".6"/>
+          <!-- Main table facet (top center) -->
+          <polygon points="60,38 82,38 104,38 96,54 68,54" fill="url(#bG1a)" opacity=".9"/>
+          <!-- Pavilion bottom facets -->
+          <polygon points="46,54 82,102 68,54" fill="url(#bG1b)" opacity=".9"/>
+          <polygon points="118,54 82,102 96,54" fill="url(#bG1a)" opacity=".75"/>
+          <polygon points="68,54 82,102 96,54" fill="url(#bG1a)" opacity=".55"/>
+          <!-- edge lines -->
+          <polygon points="82,18 40,30 46,54 82,102 118,54 124,30" fill="none" stroke="#E8C97A" stroke-width="0.7" opacity=".5"/>
+          <!-- text -->
+          <line x1="22" y1="116" x2="142" y2="116" stroke="rgba(196,147,58,0.2)" stroke-width="0.8"/>
+          <text x="82" y="136" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="20" font-weight="900" fill="white">臺科精誠匯</text>
+          <text x="82" y="154" text-anchor="middle" font-family="'Noto Sans TC',sans-serif" font-size="9.5" fill="rgba(232,201,122,0.75)" letter-spacing="2">精於管理・誠於實踐</text>
+          <text x="82" y="170" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="rgba(255,255,255,0.2)" letter-spacing="3">NTUST · E PROGRAM</text>
+        </svg>
+      </div>
+      <div class="label">B-1 切割鑽石 深夜全彩版</div>
+    </div>
+
+    <!-- B2 橫版 -->
+    <div class="card">
+      <div class="display" style="background:#040810;">
+        <svg width="230" height="78" viewBox="0 0 230 78" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bG2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#E8C97A"/><stop offset="100%" stop-color="#C4933A"/>
+            </linearGradient>
+          </defs>
+          <polygon points="46,8 32,20 24,34 46,60 68,34 60,20" fill="url(#bG2)" opacity=".9"/>
+          <polygon points="32,20 46,28 60,20" fill="#7A5800" opacity=".7"/>
+          <polygon points="32,20 46,60 24,34" fill="#C4933A" opacity=".6"/>
+          <polygon points="60,20 46,60 68,34" fill="#E8C97A" opacity=".5"/>
+          <polygon points="46,8 32,20 46,28 60,20" fill="#E8C97A" opacity=".85"/>
+          <line x1="86" y1="10" x2="86" y2="68" stroke="rgba(196,147,58,0.2)" stroke-width="1"/>
+          <text x="100" y="24" font-family="'Noto Serif TC',serif" font-size="23" font-weight="900" fill="white">臺科精誠匯</text>
+          <text x="100" y="44" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="rgba(232,201,122,0.55)" letter-spacing="3">NTUST EXECUTIVE E PROGRAM</text>
+          <text x="100" y="62" font-family="'Noto Serif TC',serif" font-size="12" fill="rgba(255,255,255,0.45)" letter-spacing="1">精於管理・誠於實踐</text>
+        </svg>
+      </div>
+      <div class="label">B-2 橫排完整版 午夜深色</div>
+    </div>
+
+    <!-- B3 白底 -->
+    <div class="card">
+      <div class="display" style="background:#F9F7F3;">
+        <svg width="165" height="175" viewBox="0 0 165 175" xmlns="http://www.w3.org/2000/svg">
+          <!-- two-tone on white: blue + gold diamond -->
+          <polygon points="82,14 58,30 50,48 82,90 114,48 106,30" fill="none" stroke="#0059A8" stroke-width="1.5"/>
+          <polygon points="82,14 58,30 82,36 106,30" fill="#0059A8" opacity=".9"/>
+          <polygon points="58,30 50,48 82,90 82,48 82,36" fill="#0059A8" opacity=".45"/>
+          <polygon points="106,30 114,48 82,90 82,48 82,36" fill="#0059A8" opacity=".2"/>
+          <polygon points="58,30 82,36 82,48 50,48" fill="#C4933A" opacity=".8"/>
+          <polygon points="106,30 82,36 82,48 114,48" fill="#C4933A" opacity=".6"/>
+          <line x1="22" y1="106" x2="142" y2="106" stroke="#E8EDF3" stroke-width="1"/>
+          <text x="82" y="126" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="20" font-weight="900" fill="#06090F">臺科精誠匯</text>
+          <text x="82" y="145" text-anchor="middle" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#0059A8" letter-spacing="1">精於管理・誠於實踐</text>
+          <text x="82" y="162" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="#C4933A" letter-spacing="2">NTUST · E Program</text>
+        </svg>
+      </div>
+      <div class="label">B-3 白底雙色印刷版</div>
+    </div>
+
+    <!-- B4 圓形badge -->
+    <div class="card">
+      <div class="display" style="background:#0A0C12;">
+        <svg width="168" height="168" viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bG4r" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#E8C97A"/><stop offset="100%" stop-color="#C4933A"/>
+            </linearGradient>
+          </defs>
+          <circle cx="84" cy="84" r="80" fill="none" stroke="url(#bG4r)" stroke-width="1.5"/>
+          <polygon points="84,22 60,40 52,58 84,102 116,58 108,40" fill="url(#bG4r)" opacity=".15"/>
+          <polygon points="84,22 60,40 84,48 108,40" fill="url(#bG4r)" opacity=".9"/>
+          <polygon points="60,40 52,58 84,102 84,48" fill="#C4933A" opacity=".5"/>
+          <polygon points="108,40 116,58 84,102 84,48" fill="#E8C97A" opacity=".35"/>
+          <polygon points="60,40 84,48 84,58 52,58" fill="#E8C97A" opacity=".7"/>
+          <polygon points="108,40 84,48 84,58 116,58" fill="#C4933A" opacity=".5"/>
+          <polygon points="84,22 60,40 52,58 84,102 116,58 108,40" fill="none" stroke="#E8C97A" stroke-width="0.8" opacity=".4"/>
+          <line x1="28" y1="114" x2="140" y2="114" stroke="rgba(196,147,58,0.15)" stroke-width="0.8"/>
+          <text x="84" y="132" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="16" font-weight="700" fill="white">臺科精誠匯</text>
+          <text x="84" y="150" text-anchor="middle" font-family="'Noto Sans TC',sans-serif" font-size="9" fill="rgba(232,201,122,0.65)" letter-spacing="1">精於管理・誠於實踐</text>
+        </svg>
+      </div>
+      <div class="label">B-4 圓形徽章 奢金版</div>
+    </div>
+
+    <!-- B5 App icon -->
+    <div class="card">
+      <div class="display" style="background:#111;">
+        <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bApp" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0A1628"/><stop offset="100%" stop-color="#1E3A5F"/>
+            </linearGradient>
+          </defs>
+          <rect width="100" height="100" rx="22" fill="url(#bApp)"/>
+          <polygon points="50,14 26,30 18,50 50,80 82,50 74,30" fill="none" stroke="#E8C97A" stroke-width="1"/>
+          <polygon points="50,14 26,30 50,38 74,30" fill="#E8C97A" opacity=".85"/>
+          <polygon points="26,30 18,50 50,80 50,38" fill="#C4933A" opacity=".55"/>
+          <polygon points="74,30 82,50 50,80 50,38" fill="#E8C97A" opacity=".35"/>
+          <polygon points="26,30 50,38 50,50 18,50" fill="#E8C97A" opacity=".65"/>
+          <polygon points="74,30 50,38 50,50 82,50" fill="#C4933A" opacity=".45"/>
+        </svg>
+      </div>
+      <div class="label">B-5 App 圖標版</div>
+    </div>
+
+    <!-- B6 方形海報 -->
+    <div class="card">
+      <div class="display" style="background:linear-gradient(160deg,#0A1628 0%,#1A2E4A 100%);">
+        <svg width="145" height="145" viewBox="0 0 145 145" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bG6" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#E8C97A"/><stop offset="100%" stop-color="#C4933A"/>
+            </linearGradient>
+          </defs>
+          <rect x="3" y="3" width="139" height="139" rx="8" fill="none" stroke="url(#bG6)" stroke-width="1.2"/>
+          <text x="72" y="18" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="6.5" fill="rgba(232,201,122,0.5)" letter-spacing="3">NTUST · E PROGRAM</text>
+          <line x1="16" y1="22" x2="128" y2="22" stroke="rgba(196,147,58,0.15)" stroke-width="0.5"/>
+          <!-- diamond small -->
+          <polygon points="72,28 54,42 48,56 72,84 96,56 90,42" fill="url(#bG6)" opacity=".12"/>
+          <polygon points="72,28 54,42 72,48 90,42" fill="url(#bG6)"/>
+          <polygon points="54,42 48,56 72,84 72,48" fill="#C4933A" opacity=".6"/>
+          <polygon points="90,42 96,56 72,84 72,48" fill="#E8C97A" opacity=".45"/>
+          <polygon points="54,42 72,48 72,56 48,56" fill="#E8C97A" opacity=".7"/>
+          <polygon points="90,42 72,48 72,56 96,56" fill="#C4933A" opacity=".5"/>
+          <line x1="16" y1="97" x2="128" y2="97" stroke="rgba(196,147,58,0.15)" stroke-width="0.5"/>
+          <text x="72" y="114" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="16" font-weight="700" fill="white">臺科精誠匯</text>
+          <text x="72" y="130" text-anchor="middle" font-family="'Noto Sans TC',sans-serif" font-size="8" fill="rgba(232,201,122,0.6)" letter-spacing="1">精於管理・誠於實踐</text>
+        </svg>
+      </div>
+      <div class="label">B-6 方形精緻版 深藍金框</div>
+    </div>
+
+    <!-- B7 文件橫版 -->
+    <div class="card">
+      <div class="display" style="background:white; border:1px solid #e8e4dc;">
+        <svg width="218" height="68" viewBox="0 0 218 68" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="5" height="68" fill="#C4933A"/>
+          <polygon points="44,10 30,22 24,34 44,58 64,34 58,22" fill="none" stroke="#C4933A" stroke-width="1.2"/>
+          <polygon points="44,10 30,22 44,26 58,22" fill="#C4933A"/>
+          <polygon points="30,22 24,34 44,58 44,26" fill="#C4933A" opacity=".4"/>
+          <polygon points="58,22 64,34 44,58 44,26" fill="#C4933A" opacity=".25"/>
+          <line x1="78" y1="10" x2="78" y2="58" stroke="#EDE8DF" stroke-width="1"/>
+          <text x="90" y="24" font-family="'Noto Serif TC',serif" font-size="18" font-weight="700" fill="#06090F">臺科精誠匯</text>
+          <line x1="90" y1="30" x2="215" y2="30" stroke="#EDE8DF" stroke-width="0.7"/>
+          <text x="90" y="46" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#C4933A" letter-spacing="1">精於管理・誠於實踐</text>
+          <text x="90" y="61" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="#999" letter-spacing="2">NTUST Executive E Program</text>
+        </svg>
+      </div>
+      <div class="label">B-7 白底正式文件橫版</div>
+    </div>
+
+    <!-- B8 全金大印 -->
+    <div class="card">
+      <div class="display" style="background:linear-gradient(135deg,#C4933A 0%,#7A5800 100%);">
+        <svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="80" cy="80" r="72" fill="none" stroke="white" stroke-width="1.5" opacity=".5"/>
+          <polygon points="80,16 52,34 44,56 80,104 116,56 108,34" fill="none" stroke="white" stroke-width="1.2" opacity=".7"/>
+          <polygon points="80,16 52,34 80,42 108,34" fill="white" opacity=".85"/>
+          <polygon points="52,34 44,56 80,104 80,42" fill="white" opacity=".4"/>
+          <polygon points="108,34 116,56 80,104 80,42" fill="white" opacity=".28"/>
+          <polygon points="52,34 80,42 80,54 44,56" fill="white" opacity=".6"/>
+          <polygon points="108,34 80,42 80,54 116,56" fill="white" opacity=".45"/>
+          <text x="80" y="126" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="16" font-weight="700" fill="white">臺科精誠匯</text>
+          <text x="80" y="145" text-anchor="middle" font-family="'Noto Sans TC',sans-serif" font-size="8.5" fill="rgba(255,255,255,0.7)" letter-spacing="1">精於管理・誠於實踐</text>
+        </svg>
+      </div>
+      <div class="label">B-8 金底圓印 活動特別版</div>
+    </div>
+
+    <!-- B9 大字黑金 -->
+    <div class="card">
+      <div class="display" style="background:#06090F;">
+        <svg width="218" height="78" viewBox="0 0 218 78" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bG9" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E8C97A"/><stop offset="100%" stop-color="#C4933A"/>
+            </linearGradient>
+          </defs>
+          <!-- Big left char -->
+          <text x="12" y="54" font-family="'Noto Serif TC',serif" font-size="52" font-weight="900" fill="rgba(196,147,58,0.08)">匯</text>
+          <!-- icon -->
+          <polygon points="36,16 22,28 16,42 36,66 56,42 50,28" fill="url(#bG9)" opacity=".85"/>
+          <polygon points="36,16 22,28 36,32 50,28" fill="#E8C97A"/>
+          <polygon points="22,28 16,42 36,66 36,32" fill="#C4933A" opacity=".6"/>
+          <polygon points="50,28 56,42 36,66 36,32" fill="#E8C97A" opacity=".4"/>
+          <!-- text -->
+          <text x="76" y="28" font-family="'Noto Serif TC',serif" font-size="24" font-weight="900" fill="white">臺科精誠匯</text>
+          <text x="76" y="50" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="rgba(232,201,122,0.65)" letter-spacing="2">精於管理・誠於實踐</text>
+          <text x="76" y="68" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="rgba(255,255,255,0.2)" letter-spacing="3">NTUST Executive E Program</text>
+        </svg>
+      </div>
+      <div class="label">B-9 大字背景 黑金旗艦版</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     CONCEPT C ── 誠星羅盤
+     ICON: Compass / star navigation — 誠信領航
+     → Minimalist compass rose, 5 pointed nodes = leadership network
+     → One bold N/North axis = direction / 領航
+     COLOR: Porcelain white + deep navy + accent rust-gold
+═══════════════════════════════════════════════════════ -->
+<div class="concept concept-C">
+  <div class="concept-intro">
+    <div class="concept-num">C</div>
+    <div class="concept-text">
+      <h2>概念 C ── 誠星羅盤</h2>
+      <p>以指南針羅盤為隱喻，呼應「誠信領航」核心精神。一枚指針永遠指向北方——正是誠信的方向感與不偏移的品格。羅盤外環代表全球視野，中心鑽點代表匯聚的核心。主視覺採瓷白搭配深海軍藍，輔以鏽金，展現內斂的國際高端質感。</p>
+    </div>
+    <div class="concept-tag">Compass<br>誠星羅盤</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- C1 -->
+    <div class="card">
+      <div class="display" style="background:#F5F3EE;">
+        <svg width="168" height="188" viewBox="0 0 168 188" xmlns="http://www.w3.org/2000/svg">
+          <!-- Compass icon on cream -->
+          <circle cx="84" cy="72" r="54" fill="none" stroke="#0A1628" stroke-width="1.5"/>
+          <circle cx="84" cy="72" r="48" fill="none" stroke="#0A1628" stroke-width="0.5" opacity=".3"/>
+          <!-- tick marks -->
+          <line x1="84" y1="18" x2="84" y2="26" stroke="#0A1628" stroke-width="1.5"/>
+          <line x1="138" y1="72" x2="130" y2="72" stroke="#0A1628" stroke-width="1"/>
+          <line x1="84" y1="126" x2="84" y2="118" stroke="#0A1628" stroke-width="1"/>
+          <line x1="30" y1="72" x2="38" y2="72" stroke="#0A1628" stroke-width="1"/>
+          <!-- diagonal ticks -->
+          <line x1="122" y1="34" x2="117" y2="39" stroke="#0A1628" stroke-width="0.8" opacity=".4"/>
+          <line x1="46" y1="34" x2="51" y2="39" stroke="#0A1628" stroke-width="0.8" opacity=".4"/>
+          <line x1="122" y1="110" x2="117" y2="105" stroke="#0A1628" stroke-width="0.8" opacity=".4"/>
+          <line x1="46" y1="110" x2="51" y2="105" stroke="#0A1628" stroke-width="0.8" opacity=".4"/>
+          <!-- North needle (gold) -->
+          <polygon points="84,28 79,72 84,66 89,72" fill="#C4933A"/>
+          <!-- South needle (dark) -->
+          <polygon points="84,116 79,72 84,78 89,72" fill="#0A1628" opacity=".5"/>
+          <!-- center dot -->
+          <circle cx="84" cy="72" r="5" fill="#0A1628"/>
+          <circle cx="84" cy="72" r="2.5" fill="#C4933A"/>
+          <!-- N label -->
+          <text x="84" y="14" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="10" fill="#C4933A" font-weight="600">N</text>
+          <line x1="24" y1="140" x2="144" y2="140" stroke="#C8BFA8" stroke-width="0.8"/>
+          <text x="84" y="160" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="20" font-weight="900" fill="#0A1628">臺科精誠匯</text>
+          <text x="84" y="178" text-anchor="middle" font-family="'Noto Sans TC',sans-serif" font-size="9.5" fill="#0059A8" letter-spacing="1">精於管理・誠於實踐</text>
+        </svg>
+      </div>
+      <div class="label">C-1 羅盤主圖 奶白印刷版</div>
+    </div>
+
+    <!-- C2 橫版深色 -->
+    <div class="card">
+      <div class="display" style="background:#050A12;">
+        <svg width="230" height="78" viewBox="0 0 230 78" xmlns="http://www.w3.org/2000/svg">
+          <!-- compact compass icon -->
+          <circle cx="38" cy="39" r="30" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <circle cx="38" cy="39" r="24" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.7"/>
+          <line x1="38" y1="10" x2="38" y2="16" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+          <line x1="64" y1="39" x2="58" y2="39" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <line x1="38" y1="68" x2="38" y2="62" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <line x1="12" y1="39" x2="18" y2="39" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <!-- needles -->
+          <polygon points="38,14 34,39 38,34 42,39" fill="#C4933A"/>
+          <polygon points="38,64 34,39 38,44 42,39" fill="rgba(255,255,255,0.25)"/>
+          <circle cx="38" cy="39" r="3.5" fill="#0A1628" stroke="#C4933A" stroke-width="1"/>
+          <text x="38" y="8" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="7" fill="#C4933A">N</text>
+          <!-- divider -->
+          <line x1="82" y1="10" x2="82" y2="68" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <text x="96" y="26" font-family="'Noto Serif TC',serif" font-size="22" font-weight="900" fill="white">臺科精誠匯</text>
+          <text x="96" y="46" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="rgba(196,147,58,0.6)" letter-spacing="3">NTUST EXECUTIVE E PROGRAM</text>
+          <text x="96" y="62" font-family="'Noto Serif TC',serif" font-size="11" fill="rgba(255,255,255,0.4)" letter-spacing="1">精於管理・誠於實踐</text>
+        </svg>
+      </div>
+      <div class="label">C-2 橫排完整版 深夜黑</div>
+    </div>
+
+    <!-- C3 圓形大徽 -->
+    <div class="card">
+      <div class="display" style="background:#0A1628;">
+        <svg width="170" height="170" viewBox="0 0 170 170" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cG3" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#3A87CC"/><stop offset="100%" stop-color="#C4933A"/>
+            </linearGradient>
+          </defs>
+          <circle cx="85" cy="85" r="80" fill="none" stroke="url(#cG3)" stroke-width="1.5"/>
+          <!-- inner compass -->
+          <circle cx="85" cy="75" r="42" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <circle cx="85" cy="75" r="34" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.7"/>
+          <line x1="85" y1="34" x2="85" y2="40" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+          <line x1="126" y1="75" x2="120" y2="75" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <line x1="85" y1="116" x2="85" y2="110" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <line x1="44" y1="75" x2="50" y2="75" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <polygon points="85,38 81,75 85,70 89,75" fill="#C4933A"/>
+          <polygon points="85,112 81,75 85,80 89,75" fill="rgba(255,255,255,0.2)"/>
+          <circle cx="85" cy="75" r="4" fill="#0A1628" stroke="#C4933A" stroke-width="1"/>
+          <text x="85" y="31" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="8" fill="#C4933A" letter-spacing="1">N</text>
+          <line x1="28" y1="122" x2="142" y2="122" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+          <text x="85" y="140" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="17" font-weight="700" fill="white">臺科精誠匯</text>
+          <text x="85" y="157" text-anchor="middle" font-family="'Noto Sans TC',sans-serif" font-size="9" fill="rgba(196,147,58,0.65)" letter-spacing="1">精於管理・誠於實踐</text>
+        </svg>
+      </div>
+      <div class="label">C-3 圓形徽章 海軍藍版</div>
+    </div>
+
+    <!-- C4 奶白橫版 -->
+    <div class="card">
+      <div class="display" style="background:#FDFAF5;">
+        <svg width="218" height="68" viewBox="0 0 218 68" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="5" height="68" fill="#0059A8"/>
+          <rect x="0" y="34" width="5" height="34" fill="#C4933A"/>
+          <!-- compass -->
+          <circle cx="40" cy="34" r="24" fill="none" stroke="#0A1628" stroke-width="1.2"/>
+          <line x1="40" y1="11" x2="40" y2="17" stroke="#0A1628" stroke-width="1.5"/>
+          <line x1="62" y1="34" x2="56" y2="34" stroke="#0A1628" stroke-width="0.9" opacity=".5"/>
+          <line x1="40" y1="57" x2="40" y2="51" stroke="#0A1628" stroke-width="0.9" opacity=".5"/>
+          <line x1="18" y1="34" x2="24" y2="34" stroke="#0A1628" stroke-width="0.9" opacity=".5"/>
+          <polygon points="40,14 37,34 40,30 43,34" fill="#C4933A"/>
+          <polygon points="40,54 37,34 40,38 43,34" fill="#0A1628" opacity=".35"/>
+          <circle cx="40" cy="34" r="3" fill="#0A1628"/>
+          <circle cx="40" cy="34" r="1.5" fill="#C4933A"/>
+          <text x="40" y="9" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="7" fill="#C4933A">N</text>
+          <line x1="74" y1="10" x2="74" y2="58" stroke="#DDD8CC" stroke-width="1"/>
+          <text x="86" y="24" font-family="'Noto Serif TC',serif" font-size="18" font-weight="700" fill="#0A1628">臺科精誠匯</text>
+          <text x="86" y="42" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#0059A8" letter-spacing="1">精於管理・誠於實踐</text>
+          <text x="86" y="58" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="#C4933A" letter-spacing="2">NTUST Executive Program</text>
+        </svg>
+      </div>
+      <div class="label">C-4 白底橫版 正式文件版</div>
+    </div>
+
+    <!-- C5 App icon -->
+    <div class="card">
+      <div class="display" style="background:#111;">
+        <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cApp" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#061220"/><stop offset="100%" stop-color="#0E2A4A"/>
+            </linearGradient>
+          </defs>
+          <rect width="100" height="100" rx="22" fill="url(#cApp)"/>
+          <circle cx="50" cy="50" r="34" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+          <line x1="50" y1="17" x2="50" y2="23" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+          <line x1="83" y1="50" x2="77" y2="50" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          <line x1="50" y1="83" x2="50" y2="77" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          <line x1="17" y1="50" x2="23" y2="50" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          <polygon points="50,20 46,50 50,45 54,50" fill="#C4933A"/>
+          <polygon points="50,80 46,50 50,55 54,50" fill="rgba(255,255,255,0.25)"/>
+          <circle cx="50" cy="50" r="5" fill="#0A1628" stroke="#C4933A" stroke-width="1.5"/>
+          <text x="50" y="15" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="9" fill="#C4933A" font-weight="600">N</text>
+        </svg>
+      </div>
+      <div class="label">C-5 App 圖標版</div>
+    </div>
+
+    <!-- C6 金底圓版 -->
+    <div class="card">
+      <div class="display" style="background:linear-gradient(135deg,#0A1628 0%,#1E3A5F 100%);">
+        <svg width="148" height="148" viewBox="0 0 148 148" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="142" height="142" rx="8" fill="none" stroke="rgba(196,147,58,0.4)" stroke-width="1.2"/>
+          <text x="74" y="19" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="6.5" fill="rgba(196,147,58,0.5)" letter-spacing="3">NTUST · E PROGRAM</text>
+          <line x1="16" y1="23" x2="132" y2="23" stroke="rgba(196,147,58,0.1)" stroke-width="0.5"/>
+          <!-- compass -->
+          <circle cx="74" cy="68" r="34" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <line x1="74" y1="35" x2="74" y2="41" stroke="rgba(196,147,58,0.8)" stroke-width="1.5"/>
+          <line x1="107" y1="68" x2="101" y2="68" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <line x1="74" y1="101" x2="74" y2="95" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <line x1="41" y1="68" x2="47" y2="68" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <polygon points="74,38 70,68 74,63 78,68" fill="#C4933A"/>
+          <polygon points="74,98 70,68 74,73 78,68" fill="rgba(255,255,255,0.2)"/>
+          <circle cx="74" cy="68" r="4" fill="#0A1628" stroke="#C4933A" stroke-width="1"/>
+          <text x="74" y="33" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="8" fill="#C4933A">N</text>
+          <line x1="16" y1="110" x2="132" y2="110" stroke="rgba(196,147,58,0.1)" stroke-width="0.5"/>
+          <text x="74" y="127" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="16" font-weight="700" fill="white">臺科精誠匯</text>
+          <text x="74" y="143" text-anchor="middle" font-family="'Noto Sans TC',sans-serif" font-size="8" fill="rgba(196,147,58,0.6)" letter-spacing="1">精於管理・誠於實踐</text>
+        </svg>
+      </div>
+      <div class="label">C-6 方形精緻版 深藍金框</div>
+    </div>
+
+    <!-- C7 瓷白極簡 -->
+    <div class="card">
+      <div class="display" style="background:#FAFAF8;">
+        <svg width="168" height="168" viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg">
+          <!-- ultra minimal: just outline circle + thin needle -->
+          <circle cx="84" cy="72" r="50" fill="none" stroke="#0A1628" stroke-width="1"/>
+          <circle cx="84" cy="72" r="3" fill="#0A1628"/>
+          <!-- needle as single thin arrow -->
+          <line x1="84" y1="72" x2="84" y2="28" stroke="#C4933A" stroke-width="1.5" stroke-linecap="round"/>
+          <polygon points="84,24 80,32 88,32" fill="#C4933A"/>
+          <line x1="84" y1="72" x2="84" y2="116" stroke="#0A1628" stroke-width="1" opacity=".25" stroke-linecap="round"/>
+          <line x1="84" y1="72" x2="128" y2="72" stroke="#0A1628" stroke-width="1" opacity=".15" stroke-linecap="round"/>
+          <line x1="84" y1="72" x2="40" y2="72" stroke="#0A1628" stroke-width="1" opacity=".15" stroke-linecap="round"/>
+          <text x="84" y="20" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="9" fill="#C4933A" letter-spacing="1">誠信領航</text>
+          <line x1="22" y1="136" x2="146" y2="136" stroke="#E8E4DC" stroke-width="0.8"/>
+          <text x="84" y="152" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="19" font-weight="900" fill="#0A1628">臺科精誠匯</text>
+        </svg>
+      </div>
+      <div class="label">C-7 極簡瓷白 單色版</div>
+    </div>
+
+    <!-- C8 金底白字 -->
+    <div class="card">
+      <div class="display" style="background:linear-gradient(140deg,#C4933A 0%,#7A5800 100%);">
+        <svg width="218" height="80" viewBox="0 0 218 80" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="40" r="30" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+          <line x1="40" y1="11" x2="40" y2="17" stroke="white" stroke-width="1.5" opacity=".8"/>
+          <line x1="68" y1="40" x2="62" y2="40" stroke="white" stroke-width="1" opacity=".4"/>
+          <line x1="40" y1="69" x2="40" y2="63" stroke="white" stroke-width="1" opacity=".4"/>
+          <line x1="12" y1="40" x2="18" y2="40" stroke="white" stroke-width="1" opacity=".4"/>
+          <polygon points="40,14 36,40 40,35 44,40" fill="white" opacity=".9"/>
+          <polygon points="40,66 36,40 40,45 44,40" fill="white" opacity=".3"/>
+          <circle cx="40" cy="40" r="3.5" fill="#7A5800" stroke="white" stroke-width="1"/>
+          <text x="40" y="9" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="7" fill="white" opacity=".7">N</text>
+          <line x1="82" y1="10" x2="82" y2="70" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <text x="96" y="26" font-family="'Noto Serif TC',serif" font-size="22" font-weight="900" fill="white">臺科精誠匯</text>
+          <text x="96" y="48" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" letter-spacing="1">精於管理・誠於實踐</text>
+          <text x="96" y="65" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="rgba(255,255,255,0.5)" letter-spacing="2">NTUST · E Program</text>
+        </svg>
+      </div>
+      <div class="label">C-8 金底白字 活動橫幅版</div>
+    </div>
+
+    <!-- C9 旗艦夜黑 -->
+    <div class="card">
+      <div class="display" style="background:#030508;">
+        <svg width="175" height="195" viewBox="0 0 175 195" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="cGlow" cx="50%" cy="40%" r="50%">
+              <stop offset="0%" stop-color="rgba(58,135,204,0.2)"/>
+              <stop offset="100%" stop-color="transparent"/>
+            </radialGradient>
+            <linearGradient id="cRing" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#3A87CC" stop-opacity=".8"/>
+              <stop offset="100%" stop-color="#C4933A" stop-opacity=".8"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="87" cy="75" rx="65" ry="65" fill="url(#cGlow)"/>
+          <circle cx="87" cy="75" r="60" fill="none" stroke="url(#cRing)" stroke-width="1.5"/>
+          <circle cx="87" cy="75" r="52" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+          <!-- compass ticks all 8 directions -->
+          <line x1="87" y1="16" x2="87" y2="24" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
+          <line x1="144" y1="75" x2="136" y2="75" stroke="rgba(255,255,255,0.25)" stroke-width="1.2"/>
+          <line x1="87" y1="134" x2="87" y2="126" stroke="rgba(255,255,255,0.25)" stroke-width="1.2"/>
+          <line x1="30" y1="75" x2="38" y2="75" stroke="rgba(255,255,255,0.25)" stroke-width="1.2"/>
+          <line x1="128" y1="34" x2="122" y2="40" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <line x1="46" y1="34" x2="52" y2="40" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <line x1="128" y1="116" x2="122" y2="110" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <line x1="46" y1="116" x2="52" y2="110" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <!-- N,S,E,W labels -->
+          <text x="87" y="13" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="9" fill="#C4933A" letter-spacing="1">N</text>
+          <text x="147" y="78" font-family="'Cormorant Garamond',serif" font-size="8" fill="rgba(255,255,255,0.3)">E</text>
+          <text x="87" y="144" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="8" fill="rgba(255,255,255,0.2)">S</text>
+          <text x="21" y="78" font-family="'Cormorant Garamond',serif" font-size="8" fill="rgba(255,255,255,0.3)">W</text>
+          <!-- needle -->
+          <polygon points="87,20 83,75 87,68 91,75" fill="#C4933A"/>
+          <polygon points="87,130 83,75 87,82 91,75" fill="rgba(255,255,255,0.15)"/>
+          <circle cx="87" cy="75" r="6" fill="#030508" stroke="#C4933A" stroke-width="1.5"/>
+          <circle cx="87" cy="75" r="2" fill="#C4933A"/>
+          <!-- text -->
+          <line x1="24" y1="152" x2="150" y2="152" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+          <text x="87" y="170" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="20" font-weight="900" fill="white">臺科精誠匯</text>
+          <text x="87" y="188" text-anchor="middle" font-family="'Noto Serif TC',serif" font-size="10" fill="rgba(196,147,58,0.7)" letter-spacing="2">精於管理・誠於實踐</text>
+        </svg>
+      </div>
+      <div class="label">C-9 全羅盤旗艦版 極夜</div>
+    </div>
+
+  </div>
+</div>
+
+
+<footer>
+  <svg width="32" height="32" viewBox="0 0 32 32" style="margin-bottom:14px">
+    <polygon points="16,2 8,8 6,16 16,28 26,16 24,8" fill="none" stroke="rgba(196,147,58,0.4)" stroke-width="1"/>
+    <polygon points="16,6 10,10 16,12 22,10" fill="rgba(196,147,58,0.6)"/>
+  </svg>
+  <p style="font-family:'Noto Serif TC',serif; font-size:16px; color:rgba(255,255,255,0.55); margin-bottom:6px;">臺科精誠匯 · 品牌識別提案</p>
+  <p>NTUST EXECUTIVE E PROGRAM — BRAND IDENTITY v3 · 3 CONCEPTS × 27 VARIANTS</p>
+  <p style="margin-top:8px; color:rgba(196,147,58,0.35);">匠心築業，誠信領航</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection with COCO-SSD</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .main-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .container {
+            position: relative;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        #videoElement {
+            border-radius: 8px;
+        }
+        
+        #canvasElement {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            border-radius: 8px;
+        }
+        
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 300px;
+        }
+        
+        .info {
+            margin-top: 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .status {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .status.loading {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status.ready {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .controls {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .webcam-controls {
+            margin-bottom: 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        button.start {
+            background-color: #28a745;
+        }
+        
+        button.start:hover {
+            background-color: #218838;
+        }
+        
+        button.stop {
+            background-color: #dc3545;
+        }
+        
+        button.stop:hover {
+            background-color: #c82333;
+        }
+        
+        .detection-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        
+        .detection-item {
+            padding: 8px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .detection-name {
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+        
+        .detection-confidence {
+            background: #007bff;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .loading-details {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Object Detection with COCO-SSD</h1>
+    
+    <div id="status" class="status loading">
+        Initializing TensorFlow.js model...
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="loading-details" id="loadingDetails">Preparing environment...</div>
+    </div>
+    
+    <div class="main-content">
+        <div class="container" id="videoContainer" style="display: none;">
+            <video id="videoElement" width="640" height="480" autoplay></video>
+            <canvas id="canvasElement" width="640" height="480"></canvas>
+        </div>
+        
+        <div class="side-panel">
+            <div class="info">
+                <div class="webcam-controls">
+                    <div class="button-group">
+                        <button id="startButton" class="start" onclick="startCamera()">▶ Start Camera</button>
+                        <button id="stopButton" class="stop" onclick="stopCamera()" disabled>■ Stop Camera</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info">
+                <h3>Detection Info</h3>
+                <p>Detected Objects: <span id="objectCount">0</span></p>
+                <p>FPS: <span id="fps">0</span></p>
+                
+                <div class="controls">
+                    <button id="toggleButton" onclick="toggleDetection()" disabled>Pause Detection</button>
+                    <button onclick="toggleBoxes()" disabled id="toggleBoxesButton">Hide Boxes</button>
+                </div>
+            </div>
+            
+            <div class="info">
+                <h3>Detected Objects</h3>
+                <div class="detection-list" id="detectionList">
+                    <p style="color: #999; text-align: center;">No objects detected</p>
+                </div>
+            </div>
+            
+            <div class="info">
+                <details style="margin-top: 0;">
+                    <summary style="cursor: pointer; font-weight: bold;">About COCO-SSD</summary>
+                    <p style="margin-top: 10px;">
+                        COCO-SSD is a pre-trained object detection model that can identify and locate 80 different types of objects in images, including people, animals, vehicles, furniture, and more. The model runs directly in your browser using TensorFlow.js.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load TensorFlow.js and COCO-SSD -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.2"></script>
+
+    <script>
+        const videoElement = document.getElementById('videoElement');
+        const canvasElement = document.getElementById('canvasElement');
+        const canvasCtx = canvasElement.getContext('2d');
+        const statusDiv = document.getElementById('status');
+        const objectCountSpan = document.getElementById('objectCount');
+        const fpsSpan = document.getElementById('fps');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const toggleButton = document.getElementById('toggleButton');
+        const toggleBoxesButton = document.getElementById('toggleBoxesButton');
+        const videoContainer = document.getElementById('videoContainer');
+        const detectionListDiv = document.getElementById('detectionList');
+        const progressFill = document.getElementById('progressFill');
+        const loadingDetails = document.getElementById('loadingDetails');
+        
+        let isDetecting = true;
+        let showBoxes = true;
+        let lastTime = Date.now();
+        let frameCount = 0;
+        let currentStream = null;
+        let animationFrameId = null;
+        let model = null;
+
+        // Load COCO-SSD model
+        async function loadModel() {
+            try {
+                // Simulate loading stages for better UX
+                updateLoadingProgress(0, 'Loading TensorFlow.js...');
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                updateLoadingProgress(30, 'Initializing model architecture...');
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                updateLoadingProgress(50, 'Downloading COCO-SSD weights...');
+                model = await cocoSsd.load();
+                
+                updateLoadingProgress(90, 'Finalizing setup...');
+                await new Promise(resolve => setTimeout(resolve, 300));
+                
+                updateLoadingProgress(100, 'Ready!');
+                await new Promise(resolve => setTimeout(resolve, 300));
+                
+                statusDiv.innerHTML = '✓ Ready. Click "Start Camera" to begin.';
+                statusDiv.className = 'status ready';
+            } catch (error) {
+                console.error('Model loading failed:', error);
+                statusDiv.innerHTML = '✗ Error: Failed to load model';
+                statusDiv.className = 'status error';
+            }
+        }
+        
+        function updateLoadingProgress(percentage, message) {
+            if (progressFill) {
+                progressFill.style.width = percentage + '%';
+            }
+            if (loadingDetails) {
+                loadingDetails.textContent = message;
+            }
+        }
+
+        // Detect objects in video frame
+        async function detectObjects() {
+            if (!isDetecting || !currentStream || !model) return;
+            
+            try {
+                // Clear canvas
+                canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+                
+                // Run detection
+                const predictions = await model.detect(videoElement);
+                
+                // Update object count
+                objectCountSpan.textContent = predictions.length;
+                
+                // Update detection list
+                updateDetectionList(predictions);
+                
+                // Draw bounding boxes if enabled
+                if (showBoxes) {
+                    drawPredictions(predictions);
+                }
+                
+                updateFPS();
+            } catch (error) {
+                console.error('Detection error:', error);
+            }
+        }
+
+        // Draw predictions on canvas
+        function drawPredictions(predictions) {
+            canvasCtx.font = '16px Arial';
+            
+            predictions.forEach(prediction => {
+                const [x, y, width, height] = prediction.bbox;
+                const text = `${prediction.class} (${Math.round(prediction.score * 100)}%)`;
+                
+                // Draw bounding box
+                canvasCtx.strokeStyle = '#00FF00';
+                canvasCtx.lineWidth = 3;
+                canvasCtx.strokeRect(x, y, width, height);
+                
+                // Draw label background
+                const textWidth = canvasCtx.measureText(text).width;
+                canvasCtx.fillStyle = '#00FF00';
+                canvasCtx.fillRect(x, y - 25, textWidth + 10, 25);
+                
+                // Draw label text
+                canvasCtx.fillStyle = '#000000';
+                canvasCtx.fillText(text, x + 5, y - 7);
+            });
+        }
+
+        // Update detection list
+        function updateDetectionList(predictions) {
+            if (predictions.length === 0) {
+                detectionListDiv.innerHTML = '<p style="color: #999; text-align: center;">No objects detected</p>';
+                return;
+            }
+            
+            // Sort by confidence
+            const sortedPredictions = [...predictions].sort((a, b) => b.score - a.score);
+            
+            let html = '';
+            sortedPredictions.forEach(pred => {
+                const confidence = Math.round(pred.score * 100);
+                html += `
+                    <div class="detection-item">
+                        <span class="detection-name">${pred.class}</span>
+                        <span class="detection-confidence">${confidence}%</span>
+                    </div>
+                `;
+            });
+            
+            detectionListDiv.innerHTML = html;
+        }
+
+        // Update FPS
+        function updateFPS() {
+            frameCount++;
+            const currentTime = Date.now();
+            if (currentTime - lastTime >= 1000) {
+                fpsSpan.textContent = frameCount;
+                frameCount = 0;
+                lastTime = currentTime;
+            }
+        }
+
+        // Start camera
+        async function startCamera() {
+            try {
+                if (currentStream) {
+                    stopCamera();
+                }
+
+                if (!model) {
+                    statusDiv.textContent = '✗ Error: Model not loaded';
+                    statusDiv.className = 'status error';
+                    return;
+                }
+
+                statusDiv.textContent = '⏳ Starting camera...';
+                statusDiv.className = 'status loading';
+
+                const constraints = {
+                    video: {
+                        width: 640,
+                        height: 480,
+                        facingMode: 'user'
+                    }
+                };
+
+                currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+                videoElement.srcObject = currentStream;
+                
+                await new Promise((resolve) => {
+                    videoElement.onloadedmetadata = () => {
+                        resolve();
+                    };
+                });
+
+                videoContainer.style.display = 'block';
+                statusDiv.textContent = '✓ Detection active';
+                statusDiv.className = 'status ready';
+
+                // Start detection loop
+                const detectFrame = async () => {
+                    if (currentStream && videoElement.readyState === videoElement.HAVE_ENOUGH_DATA) {
+                        await detectObjects();
+                    }
+                    animationFrameId = requestAnimationFrame(detectFrame);
+                };
+                
+                detectFrame();
+                
+                startButton.disabled = true;
+                stopButton.disabled = false;
+                toggleButton.disabled = false;
+                toggleBoxesButton.disabled = false;
+                
+            } catch (error) {
+                console.error('Camera start failed:', error);
+                
+                let errorMessage = '✗ Error: ';
+                if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+                    errorMessage += 'Camera permission denied. Please allow camera access and try again.';
+                } else if (error.name === 'NotFoundError' || error.name === 'DevicesNotFoundError') {
+                    errorMessage += 'Camera not found. Please check your camera connection.';
+                } else if (error.name === 'NotReadableError' || error.name === 'TrackStartError') {
+                    errorMessage += 'Camera is being used by another application.';
+                } else if (error.name === 'OverconstrainedError') {
+                    errorMessage += 'Camera does not support the required resolution.';
+                } else if (error.name === 'SecurityError') {
+                    errorMessage += 'Security restriction: Please use HTTPS or localhost.';
+                } else {
+                    errorMessage += error.message || 'Cannot access camera';
+                }
+                
+                statusDiv.textContent = errorMessage;
+                statusDiv.className = 'status error';
+            }
+        }
+
+        // Stop camera
+        function stopCamera() {
+            if (currentStream) {
+                currentStream.getTracks().forEach(track => track.stop());
+                currentStream = null;
+                videoElement.srcObject = null;
+            }
+
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+
+            canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+            videoContainer.style.display = 'none';
+
+            statusDiv.textContent = '■ Camera stopped';
+            statusDiv.className = 'status loading';
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            toggleButton.disabled = true;
+            toggleBoxesButton.disabled = true;
+            objectCountSpan.textContent = '0';
+            fpsSpan.textContent = '0';
+            detectionListDiv.innerHTML = '<p style="color: #999; text-align: center;">No objects detected</p>';
+        }
+
+        // Toggle detection
+        function toggleDetection() {
+            if (!currentStream) return;
+            
+            isDetecting = !isDetecting;
+            
+            if (isDetecting) {
+                toggleButton.textContent = 'Pause Detection';
+                statusDiv.textContent = '✓ Detection active';
+                statusDiv.className = 'status ready';
+            } else {
+                toggleButton.textContent = 'Resume Detection';
+                statusDiv.textContent = '⏸ Detection paused';
+                statusDiv.className = 'status loading';
+                canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+            }
+        }
+
+        // Toggle bounding boxes display
+        function toggleBoxes() {
+            showBoxes = !showBoxes;
+            toggleBoxesButton.textContent = showBoxes ? 'Hide Boxes' : 'Show Boxes';
+            if (!showBoxes) {
+                canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+            }
+        }
+
+        // Load model on page load
+        window.addEventListener('load', () => {
+            loadModel();
+        });
+    </script>
+</body>
+</html>

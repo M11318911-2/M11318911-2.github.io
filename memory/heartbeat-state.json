@@ -1,10 +1,13 @@
 {
   "lastChecks": {
-    "weather": 1744212600,
-    "heartbeat": 1744234200,
-    "github": 1744183200,
-    "system": 1744234200,
-    "news": 1744221600,
+    "weather": 1744216160,
+    "heartbeat": 1775281230,
+    "github": 1744186200,
+    "system": 1775281230,
+    "news": 1744216160,
     "cron_rerun": 1749101167
+  },
+  "notes": {
+    "2026-04-04-08:10": "Morning news generated successfully (morningnews-20260404-bilingual.html + audio + screenshots) but pending git commit. Cron status: ok."
   }
 }

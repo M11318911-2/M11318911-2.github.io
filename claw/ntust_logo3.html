@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>臺科精誠匯 — 工匠精誠系列 LOGO 提案</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:    #12141a;
+    --gold:   #c9a84c;
+    --gold-lt:#e8c97a;
+    --blue:   #1050b0;
+    --blue-dk:#0a2a6e;
+    --blue-lt:#3a80e0;
+    --teal:   #0b5563;
+    --slate:  #2b3a52;
+    --stone:  #4a4e57;
+    --rust:   #6b2212;
+    --cream:  #f4f0e8;
+    --silver: #8f9bab;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#dfe2e8; font-family:'Noto Sans TC',sans-serif; color:var(--ink); }
+
+  /* ── hero ── */
+  .hero {
+    background: linear-gradient(160deg, #0a1840 0%, #0e2260 50%, #1050b0 100%);
+    padding: 62px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content:'';
+    position:absolute; inset:0;
+    background: radial-gradient(ellipse at 50% 140%, rgba(201,168,76,.2) 0%, transparent 60%);
+  }
+  /* hex grid overlay in hero */
+  .hero::after {
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='70'%3E%3Cpolygon points='30,2 58,17 58,53 30,68 2,53 2,17' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 60px 70px;
+  }
+  .hero-eyebrow {
+    position:relative; z-index:1;
+    font-family:'Cinzel',serif;
+    font-size:10px; letter-spacing:5px;
+    color:var(--gold); margin-bottom:18px;
+  }
+  .hero-title {
+    position:relative; z-index:1;
+    font-family:'Noto Serif TC',serif;
+    font-size:clamp(26px,4vw,46px);
+    font-weight:700; letter-spacing:7px;
+    color:#f4f0e8; margin-bottom:10px;
+  }
+  .hero-sub {
+    position:relative; z-index:1;
+    font-family:'Cormorant Garamond',serif;
+    font-size:16px; font-style:italic;
+    color:var(--gold); letter-spacing:2px; margin-bottom:6px;
+  }
+  .hero-desc {
+    position:relative; z-index:1;
+    font-size:11px; color:var(--silver); letter-spacing:3px;
+  }
+  .ref-strip {
+    background:#0a1840;
+    border-top:1px solid rgba(201,168,76,.25);
+    padding:18px 40px;
+    display:flex; align-items:center; justify-content:center; gap:28px;
+  }
+  .ref-icon { opacity:.85; }
+  .ref-label { font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; color:var(--silver); }
+  .ref-note { font-size:11px; color:var(--gold); letter-spacing:1px;
+    border-left:1px solid rgba(201,168,76,.4); padding-left:20px; }
+
+  /* ── section ── */
+  .section { padding:56px 34px; max-width:1400px; margin:0 auto; }
+  .section-header { text-align:center; margin-bottom:46px; }
+  .concept-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background:#0a1840; color:var(--gold);
+    font-family:'Cinzel',serif; font-size:10px; letter-spacing:4px;
+    padding:5px 16px; border-radius:1px; margin-bottom:16px;
+  }
+  .concept-title {
+    font-family:'Noto Serif TC',serif; font-size:26px;
+    font-weight:700; margin-bottom:6px; color:var(--ink);
+  }
+  .concept-desc { font-size:12px; color:#777; letter-spacing:2px; }
+  .divider { width:48px; height:2px; background:var(--gold); margin:14px auto 0; }
+
+  /* ── grid ── */
+  .logo-grid {
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:2px; background:#b0b4bc; border:2px solid #b0b4bc;
+  }
+  .logo-cell {
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    padding:34px 20px 26px; min-height:240px;
+    position:relative; transition:transform .2s;
+  }
+  .logo-cell:hover { z-index:10; transform:scale(1.025); }
+  .variant-label {
+    font-size:9.5px; letter-spacing:2px; text-transform:uppercase;
+    margin-top:14px; opacity:.5; font-family:'Cinzel',serif;
+  }
+
+  .bg-cream  { background:#f4f0e8; }
+  .bg-ink    { background:#12141a; }
+  .bg-navy   { background:#0a1840; }
+  .bg-blue   { background:#1050b0; }
+  .bg-blue2  { background:#0a2a6e; }
+  .bg-gold   { background:#c9a84c; }
+  .bg-teal   { background:#0b5563; }
+  .bg-slate  { background:#2b3a52; }
+  .bg-white  { background:#ffffff; }
+
+  .section-divider {
+    height:1px;
+    background:linear-gradient(to right,transparent,rgba(201,168,76,.5),transparent);
+    margin:0 34px;
+  }
+  footer {
+    text-align:center; padding:44px;
+    font-size:10px; color:#888; letter-spacing:3px;
+    font-family:'Cinzel',serif;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Craftsman Series · Logo Design Proposal · 2025</div>
+  <h1 class="hero-title">臺科精誠匯</h1>
+  <div class="hero-sub">工匠精誠系列 — 六環匯聚 · 根脈生長 · 匠心印鑑</div>
+  <div class="hero-desc">靈感源自：六角螺帽・圓心洞口・Y形根脈・圓形底盤</div>
+</div>
+
+<div class="ref-strip">
+  <div class="ref-label">LOGO REFERENCE</div>
+  <!-- mini reference rendering of original logo -->
+  <svg viewBox="0 0 80 80" width="56" height="56" class="ref-icon" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="40" r="38" fill="#1050b0"/>
+    <polygon points="40,8 62,20 62,44 40,56 18,44 18,20" fill="none" stroke="#12141a" stroke-width="3"/>
+    <circle cx="40" cy="32" r="10" fill="#12141a"/>
+    <line x1="28" y1="56" x2="20" y2="72" stroke="#12141a" stroke-width="3" stroke-linecap="round"/>
+    <line x1="52" y1="56" x2="60" y2="72" stroke="#12141a" stroke-width="3" stroke-linecap="round"/>
+    <line x1="40" y1="56" x2="40" y2="72" stroke="#12141a" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+  <div class="ref-note">
+    六角螺帽（精工匠心）· 圓心空洞（誠信通透）· Y形根脈（匯聚生長）· 外圓底盤（包容萬象）<br>
+    Hex-nut precision · Circular void integrity · Y-root confluence · Circular unity
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CONCEPT 07 — 精工六環  Hexagon of Mastery
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="concept-badge">Concept 07</div>
+    <div class="concept-title">精工六環 — Hexagon of Mastery</div>
+    <div class="concept-desc">六角螺帽輪廓・圓心代表誠信・Y形根脈象徵匯聚生長</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="logo-grid">
+
+    <!-- 7-01 cream horizontal -->
+    <div class="logo-cell bg-cream">
+      <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" width="278">
+        <g transform="translate(72,85)">
+          <!-- outer circle -->
+          <circle cx="0" cy="8" r="62" fill="none" stroke="#1050b0" stroke-width="1.5"/>
+          <!-- hex nut -->
+          <polygon points="0,-40 34.6,-20 34.6,20 0,40 -34.6,20 -34.6,-20"
+            fill="none" stroke="#12141a" stroke-width="2.2"/>
+          <!-- inner hex -->
+          <polygon points="0,-26 22.5,-13 22.5,13 0,26 -22.5,13 -22.5,-13"
+            fill="none" stroke="#1050b0" stroke-width="1.2"/>
+          <!-- center void circle -->
+          <circle cx="0" cy="0" r="14" fill="none" stroke="#12141a" stroke-width="2"/>
+          <!-- Y-root stems from bottom of hex -->
+          <line x1="0" y1="40" x2="0" y2="62" stroke="#12141a" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="0" y1="54" x2="-18" y2="72" stroke="#12141a" stroke-width="2" stroke-linecap="round"/>
+          <line x1="0" y1="54" x2="18" y2="72" stroke="#12141a" stroke-width="2" stroke-linecap="round"/>
+          <!-- gold accent: top edge of hex -->
+          <line x1="-34.6" y1="-20" x2="0" y2="-40" stroke="#c9a84c" stroke-width="2.5"/>
+          <line x1="0" y1="-40" x2="34.6" y2="-20" stroke="#c9a84c" stroke-width="2.5"/>
+        </g>
+        <!-- text block -->
+        <text x="150" y="60" font-family="Noto Serif TC" font-size="23" font-weight="700" fill="#12141a" letter-spacing="3">臺科精誠匯</text>
+        <line x1="150" y1="68" x2="294" y2="68" stroke="#c9a84c" stroke-width="1"/>
+        <text x="150" y="83" font-family="Noto Sans TC" font-size="9.5" fill="#444" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="150" y="97" font-family="Cinzel" font-size="7.5" fill="#aaa" letter-spacing="2">NTUST · E-PROGRAM</text>
+      </svg>
+      <div class="variant-label" style="color:#555">— 01 Cream Horizontal —</div>
+    </div>
+
+    <!-- 7-02 dark blue -->
+    <div class="logo-cell bg-navy">
+      <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" width="278">
+        <defs>
+          <linearGradient id="g702" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e8c97a"/>
+            <stop offset="100%" stop-color="#c9a84c"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(72,85)">
+          <circle cx="0" cy="8" r="62" fill="rgba(16,80,176,.25)" stroke="#3a80e0" stroke-width="1.2"/>
+          <polygon points="0,-40 34.6,-20 34.6,20 0,40 -34.6,20 -34.6,-20"
+            fill="rgba(255,255,255,.04)" stroke="#f4f0e8" stroke-width="2.2"/>
+          <polygon points="0,-26 22.5,-13 22.5,13 0,26 -22.5,13 -22.5,-13"
+            fill="none" stroke="#3a80e0" stroke-width="1.2"/>
+          <circle cx="0" cy="0" r="14" fill="rgba(16,80,176,.3)" stroke="#f4f0e8" stroke-width="2"/>
+          <line x1="0" y1="40" x2="0" y2="62" stroke="#f4f0e8" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="0" y1="54" x2="-18" y2="72" stroke="#f4f0e8" stroke-width="2" stroke-linecap="round"/>
+          <line x1="0" y1="54" x2="18" y2="72" stroke="#f4f0e8" stroke-width="2" stroke-linecap="round"/>
+          <line x1="-34.6" y1="-20" x2="0" y2="-40" stroke="url(#g702)" stroke-width="2.5"/>
+          <line x1="0" y1="-40" x2="34.6" y2="-20" stroke="url(#g702)" stroke-width="2.5"/>
+        </g>
+        <text x="150" y="60" font-family="Noto Serif TC" font-size="23" font-weight="700" fill="#f4f0e8" letter-spacing="3">臺科精誠匯</text>
+        <line x1="150" y1="68" x2="294" y2="68" stroke="#c9a84c" stroke-width="1"/>
+        <text x="150" y="83" font-family="Noto Sans TC" font-size="9.5" fill="#c9a84c" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="150" y="97" font-family="Cinzel" font-size="7.5" fill="#334" letter-spacing="2">NTUST · E-PROGRAM</text>
+      </svg>
+      <div class="variant-label" style="color:#445566">— 02 Navy Gold —</div>
+    </div>
+
+    <!-- 7-03 blue original-feel stacked -->
+    <div class="logo-cell bg-blue">
+      <svg viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" width="200">
+        <g transform="translate(110,100)">
+          <!-- outer circle: blue fill like original -->
+          <circle cx="0" cy="10" r="82" fill="#1050b0" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
+          <!-- hex outline -->
+          <polygon points="0,-54 46.8,-27 46.8,27 0,54 -46.8,27 -46.8,-27"
+            fill="none" stroke="#12141a" stroke-width="3.5"/>
+          <!-- inner hex -->
+          <polygon points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"
+            fill="none" stroke="#12141a" stroke-width="2"/>
+          <!-- center void -->
+          <circle cx="0" cy="0" r="19" fill="#12141a"/>
+          <!-- Y stems -->
+          <line x1="0" y1="54" x2="0" y2="82" stroke="#12141a" stroke-width="3" stroke-linecap="round"/>
+          <line x1="0" y1="72" x2="-22" y2="94" stroke="#12141a" stroke-width="2.8" stroke-linecap="round"/>
+          <line x1="0" y1="72" x2="22" y2="94" stroke="#12141a" stroke-width="2.8" stroke-linecap="round"/>
+          <!-- gold top crown -->
+          <line x1="-46.8" y1="-27" x2="0" y2="-54" stroke="#c9a84c" stroke-width="3"/>
+          <line x1="0" y1="-54" x2="46.8" y2="-27" stroke="#c9a84c" stroke-width="3"/>
+        </g>
+        <text x="110" y="194" text-anchor="middle" font-family="Noto Serif TC" font-size="17" font-weight="700" fill="#f4f0e8" letter-spacing="4">臺科精誠匯</text>
+        <line x1="22" y1="202" x2="198" y2="202" stroke="#c9a84c" stroke-width=".8"/>
+        <text x="110" y="216" text-anchor="middle" font-family="Noto Sans TC" font-size="8.5" fill="#c9a84c" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="110" y="230" text-anchor="middle" font-family="Cinzel" font-size="7" fill="rgba(201,168,76,.5)" letter-spacing="2">NTUST · E-PROGRAM</text>
+      </svg>
+      <div class="variant-label" style="color:#c9a84c">— 03 Blue Stacked —</div>
+    </div>
+
+    <!-- 7-04 white architectural -->
+    <div class="logo-cell bg-white">
+      <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" width="200">
+        <g transform="translate(110,100)">
+          <circle cx="0" cy="8" r="80" fill="#f4f0e8" stroke="#1050b0" stroke-width="2"/>
+          <!-- solid hex fill -->
+          <polygon points="0,-52 45,-26 45,26 0,52 -45,26 -45,-26" fill="#1050b0"/>
+          <!-- inner void hex -->
+          <polygon points="0,-34 29.4,-17 29.4,17 0,34 -29.4,17 -29.4,-17" fill="#f4f0e8"/>
+          <!-- center dot -->
+          <circle cx="0" cy="0" r="18" fill="#1050b0"/>
+          <!-- gold hex ring -->
+          <polygon points="0,-52 45,-26 45,26 0,52 -45,26 -45,-26"
+            fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <!-- Y stems -->
+          <line x1="0" y1="52" x2="0" y2="78" stroke="#12141a" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="0" y1="68" x2="-20" y2="88" stroke="#12141a" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="0" y1="68" x2="20" y2="88" stroke="#12141a" stroke-width="2.2" stroke-linecap="round"/>
+          <!-- gold top edge -->
+          <line x1="-45" y1="-26" x2="0" y2="-52" stroke="#c9a84c" stroke-width="3"/>
+          <line x1="0" y1="-52" x2="45" y2="-26" stroke="#c9a84c" stroke-width="3"/>
+        </g>
+        <text x="110" y="188" text-anchor="middle" font-family="Noto Serif TC" font-size="15" font-weight="700" fill="#12141a" letter-spacing="4">臺科精誠匯</text>
+        <line x1="22" y1="195" x2="198" y2="195" stroke="#c9a84c" stroke-width=".8"/>
+        <text x="110" y="207" text-anchor="middle" font-family="Noto Sans TC" font-size="8" fill="#1050b0" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="110" y="218" text-anchor="middle" font-family="Cinzel" font-size="7" fill="#bbb" letter-spacing="2">NTUST · E-PROGRAM</text>
+      </svg>
+      <div class="variant-label" style="color:#555">— 04 White Architectural —</div>
+    </div>
+
+    <!-- 7-05 gold premium -->
+    <div class="logo-cell bg-gold">
+      <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" width="278">
+        <g transform="translate(72,85)">
+          <circle cx="0" cy="8" r="62" fill="rgba(26,20,6,.08)" stroke="#12141a" stroke-width="1.5"/>
+          <polygon points="0,-40 34.6,-20 34.6,20 0,40 -34.6,20 -34.6,-20"
+            fill="rgba(26,20,6,.15)" stroke="#12141a" stroke-width="2.5"/>
+          <polygon points="0,-26 22.5,-13 22.5,13 0,26 -22.5,13 -22.5,-13"
+            fill="none" stroke="#5a4010" stroke-width="1.2"/>
+          <circle cx="0" cy="0" r="14" fill="#12141a"/>
+          <line x1="0" y1="40" x2="0" y2="62" stroke="#12141a" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="0" y1="54" x2="-18" y2="72" stroke="#12141a" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="0" y1="54" x2="18" y2="72" stroke="#12141a" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="-34.6" y1="-20" x2="0" y2="-40" stroke="#3a2a00" stroke-width="2.5"/>
+          <line x1="0" y1="-40" x2="34.6" y2="-20" stroke="#3a2a00" stroke-width="2.5"/>
+        </g>
+        <text x="150" y="58" font-family="Noto Serif TC" font-size="23" font-weight="700" fill="#12141a" letter-spacing="3">臺科精誠匯</text>
+        <line x1="150" y1="66" x2="294" y2="66" stroke="#3a2a00" stroke-width="1" opacity=".5"/>
+        <text x="150" y="81" font-family="Noto Sans TC" font-size="9.5" fill="#3a2a00" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="150" y="96" font-family="Cinzel" font-size="7.5" fill="#5a4010" letter-spacing="2">NTUST · E-PROGRAM</text>
+      </svg>
+      <div class="variant-label" style="color:#3a2a00">— 05 Gold Premium —</div>
+    </div>
+
+    <!-- 7-06 teal slate mix -->
+    <div class="logo-cell bg-teal">
+      <svg viewBox="0 0 220 230" xmlns="http://www.w3.org/2000/svg" width="200">
+        <defs>
+          <linearGradient id="g706" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e8c97a"/>
+            <stop offset="100%" stop-color="#c9a84c"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(110,100)">
+          <circle cx="0" cy="10" r="80" fill="rgba(0,0,0,.15)" stroke="#c9a84c" stroke-width="1"/>
+          <polygon points="0,-50 43.3,-25 43.3,25 0,50 -43.3,25 -43.3,-25"
+            fill="rgba(255,255,255,.06)" stroke="#f4f0e8" stroke-width="2.5"/>
+          <polygon points="0,-33 28.6,-16.5 28.6,16.5 0,33 -28.6,16.5 -28.6,-16.5"
+            fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+          <circle cx="0" cy="0" r="17" fill="rgba(11,85,99,.8)" stroke="#f4f0e8" stroke-width="1.5"/>
+          <text x="0" y="6" text-anchor="middle" font-family="Noto Serif TC" font-size="14" font-weight="700" fill="#c9a84c">匯</text>
+          <line x1="0" y1="50" x2="0" y2="78" stroke="#f4f0e8" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="0" y1="68" x2="-22" y2="90" stroke="#f4f0e8" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="0" y1="68" x2="22" y2="90" stroke="#f4f0e8" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="-43.3" y1="-25" x2="0" y2="-50" stroke="url(#g706)" stroke-width="3"/>
+          <line x1="0" y1="-50" x2="43.3" y2="-25" stroke="url(#g706)" stroke-width="3"/>
+        </g>
+        <text x="110" y="196" text-anchor="middle" font-family="Noto Serif TC" font-size="16" font-weight="700" fill="#f4f0e8" letter-spacing="4">臺科精誠匯</text>
+        <line x1="24" y1="204" x2="196" y2="204" stroke="#c9a84c" stroke-width=".8"/>
+        <text x="110" y="217" text-anchor="middle" font-family="Noto Sans TC" font-size="8.5" fill="#c9a84c" letter-spacing="2">精於管理・誠於實踐</text>
+      </svg>
+      <div class="variant-label" style="color:#c9a84c">— 06 Teal Circle —</div>
+    </div>
+
+    <!-- 7-07 icon only ink -->
+    <div class="logo-cell bg-ink">
+      <svg viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" width="130">
+        <defs>
+          <linearGradient id="g707" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e8c97a"/>
+            <stop offset="100%" stop-color="#c9a84c"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(70,72)">
+          <circle cx="0" cy="6" r="58" fill="rgba(16,80,176,.2)" stroke="#3a80e0" stroke-width="1"/>
+          <polygon points="0,-38 32.9,-19 32.9,19 0,38 -32.9,19 -32.9,-19"
+            fill="rgba(255,255,255,.04)" stroke="#f4f0e8" stroke-width="2.2"/>
+          <polygon points="0,-25 21.7,-12.5 21.7,12.5 0,25 -21.7,12.5 -21.7,-12.5"
+            fill="none" stroke="#3a80e0" stroke-width="1.2"/>
+          <circle cx="0" cy="0" r="13" fill="none" stroke="#f4f0e8" stroke-width="2"/>
+          <line x1="0" y1="38" x2="0" y2="58" stroke="#f4f0e8" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="0" y1="50" x2="-16" y2="66" stroke="#f4f0e8" stroke-width="2" stroke-linecap="round"/>
+          <line x1="0" y1="50" x2="16" y2="66" stroke="#f4f0e8" stroke-width="2" stroke-linecap="round"/>
+          <line x1="-32.9" y1="-19" x2="0" y2="-38" stroke="url(#g707)" stroke-width="2.5"/>
+          <line x1="0" y1="-38" x2="32.9" y2="-19" stroke="url(#g707)" stroke-width="2.5"/>
+        </g>
+      </svg>
+      <div class="variant-label" style="color:#3a80e0">— 07 Icon Only Dark —</div>
+    </div>
+
+    <!-- 7-08 icon only blue filled -->
+    <div class="logo-cell bg-blue">
+      <svg viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" width="130">
+        <g transform="translate(70,72)">
+          <!-- filled like original logo -->
+          <circle cx="0" cy="6" r="58" fill="#1050b0"/>
+          <polygon points="0,-40 34.6,-20 34.6,20 0,40 -34.6,20 -34.6,-20" fill="none" stroke="#12141a" stroke-width="3.5"/>
+          <polygon points="0,-26 22.5,-13 22.5,13 0,26 -22.5,13 -22.5,-13" fill="none" stroke="#12141a" stroke-width="2"/>
+          <circle cx="0" cy="0" r="15" fill="#12141a"/>
+          <line x1="0" y1="40" x2="0" y2="62" stroke="#12141a" stroke-width="3" stroke-linecap="round"/>
+          <line x1="0" y1="54" x2="-18" y2="70" stroke="#12141a" stroke-width="2.8" stroke-linecap="round"/>
+          <line x1="0" y1="54" x2="18" y2="70" stroke="#12141a" stroke-width="2.8" stroke-linecap="round"/>
+          <line x1="-34.6" y1="-20" x2="0" y2="-40" stroke="#c9a84c" stroke-width="3"/>
+          <line x1="0" y1="-40" x2="34.6" y2="-20" stroke="#c9a84c" stroke-width="3"/>
+        </g>
+      </svg>
+      <div class="variant-label" style="color:#c9a84c">— 08 Blue Filled —</div>
+    </div>
+
+    <!-- 7-09 wide dark banner -->
+    <div class="logo-cell bg-blue2">
+      <svg viewBox="0 0 360 90" xmlns="http://www.w3.org/2000/svg" width="338">
+        <defs>
+          <linearGradient id="g709" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e8c97a"/>
+            <stop offset="100%" stop-color="#c9a84c"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(44,45)">
+          <circle cx="0" cy="4" r="34" fill="rgba(16,80,176,.3)" stroke="#3a80e0" stroke-width="1"/>
+          <polygon points="0,-22 19,-11 19,11 0,22 -19,11 -19,-11"
+            fill="rgba(255,255,255,.05)" stroke="#f4f0e8" stroke-width="2"/>
+          <polygon points="0,-14 12.1,-7 12.1,7 0,14 -12.1,7 -12.1,-7"
+            fill="none" stroke="#3a80e0" stroke-width="1"/>
+          <circle cx="0" cy="0" r="8" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <line x1="0" y1="22" x2="0" y2="36" stroke="#f4f0e8" stroke-width="2" stroke-linecap="round"/>
+          <line x1="0" y1="30" x2="-10" y2="40" stroke="#f4f0e8" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="0" y1="30" x2="10" y2="40" stroke="#f4f0e8" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="-19" y1="-11" x2="0" y2="-22" stroke="url(#g709)" stroke-width="2"/>
+          <line x1="0" y1="-22" x2="19" y2="-11" stroke="url(#g709)" stroke-width="2"/>
+        </g>
+        <line x1="88" y1="14" x2="88" y2="76" stroke="#c9a84c" stroke-width=".8" opacity=".5"/>
+        <text x="102" y="36" font-family="Noto Serif TC" font-size="21" font-weight="700" fill="#f4f0e8" letter-spacing="4">臺科精誠匯</text>
+        <text x="102" y="53" font-family="Noto Sans TC" font-size="9" fill="#c9a84c" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="102" y="66" font-family="Cinzel" font-size="6.5" fill="rgba(201,168,76,.45)" letter-spacing="2.5">NTUST · E-PROGRAM · HEXAGON OF MASTERY</text>
+      </svg>
+      <div class="variant-label" style="color:#3a80e0">— 09 Blue Banner —</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     CONCEPT 08 — 根脈匯聚  Y-Root Confluence
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="concept-badge">Concept 08</div>
+    <div class="concept-title">根脈匯聚 — Y-Root Confluence</div>
+    <div class="concept-desc">放大Y形根脈為主圖形・象徵三方匯聚・向上生長的管理精神</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="logo-grid">
+
+    <!-- 8-01 cream root -->
+    <div class="logo-cell bg-cream">
+      <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" width="278">
+        <g transform="translate(72,88)">
+          <!-- large Y root as primary mark -->
+          <!-- vertical stem -->
+          <line x1="0" y1="60" x2="0" y2="-18" stroke="#12141a" stroke-width="4" stroke-linecap="round"/>
+          <!-- left branch -->
+          <line x1="0" y1="-18" x2="-36" y2="-56" stroke="#12141a" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- right branch -->
+          <line x1="0" y1="-18" x2="36" y2="-56" stroke="#12141a" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- hex around each branch tip -->
+          <polygon points="-36,-56 -24,-63 -12,-56 -12,-42 -24,-35 -36,-42"
+            fill="none" stroke="#1050b0" stroke-width="1.5"/>
+          <circle cx="-24" cy="-49" r="7" fill="none" stroke="#12141a" stroke-width="1.5"/>
+          <polygon points="36,-56 48,-63 60,-56 60,-42 48,-35 36,-42"
+            fill="none" stroke="#1050b0" stroke-width="1.5"/>
+          <circle cx="48" cy="-49" r="7" fill="none" stroke="#12141a" stroke-width="1.5"/>
+          <!-- hex at centre fork -->
+          <polygon points="0,-18 12,-25 24,-18 24,-4 12,3 0,-4"
+            fill="none" stroke="#c9a84c" stroke-width="1.8"/>
+          <circle cx="12" cy="-11" r="6" fill="none" stroke="#12141a" stroke-width="1.5"/>
+          <!-- base pedestal -->
+          <rect x="-20" y="60" width="40" height="8" rx="1" fill="#12141a"/>
+          <rect x="-14" y="68" width="28" height="5" rx="1" fill="#4a4e57"/>
+        </g>
+        <text x="148" y="60" font-family="Noto Serif TC" font-size="23" font-weight="700" fill="#12141a" letter-spacing="3">臺科精誠匯</text>
+        <line x1="148" y1="68" x2="292" y2="68" stroke="#c9a84c" stroke-width="1"/>
+        <text x="148" y="83" font-family="Noto Sans TC" font-size="9.5" fill="#444" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="148" y="97" font-family="Cinzel" font-size="7.5" fill="#aaa" letter-spacing="2">NTUST · E-PROGRAM</text>
+      </svg>
+      <div class="variant-label" style="color:#555">— 01 Root Light —</div>
+    </div>
+
+    <!-- 8-02 dark gold Y -->
+    <div class="logo-cell bg-ink">
+      <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" width="278">
+        <defs>
+          <linearGradient id="g802" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#c9a84c"/>
+            <stop offset="100%" stop-color="#e8c97a"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(72,88)">
+          <line x1="0" y1="60" x2="0" y2="-18" stroke="#f4f0e8" stroke-width="4" stroke-linecap="round"/>
+          <line x1="0" y1="-18" x2="-36" y2="-56" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="0" y1="-18" x2="36" y2="-56" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
+          <polygon points="-36,-56 -24,-63 -12,-56 -12,-42 -24,-35 -36,-42"
+            fill="rgba(201,168,76,.15)" stroke="url(#g802)" stroke-width="1.5"/>
+          <circle cx="-24" cy="-49" r="7" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <polygon points="36,-56 48,-63 60,-56 60,-42 48,-35 36,-42"
+            fill="rgba(201,168,76,.15)" stroke="url(#g802)" stroke-width="1.5"/>
+          <circle cx="48" cy="-49" r="7" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <polygon points="0,-18 12,-25 24,-18 24,-4 12,3 0,-4"
+            fill="rgba(201,168,76,.2)" stroke="url(#g802)" stroke-width="2"/>
+          <circle cx="12" cy="-11" r="6" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <rect x="-20" y="60" width="40" height="8" rx="1" fill="rgba(201,168,76,.2)" stroke="url(#g802)" stroke-width="1"/>
+        </g>
+        <text x="148" y="60" font-family="Noto Serif TC" font-size="23" font-weight="700" fill="#f4f0e8" letter-spacing="3">臺科精誠匯</text>
+        <line x1="148" y1="68" x2="292" y2="68" stroke="#c9a84c" stroke-width="1"/>
+        <text x="148" y="83" font-family="Noto Sans TC" font-size="9.5" fill="#c9a84c" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="148" y="97" font-family="Cinzel" font-size="7.5" fill="#334" letter-spacing="2">NTUST · E-PROGRAM</text>
+      </svg>
+      <div class="variant-label" style="color:#667">— 02 Dark Gold —</div>
+    </div>
+
+    <!-- 8-03 blue circle badge Y -->
+    <div class="logo-cell bg-blue">
+      <svg viewBox="0 0 220 230" xmlns="http://www.w3.org/2000/svg" width="200">
+        <g transform="translate(110,104)">
+          <circle cx="0" cy="0" r="90" fill="#1050b0"/>
+          <circle cx="0" cy="0" r="86" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+          <!-- Y mark scaled large -->
+          <line x1="0" y1="58" x2="0" y2="-14" stroke="#12141a" stroke-width="5" stroke-linecap="round"/>
+          <line x1="0" y1="-14" x2="-40" y2="-58" stroke="#12141a" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="0" y1="-14" x2="40" y2="-58" stroke="#12141a" stroke-width="4.5" stroke-linecap="round"/>
+          <!-- hex at tips -->
+          <polygon points="-40,-58 -27,-65 -14,-58 -14,-44 -27,-37 -40,-44"
+            fill="none" stroke="#12141a" stroke-width="2.5"/>
+          <circle cx="-27" cy="-51" r="9" fill="#12141a"/>
+          <polygon points="40,-58 53,-65 66,-58 66,-44 53,-37 40,-44"
+            fill="none" stroke="#12141a" stroke-width="2.5"/>
+          <circle cx="53" cy="-51" r="9" fill="#12141a"/>
+          <!-- centre fork hex -->
+          <polygon points="0,-14 13,-21 26,-14 26,0 13,7 0,0"
+            fill="none" stroke="#12141a" stroke-width="2.5"/>
+          <circle cx="13" cy="-7" r="8" fill="#12141a"/>
+          <!-- gold crown lines -->
+          <line x1="-40" y1="-58" x2="-27" y2="-70" stroke="#c9a84c" stroke-width="2.5"/>
+          <line x1="40" y1="-58" x2="53" y2="-70" stroke="#c9a84c" stroke-width="2.5"/>
+          <!-- base -->
+          <rect x="-22" y="58" width="44" height="10" rx="1" fill="#12141a"/>
+        </g>
+        <text x="110" y="202" text-anchor="middle" font-family="Noto Serif TC" font-size="16" font-weight="700" fill="#f4f0e8" letter-spacing="4">臺科精誠匯</text>
+        <line x1="22" y1="210" x2="198" y2="210" stroke="#c9a84c" stroke-width=".8"/>
+        <text x="110" y="222" text-anchor="middle" font-family="Noto Sans TC" font-size="8" fill="#c9a84c" letter-spacing="2">精於管理・誠於實踐</text>
+      </svg>
+      <div class="variant-label" style="color:#c9a84c">— 03 Blue Badge —</div>
+    </div>
+
+    <!-- 8-04 navy triple hex -->
+    <div class="logo-cell bg-navy">
+      <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" width="200">
+        <defs>
+          <linearGradient id="g804" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e8c97a"/>
+            <stop offset="100%" stop-color="#c9a84c"/>
+          </linearGradient>
+        </defs>
+        <!-- 3 hexagons arranged in Y layout -->
+        <!-- top-left hex -->
+        <g transform="translate(56,54)">
+          <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15"
+            fill="rgba(16,80,176,.3)" stroke="url(#g804)" stroke-width="1.5"/>
+          <circle cx="0" cy="0" r="14" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <text x="0" y="5" text-anchor="middle" font-family="Noto Serif TC" font-size="12" font-weight="700" fill="#f4f0e8">精</text>
+        </g>
+        <!-- top-right hex -->
+        <g transform="translate(164,54)">
+          <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15"
+            fill="rgba(16,80,176,.3)" stroke="url(#g804)" stroke-width="1.5"/>
+          <circle cx="0" cy="0" r="14" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <text x="0" y="5" text-anchor="middle" font-family="Noto Serif TC" font-size="12" font-weight="700" fill="#f4f0e8">誠</text>
+        </g>
+        <!-- bottom centre hex -->
+        <g transform="translate(110,148)">
+          <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15"
+            fill="rgba(201,168,76,.2)" stroke="url(#g804)" stroke-width="2"/>
+          <circle cx="0" cy="0" r="14" fill="rgba(201,168,76,.2)" stroke="#c9a84c" stroke-width="1.5"/>
+          <text x="0" y="5" text-anchor="middle" font-family="Noto Serif TC" font-size="12" font-weight="700" fill="#c9a84c">匯</text>
+        </g>
+        <!-- connecting stems (Y) -->
+        <line x1="56" y1="84" x2="110" y2="118" stroke="#f4f0e8" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="164" y1="84" x2="110" y2="118" stroke="#f4f0e8" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="110" y1="118" x2="110" y2="148" stroke="#f4f0e8" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- gold fork dot -->
+        <circle cx="110" cy="118" r="4" fill="#c9a84c"/>
+      </svg>
+      <div class="variant-label" style="color:#445566">— 04 Triple Hex —</div>
+    </div>
+
+    <!-- 8-05 white clean Y -->
+    <div class="logo-cell bg-white">
+      <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" width="278">
+        <g transform="translate(72,88)">
+          <!-- simplified bold Y mark -->
+          <line x1="0" y1="56" x2="0" y2="-10" stroke="#1050b0" stroke-width="5" stroke-linecap="round"/>
+          <line x1="0" y1="-10" x2="-38" y2="-50" stroke="#1050b0" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="0" y1="-10" x2="38" y2="-50" stroke="#1050b0" stroke-width="4.5" stroke-linecap="round"/>
+          <!-- hex at top of each arm: filled blue -->
+          <polygon points="-38,-50 -25,-57 -12,-50 -12,-36 -25,-29 -38,-36" fill="#1050b0"/>
+          <circle cx="-25" cy="-43" r="8" fill="white"/>
+          <polygon points="38,-50 51,-57 64,-50 64,-36 51,-29 38,-36" fill="#1050b0"/>
+          <circle cx="51" cy="-43" r="8" fill="white"/>
+          <!-- centre hex: gold -->
+          <polygon points="0,-10 13,-17 26,-10 26,4 13,11 0,4" fill="#c9a84c"/>
+          <circle cx="13" cy="-3" r="7" fill="white"/>
+          <!-- base -->
+          <rect x="-18" y="56" width="36" height="8" rx="1" fill="#1050b0"/>
+          <line x1="-18" y1="56" x2="18" y2="56" stroke="#c9a84c" stroke-width="2"/>
+        </g>
+        <text x="148" y="58" font-family="Noto Serif TC" font-size="23" font-weight="700" fill="#12141a" letter-spacing="3">臺科精誠匯</text>
+        <line x1="148" y1="66" x2="292" y2="66" stroke="#1050b0" stroke-width="1.5"/>
+        <text x="148" y="81" font-family="Noto Sans TC" font-size="9.5" fill="#1050b0" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="148" y="96" font-family="Cinzel" font-size="7.5" fill="#aaa" letter-spacing="2">NTUST · E-PROGRAM</text>
+      </svg>
+      <div class="variant-label" style="color:#1050b0">— 05 White Bold —</div>
+    </div>
+
+    <!-- 8-06 teal round seal -->
+    <div class="logo-cell bg-teal">
+      <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" width="200">
+        <circle cx="110" cy="110" r="98" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+        <circle cx="110" cy="110" r="92" fill="none" stroke="rgba(245,240,232,.25)" stroke-width=".7" stroke-dasharray="3 3"/>
+        <path id="arc8" d="M110,110 m-84,0 a84,84 0 1,1 168,0" fill="none"/>
+        <text font-family="Noto Serif TC" font-size="10" fill="#f4f0e8" letter-spacing="6">
+          <textPath href="#arc8">臺科精誠匯  ·  NTUST  E-PROGRAM</textPath>
+        </text>
+        <g transform="translate(110,100)">
+          <line x1="0" y1="50" x2="0" y2="-14" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="0" y1="-14" x2="-30" y2="-46" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/>
+          <line x1="0" y1="-14" x2="30" y2="-46" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="-30,-46 -19,-52 -8,-46 -8,-34 -19,-28 -30,-34"
+            fill="rgba(201,168,76,.3)" stroke="#c9a84c" stroke-width="1.5"/>
+          <circle cx="-19" cy="-40" r="7" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <polygon points="30,-46 41,-52 52,-46 52,-34 41,-28 30,-34"
+            fill="rgba(201,168,76,.3)" stroke="#c9a84c" stroke-width="1.5"/>
+          <circle cx="41" cy="-40" r="7" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <polygon points="0,-14 11,-20 22,-14 22,-2 11,4 0,-2"
+            fill="rgba(201,168,76,.3)" stroke="#c9a84c" stroke-width="1.8"/>
+          <circle cx="11" cy="-8" r="6" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+        </g>
+        <text x="110" y="165" text-anchor="middle" font-family="Noto Sans TC" font-size="8.5" fill="#c9a84c" letter-spacing="2">精於管理・誠於實踐</text>
+      </svg>
+      <div class="variant-label" style="color:#c9a84c">— 06 Teal Seal —</div>
+    </div>
+
+    <!-- 8-07 icon only gold -->
+    <div class="logo-cell bg-gold">
+      <svg viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" width="130">
+        <g transform="translate(52,88)">
+          <line x1="0" y1="50" x2="0" y2="-12" stroke="#12141a" stroke-width="4" stroke-linecap="round"/>
+          <line x1="0" y1="-12" x2="-32" y2="-48" stroke="#12141a" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="0" y1="-12" x2="32" y2="-48" stroke="#12141a" stroke-width="3.5" stroke-linecap="round"/>
+          <polygon points="-32,-48 -21,-54 -10,-48 -10,-36 -21,-30 -32,-36"
+            fill="rgba(26,20,6,.2)" stroke="#12141a" stroke-width="2"/>
+          <circle cx="-21" cy="-42" r="7" fill="#c9a84c"/>
+          <polygon points="32,-48 43,-54 54,-48 54,-36 43,-30 32,-36"
+            fill="rgba(26,20,6,.2)" stroke="#12141a" stroke-width="2"/>
+          <circle cx="43" cy="-42" r="7" fill="#c9a84c"/>
+          <polygon points="0,-12 11,-18 22,-12 22,0 11,6 0,0"
+            fill="rgba(26,20,6,.25)" stroke="#12141a" stroke-width="2"/>
+          <circle cx="11" cy="-6" r="7" fill="#12141a"/>
+          <rect x="-16" y="50" width="32" height="7" rx="1" fill="#12141a"/>
+        </g>
+      </svg>
+      <div class="variant-label" style="color:#3a2a00">— 07 Gold Icon —</div>
+    </div>
+
+    <!-- 8-08 icon only slate -->
+    <div class="logo-cell bg-slate">
+      <svg viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" width="130">
+        <defs>
+          <linearGradient id="g808" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#c9a84c"/>
+            <stop offset="100%" stop-color="#e8c97a"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(52,88)">
+          <line x1="0" y1="50" x2="0" y2="-12" stroke="#f4f0e8" stroke-width="4" stroke-linecap="round"/>
+          <line x1="0" y1="-12" x2="-32" y2="-48" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="0" y1="-12" x2="32" y2="-48" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
+          <polygon points="-32,-48 -21,-54 -10,-48 -10,-36 -21,-30 -32,-36"
+            fill="rgba(201,168,76,.2)" stroke="url(#g808)" stroke-width="2"/>
+          <circle cx="-21" cy="-42" r="7" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <polygon points="32,-48 43,-54 54,-48 54,-36 43,-30 32,-36"
+            fill="rgba(201,168,76,.2)" stroke="url(#g808)" stroke-width="2"/>
+          <circle cx="43" cy="-42" r="7" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <polygon points="0,-12 11,-18 22,-12 22,0 11,6 0,0"
+            fill="rgba(201,168,76,.25)" stroke="url(#g808)" stroke-width="2"/>
+          <circle cx="11" cy="-6" r="7" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <rect x="-16" y="50" width="32" height="7" rx="1" fill="rgba(201,168,76,.2)" stroke="url(#g808)" stroke-width="1"/>
+        </g>
+      </svg>
+      <div class="variant-label" style="color:#8899bb">— 08 Slate Icon —</div>
+    </div>
+
+    <!-- 8-09 wide teal banner -->
+    <div class="logo-cell bg-teal">
+      <svg viewBox="0 0 370 90" xmlns="http://www.w3.org/2000/svg" width="348">
+        <defs>
+          <linearGradient id="g809" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e8c97a"/>
+            <stop offset="100%" stop-color="#c9a84c"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(44,46)">
+          <line x1="0" y1="30" x2="0" y2="-8" stroke="#f4f0e8" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="0" y1="-8" x2="-22" y2="-34" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/>
+          <line x1="0" y1="-8" x2="22" y2="-34" stroke="#f4f0e8" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="-22,-34 -14,-39 -6,-34 -6,-24 -14,-19 -22,-24"
+            fill="rgba(201,168,76,.25)" stroke="url(#g809)" stroke-width="1.5"/>
+          <circle cx="-14" cy="-29" r="5" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <polygon points="22,-34 30,-39 38,-34 38,-24 30,-19 22,-24"
+            fill="rgba(201,168,76,.25)" stroke="url(#g809)" stroke-width="1.5"/>
+          <circle cx="30" cy="-29" r="5" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <polygon points="0,-8 8,-13 16,-8 16,2 8,7 0,2"
+            fill="rgba(201,168,76,.3)" stroke="url(#g809)" stroke-width="1.8"/>
+          <circle cx="8" cy="-3" r="5" fill="none" stroke="#f4f0e8" stroke-width="1.5"/>
+          <rect x="-10" y="30" width="20" height="6" rx="1" fill="rgba(201,168,76,.2)" stroke="rgba(201,168,76,.6)" stroke-width="1"/>
+        </g>
+        <line x1="92" y1="14" x2="92" y2="76" stroke="#c9a84c" stroke-width=".8" opacity=".5"/>
+        <text x="108" y="36" font-family="Noto Serif TC" font-size="21" font-weight="700" fill="#f4f0e8" letter-spacing="4">臺科精誠匯</text>
+        <text x="108" y="53" font-family="Noto Sans TC" font-size="9" fill="#c9a84c" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="108" y="66" font-family="Cinzel" font-size="6.5" fill="rgba(201,168,76,.5)" letter-spacing="2.5">NTUST · E-PROGRAM · Y-ROOT CONFLUENCE</text>
+      </svg>
+      <div class="variant-label" style="color:#c9a84c">— 09 Teal Banner —</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     CONCEPT 09 — 匠心印鑑  Craftsman's Sigil
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="concept-badge">Concept 09</div>
+    <div class="concept-title">匠心印鑑 — Craftsman's Sigil</div>
+    <div class="concept-desc">整合六環+圓心+Y根脈為完整印鑑・圓形外框統合・匠心精誠的最高表達</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="logo-grid">
+
+    <!-- 9-01 white refined -->
+    <div class="logo-cell bg-white">
+      <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" width="278">
+        <g transform="translate(72,86)">
+          <!-- outer circle container -->
+          <circle cx="0" cy="4" r="74" fill="#f4f0e8" stroke="#1050b0" stroke-width="2"/>
+          <circle cx="0" cy="4" r="68" fill="none" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4 3"/>
+          <!-- hex nut full mark -->
+          <polygon points="0,-44 38.1,-22 38.1,22 0,44 -38.1,22 -38.1,-22"
+            fill="none" stroke="#12141a" stroke-width="2.5"/>
+          <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15"
+            fill="none" stroke="#1050b0" stroke-width="1.2"/>
+          <circle cx="0" cy="0" r="16" fill="none" stroke="#12141a" stroke-width="2.2"/>
+          <!-- Y stems -->
+          <line x1="0" y1="44" x2="0" y2="68" stroke="#12141a" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="0" y1="58" x2="-20" y2="78" stroke="#12141a" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="0" y1="58" x2="20" y2="78" stroke="#12141a" stroke-width="2.2" stroke-linecap="round"/>
+          <!-- gold top crown of hex -->
+          <line x1="-38.1" y1="-22" x2="0" y2="-44" stroke="#c9a84c" stroke-width="3"/>
+          <line x1="0" y1="-44" x2="38.1" y2="-22" stroke="#c9a84c" stroke-width="3"/>
+        </g>
+        <text x="162" y="57" font-family="Noto Serif TC" font-size="21" font-weight="700" fill="#12141a" letter-spacing="3">臺科精誠匯</text>
+        <line x1="162" y1="65" x2="294" y2="65" stroke="#1050b0" stroke-width="1.5"/>
+        <text x="162" y="80" font-family="Noto Sans TC" font-size="9.5" fill="#1050b0" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="162" y="95" font-family="Cinzel" font-size="7.5" fill="#bbb" letter-spacing="2">NTUST · E-PROGRAM</text>
+      </svg>
+      <div class="variant-label" style="color:#1050b0">— 01 White Refined —</div>
+    </div>
+
+    <!-- 9-02 navy full sigil -->
+    <div class="logo-cell bg-navy">
+      <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" width="278">
+        <defs>
+          <radialGradient id="g902" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(58,128,224,.3)"/>
+            <stop offset="100%" stop-color="rgba(10,26,64,0)"/>
+          </radialGradient>
+          <linearGradient id="g902b" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e8c97a"/>
+            <stop offset="100%" stop-color="#c9a84c"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(72,86)">
+          <circle cx="0" cy="4" r="74" fill="url(#g902)" stroke="#3a80e0" stroke-width="1.5"/>
+          <circle cx="0" cy="4" r="68" fill="none" stroke="rgba(201,168,76,.25)" stroke-width=".7" stroke-dasharray="4 3"/>
+          <polygon points="0,-44 38.1,-22 38.1,22 0,44 -38.1,22 -38.1,-22"
+            fill="rgba(255,255,255,.03)" stroke="#f4f0e8" stroke-width="2.5"/>
+          <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15"
+            fill="none" stroke="#3a80e0" stroke-width="1.2"/>
+          <circle cx="0" cy="0" r="16" fill="rgba(16,80,176,.4)" stroke="#f4f0e8" stroke-width="2"/>
+          <line x1="0" y1="44" x2="0" y2="68" stroke="#f4f0e8" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="0" y1="58" x2="-20" y2="78" stroke="#f4f0e8" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="0" y1="58" x2="20" y2="78" stroke="#f4f0e8" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="-38.1" y1="-22" x2="0" y2="-44" stroke="url(#g902b)" stroke-width="3"/>
+          <line x1="0" y1="-44" x2="38.1" y2="-22" stroke="url(#g902b)" stroke-width="3"/>
+        </g>
+        <text x="162" y="57" font-family="Noto Serif TC" font-size="21" font-weight="700" fill="#f4f0e8" letter-spacing="3">臺科精誠匯</text>
+        <line x1="162" y1="65" x2="294" y2="65" stroke="#c9a84c" stroke-width="1"/>
+        <text x="162" y="80" font-family="Noto Sans TC" font-size="9.5" fill="#c9a84c" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="162" y="95" font-family="Cinzel" font-size="7.5" fill="#334" letter-spacing="2">NTUST · E-PROGRAM</text>
+      </svg>
+      <div class="variant-label" style="color:#445566">— 02 Navy Sigil —</div>
+    </div>
+
+    <!-- 9-03 blue classic full badge -->
+    <div class="logo-cell bg-blue">
+      <svg viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" width="200">
+        <g transform="translate(110,104)">
+          <!-- full-fill circle like the original -->
+          <circle cx="0" cy="0" r="90" fill="#1050b0"/>
+          <!-- full hex -->
+          <polygon points="0,-56 48.5,-28 48.5,28 0,56 -48.5,28 -48.5,-28"
+            fill="none" stroke="#12141a" stroke-width="4"/>
+          <!-- inner hex -->
+          <polygon points="0,-38 32.9,-19 32.9,19 0,38 -32.9,19 -32.9,-19"
+            fill="none" stroke="#12141a" stroke-width="2.5"/>
+          <!-- centre circle void -->
+          <circle cx="0" cy="0" r="20" fill="#12141a"/>
+          <!-- Y -->
+          <line x1="0" y1="56" x2="0" y2="82" stroke="#12141a" stroke-width="4" stroke-linecap="round"/>
+          <line x1="0" y1="72" x2="-26" y2="96" stroke="#12141a" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="0" y1="72" x2="26" y2="96" stroke="#12141a" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- gold crown -->
+          <line x1="-48.5" y1="-28" x2="0" y2="-56" stroke="#c9a84c" stroke-width="4"/>
+          <line x1="0" y1="-56" x2="48.5" y2="-28" stroke="#c9a84c" stroke-width="4"/>
+        </g>
+        <text x="110" y="202" text-anchor="middle" font-family="Noto Serif TC" font-size="16" font-weight="700" fill="#f4f0e8" letter-spacing="5">臺科精誠匯</text>
+        <line x1="22" y1="210" x2="198" y2="210" stroke="#c9a84c" stroke-width=".8"/>
+        <text x="110" y="222" text-anchor="middle" font-family="Noto Sans TC" font-size="8.5" fill="#c9a84c" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="110" y="235" text-anchor="middle" font-family="Cinzel" font-size="7" fill="rgba(201,168,76,.45)" letter-spacing="2">NTUST · E-PROGRAM</text>
+      </svg>
+      <div class="variant-label" style="color:#c9a84c">— 03 Blue Classic —</div>
+    </div>
+
+    <!-- 9-04 cream gold deluxe stacked -->
+    <div class="logo-cell bg-cream">
+      <svg viewBox="0 0 220 230" xmlns="http://www.w3.org/2000/svg" width="200">
+        <defs>
+          <linearGradient id="g904" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#c9a84c"/>
+            <stop offset="100%" stop-color="#e8c97a"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(110,100)">
+          <circle cx="0" cy="4" r="80" fill="#f4f0e8" stroke="url(#g904)" stroke-width="2"/>
+          <circle cx="0" cy="4" r="74" fill="none" stroke="rgba(201,168,76,.3)" stroke-width=".7" stroke-dasharray="3 3"/>
+          <polygon points="0,-48 41.6,-24 41.6,24 0,48 -41.6,24 -41.6,-24"
+            fill="none" stroke="#12141a" stroke-width="2.5"/>
+          <polygon points="0,-32 27.7,-16 27.7,16 0,32 -27.7,16 -27.7,-16"
+            fill="none" stroke="#1050b0" stroke-width="1.2"/>
+          <circle cx="0" cy="0" r="17" fill="none" stroke="#12141a" stroke-width="2.2"/>
+          <line x1="0" y1="48" x2="0" y2="72" stroke="#12141a" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="0" y1="62" x2="-22" y2="82" stroke="#12141a" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="0" y1="62" x2="22" y2="82" stroke="#12141a" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="-41.6" y1="-24" x2="0" y2="-48" stroke="#c9a84c" stroke-width="3"/>
+          <line x1="0" y1="-48" x2="41.6" y2="-24" stroke="#c9a84c" stroke-width="3"/>
+        </g>
+        <text x="110" y="192" text-anchor="middle" font-family="Noto Serif TC" font-size="16" font-weight="700" fill="#12141a" letter-spacing="4">臺科精誠匯</text>
+        <line x1="22" y1="200" x2="198" y2="200" stroke="#c9a84c" stroke-width=".8"/>
+        <text x="110" y="213" text-anchor="middle" font-family="Noto Sans TC" font-size="8.5" fill="#555" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="110" y="226" text-anchor="middle" font-family="Cinzel" font-size="7" fill="#bbb" letter-spacing="2">NTUST · E-PROGRAM</text>
+      </svg>
+      <div class="variant-label" style="color:#555">— 04 Cream Deluxe —</div>
+    </div>
+
+    <!-- 9-05 ink monochrome stamp -->
+    <div class="logo-cell bg-ink">
+      <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" width="200">
+        <circle cx="110" cy="110" r="100" fill="none" stroke="#f4f0e8" stroke-width="2"/>
+        <circle cx="110" cy="110" r="94" fill="none" stroke="#c9a84c" stroke-width=".8"/>
+        <path id="arc9" d="M110,110 m-86,0 a86,86 0 1,1 172,0" fill="none"/>
+        <text font-family="Noto Serif TC" font-size="10" fill="#f4f0e8" letter-spacing="5.5">
+          <textPath href="#arc9">臺科精誠匯  ·  NTUST E-PROGRAM</textPath>
+        </text>
+        <g transform="translate(110,104)">
+          <polygon points="0,-42 36.4,-21 36.4,21 0,42 -36.4,21 -36.4,-21"
+            fill="rgba(255,255,255,.04)" stroke="#f4f0e8" stroke-width="2.5"/>
+          <polygon points="0,-28 24.2,-14 24.2,14 0,28 -24.2,14 -24.2,-14"
+            fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+          <circle cx="0" cy="0" r="15" fill="none" stroke="#f4f0e8" stroke-width="2"/>
+          <line x1="0" y1="42" x2="0" y2="64" stroke="#f4f0e8" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="0" y1="56" x2="-18" y2="74" stroke="#f4f0e8" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="0" y1="56" x2="18" y2="74" stroke="#f4f0e8" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="-36.4" y1="-21" x2="0" y2="-42" stroke="#c9a84c" stroke-width="2.5"/>
+          <line x1="0" y1="-42" x2="36.4" y2="-21" stroke="#c9a84c" stroke-width="2.5"/>
+        </g>
+        <text x="110" y="170" text-anchor="middle" font-family="Noto Sans TC" font-size="8" fill="#c9a84c" letter-spacing="2">精於管理・誠於實踐</text>
+      </svg>
+      <div class="variant-label" style="color:#667">— 05 Dark Round Stamp —</div>
+    </div>
+
+    <!-- 9-06 slate frame deluxe -->
+    <div class="logo-cell bg-slate">
+      <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" width="200">
+        <defs>
+          <linearGradient id="g906" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e8c97a"/>
+            <stop offset="100%" stop-color="#c9a84c"/>
+          </linearGradient>
+        </defs>
+        <rect x="6" y="6" width="208" height="208" rx="3" fill="none" stroke="url(#g906)" stroke-width="1.5"/>
+        <rect x="12" y="12" width="196" height="196" rx="2" fill="none" stroke="rgba(201,168,76,.25)" stroke-width=".6"/>
+        <!-- corner accents -->
+        <line x1="6" y1="26" x2="22" y2="26" stroke="#c9a84c" stroke-width="1.5"/>
+        <line x1="198" y1="26" x2="214" y2="26" stroke="#c9a84c" stroke-width="1.5"/>
+        <line x1="6" y1="194" x2="22" y2="194" stroke="#c9a84c" stroke-width="1.5"/>
+        <line x1="198" y1="194" x2="214" y2="194" stroke="#c9a84c" stroke-width="1.5"/>
+        <g transform="translate(110,104)">
+          <circle cx="0" cy="4" r="72" fill="rgba(201,168,76,.06)" stroke="url(#g906)" stroke-width="1"/>
+          <polygon points="0,-44 38.1,-22 38.1,22 0,44 -38.1,22 -38.1,-22"
+            fill="rgba(255,255,255,.04)" stroke="#f4f0e8" stroke-width="2.2"/>
+          <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15"
+            fill="none" stroke="#c9a84c" stroke-width="1"/>
+          <circle cx="0" cy="0" r="16" fill="none" stroke="#f4f0e8" stroke-width="2"/>
+          <line x1="0" y1="44" x2="0" y2="66" stroke="#f4f0e8" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="0" y1="58" x2="-20" y2="76" stroke="#f4f0e8" stroke-width="2" stroke-linecap="round"/>
+          <line x1="0" y1="58" x2="20" y2="76" stroke="#f4f0e8" stroke-width="2" stroke-linecap="round"/>
+          <line x1="-38.1" y1="-22" x2="0" y2="-44" stroke="url(#g906)" stroke-width="2.5"/>
+          <line x1="0" y1="-44" x2="38.1" y2="-22" stroke="url(#g906)" stroke-width="2.5"/>
+        </g>
+        <text x="110" y="186" text-anchor="middle" font-family="Noto Serif TC" font-size="14" font-weight="700" fill="#f4f0e8" letter-spacing="4">臺科精誠匯</text>
+        <line x1="26" y1="193" x2="194" y2="193" stroke="#c9a84c" stroke-width=".6"/>
+        <text x="110" y="205" text-anchor="middle" font-family="Noto Sans TC" font-size="8" fill="#c9a84c" letter-spacing="2">精於管理・誠於實踐</text>
+      </svg>
+      <div class="variant-label" style="color:#6677aa">— 06 Slate Frame —</div>
+    </div>
+
+    <!-- 9-07 icon only gold filled -->
+    <div class="logo-cell bg-gold">
+      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" width="130">
+        <g transform="translate(70,68)">
+          <circle cx="0" cy="4" r="60" fill="#c9a84c"/>
+          <polygon points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"
+            fill="none" stroke="#12141a" stroke-width="3.2"/>
+          <polygon points="0,-24 20.8,-12 20.8,12 0,24 -20.8,12 -20.8,-12"
+            fill="none" stroke="#12141a" stroke-width="2"/>
+          <circle cx="0" cy="0" r="13" fill="#12141a"/>
+          <line x1="0" y1="36" x2="0" y2="56" stroke="#12141a" stroke-width="3" stroke-linecap="round"/>
+          <line x1="0" y1="48" x2="-16" y2="64" stroke="#12141a" stroke-width="2.8" stroke-linecap="round"/>
+          <line x1="0" y1="48" x2="16" y2="64" stroke="#12141a" stroke-width="2.8" stroke-linecap="round"/>
+          <line x1="-31.2" y1="-18" x2="0" y2="-36" stroke="#3a2a00" stroke-width="3"/>
+          <line x1="0" y1="-36" x2="31.2" y2="-18" stroke="#3a2a00" stroke-width="3"/>
+        </g>
+      </svg>
+      <div class="variant-label" style="color:#3a2a00">— 07 Gold Filled Icon —</div>
+    </div>
+
+    <!-- 9-08 icon teal blue fill -->
+    <div class="logo-cell bg-teal">
+      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" width="130">
+        <defs>
+          <linearGradient id="g908" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e8c97a"/>
+            <stop offset="100%" stop-color="#c9a84c"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(70,68)">
+          <circle cx="0" cy="4" r="60" fill="rgba(16,80,176,.25)" stroke="#c9a84c" stroke-width="1"/>
+          <polygon points="0,-36 31.2,-18 31.2,18 0,36 -31.2,18 -31.2,-18"
+            fill="rgba(255,255,255,.06)" stroke="#f4f0e8" stroke-width="2.5"/>
+          <polygon points="0,-24 20.8,-12 20.8,12 0,24 -20.8,12 -20.8,-12"
+            fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+          <circle cx="0" cy="0" r="13" fill="rgba(11,85,99,.7)" stroke="#f4f0e8" stroke-width="1.8"/>
+          <line x1="0" y1="36" x2="0" y2="56" stroke="#f4f0e8" stroke-width="2.8" stroke-linecap="round"/>
+          <line x1="0" y1="48" x2="-16" y2="64" stroke="#f4f0e8" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="0" y1="48" x2="16" y2="64" stroke="#f4f0e8" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="-31.2" y1="-18" x2="0" y2="-36" stroke="url(#g908)" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="31.2" y2="-18" stroke="url(#g908)" stroke-width="2.5"/>
+        </g>
+      </svg>
+      <div class="variant-label" style="color:#c9a84c">— 08 Teal Icon —</div>
+    </div>
+
+    <!-- 9-09 wide gold final banner -->
+    <div class="logo-cell bg-gold">
+      <svg viewBox="0 0 400 90" xmlns="http://www.w3.org/2000/svg" width="374">
+        <g transform="translate(44,45)">
+          <circle cx="0" cy="2" r="36" fill="rgba(26,20,6,.12)" stroke="#12141a" stroke-width="1.5"/>
+          <circle cx="0" cy="2" r="30" fill="none" stroke="rgba(26,20,6,.2)" stroke-width=".6" stroke-dasharray="3 2"/>
+          <polygon points="0,-22 19.1,-11 19.1,11 0,22 -19.1,11 -19.1,-11"
+            fill="rgba(26,20,6,.18)" stroke="#12141a" stroke-width="2"/>
+          <polygon points="0,-15 13,-7.5 13,7.5 0,15 -13,7.5 -13,-7.5"
+            fill="none" stroke="#3a2a00" stroke-width="1"/>
+          <circle cx="0" cy="0" r="8" fill="#12141a"/>
+          <line x1="0" y1="22" x2="0" y2="34" stroke="#12141a" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="0" y1="30" x2="-12" y2="42" stroke="#12141a" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="0" y1="30" x2="12" y2="42" stroke="#12141a" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="-19.1" y1="-11" x2="0" y2="-22" stroke="#3a2a00" stroke-width="2.5"/>
+          <line x1="0" y1="-22" x2="19.1" y2="-11" stroke="#3a2a00" stroke-width="2.5"/>
+        </g>
+        <line x1="90" y1="12" x2="90" y2="78" stroke="#3a2a00" stroke-width=".8" opacity=".4"/>
+        <text x="108" y="36" font-family="Noto Serif TC" font-size="22" font-weight="700" fill="#12141a" letter-spacing="4">臺科精誠匯</text>
+        <line x1="108" y1="43" x2="388" y2="43" stroke="#3a2a00" stroke-width=".8" opacity=".3"/>
+        <text x="108" y="57" font-family="Noto Sans TC" font-size="9" fill="#3a2a00" letter-spacing="2">精於管理・誠於實踐</text>
+        <text x="108" y="70" font-family="Cinzel" font-size="7" fill="#5a4510" letter-spacing="3">NTUST · E-PROGRAM · CRAFTSMAN'S SIGIL · 匠心印鑑</text>
+      </svg>
+      <div class="variant-label" style="color:#3a2a00">— 09 Gold Signature —</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- footer -->
+<footer>
+  臺科精誠匯 NTUST E-PROGRAM &nbsp;·&nbsp;
+  CRAFTSMAN SERIES · CONCEPTS 07–09 · 27 VARIANTS &nbsp;·&nbsp;
+  精工六環 · 根脈匯聚 · 匠心印鑑 &nbsp;·&nbsp; 2025
+</footer>
+
+</body>
+</html>
