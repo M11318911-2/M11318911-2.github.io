@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>晨報｜2026年4月4日｜科技新聞雙語版</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card-bg: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent2: #bc8cff;
+    --tag-bg: #1f6feb22;
+    --tag: #58a6ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  header .date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.3rem;
+  }
+  header .subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+  .voice-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .voice-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 200px;
+  }
+  .voice-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  audio {
+    width: 260px;
+    height: 38px;
+    border-radius: 20px;
+    outline: none;
+  }
+  audio::-webkit-media-controls-panel {
+    background: #1f2937;
+  }
+  .news-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .news-card:hover {
+    border-color: var(--accent);
+  }
+  .card-header {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .card-number {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-meta {
+    flex: 1;
+  }
+  .card-meta .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    margin-bottom: 0.4rem;
+  }
+  .card-meta h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--text);
+  }
+  .card-meta h2.en {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-top: 0.25rem;
+  }
+  .screenshot-wrap {
+    margin: 1rem 1.5rem 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .screenshot-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 280px;
+    object-fit: cover;
+  }
+  .lang-section {
+    padding: 1.2rem 1.5rem;
+  }
+  .lang-block {
+    margin-bottom: 1rem;
+  }
+  .lang-block:last-child {
+    margin-bottom: 0;
+  }
+  .lang-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .lang-tag.zh { color: #ff7b72; }
+  .lang-tag.en { color: var(--accent); }
+  .lang-tag .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .lang-tag.zh .dot { background: #ff7b72; }
+  .lang-tag.en .dot { background: var(--accent); }
+  .lang-block p {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.8;
+  }
+  .lang-block a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .lang-block a:hover {
+    text-decoration: underline;
+  }
+  .source-line {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+  footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  @media (max-width: 600px) {
+    .voice-section { flex-direction: column; gap: 1.2rem; }
+    .card-header { flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="date">2026 年 4 月 4 日　週六</div>
+  <h1>科技晨報</h1>
+  <div class="subtitle">美國最新科技新聞雙語版　Daily Tech Morning Brief</div>
+</header>
+
+<div class="voice-section">
+  <div class="voice-block">
+    <span class="voice-label">中文</span>
+    <audio controls preload="none">
+      <source src="morningnews-20260404.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="voice-block">
+    <span class="voice-label">English</span>
+    <audio controls preload="none">
+      <source src="morningnews-20260404-en.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</div>
+
+<!-- NEWS 1 -->
+<div class="news-card">
+  <div class="card-header">
+    <div class="card-number">1</div>
+    <div class="card-meta">
+      <span class="tag">NASA · 月球任務</span>
+      <h2>Artemis II 成功發射！半世紀來首次載人月球飛越</h2>
+      <h2 class="en">Artemis II Successfully Launches — First Crewed Lunar Flyby Since 1972</h2>
+    </div>
+  </div>
+  <div class="screenshot-wrap">
+    <img src="../screenshots/morningnews-20260404-nasa.png" alt="NASA Artemis II" loading="lazy">
+  </div>
+  <div class="lang-section">
+    <div class="lang-block">
+      <div class="lang-tag zh"><span class="dot"></span>中文</div>
+      <p>美國NASA的Artemis II任務於2026年4月1日傍晚6:35（美東時間）從甘迺迪太空中心成功發射，四名太空人搭乘獵戶座太空船與SLS火箭升空，展開為期十天的月球飛越任務。這是自1972年阿波羅17號以來，人類首次有太空人近距離飛越月球。根據NASA計算，任務期間太空艙與地球的最大距離將達到252,799英里，一舉打破阿波羅13號創下的紀錄。機組人員包括NASA太空人Reid Wiseman（指揮官）、Victor Glover（駕駛員）及Christina Koch，還有加拿大太空人Jeremy Hansen，這是加拿大太空人首次參與載人月球任務。4月2日，獵戶座太空船執行關鍵的月球轉移燃燒，正式離開地球軌道，朝月球前進。</p>
+      <div class="source-line">來源：<a href="https://www.nasa.gov/news-release/nasas-artemis-ii-mission-leaves-earth-orbit-for-flight-around-moon/" target="_blank">NASA Official Press Release</a></div>
+    </div>
+    <div class="lang-block">
+      <div class="lang-tag en"><span class="dot"></span>English</div>
+      <p>NASA's Artemis II mission successfully launched on April 1, 2026, at 6:35 PM Eastern Time from Kennedy Space Center, carrying four astronauts aboard the Orion spacecraft atop the SLS rocket. This ten-day lunar flyby mission marks the first time humans have traveled near the Moon since Apollo 17 in 1972. According to NASA's pre-launch calculations, the crew module will reach a maximum distance of 252,799 statute miles from Earth — surpassing the Apollo 13 record. The crew consists of NASA astronauts Reid Wiseman (commander), Victor Glover (pilot), and Christina Koch, along with Canadian Space Agency astronaut Jeremy Hansen, marking the first time a Canadian has participated in a crewed lunar mission. On April 2, the Orion spacecraft executed its critical translunar injection burn, officially leaving Earth orbit and heading toward the Moon.</p>
+      <div class="source-line">Source: <a href="https://www.nasa.gov/news-release/nasas-artemis-ii-mission-leaves-earth-orbit-for-flight-around-moon/" target="_blank">NASA Official Press Release</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS 2 -->
+<div class="news-card">
+  <div class="card-header">
+    <div class="card-number">2</div>
+    <div class="card-meta">
+      <span class="tag">SpaceX · IPO</span>
+      <h2>SpaceX 與沙烏地 PIF 洽谈 50 億美元 IPO 基礎投資</h2>
+      <h2 class="en">SpaceX in Talks with Saudi PIF for $5 Billion Anchor IPO Investment</h2>
+    </div>
+  </div>
+  <div class="screenshot-wrap">
+    <img src="../screenshots/morningnews-20260404-reuters.png" alt="SpaceX Reuters" loading="lazy">
+  </div>
+  <div class="lang-section">
+    <div class="lang-block">
+      <div class="lang-tag zh"><span class="dot"></span>中文</div>
+      <p>根據路透社獨家報導，馬斯克旗下的SpaceX已與沙烏地阿拉伯公共投資基金（PIF）展開談判，PIF可能作為SpaceX首次公開上市（IPO）的基礎投資者，斥資約50億美元認購股份。知情人士透露，這筆投資將能防止PIF現有持股（約佔SpaceX不到1%）在IPO過程中被稀釋。SpaceX目前是全球最具價值的私人航太公司，IPO傳聞多年來甚囂塵上。若此次與PIF的談判達成共識，將成為沙烏地在科技與太空領域最大手筆的投資之一，也將為SpaceX的IPO之路注入強心針。雙方談判仍在進行中，最終條款尚未確定。</p>
+      <div class="source-line">來源：<a href="https://www.reuters.com/business/finance/spacex-has-held-talks-with-saudi-fund-possible-5-billion-investment-ipo-sources-2026-04-02/" target="_blank">Reuters</a></div>
+    </div>
+    <div class="lang-block">
+      <div class="lang-tag en"><span class="dot"></span>English</div>
+      <p>According to an exclusive Reuters report, Elon Musk's SpaceX has been in discussions with Saudi Arabia's Public Investment Fund (PIF) about taking an anchor stake of approximately $5 billion in SpaceX's upcoming Initial Public Offering (IPO). Sources familiar with the matter said the investment would prevent PIF's existing stake — just under 1% of SpaceX — from being diluted during the IPO process. SpaceX is currently the world's most valuable private aerospace company, and IPO speculation has swirled for years. A deal with PIF would represent one of Saudi Arabia's largest technology and space investments, and would significantly boost SpaceX's path toward going public. Negotiations are ongoing and final terms have yet to be determined.</p>
+      <div class="source-line">Source: <a href="https://www.reuters.com/business/finance/spacex-has-held-talks-with-saudi-fund-possible-5-billion-investment-ipo-sources-2026-04-02/" target="_blank">Reuters</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS 3 -->
+<div class="news-card">
+  <div class="card-header">
+    <div class="card-number">3</div>
+    <div class="card-meta">
+      <span class="tag">OpenAI · 併購</span>
+      <h2>OpenAI 宣布收購科技 Podcast 節目 TBPN</h2>
+      <h2 class="en">OpenAI Acquires Tech Talk Show TBPN — Its First Media Company Purchase</h2>
+    </div>
+  </div>
+  <div class="screenshot-wrap">
+    <img src="../screenshots/morningnews-20260404-techcrunch.png" alt="OpenAI TBPN TechCrunch" loading="lazy">
+  </div>
+  <div class="lang-section">
+    <div class="lang-block">
+      <div class="lang-tag zh"><span class="dot"></span>中文</div>
+      <p>OpenAI 於本週宣布收購 TBPN（Technology Business Programming Network），這是一個在矽谷內部人士中享有高人氣的線上科技訪談節目，由創辦人兼主持人 Ed Zitron 主導，節目以專訪科技公司CEO和產業領袖聞名。這是 OpenAI 首次收購一家媒體公司，收購金額尚未公開。OpenAI 表示，收購完成後將繼續支持 TBPN 節目營運，並希望借助 TBPN 在科技圈的品牌影響力，改善 OpenAI 在產業輿論中的形象。業界分析指出，在 Anthropic 積極搶攻企業用戶市場的壓力下，OpenAI 此舉意在透過媒體敘事争取更多話語權。TBPN 此前曾多次批評 AI 行業的過度炒作，引發外界對 OpenAI 此舉動機的猜測。</p>
+      <div class="source-line">來源：<a href="https://techcrunch.com/2026/04/02/openai-acquires-tbpn-the-buzzy-founder-led-business-talk-show/" target="_blank">TechCrunch</a></div>
+    </div>
+    <div class="lang-block">
+      <div class="lang-tag en"><span class="dot"></span>English</div>
+      <p>OpenAI announced this week the acquisition of TBPN (Technology Business Programming Network), a popular online tech interview show closely followed by Silicon Valley insiders, hosted by founder Ed Zitron and known for its exclusive interviews with tech CEOs and industry leaders. This marks OpenAI's first acquisition of a media company, with the purchase price remaining undisclosed. OpenAI said it will continue to support TBPN's operations after the deal closes, hoping to leverage the show's strong brand in the tech community to improve its public narrative amid growing competitive pressure from Anthropic in the enterprise market. Industry analysts note that under intensifying pressure to win over enterprise customers, OpenAI appears to be using media narrative as a strategic tool. TBPN had previously been critical of AI industry hype, raising questions about OpenAI's motivations for the acquisition.</p>
+      <div class="source-line">Source: <a href="https://techcrunch.com/2026/04/02/openai-acquires-tbpn-the-buzzy-founder-led-business-talk-show/" target="_blank">TechCrunch</a></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>晨報由 AI 自動生成　|　語音由 ElevenLabs 合成</p>
+  <p>Generated by AI · Voice powered by ElevenLabs</p>
+</footer>
+
+</div>
+</body>
+</html>
