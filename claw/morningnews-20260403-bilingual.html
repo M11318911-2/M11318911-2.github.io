@@ -3,298 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>晨報 Morning News - 2026年4月3日</title>
+    <title>每日 AI 資訊 - 2026年04月03日</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @page { size: A4; margin: 2.5cm; }
         body {
-            font-family: 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
-            color: #e0e0e0;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
+            font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", Arial, sans-serif;
+            line-height: 1.8;
+            color: #1a1a1a;
             max-width: 900px;
             margin: 0 auto;
+            padding: 40px;
+            font-size: 12pt;
+            background: #fafafa;
         }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            margin-bottom: 30px;
-        }
-        header h1 {
-            font-size: 2.5em;
-            background: linear-gradient(90deg, #00d4ff, #7b2ff7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-        }
-        header .date {
-            color: #888;
-            font-size: 1.1em;
-        }
-        .voice-section {
-            background: rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 25px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .voice-section h2 {
-            color: #00d4ff;
-            margin-bottom: 20px;
-            font-size: 1.3em;
-        }
-        .voice-players {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .voice-player {
-            background: rgba(0,0,0,0.3);
-            border-radius: 12px;
-            padding: 20px;
-            flex: 1;
-            min-width: 280px;
-            text-align: center;
-        }
-        .voice-player h3 {
-            color: #fff;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
-        .voice-player audio {
-            width: 100%;
-            height: 40px;
-            border-radius: 8px;
-        }
-        .news-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 25px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,212,255,0.1);
-        }
-        .news-card .lang-block {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .news-card .lang-block:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-        .news-card .lang-label {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-        .lang-zh .lang-label {
-            background: linear-gradient(90deg, #ff6b6b, #ff8e53);
-            color: #fff;
-        }
-        .lang-en .lang-label {
-            background: linear-gradient(90deg, #4ecdc4, #44a08d);
-            color: #fff;
-        }
-        .news-card h2 {
-            color: #fff;
-            font-size: 1.4em;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-        .news-card p {
-            color: #b0b0b0;
-            line-height: 1.8;
-            font-size: 1em;
-        }
-        .news-card .source {
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .news-card .source img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 8px;
-            margin-top: 10px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .news-card .source a {
-            color: #00d4ff;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-        .news-card .source a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #666;
-            font-size: 0.9em;
-        }
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.8em;
-            }
-            .voice-players {
-                flex-direction: column;
-            }
-        }
+        h1 { color: #1a5f7a; border-bottom: 4px solid #1a5f7a; padding-bottom: 15px; text-align: center; font-size: 28pt; margin-bottom: 10px; }
+        h2 { color: #0f4c75; border-left: 5px solid #0f4c75; padding-left: 15px; margin-top: 40px; font-size: 16pt; }
+        h3 { color: #1a5f7a; background: linear-gradient(90deg, #f0f4f8 0%, #e8eef4 100%); padding: 12px 15px; border-radius: 6px; margin-top: 30px; font-size: 14pt; }
+        .week-header { background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%); color: white; padding: 18px 25px; border-radius: 10px; margin: 40px 0 25px 0; font-size: 16pt; font-weight: bold; }
+        .info-box { background-color: #bee3f8; padding: 15px; border-radius: 8px; border-left: 4px solid #3182ce; margin: 15px 0; }
+        .teaching { background-color: #fed7e2; padding: 15px; border-radius: 8px; border-left: 4px solid #ed64a6; margin: 15px 0; }
+        .source-tag { display: inline-block; background-color: #e2e8f0; padding: 3px 10px; border-radius: 12px; font-size: 10pt; margin-right: 8px; }
+        .screenshot-preview { margin: 15px 0; text-align: center; }
+        .screenshot-preview img { max-width: 100%; max-height: 300px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; transition: transform 0.2s; }
+        .screenshot-preview img:hover { transform: scale(1.02); }
+        .source-link { font-size: 11pt; color: #3182ce; }
+        .source-link a { color: #3182ce; text-decoration: none; }
+        .source-link a:hover { text-decoration: underline; }
+        .download-btn { position: fixed; top: 20px; right: 20px; background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%); color: white; padding: 12px 20px; border: none; border-radius: 25px; cursor: pointer; font-size: 13px; font-weight: bold; }
+        hr { border: 0; height: 2px; background: linear-gradient(90deg, transparent, #3182ce, transparent); margin: 40px 0; }
+        .voice-player { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px; text-align: center; margin-bottom: 30px; }
+        .voice-player h3 { background: none; color: white; margin-top: 0; }
+        audio { width: 100%; margin: 10px 0; }
+        .footer { text-align: center; color: #718096; font-size: 10pt; margin-top: 40px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Morning News 晨報</h1>
-            <p class="date">2026年4月3日 / April 3, 2026</p>
-        </header>
+    <button class="download-btn" onclick="window.print()">🖨️ 下載/列印 PDF</button>
+    
+    <h1>🤖 每日 AI 資訊</h1>
+    <p style="text-align: center; font-size: 14pt; color: #4a5568;">2026年04月03日</p>
+    <p style="text-align: center; color: #718096;">來源：MIT News、The New Stack、The Hacker News</p>
 
-        <section class="voice-section">
-            <h2>語音播放 Voice</h2>
-            <div class="voice-players">
-                <div class="voice-player">
-                    <h3>中文</h3>
-                    <audio controls>
-                        <source src="morningnews-20260403.mp3" type="audio/mpeg">
-                        您的瀏覽器不支援音訊播放
-                    </audio>
-                </div>
-                <div class="voice-player">
-                    <h3>English</h3>
-                    <audio controls>
-                        <source src="morningnews-20260403-en.mp3" type="audio/mpeg">
-                        Your browser does not support audio playback
-                    </audio>
-                </div>
-            </div>
-        </section>
+    <!-- 語音播放器 -->
+    <div class="voice-player">
+        <h3>🎧 語音播放</h3>
+        <p>中文版本：</p>
+        <audio controls>
+            <source src="https://ntust2026.github.io/claw/morningnews-20260403.mp3" type="audio/mpeg">
+            您的瀏覽器不支援音訊播放
+        </audio>
+        <p>English Version：</p>
+        <audio controls>
+            <source src="https://ntust2026.github.io/claw/morningnews-20260403-en.mp3" type="audio/mpeg">
+            Your browser does not support audio playback
+        </audio>
+    </div>
 
-        <div class="news-list">
-            <!-- News 1: OpenAI -->
-            <article class="news-card">
-                <div class="lang-block lang-zh">
-                    <span class="lang-label">中文</span>
-                    <h2>OpenAI 年營收突破 250 億美元，考慮最快 2026 年底公開上市</h2>
-                    <p>人工智慧領導企業 OpenAI 在執行長 Sam Altman 的帶領下，於 2026 年 2 月達成了 250 億美元年度化營收的重大里程碑，主要受惠於 ChatGPT Pro 的成功以及深入的企業整合服務。該公司已於 3 月完成 1220 億美元的募資，由亞馬遜、軟銀和 Nvidia 領投。報導指出 OpenAI 正在考慮最快於 2026 年底進行首次公開發行（IPO），而其競爭對手 Anthropic 的年化營收也逼近 190 億美元。</p>
-                    <div class="source">
-                        <a href="https://techcrunch.com/2026/03/31/openai-not-yet-public-raises-3b-from-retail-investors-in-monster-122b-fund-raise/" target="_blank">查看原文</a>
-                    </div>
-                    <img src="../screenshots/news1-openai-20260403.png" alt="OpenAI 新聞截圖" onerror="this.style.display='none'">
-                </div>
-                <div class="lang-block lang-en">
-                    <span class="lang-label">English</span>
-                    <h2>OpenAI Surpasses $25 Billion Annualized Revenue, Considering IPO by Late 2026</h2>
-                    <p>Under CEO Sam Altman, OpenAI reached a milestone of $25 billion annualized revenue run rate in February 2026, driven by the massive success of ChatGPT Pro and deep enterprise integrations. The company completed a $122 billion funding round in March, led by Amazon, SoftBank, and Nvidia. Reports indicate OpenAI is considering an initial public offering as early as late 2026, while rival Anthropic approaches $19 billion in annualized revenue.</p>
-                    <div class="source">
-                        <a href="https://techcrunch.com/2026/03/31/openai-not-yet-public-raises-3b-from-retail-investors-in-monster-122b-fund-raise/" target="_blank">View Source</a>
-                    </div>
-                </div>
-            </article>
+    <!-- 新聞內容 -->
+    <div class="week-header">📰 今日 AI 新聞</div>
 
-            <!-- News 2: Chrome Zero-Day -->
-            <article class="news-card">
-                <div class="lang-block lang-zh">
-                    <span class="lang-label">中文</span>
-                    <h2>Google 緊急修補 Chrome 零日漏洞 CVE-2026-5281，已遭攻擊者利用</h2>
-                    <p>Google 發布了 Chrome 瀏覽器的緊急安全更新，修補了 21 個安全漏洞，其中包括已被積極利用的 CVE-2026-5281。這個高危險等級的漏洞存在於 Dawn WebGPU 元件中，屬於「釋放後使用」（use-after-free）類型。這是 2026 年以來 Chrome 修補的第四個零日漏洞。Google 呼籲所有使用者立即更新瀏覽器至最新版本，以防止攻擊者利用此漏洞進行惡意攻擊。</p>
-                    <div class="source">
-                        <a href="https://thehackernews.com/2026/04/new-chrome-zero-day-cve-2026-5281-under.html" target="_blank">查看原文</a>
-                    </div>
-                    <img src="../screenshots/news2-chrome-20260403.png" alt="Chrome 漏洞新聞截圖" onerror="this.style.display='none'">
-                </div>
-                <div class="lang-block lang-en">
-                    <span class="lang-label">English</span>
-                    <h2>Google Emergency Patch for Chrome Zero-Day CVE-2026-5281 Already Under Active Exploitation</h2>
-                    <p>Google released an emergency security update for Chrome, patching 21 vulnerabilities including CVE-2026-5281, a high-severity use-after-free flaw in the Dawn WebGPU component that is already being actively exploited in the wild. This marks the fourth zero-day vulnerability fixed in Chrome during 2026. Google urges all users to update immediately to the latest version to prevent attackers from leveraging this vulnerability for malicious purposes.</p>
-                    <div class="source">
-                        <a href="https://thehackernews.com/2026/04/new-chrome-zero-day-cve-2026-5281-under.html" target="_blank">View Source</a>
-                    </div>
-                </div>
-            </article>
+    <h2>1. Anthropic 澄清 Claude Code 使用條款 - 個人用戶不受影響</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 The New Stack</span>
+    </div>
 
-            <!-- News 3: WhatsApp Spyware -->
-            <article class="news-card">
-                <div class="lang-block lang-zh">
-                    <span class="lang-label">中文</span>
-                    <h2>WhatsApp 揭露間諜軟體攻擊事件，約 200 名用戶受害</h2>
-                    <p>WhatsApp 母公司 Meta 透露，義大利監控軟體公司成功誘騙約 200 名用戶下載間諜軟體。這款惡意軟體透過偽造的應用程式入侵用戶裝置，能夠竊取個資、通訊記錄和位置資訊。WhatsApp 已通知受影響用戶並展開調查，同時呼籲全球用戶提高警覺，避免下載來路不明的應用程式。此事件再度引發各界對商業監控軟體濫用的擔憂。</p>
-                    <div class="source">
-                        <a href="https://www.reuters.com/technology/" target="_blank">查看原文</a>
-                    </div>
-                </div>
-                <div class="lang-block lang-en">
-                    <span class="lang-label">English</span>
-                    <h2>WhatsApp Reveals Spyware Attack, Approximately 200 Users Tricked into Downloading Malicious Software</h2>
-                    <p>Meta, WhatsApp's parent company, revealed that an Italian surveillance software company successfully tricked approximately 200 users into downloading spyware. The malicious software infiltrated devices through fake applications, stealing personal information, communication records, and location data. WhatsApp has notified affected users and launched an investigation, while calling on global users to remain vigilant and avoid downloading applications from unknown sources. This incident has renewed concerns about the misuse of commercial surveillance software.</p>
-                    <div class="source">
-                        <a href="https://www.reuters.com/technology/" target="_blank">View Source</a>
-                    </div>
-                </div>
-            </article>
+    <p>Anthropic 澄清其 Claude Code 政策的更新不會影響個人用戶使用訂閱帳號運行 OpenClaw、NanoClaw 等開源 Agent 工具。先前的文件更新引發社區討論，Anthropic 強調「 Nothing changes around how customers have been using their account」。</p>
+    <p class="source-link">🔗 <a href="https://thenewstack.io/anthropic-agent-sdk-confusion/" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
 
-            <!-- News 4: Amazon Cloud Bahrain -->
-            <article class="news-card">
-                <div class="lang-block lang-zh">
-                    <span class="lang-label">中文</span>
-                    <h2>亞馬遜雲端服務在巴林遭受伊朗攻擊受損</h2>
-                    <p>據《金融時報》報導，亞馬遜的雲端運算服務 AWS 在巴林的基礎設施遭受伊朗導彈襲擊而受損。這次攻擊影響了 AWS 在該地區的服務穩定性，部分企業用戶的雲端服務出現中斷。專家指出，此事件凸顯了地緣政治衝突對關鍵數位基礎設施的威脅，也引發了企業對雲端服務多元化和災難復原能力的重視。</p>
-                    <div class="source">
-                        <a href="https://www.reuters.com/technology/" target="_blank">查看原文</a>
-                    </div>
-                </div>
-                <div class="lang-block lang-en">
-                    <span class="lang-label">English</span>
-                    <h2>Amazon Web Services Infrastructure in Bahrain Damaged by Iranian Strike</h2>
-                    <p>According to the Financial Times, Amazon's cloud computing service AWS suffered damage to its infrastructure in Bahrain following an Iranian missile strike. The attack affected service stability in the region, with some enterprise users experiencing cloud service disruptions. Experts note that this incident highlights the threat geopolitical conflicts pose to critical digital infrastructure, and has sparked renewed focus on cloud service diversification and disaster recovery capabilities among businesses.</p>
-                    <div class="source">
-                        <a href="https://www.reuters.com/technology/" target="_blank">View Source</a>
-                    </div>
-                </div>
-            </article>
+    <h2>2. NVIDIA 推出 NemoClaw - 開源 AI Agent 平台</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 The New Stack</span>
+    </div>
 
-            <!-- News 5: April Fools AI -->
-            <article class="news-card">
-                <div class="lang-block lang-zh">
-                    <span class="lang-label">中文</span>
-                    <h2>2026 愚人節科技趣聞：AI 鬧鐘幫你煮咖啡、AR 燒烤眼鏡問世</h2>
-                    <p>今年的愚人節，科技公司再度展現創意幽默。多家企業推出了令人會心一笑的「假產品」：一款 AI 智慧鬧鐘能在鬧鐘響起時自動開始煮咖啡，讓你一起床就能享用熱咖啡；另一款 AR 智慧眼鏡專為烤肉設計，能夠顯示熱區分布和烹飪進度。雖然這些都是玩笑產品，但業界分析師指出，其中部分概念可能在未來成為實際產品的功能。</p>
-                    <div class="source">
-                        <a href="https://www.tomsguide.com/news/live/april-fools-day-2026-live-best-jokes-pranks" target="_blank">查看原文</a>
-                    </div>
-                </div>
-                <div class="lang-block lang-en">
-                    <span class="lang-label">English</span>
-                    <h2>April Fools' Day 2026 Tech Jokes: AI Alarm Clock Brews Coffee, AR BBQ Glasses Debut</h2>
-                    <p>This April Fools' Day, tech companies once again showcased their creative humor with various "prank products": an AI-powered alarm clock that automatically starts brewing coffee when the alarm goes off, letting you wake up to fresh coffee; another set of AR smart glasses designed specifically for BBQ, displaying heat zones and cooking progress. While these are all joke products, industry analysts note that some concepts may become actual product features in the future.</p>
-                    <div class="source">
-                        <a href="https://www.tomsguide.com/news/live/april-fools-day-2026-live-best-jokes-pranks" target="_blank">View Source</a>
-                    </div>
-                </div>
-            </article>
-        </div>
+    <p>NVIDIA 宣布推出 NemoClaw，這是一個開源平台，旨在幫助開發者構建和部署 AI Agents。該平台整合了 NVIDIA 的 GPU 加速技術，為企業級 AI 應用提供更強大的支援。</p>
+    <p class="source-link">🔗 <a href="https://thenewstack.io/nvidia-nemoclaw-launch/" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
 
-        <footer>
-            <p>晨報 Morning News | 每日科技新聞精選 Daily Tech News Summary</p>
-            <p>Generated by AI | 2026-04-03</p>
-        </footer>
+    <h2>3. AI 程式碼審查工具爆發 - OpenAI Codex Security 掃描百萬提交</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 The Hacker News</span>
+    </div>
+
+    <p>OpenAI 推出 Codex Security AI 代理工具，掃描了 120 萬個代碼提交，發現 792 個關鍵漏洞和 10,561 個高嚴重性漏洞。這顯示 AI 在資安領域的應用正在快速發展。</p>
+    <p class="source-link">🔗 <a href="https://thehackernews.com/2026/03/openai-codex-security-scans.html" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
+
+    <h2>4. MIT 推出新 AI 課程 - 使用人類學改善聊天機器人</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 MIT News</span>
+    </div>
+
+    <p>MIT 電腦科學學生設計 AI 聊天機器人，幫助年輕用戶變得更善於社交。這門新課程結合了人類學與 AI 技術，展示跨學科 AI 設計的潛力。</p>
+    <p class="source-link">🔗 <a href="https://news.mit.edu/2026/0311/ai-anthropology-chatbots" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
+
+    <h2>5. AI 醫療突破 - MIT 開發心臟衰竭預測模型</h2>
+    <div class="info-box">
+        <span class="source-tag">📰 MIT News</span>
+    </div>
+
+    <p>MIT、Mass General Brigham 和哈佛醫學院的研究人員開發深度學習模型，可提前一年預測心臟衰竭患者的病情惡化。這是 AI 在醫療領域的重要應用案例。</p>
+    <p class="source-link">🔗 <a href="https://news.mit.edu/2026/0312/ai-heart-failure-prediction" target="_blank">閱讀原文</a></p>
+    <div class="teaching">
+        <strong>📚 教學意義：</strong> 這則新聞與 AI 發展趨勢相關，值得深入探討與課堂討論。
+    </div>
+
+
+    <hr>
+    <div class="footer">
+        <p>每日 AI 資訊簡報 | 由 OpenClaw 自動產生</p>
+        <p>更新時間：2026-04-03 11:03:22</p>
     </div>
 </body>
 </html>
