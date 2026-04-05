@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 晨報 | Daily AI News — 2026年4月5日</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --accent2: #a371f7;
+    --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.7; }
+  .container { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  header { text-align: center; padding: 40px 0 30px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+  header .date { color: var(--muted); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  header h1 { font-size: 28px; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; }
+  header .subtitle { color: var(--muted); font-size: 14px; }
+
+  .voice-section { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 32px; overflow: hidden; }
+  .voice-section h2 { font-size: 15px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
+  .voice-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+  .voice-btn { display: flex; align-items: center; gap: 10px; background: var(--gradient); color: white; border: none; border-radius: 50px; padding: 10px 22px; font-size: 14px; cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
+  .voice-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+  .voice-btn .icon { font-size: 16px; }
+  .voice-btn .label { font-weight: 600; }
+
+  .news-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 24px; overflow: hidden; transition: border-color 0.2s; }
+  .news-card:hover { border-color: var(--accent); }
+  .card-header { padding: 18px 22px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .card-num { background: var(--gradient); color: white; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; flex-shrink: 0; }
+  .card-title-zh { font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.4; }
+  .card-title-en { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 4px; }
+  .card-body { padding: 18px 22px; }
+  .lang-block { margin-bottom: 16px; }
+  .lang-block:last-child { margin-bottom: 0; }
+  .lang-tag { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; display: inline-block; }
+  .lang-tag.zh { background: rgba(102,126,234,0.2); color: #a5b4fc; }
+  .lang-tag.en { background: rgba(163,113,247,0.2); color: #c4b5fd; }
+  .card-text { font-size: 14.5px; color: var(--text); }
+  .card-text.en { color: var(--muted); }
+  .screenshot-wrap { margin-top: 14px; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+  .screenshot-wrap img { width: 100%; display: block; }
+  .card-footer { padding: 12px 22px; border-top: 1px solid var(--border); }
+  .card-source { font-size: 12px; color: var(--muted); }
+  .card-source a { color: var(--accent); text-decoration: none; }
+  .card-source a:hover { text-decoration: underline; }
+
+  .screenshots-section { margin: 40px 0; }
+  .screenshots-section h3 { font-size: 16px; color: var(--muted); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+  .screenshots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+  .screenshot-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .screenshot-card img { width: 100%; display: block; }
+  .screenshot-card .caption { padding: 8px 12px; font-size: 12px; color: var(--muted); }
+
+  footer { text-align: center; padding: 30px 0; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 22px; }
+    .card-title-zh { font-size: 15px; }
+    .voice-buttons { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="date">2026 年 4 月 5 日　Sunday</div>
+  <h1>AI 晨報　Daily AI News</h1>
+  <div class="subtitle">小小斌每日科技新聞集錦　Produced by 小小斌</div>
+</header>
+
+<section class="voice-section">
+  <h2>語音播放器 Voice</h2>
+  <div class="voice-buttons">
+    <button class="voice-btn" onclick="playAudio('zh')">
+      <span class="icon">🔊</span>
+      <span class="label">中文</span>
+    </button>
+    <button class="voice-btn" onclick="playAudio('en')">
+      <span class="icon">🔊</span>
+      <span class="label">English</span>
+    </button>
+  </div>
+</section>
+
+<!-- 新聞 1 -->
+<div class="news-card">
+  <div class="card-header">
+    <div>
+      <div class="card-title-zh">Anthropic 推出 Claude Mythos 5：首個十兆參數模型，瞄準資安與研究領域</div>
+      <div class="card-title-en">Anthropic Releases Claude Mythos 5: First 10-Trillion Parameter Model Targets Cybersecurity &amp; Research</div>
+    </div>
+    <span class="card-num">1</span>
+  </div>
+  <div class="card-body">
+    <div class="lang-block">
+      <div class="lang-tag zh">中文</div>
+      <p class="card-text">Anthropic 正式發布 Claude Mythos 5，這是全球首個達到十兆參數規模、獲得廣泛認可的 AI 模型。Mythos 5 專為高風險環境設計，在網路安全、學術研究與複雜程式開發等場景中展現卓越的多步推理能力，有效克服了小型模型在長程規劃中常見的「跳躍錯誤」。此架構代表 AI 密度與專業化的重大突破，標誌著通用人工智慧邁向新里程碑。</p>
+    </div>
+    <div class="lang-block">
+      <div class="lang-tag en">English</div>
+      <p class="card-text en">Anthropic has officially released Claude Mythos 5, the world's first widely recognized AI model to reach ten trillion parameters. Purpose-built for high-stakes environments, Mythos 5 excels in cybersecurity, academic research, and complex coding tasks, effectively overcoming the "chunk-skipping" errors that plague smaller models during long-range planning. This architecture represents a major leap toward specialized AI density and signals a new milestone on the path toward artificial general intelligence.</p>
+    </div>
+    <div class="screenshot-wrap">
+      <img src="screenshots/morningnews-20260405-devflokers.png" alt="Claude Mythos 5 source" loading="lazy">
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="card-source">來源 Source: <a href="https://www.devflokers.com/blog/ai-news-last-24-hours-april-2026-model-releases-breakthroughs" target="_blank">devFlokers</a></div>
+  </div>
+</div>
+
+<!-- 新聞 2 -->
+<div class="news-card">
+  <div class="card-header">
+    <div>
+      <div class="card-title-zh">GPT-5.4 Thinking 達成作業系統層級代理能力，通過 OSWorld 測試</div>
+      <div class="card-title-en">GPT-5.4 Thinking Achieves OS-Level Agentic Execution, Passes OSWorld Test</div>
+    </div>
+    <span class="card-num">2</span>
+  </div>
+  <div class="card-body">
+    <div class="lang-block">
+      <div class="lang-tag zh">中文</div>
+      <p class="card-text">OpenAI 全面部署 GPT-5.4 系列，其中「Thinking」變體整合了測試時間計算技術，使模型能夠在輸出回應前「深思熟慮」複雜問題。GPT-5.4 Thinking 在 OSWorld-Verified 桌面任務測試中拿下 75.0% 的分數，較 GPT-5.2 提升 27.7 個百分點，並以 83.0% 的 GDPVal 分數正式超越人類水準。這項能力使 GPT-5.4 能以真正的自主代理之姿，導航檔案系統、瀏覽器與終端介面，標誌著 AI 從語言模型向作業系統工具的重大躍進。</p>
+    </div>
+    <div class="lang-block">
+      <div class="lang-tag en">English</div>
+      <p class="card-text en">OpenAI has fully deployed the GPT-5.4 series, with the "Thinking" variant integrating test-time compute to let the model "ponder" complex problems before responding. GPT-5.4 Thinking scored 75.0% on the OSWorld-Verified desktop task benchmark—a 27.7 percentage point jump over GPT-5.2—and achieved an 83.0% GDPVal score, officially surpassing human-level performance. This enables GPT-5.4 to act as a truly autonomous agent navigating files, browsers, and terminal interfaces, marking a major leap from language model to operating-system-level tool.</p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="card-source">來源 Source: <a href="https://www.devflokers.com/blog/ai-news-last-24-hours-april-2026-model-releases-breakthroughs" target="_blank">devFlokers</a></div>
+  </div>
+</div>
+
+<!-- 新聞 3 -->
+<div class="news-card">
+  <div class="card-header">
+    <div>
+      <div class="card-title-zh">Google DeepMind 發布 Gemini 3.1 Ultra：GPQA 測試 94.3% 創世界紀錄</div>
+      <div class="card-title-en">Google DeepMind Releases Gemini 3.1 Ultra: 94.3% on GPQA Diamond Sets World Record</div>
+    </div>
+    <span class="card-num">3</span>
+  </div>
+  <div class="card-body">
+    <div class="lang-block">
+      <div class="lang-tag zh">中文</div>
+      <p class="card-text">Google DeepMind 同步推出 Gemini 3.1 模型系列，強調原生多模態推理與即時處理能力。旗艦版本 Gemini 3.1 Ultra 在 GPQA Diamond 基準測試中取得 94.3% 的高分，大幅超越前代。為滿足生產環境對效率的需求，Google 還推出 Gemini 3.1 Flash-Lite，回應速度提升 2.5 倍，輸出生成速度改善 45%。Gemini 3.1 系列將模型陣容分為「推理導向」與「延遲優化」兩條路線，反映市場走向專業化部署的趨勢。</p>
+    </div>
+    <div class="lang-block">
+      <div class="lang-tag en">English</div>
+      <p class="card-text en">Google DeepMind simultaneously launched the Gemini 3.1 model family, emphasizing native multimodal reasoning and real-time processing. The flagship Gemini 3.1 Ultra achieved a record 94.3% on the GPQA Diamond benchmark, a significant leap from previous generations. To address efficiency demands in production, Google also introduced Gemini 3.1 Flash-Lite, delivering 2.5x faster response times and 45% improved output generation speed. The Gemini 3.1 lineup bifurcates into "reasoning-heavy" and "latency-optimized" tiers, reflecting the market's shift toward specialized deployments.</p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="card-source">來源 Source: <a href="https://www.devflokers.com/blog/ai-news-last-24-hours-april-2026-model-releases-breakthroughs" target="_blank">devFlokers</a></div>
+  </div>
+</div>
+
+<!-- 新聞 4 -->
+<div class="news-card">
+  <div class="card-header">
+    <div>
+      <div class="card-title-zh">Google 發布 TurboQuant：記憶體用量降至六分之一，注意力計算加速八倍</div>
+      <div class="card-title-en">Google Unveils TurboQuant: Memory Usage Cut to One-Sixth, Attention Speedup 8x</div>
+    </div>
+    <span class="card-num">4</span>
+  </div>
+  <div class="card-body">
+    <div class="lang-block">
+      <div class="lang-tag zh">中文</div>
+      <p class="card-text">Google 研究團隊在 ICLR 2026 發表 TurboQuant 演算法，解決大規模模型中 Key-Value（KV）快取造成的記憶體瓶頸。TurboQuant 結合 PolarQuant（隨機旋轉向量幾何）與量化 Johnson-Lindenstrauss（QJL）演算法，可在 KV 快取量化至僅 3 位元的條件下，實現零精度損失。實際測試顯示，TurboQuant 可將記憶體用量減少六倍，注意力計算加速八倍。此突破已推動資料中心網路供應商 Arista Networks 將 2026 年營收預測上調至 112.5 億美元。</p>
+    </div>
+    <div class="lang-block">
+      <div class="lang-tag en">English</div>
+      <p class="card-text en">Google Research presented TurboQuant at ICLR 2026, an algorithm that addresses the memory bottleneck of Key-Value (KV) caches in large-scale models. TurboQuant combines PolarQuant (random rotation of vector geometry) with the Quantized Johnson-Lindenstrauss (QJL) algorithm, enabling KV cache quantization to just 3 bits with zero accuracy loss. Benchmark testing shows TurboQuant reduces memory usage by 6x and accelerates attention computation by 8x. This breakthrough has already driven data center networking supplier Arista Networks to raise its 2026 revenue outlook to $11.25 billion.</p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="card-source">來源 Source: <a href="https://www.devflokers.com/blog/ai-news-last-24-hours-april-2026-model-releases-breakthroughs" target="_blank">devFlokers</a></div>
+  </div>
+</div>
+
+<!-- 新聞 5 -->
+<div class="news-card">
+  <div class="card-header">
+    <div>
+      <div class="card-title-zh">SpaceX 收購 xAI、Starcloud 建太空資料中心：AI 基礎設施走向星際</div>
+      <div class="card-title-en">SpaceX Acquires xAI, Starcloud Builds Space Data Centers: AI Infrastructure Goes Interstellar</div>
+    </div>
+    <span class="card-num">5</span>
+  </div>
+  <div class="card-body">
+    <div class="lang-block">
+      <div class="lang-tag zh">中文</div>
+      <p class="card-text">AI 基礎設施領域接連傳出重磅消息。SpaceX 正式完成對 xAI 的收購，將其整合至旗下 AI 發展版圖。同時，Starcloud 在 Y Combinator 孵化僅 17 個月後，即以 1.7 億美元 A 輪融资達成獨角獸地位，資金將用於在太空建造資料中心。太空資料中心可提供前所未有的頻寬與低延遲優勢，對需要即時 AI 運算的應用場景具有革命性潛力。這兩項進展象徵 AI 基礎設施競爭已從地面延伸至太空。</p>
+    </div>
+    <div class="lang-block">
+      <div class="lang-tag en">English</div>
+      <p class="card-text en">Major developments continue to reshape AI infrastructure. SpaceX has officially completed its acquisition of xAI, integrating it into its broader AI strategy. Meanwhile, Starcloud achieved unicorn status just 17 months after its Y Combinator demo day, raising $170 million in Series A funding to build data centers in space. Space-based data centers could offer unprecedented bandwidth and reduced latency, with revolutionary potential for real-time AI computation. Together, these developments signal that the AI infrastructure arms race has expanded from Earth to orbit.</p>
+    </div>
+    <div class="screenshot-wrap">
+      <img src="screenshots/morningnews-20260405-techcrunch.png" alt="SpaceX and AI infrastructure source" loading="lazy">
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="card-source">來源 Source: <a href="https://coaio.com/news/2026/03/breaking-tech-news-on-march-31-2026-ai-investments-space-data-centers-2l0c/" target="_blank">coaio / TechCrunch</a></div>
+  </div>
+</div>
+
+<!-- 新聞 6 -->
+<div class="news-card">
+  <div class="card-header">
+    <div>
+      <div class="card-title-zh">Mistral AI 獲投 8.3 億美元在巴黎建資料中心，Qodo 獲 7,000 萬美元強化 AI 程式驗證</div>
+      <div class="card-title-en">Mistral AI Raises $830M for Paris Data Center; Qodo Secures $70M for AI Code Verification</div>
+    </div>
+    <span class="card-num">6</span>
+  </div>
+  <div class="card-body">
+    <div class="lang-block">
+      <div class="lang-tag zh">中文</div>
+      <p class="card-text">歐洲 AI 版圖持續擴張。Mistral AI 完成 8.3 億美元債務融资，將在巴黎郊區興建旗艦級資料中心，預計 2026 年第二季投產，並引進 Nvidia 最先進硬體與合作。同日，程式碼驗證新創 Qodo 宣布完成 7,000 萬美元融资，專注於 AI 生成程式碼的自動化錯誤檢測與效率優化，協助開發者在大規模 AI 輔助開發時代維護軟體品質。兩筆融资合計超過 9 億美元，反映全球投資人對 AI 基礎設施與開發工具的持續看好。</p>
+    </div>
+    <div class="lang-block">
+      <div class="lang-tag en">English</div>
+      <p class="card-text en">The European AI landscape continues to expand. Mistral AI closed an $830 million debt financing round to build a flagship data center near Paris, expected to come online in Q2 2026 with Nvidia cutting-edge hardware partnerships. On the same day, code verification startup Qodo announced a $70 million funding round focused on automated error detection and optimization in AI-generated code, helping developers maintain software quality in the age of AI-assisted development. Combined, these two rounds exceed $900 million, underscoring sustained global investor confidence in AI infrastructure and developer tooling.</p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="card-source">來源 Source: <a href="https://coaio.com/news/2026/03/breaking-tech-news-on-march-31-2026-ai-investments-space-data-centers-2l0c/" target="_blank">coaio / TechCrunch</a></div>
+  </div>
+</div>
+
+<!-- 新聞 7 -->
+<div class="news-card">
+  <div class="card-header">
+    <div>
+      <div class="card-title-zh">DeepSeek V4 以兆級開源 MoE 架構亮相、OpenClaw 達成 GitHub 三十萬星標</div>
+      <div class="card-title-en">DeepSeek V4 Launches with Trillion-Parameter Open MoE; OpenClaw Hits 300K GitHub Stars</div>
+    </div>
+    <span class="card-num">7</span>
+  </div>
+  <div class="card-body">
+    <div class="lang-block">
+      <div class="lang-tag zh">中文</div>
+      <p class="card-text">開源 AI 陣營傳來兩項重要進展。中國 DeepSeek 發布 V4 模型，採用兆級參數的專家混合（MoE）架構，並以 Apache 2.0 授權完全開源 weights，在 HumanEval 程式設計測試中取得 94.7% 的高分。同時，開源自主代理框架 OpenClaw（前身為 Clawdbot）在 GitHub 上的星標數已突破 30.2 萬，超越 Linux 和 React，成為 GitHub 歷史上增長最快的開源專案。OpenClaw 可在本地機器上執行代理任務，透過 WhatsApp、Telegram 等訊息平台自動化管理檔案與網頁。</p>
+    </div>
+    <div class="lang-block">
+      <div class="lang-tag en">English</div>
+      <p class="card-text en">The open-source AI community marks two significant milestones. Chinese lab DeepSeek released V4, a trillion-parameter Mixture-of-Experts (MoE) model with fully open weights under Apache 2.0, achieving a 94.7% score on the HumanEval coding benchmark. Separately, open-source autonomous agent framework OpenClaw (formerly Clawdbot) surpassed 302,000 GitHub stars, surpassing Linux and React to become the fastest-growing open-source project in GitHub history. OpenClaw runs autonomous agent tasks locally and automates file and web management via messaging platforms like WhatsApp and Telegram.</p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="card-source">來源 Source: <a href="https://www.devflokers.com/blog/ai-news-last-24-hours-april-2026-model-releases-breakthroughs" target="_blank">devFlokers</a></div>
+  </div>
+</div>
+
+<section class="screenshots-section">
+  <h3>來源截圖 Source Screenshots</h3>
+  <div class="screenshots-grid">
+    <div class="screenshot-card">
+      <img src="screenshots/morningnews-20260405-devflokers.png" alt="devFlokers">
+      <div class="caption">devFlokers — AI News April 2026</div>
+    </div>
+    <div class="screenshot-card">
+      <img src="screenshots/morningnews-20260405-coaio.png" alt="coaio">
+      <div class="caption">coaio — Tech News March 31, 2026</div>
+    </div>
+    <div class="screenshot-card">
+      <img src="screenshots/morningnews-20260405-techcrunch.png" alt="TechCrunch">
+      <div class="caption">TechCrunch — Latest Tech News</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>AI 晨報 Daily AI News | 2026年4月5日 Sunday</p>
+  <p>由小小斌自動生成　Generated by 小小斌</p>
+  <p><a href="https://github.com/ntust2026/ntust2026.github.io/tree/main/claw" target="_blank">GitHub Repo</a></p>
+</footer>
+
+</div>
+
+<script>
+let zhAudio = null, enAudio = null;
+function playAudio(lang) {
+  if (lang === 'zh') {
+    if (!zhAudio) zhAudio = new Audio('https://ntust2026.github.io/claw/morningnews-20260405.mp3');
+    zhAudio.play().catch(e => alert('語音載入失敗，請稍後再試。Audio failed to load.'));
+  } else {
+    if (!enAudio) enAudio = new Audio('https://ntust2026.github.io/claw/morningnews-20260405-en.mp3');
+    enAudio.play().catch(e => alert('語音載入失敗，請稍後再試。Audio failed to load.'));
+  }
+}
+</script>
+
+</body>
+</html>
