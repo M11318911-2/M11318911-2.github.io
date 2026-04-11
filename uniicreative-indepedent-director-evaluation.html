@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>獨立董事候選人評估表｜有你共創</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f0f2f5;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            border-radius: 16px 16px 0 0;
+            margin-bottom: 0;
+        }
+        
+        .header .tag {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+        }
+        
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            opacity: 0.8;
+            font-size: 1em;
+        }
+        
+        .header .date {
+            margin-top: 15px;
+            font-size: 0.85em;
+            opacity: 0.6;
+        }
+        
+        /* Sections */
+        section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 2px;
+        }
+        
+        section:last-child {
+            border-radius: 0 0 16px 16px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #1a1a2e;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e94560;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2 .icon {
+            font-size: 1.2em;
+        }
+        
+        h3 {
+            color: #16213e;
+            font-size: 1em;
+            margin: 20px 0 12px;
+            padding-left: 10px;
+            border-left: 3px solid #e94560;
+        }
+        
+        p {
+            margin-bottom: 12px;
+            color: #555;
+        }
+        
+        /* Checklist Table */
+        .checklist {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .checklist th {
+            background: #f8f9fa;
+            color: #16213e;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .checklist td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        .checklist tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .checklist .item {
+            font-weight: 500;
+            color: #333;
+            width: 45%;
+        }
+        
+        .checklist .reason {
+            color: #666;
+            font-size: 0.9em;
+            width: 35%;
+        }
+        
+        .checklist .status {
+            width: 20%;
+        }
+        
+        .status-box {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        
+        .status-box.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-box.yes {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-box.no {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status-box.risk {
+            background: #e2e3f5;
+            color: #383d41;
+        }
+        
+        /* Risk Matrix */
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 600px) {
+            .risk-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .risk-card {
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid;
+        }
+        
+        .risk-card.high {
+            background: #fff5f5;
+            border-color: #e94560;
+        }
+        
+        .risk-card.medium {
+            background: #fffbf0;
+            border-color: #f0ad4e;
+        }
+        
+        .risk-card.low {
+            background: #f0fff4;
+            border-color: #28a745;
+        }
+        
+        .risk-card h4 {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .risk-card p {
+            font-size: 0.9em;
+            margin: 0;
+        }
+        
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #1a1a2e15, #16213e10);
+            border-left: 4px solid #1a1a2e;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+        
+        .summary-box h4 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+        
+        .summary-box ul {
+            padding-left: 20px;
+        }
+        
+        .summary-box li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        /* Signature Area */
+        .signature-area {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 600px) {
+            .signature-area {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .sig-box {
+            text-align: center;
+        }
+        
+        .sig-box .label {
+            font-size: 0.85em;
+            color: #999;
+            margin-bottom: 8px;
+        }
+        
+        .sig-box .line {
+            border-bottom: 1px solid #333;
+            height: 40px;
+            margin-bottom: 5px;
+        }
+        
+        .sig-box .name {
+            font-size: 0.9em;
+            color: #555;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 0.8em;
+        }
+        
+        /* Print */
+        @media print {
+            body { background: white; }
+            .container { max-width: 100%; padding: 0; }
+            section { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="tag">獨立董事候選人評估</div>
+            <h1>有你共創數位股份有限公司</h1>
+            <p class="subtitle">uniicreative Co., Ltd.</p>
+            <p class="date">評估日期：2026年4月8日｜版本：1.0</p>
+        </div>
+        
+        <!-- 基本資料 -->
+        <section>
+            <h2><span class="icon">📋</span>候選人基本資料</h2>
+            <table class="checklist">
+                <tr>
+                    <td class="item">候選人姓名</td>
+                    <td colspan="2"><strong>欒帥 教授</strong></td>
+                </tr>
+                <tr>
+                    <td class="item">專長領域</td>
+                    <td colspan="2">電子商務、網路行銷、人工智慧（AI）</td>
+                </tr>
+                <tr>
+                    <td class="item">候選人身份</td>
+                    <td colspan="2">學者／外部獨立人士（非公司內部人）</td>
+                </tr>
+                <tr>
+                    <td class="item">與公司關係</td>
+                    <td colspan="2">目前無持股、無業務往來、無親屬關係（需進一步確認）</td>
+                </tr>
+                <tr>
+                    <td class="item">獨立性聲明</td>
+                    <td colspan="2">須符合《獨立董事設置及應遵循事項辦法》選任前二年及任職期間之獨立性要件</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 公司概況 -->
+        <section>
+            <h2><span class="icon">🏢</span>公司基本概況</h2>
+            <table class="checklist">
+                <tr>
+                    <td class="item">統一編號</td>
+                    <td colspan="2">90463868</td>
+                </tr>
+                <tr>
+                    <td class="item">實收資本額</td>
+                    <td colspan="2">新台幣 1億元</td>
+                </tr>
+                <tr>
+                    <td class="item">已發行股份</td>
+                    <td colspan="2">10,000,000 股（每股10元）</td>
+                </tr>
+                <tr>
+                    <td class="item">成立日期</td>
+                    <td colspan="2">2021年10月26日</td>
+                </tr>
+                <tr>
+                    <td class="item">登記地址</td>
+                    <td colspan="2">新北市汐止區大同路一段369號2樓</td>
+                </tr>
+                <tr>
+                    <td class="item">主要產品／服務</td>
+                    <td colspan="2">設計電商（uDesign）、IP授權經紀（uLicensing）、海外跨境（uGlobal）、群眾募資顧問、OMO快閃店（uPoint）、團購服務</td>
+                </tr>
+                <tr>
+                    <td class="item">主要進出口資格</td>
+                    <td colspan="2">已取得進出口資格（英文名：uniicreative Co., Ltd.）</td>
+                </tr>
+                <tr>
+                    <td class="item">上市櫃狀態</td>
+                    <td colspan="2">私人股份有限公司（未上市櫃，準備IPO中）</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 董監事結構 -->
+        <section>
+            <h2><span class="icon">⚙️</span>董監事結構現況</h2>
+            <h3>現任董監事（IPO前）</h3>
+            <table class="checklist">
+                <tr>
+                    <th>職稱</th>
+                    <th>姓名</th>
+                    <th>代表法人</th>
+                </tr>
+                <tr>
+                    <td>董事長</td>
+                    <td>李彥甫</td>
+                    <td>怡創投資（股）公司</td>
+                </tr>
+                <tr>
+                    <td>董事</td>
+                    <td>吳天維</td>
+                    <td>怡創投資（股）公司</td>
+                </tr>
+                <tr>
+                    <td>董事</td>
+                    <td>林倫慶（總經理）</td>
+                    <td>怡創投資（股）公司</td>
+                </tr>
+                <tr>
+                    <td>監察人</td>
+                    <td>黃素娟</td>
+                    <td>怡創投資（股）公司</td>
+                </tr>
+            </table>
+            
+            <h3>IPO後預計架構</h3>
+            <table class="checklist">
+                <tr>
+                    <td class="item">獨立董事人數</td>
+                    <td colspan="2"><strong>3 位（含本候選人）</strong></td>
+                </tr>
+                <tr>
+                    <td class="item">審計委員會</td>
+                    <td colspan="2">由3位獨董組成（法定要求）</td>
+                </tr>
+                <tr>
+                    <td class="item">薪酬委員會</td>
+                    <td colspan="2">由3位獨董組成（法定要求）</td>
+                </tr>
+                <tr>
+                    <td class="item">監察人制度</td>
+                    <td colspan="2">IPO後由審計委員會取代</td>
+                </tr>
+            </table>
+            
+            <div class="summary-box">
+                <h4>⚠️ 治理觀察</h4>
+                <ul>
+                    <li>目前董監事全數由怡創投資法人代表，屬典型內部人控制結構</li>
+                    <li>本候選人若當選，將為第一位外部獨立人士</li>
+                    <li>IPO前引進獨董，顯示公司治理正要從「家族制」轉向「外部監督制」</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Due Diligence 清單 -->
+        <section>
+            <h2><span class="icon">🔍</span>盡職調查清單（Due Diligence）</h2>
+            
+            <h3>一、財務與會計</h3>
+            <table class="checklist">
+                <tr>
+                    <th>調查項目</th>
+                    <th>重要性說明</th>
+                    <th>狀態</th>
+                </tr>
+                <tr>
+                    <td class="item">近3年損益表（含毛利率、營益率）</td>
+                    <td class="reason">了解實際獲利能力與趨勢</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">現金流量表（近3年）</td>
+                    <td class="reason">確認現金是否足夠支撐營運與擴張</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">資產負債表（近3年）</td>
+                    <td class="reason">了解資產品質與負債結構</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">會計師核閱／查核報告</td>
+                    <td class="reason">外部稽核公信力與查核意見</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">營收認列原則</td>
+                    <td class="reason">確認是否符合IFRS準則，有無美化財報之虞</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">資本額登記與實收差異原因</td>
+                    <td class="reason">實收1億 vs 股數1千萬股×10元＝1億，差異1.5億待確認</td>
+                    <td class="status"><span class="status-box risk">需了解</span></td>
+                </tr>
+                <tr>
+                    <td class="item">IPO前募資金額與稀釋比例</td>
+                    <td class="reason">稀釋將影響每股盈餘與決策話語權</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">員工認股選擇權（ESOP）池子</td>
+                    <td class="reason">稀釋效應與人才激勵機制</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+            </table>
+            
+            <h3>二、營運與業務</h3>
+            <table class="checklist">
+                <tr>
+                    <th>調查項目</th>
+                    <th>重要性說明</th>
+                    <th>狀態</th>
+                </tr>
+                <tr>
+                    <td class="item">主要客戶集中度（前三大佔比）</td>
+                    <td class="reason">分散風險，避免過度依賴單一客戶</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">主要供應商集中度</td>
+                    <td class="reason">IP授權方是否集中？有斷供風險？</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">IP授權合約明細（期限與條件）</td>
+                    <td class="reason">日韓IP授權何時到期？續約條件？自有多少IP？</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">日本kibidango子公司營收貢獻</td>
+                    <td class="reason">併購效益是否實際反映在財務數字上</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">團購業務成長率與毛利結構</td>
+                    <td class="reason">2024年破億，但毛利是否足夠支撐費用？</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">OMO快閃店（uPoint）單店獲利模型</td>
+                    <td class="reason">實體店面成本高，需要看到單店經濟模型</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+            </table>
+            
+            <h3>三、公司治理</h3>
+            <table class="checklist">
+                <tr>
+                    <th>調查項目</th>
+                    <th>重要性說明</th>
+                    <th>狀態</th>
+                </tr>
+                <tr>
+                    <td class="item">「三會」會議記錄（董、監、股東會）</td>
+                    <td class="reason">過去決策程序是否合規</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">內部控制制度是否已建立</td>
+                    <td class="reason">IPO必備條件，影響財報可信度</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">風險管理機制與委員會</td>
+                    <td class="reason">是否有系統性的風險辨識與因應流程</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">會計與稽核部門規模與歸屬</td>
+                    <td class="reason">是否獨立於管理層，直接向審計委員會報告</td>
+                    <td class="status"><span class="status-box pending">待索取</span></td>
+                </tr>
+                <tr>
+                    <td class="item">其他兩位獨董候選人背景</td>
+                    <td class="reason">影響委員會專業度與決策品質，候選人有話語權</td>
+                    <td class="status"><span class="status-box pending">待確認</span></td>
+                </tr>
+                <tr>
+                    <td class="item">IPO時間表（預計送件月份）</td>
+                    <td class="reason">影響獨董工作量與職責期間</td>
+                    <td class="status"><span class="status-box pending">待確認</span></td>
+                </tr>
+                <tr>
+                    <td class="item">外部律所與會計師事務所</td>
+                    <td class="reason">代表IPO專案實質進度，非「評估中」</td>
+                    <td class="status"><span class="status-box pending">待確認</span></td>
+                </tr>
+            </table>
+            
+            <h3>四、法律與智財</h3>
+            <table class="checklist">
+                <tr>
+                    <th>調查項目</th>
+                    <th>重要性說明</th>
+                    <th>狀態</th>
+                </tr>
+                <tr>
+                    <td class="item">未決訴訟或消費爭議</td>
+                    <td class="reason">潛在或有負債，可能影響上市資格</td>
+                    <td class="status"><span class="status-box pending">待確認</span></td>
+                </tr>
+                <tr>
+                    <td class="item">智財權歸屬（自有IP vs 代理IP）</td>
+                    <td class="reason">自有IP佔比影響毛利與長期價值</td>
+                    <td class="status"><span class="status-box pending">待確認</span></td>
+                </tr>
+                <tr>
+                    <td class="item">智慧財產權登記（11筆商標已確認）</td>
+                    <td class="reason">已登記Ms.Cat、貓小姐、BRAD系列等，需確認完整性</td>
+                    <td class="status"><span class="status-box yes">已查核</span></td>
+                </tr>
+                <tr>
+                    <td class="item">大宗合約違約風險</td>
+                    <td class="reason">採購、銷售、IP授權合約中的違約條款</td>
+                    <td class="status"><span class="status-box pending">待確認</span></td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 薪酬與保障 -->
+        <section>
+            <h2><span class="icon">💰</span>薪酬與責任保障</h2>
+            <table class="checklist">
+                <tr>
+                    <td class="item">董事酬勞（車馬費）</td>
+                    <td class="reason">每次董事會出席費行情：學者約5,000～15,000元</td>
+                    <td class="status"><span class="status-box pending">待議定</span></td>
+                </tr>
+                <tr>
+                    <td class="item">薪酬委員會委員報酬</td>
+                    <td class="reason">每年酬勞，需確認是否另行計算</td>
+                    <td class="status"><span class="status-box pending">待議定</span></td>
+                </tr>
+                <tr>
+                    <td class="item">獨立董事責任險（D&O Insurance）</td>
+                    <td class="reason">IPO後獨董風險升高，公司應幫董事投保</td>
+                    <td class="status"><span class="status-box pending">待確認</span></td>
+                </tr>
+                <tr>
+                    <td class="item">保額是否足夠</td>
+                    <td class="reason">行情：民營企業IPO獨董投保3,000萬～1億元</td>
+                    <td class="status"><span class="status-box pending">待確認</span></td>
+                </tr>
+                <tr>
+                    <td class="item">IPO後是否持有公司股份</td>
+                    <td class="reason">候選人表示上市後不回報，但需確認是否允許低價認股</td>
+                    <td class="status"><span class="status-box risk">需確認</span></td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 風險矩陣 -->
+        <section>
+            <h2><span class="icon">⚠️</span>風險評估矩陣</h2>
+            <div class="risk-grid">
+                <div class="risk-card high">
+                    <h4>🔴 高風險</h4>
+                    <p>IP授權依賴日韓大型IP（如火影忍者、我的英雄學院），合約到期後若無法續約，營收將大幅下滑</p>
+                </div>
+                <div class="risk-card high">
+                    <h4>🔴 高風險</h4>
+                    <p>實體快閃店與庫存管理成本高，OMO模型尚未證明可規模化複製</p>
+                </div>
+                <div class="risk-card medium">
+                    <h4>🟡 中風險</h4>
+                    <p>目前無獨立董事與功能委員會，IPO前才建立治理制度，基礎相對薄弱</p>
+                </div>
+                <div class="risk-card medium">
+                    <h4>🟡 中風險</h4>
+                    <p>兩岸政治因素可能影響中國市場拓展或部分IP授權業務</p>
+                </div>
+                <div class="risk-card low">
+                    <h4>🟢 低風險</h4>
+                    <p>新一輪IPO前募資已引入國際策略夥伴，資本市場信心度高</p>
+                </div>
+                <div class="risk-card low">
+                    <h4>🟢 低風險</h4>
+                    <p>垂直整合商業模式完整，從IP培育到銷售一條龍，話語權較強</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 總結建議 -->
+        <section>
+            <h2><span class="icon">✅</span>總結與建議</h2>
+            
+            <div class="summary-box">
+                <h4>候選人專長與公司需求匹配度</h4>
+                <ul>
+                    <li><strong>電商專業</strong> ✅ 高度相關：公司核心商業模式即為數位電商與跨境運營</li>
+                    <li><strong>網路行銷</strong> ✅ 高度相關：IP推廣、團購、OMO整合依賴精準數位行銷</li>
+                    <li><strong>AI應用</strong> ✅ 潛力相關：公司強調數據資產化與AI推薦，符合未來發展方向</li>
+                </ul>
+            </div>
+            
+            <h3>接收任前建議行動</h3>
+            <table class="checklist">
+                <tr>
+                    <th>優先順序</th>
+                    <th>行動項目</th>
+                    <th>目的</th>
+                </tr>
+                <tr>
+                    <td><span class="status-box risk">1</span></td>
+                    <td class="item">約見公司創辦團隊，了解IPO實質進度</td>
+                    <td class="reason">確認是否為正式籌備階段，而非僅「評估中」</td>
+                </tr>
+                <tr>
+                    <td><span class="status-box risk">2</span></td>
+                    <td class="item">索取完整財務報表（近3年）與會計師報告</td>
+                    <td class="reason">驗證「營收破億、獲利翻倍」的說法是否屬實</td>
+                </tr>
+                <tr>
+                    <td><span class="status-box risk">3</span></td>
+                    <td class="item">了解另兩位獨董候選人背景</td>
+                    <td class="reason">確保委員會專業多元，非「湊人數」</td>
+                </tr>
+                <tr>
+                    <td><span class="status-box pending">4</span></td>
+                    <td class="item">議定董事酬勞與D&O責任險保額</td>
+                    <td class="reason">確認責任與報酬相符</td>
+                </tr>
+                <tr>
+                    <td><span class="status-box pending">5</span></td>
+                    <td class="item">請律師確認獨立性要件是否符合法規</td>
+                    <td class="reason">避免選任後因獨立性問題影響IPO</td>
+                </tr>
+            </table>
+            
+            <h3>接收任後重點任務</h3>
+            <ul>
+                <li>推動建立實質運作的審計委員會，而非虛應故事</li>
+                <li>要求定期提供財務報告與風險管理報告</li>
+                <li>把關IP授權合約的續約風險與分散策略</li>
+                <li>協助公司建立內部控制與稽核制度</li>
+                <li>利用自身學界資源，協助對接學研機構或AI人才</li>
+            </ul>
+        </section>
+        
+        <!-- 簽核欄 -->
+        <section>
+            <h2><span class="icon">✍️</span>簽核欄</h2>
+            <div class="signature-area">
+                <div class="sig-box">
+                    <div class="label">評估人</div>
+                    <div class="line"></div>
+                    <div class="name">欒帥 教授</div>
+                </div>
+                <div class="sig-box">
+                    <div class="label">評估日期</div>
+                    <div class="line"></div>
+                    <div class="name">2026年4月8日</div>
+                </div>
+                <div class="sig-box">
+                    <div class="label">版本</div>
+                    <div class="line"></div>
+                    <div class="name">v1.0</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                <h4 style="margin-bottom: 10px;">📌 備註</h4>
+                <p style="font-size: 0.9em; color: #666;">
+                    本評估表係根據公開資訊與網路資料整理，適用於初步評估參考。所有財務與法律相關事項，應於盡職調查階段，經由會計師與律師進行查核後再作最終決策。本表不構成任何投資或法律建議。
+                </p>
+            </div>
+        </section>
+        
+        <footer>
+            <p>有你共創數位股份有限公司｜獨立董事候選人評估表｜機密文件</p>
+            <p>Generated by AI Assistant | 2026年4月8日</p>
+        </footer>
+    </div>
+</body>
+</html>

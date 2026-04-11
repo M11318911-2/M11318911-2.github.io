@@ -1,0 +1,15 @@
+Good morning. Here is your US tech news briefing for Saturday, March 28th, 2026.
+
+Story one: OpenAI has officially announced plans to merge ChatGPT, its code development platform Codex, and the Atlas web browser into a single desktop superapp. OpenAI executives admitted that their scattered product strategy had been slowing the company down. The consolidation aims to convert 900 million casual users into paying power users ahead of a potential IPO.
+
+Story two: SoftBank Group has secured a 40 billion US dollar bridge loan to further invest in OpenAI. JPMorgan Chase, Goldman Sachs, and MUFG participated in the loan. Analysts say the move signals that the AI race has evolved from a technology competition into a financing muscle contest.
+
+Story three: Microsoft is taking over an AI data center expansion project in Texas after OpenAI backed away. OpenAI had planned to expand its Abilene facility but announced it was dropping those plans earlier this month. Microsoft immediately stepped in, targeting one of the largest AI data center campuses in the United States. Crusoe is currently building six more buildings for OpenAI and Oracle, expected to be completed by the end of this year.
+
+Story four: Apple has announced its 37th annual Worldwide Developers Conference, WWDC 2026, scheduled for June. Market expectations point to a major Siri overhaul, featuring a standalone Siri app, Dynamic Island integration, and Siri replacing Spotlight as the primary search interface on iPhone. The underlying technology runs on Google's Gemini models through a multi-year partnership between Apple and Google.
+
+Story five: NeurIPS 2026, the world's leading AI academic conference, has reversed its controversial new policy after major Chinese universities launched a boycott. The conference initially banned paper submissions from researchers at US-sanctioned entities. After the boycott, NeurIPS organizers acknowledged an internal miscommunication and rescinded the ban, highlighting the growing tension between academic freedom and geopolitics.
+
+Story six: Experts are increasingly warning of an AI bubble risk. J.P. Morgan analysts project 5 trillion dollars in AI infrastructure spending by 2030. This year alone, Amazon, Alphabet, Meta, and Microsoft plan to invest 670 billion dollars combined. Scholars are urging policymakers to prepare response mechanisms now, to avoid repeating the slow reaction seen during the 2008 financial crisis.
+
+That is your morning briefing.

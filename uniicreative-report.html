@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有你共創（uniicreative）深度分析報告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f7fa;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .hero .date {
+            margin-top: 15px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        /* Section Styles */
+        section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.2em;
+            margin: 25px 0 15px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Company Info Table */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .info-table th, .info-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .info-table th {
+            background: #f8f9fa;
+            color: #667eea;
+            width: 140px;
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .service-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .service-card h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .service-card .en {
+            color: #999;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+        }
+        
+        /* Business Highlights */
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .highlight-box h4 {
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+        
+        /* PESTEL Table */
+        .pestel-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .pestel-table th, .pestel-table td {
+            padding: 12px 15px;
+            border: 1px solid #eee;
+            text-align: left;
+        }
+        
+        .pestel-table th {
+            background: #667eea;
+            color: white;
+            width: 100px;
+        }
+        
+        .pestel-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        /* SWOT Grid */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 600px) {
+            .swot-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .swot-card {
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .swot-card.strengths {
+            background: linear-gradient(135deg, #11998e15, #38ef7d15);
+            border: 2px solid #38ef7d;
+        }
+        
+        .swot-card.weaknesses {
+            background: linear-gradient(135deg, #eb334915, #f45c4315);
+            border: 2px solid #f45c43;
+        }
+        
+        .swot-card.opportunities {
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            border: 2px solid #667eea;
+        }
+        
+        .swot-card.threats {
+            background: linear-gradient(135deg, #f093fb15, #f5576c15);
+            border: 2px solid #f5576c;
+        }
+        
+        .swot-card h4 {
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        
+        .swot-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .swot-card li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .swot-card li::before {
+            position: absolute;
+            left: 0;
+        }
+        
+        .strengths li::before { content: "✅ "; }
+        .weaknesses li::before { content: "⚠️ "; }
+        .opportunities li::before { content: "🚀 "; }
+        .threats li::before { content: "🚨 "; }
+        
+        /* Strategy Cards */
+        .strategy-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #764ba2;
+        }
+        
+        .strategy-card h4 {
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+            font-size: 0.9em;
+        }
+        
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5em;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            transition: transform 0.3s;
+        }
+        
+        .scroll-top:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Table responsive */
+        table {
+            overflow-x: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑</a>
+    
+    <div class="hero">
+        <h1>有你共創（uniicreative）深度分析報告</h1>
+        <p class="subtitle">IP文娛 × 品牌電商 × 全通路營運</p>
+        <p class="date">分析日期：2026年4月8日</p>
+    </div>
+    
+    <div class="container">
+        <!-- 公司基本資料 -->
+        <section>
+            <h2>一、公司基本資料</h2>
+            <table class="info-table">
+                <tr>
+                    <th>成立時間</th>
+                    <td>2021年10月</td>
+                </tr>
+                <tr>
+                    <th>公司名稱</th>
+                    <td>有你共創數位股份有限公司（uniicreative Co., Ltd.）</td>
+                </tr>
+                <tr>
+                    <th>統一編號</th>
+                    <td>90463868</td>
+                </tr>
+                <tr>
+                    <th>總經理</th>
+                    <td>林倫慶</td>
+                </tr>
+                <tr>
+                    <th>登記地址</th>
+                    <td>新北市汐止區大同路一段369號2樓</td>
+                </tr>
+                <tr>
+                    <th>母公司背景</th>
+                    <td>聯合數位文創系列旗下整合代表</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 核心服務與特色 -->
+        <section>
+            <h2>二、核心服務與特色</h2>
+            <p>有你共創主打<strong>「內容 × 產品 × 數據 × 場域」閉環營運模式</strong>，提供六大服務：</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>有.設計</h4>
+                    <p class="en">uDesign</p>
+                    <p>設計電商平台，結合設計媒體與電子商務</p>
+                </div>
+                <div class="service-card">
+                    <h4>有.IP授權</h4>
+                    <p class="en">uLicensing</p>
+                    <p>IP授權經紀，培育台灣原創IP，參與東京、上海、香港等國際授權展</p>
+                </div>
+                <div class="service-card">
+                    <h4>有.國際</h4>
+                    <p class="en">uGlobal</p>
+                    <p>海外募資與跨境通路，已執行超過100個海外項目，累積10萬+支持者</p>
+                </div>
+                <div class="service-card">
+                    <h4>有.募資</h4>
+                    <p class="en">Crowdfunding</p>
+                    <p>群眾募資顧問，從品牌包裝到執行的360度服務</p>
+                </div>
+                <div class="service-card">
+                    <h4>有.點市</h4>
+                    <p class="en">uPoint</p>
+                    <p>全台開設IP主題快閃店，OMO商業模式</p>
+                </div>
+                <div class="service-card">
+                    <h4>團購服務</h4>
+                    <p class="en">Group Buying</p>
+                    <p>2024年年收破億，成功推動多品牌進入市場</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 商業模式亮點 -->
+        <section>
+            <h2>三、商業模式亮點</h2>
+            
+            <h3>1. 上下游垂直整合</h3>
+            <p>從IP培育、授權經紀、商品開發、募資顧問到電商銷售與線下快閃店，<strong>一條龍全通路服務</strong>，降低IP商轉門檻。</p>
+            
+            <h3>2. 國際化擴張積極</h3>
+            <ul>
+                <li>2024年與日商W2雙贏電商合作，協助日本企業進入台灣市場</li>
+                <li>2025年併購日本群募平台 <strong>kibidango</strong>，正式成立日本子公司</li>
+                <li>已引入香港國際影業（Animation International）、美國新東陽、嘖嘖等國際策略夥伴</li>
+            </ul>
+            
+            <h3>3. 財務成長強勁</h3>
+            <div class="highlight-box">
+                <h4>📈 關鍵數據</h4>
+                <ul>
+                    <li>2025年整體獲利較前年<strong>翻倍</strong>，成長率超過100%</li>
+                    <li>2024年團購年收<strong>破億</strong></li>
+                    <li>已啟動IPO前募資</li>
+                </ul>
+            </div>
+            
+            <h3>4. 大型IP合作能力</h3>
+            <p>成功操作《我的英雄學院》最終季快閃店、全台限定色行李箱等高討論度專案，累積大型IP談案例。</p>
+        </section>
+        
+        <!-- 產業分析 -->
+        <section>
+            <h2>四、產業分析</h2>
+            
+            <h3>行業 Overview</h3>
+            <p>台灣文創IP與設計電商屬於<strong>跨界整合型產業</strong>，上游連接創作者與IP持有方，下游透過電商、實體通路接觸消費者。根據文策院資料，2020年台灣原創圖像開發暨經紀產業規模約<strong>6.17億台幣</strong>。</p>
+            
+            <h3>產業環境（PESTEL）</h3>
+            <table class="pestel-table">
+                <tr>
+                    <th>面向</th>
+                    <th>分析</th>
+                </tr>
+                <tr>
+                    <td>政治</td>
+                    <td>政府推動文化創意產業政策，文策院提供補助與輔導，出口中國大陸市場政治風險需關注</td>
+                </tr>
+                <tr>
+                    <td>經濟</td>
+                    <td>疫後消費復甦，但消費者對非必需品開支趨謹慎，性價比導向增強</td>
+                </tr>
+                <tr>
+                    <td>社會</td>
+                    <td>Z世代與千禧世代支持原創、重視IP故事與情感連結，IP經濟蓬勃</td>
+                </tr>
+                <tr>
+                    <td>科技</td>
+                    <td>AI應用提升個人化推薦與客服效率，跨境電商技術成熟降低進入門檻</td>
+                </tr>
+                <tr>
+                    <td>環保</td>
+                    <td>ESG意識抬頭，永續設計與環保包裝成為差異化賣點</td>
+                </tr>
+                <tr>
+                    <td>法律</td>
+                    <td>IP侵權問題活躍，需強化區塊鏈存證與法律保護機制</td>
+                </tr>
+            </table>
+            
+            <h3>市場規模與成長</h3>
+            <ul>
+                <li>台灣電商市場2025年預估年增率 <strong>5%-7%</strong></li>
+                <li>群募平台市場持續擴大，嘖嘖2020年單年募資18億、flyingV 5億</li>
+                <li>全球IP授權市場規模龐大，台灣原創IP出口潛力佳</li>
+            </ul>
+            
+            <h3>競爭態勢</h3>
+            <p>主要競爭對手包括：嘖嘖、flyingV 等募資平台（同時也是合作夥伴）、Pinkoi 設計電商平台、udnFunLife 聯合數位文創其他子公司、以及各類IP經紀公司與經紀人。</p>
+            <p>有你共創的<strong>差異化優勢在於垂直整合能力</strong>，能提供從IP培育到銷售的一站式服務，而非僅限單一環節。</p>
+        </section>
+        
+        <!-- SWOT分析 -->
+        <section>
+            <h2>五、SWOT 分析</h2>
+            
+            <div class="swot-grid">
+                <div class="swot-card strengths">
+                    <h4>優勢 Strengths</h4>
+                    <ul>
+                        <li>完整產業價值鏈：一條龍服務，話語權高</li>
+                        <li>集團資源支撐：母公司聯合數位文創生態系完整</li>
+                        <li>國際擴張能力：併購日本kibidango，國際化腳步領先</li>
+                        <li>成功募資經驗：100+海外項目，10萬+支持者</li>
+                        <li>財務成長亮眼：2025年獲利翻倍</li>
+                    </ul>
+                </div>
+                
+                <div class="swot-card weaknesses">
+                    <h4>劣勢 Weaknesses</h4>
+                    <ul>
+                        <li>公司規模仍小：2021年成立，資源有限</li>
+                        <li>IP依賴風險：部分營收來自熱門IP</li>
+                        <li>市場知名度：一般消費者認知度較低</li>
+                        <li>毛利壓力：實體快閃店與庫存管理成本高</li>
+                    </ul>
+                </div>
+                
+                <div class="swot-card opportunities">
+                    <h4>機會 Opportunities</h4>
+                    <ul>
+                        <li>台灣IP出海需求：政府積極輔導走向國際</li>
+                        <li>跨境電商爆發：日本kibidango可作為進入跳板</li>
+                        <li>AI與大數據應用：提升推薦與轉換率</li>
+                        <li>粉絲經濟持續擴大：消費者願意為情感溢價</li>
+                        <li>IPO前景：可獲取更多併購資源</li>
+                    </ul>
+                </div>
+                
+                <div class="swot-card threats">
+                    <h4>威脅 Threats</h4>
+                    <ul>
+                        <li>競爭加劇：大型電商與國際IP代理商持續投入</li>
+                        <li>經濟不確定性：終端消費放緩影響非必需品</li>
+                        <li>IP授權合約不穩定：日韓IP授權方談判地位強</li>
+                        <li>中國市場風險：兩岸政治因素影響商業化</li>
+                        <li>仿冒侵權問題：假貨泛濫影響原創收益</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 未來策略建議 -->
+        <section>
+            <h2>六、未來策略建議</h2>
+            
+            <div class="strategy-card">
+                <h4>1. 強化IP自創與持股比例</h4>
+                <p>目前有.設計與有.IP授權以代理日韓IP為主，建議積極扶植並投資台灣自有原創IP，提高毛利率與話語權。透過育成計畫與早期投資綁定優秀創作者，降低依賴外購IP的風險。</p>
+            </div>
+            
+            <div class="strategy-card">
+                <h4>2. 複製日本經驗，進軍東南亞</h4>
+                <p>日本kibidango已有基礎建設，可考慮以台灣IP優先輸出日本，再借道進入東南亞。評估併購泰國、越南或韓國當地募資電商平台，建立區域性IP授權數據庫。</p>
+            </div>
+            
+            <div class="strategy-card">
+                <h4>3. 數據資產化與AI應用</h4>
+                <p>累積10萬+支持者數據是重要資產。建構會員画像與消費行為模型，導入AI推薦引擎提升Cross-selling與回購率，開放數據服務給合作IP方強化平台黏著度。</p>
+            </div>
+            
+            <div class="strategy-card">
+                <h4>4. OMO快閃店規模化</h4>
+                <p>uPoint有點市目前全台有多家門市，未來可發展加盟或合夥模式快速複製到亞洲主要城市，與大型商場、地鐵站等公共空間合作，複製限定快閃成功經驗，整合AR/VR技術打造沉浸式IP體驗空間。</p>
+            </div>
+            
+            <div class="strategy-card">
+                <h4>5. IPO後的併購策略</h4>
+                <p>資本市場集資後優先併購標的：上游IP原創工作室或經紀公司、下游具有一定流量的垂直電商或團購平台、技術AI客服或大數據分析或區塊鏈IP保護技術公司。</p>
+            </div>
+            
+            <div class="strategy-card">
+                <h4>6. 財務與獲利優化</h4>
+                <p>檢視代理IP與自有IP的營收結構，提高高毛利項目占比。建立完善的庫存管理系統降低快閃店備貨風險，發展B2B企業客製化禮品業務平衡淡旺季營收。</p>
+            </div>
+        </section>
+        
+        <!-- 總結 -->
+        <section>
+            <h2>七、總結</h2>
+            <p>有你共創是台灣文創電商與IP授權領域中，<strong>少數具備完整垂直整合能力且國際化腳步最快的公司之一</strong>。2025年獲利翻倍的成績顯示其商業模式已獲市場驗證，但仍面臨IP依賴與規模不足的挑戰。</p>
+            <p>建議未來策略聚焦<strong>自有IP扶植、數據資產化與區域擴張</strong>，若成功IPO並妥善運用併購工具，有機會成為大中華區IP電商的領頭羊。</p>
+        </section>
+        
+        <footer>
+            <p>© 2026 分析報告 | 有你共創（uniicreative）深度分析</p>
+            <p>資料來源：公開資訊、公司官網、新聞報導</p>
+        </footer>
+    </div>
+</body>
+</html>

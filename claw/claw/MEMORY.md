@@ -31,7 +31,7 @@ _這是我的長期記憶，記錄重要資訊_
 
 ### GitHub
 - Repository：`ntust2026/ntust2026.github.io`
-- 網址：`https://ntust2026.github.io/claw/`
+- GitHub Pages 網址：`https://ntust2026.github.io/claw/`
 
 ---
 

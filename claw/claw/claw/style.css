@@ -1,0 +1,173 @@
+:root {
+    /* 移植自 style2.css 的核心配色 */
+    --primary-color: #7097AB;     /* 主色：質感霧藍 */
+    --secondary-color: #BDD2DB;   /* 次色：中性灰藍 */
+    --accent-color: #4A6E81;      /* 強調：深海藍 */
+    --text-color: #2C3E50;        /* 文字顏色加深 */
+    --bg-gradient: linear-gradient(135deg, #7097AB 0%, #8EB0C1 50%, #BDD2DB 100%);
+    --light-pink: #E8EFF2;        /* 背景改為淺冷灰色 (原變數名保留以維持架構) */
+    --deep-pink: #4A6E81;         /* 強調色 (原變數名保留) */
+    --pink-shadow: rgba(74, 110, 129, 0.15); /* 陰影改為藍色系 */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'PingFang TC', 'Microsoft JhengHei', 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    padding-top: 70px;
+    background: var(--light-pink);
+}
+
+/* Navigation */
+.navbar {
+    background: rgba(112, 151, 171, 0.98) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px var(--pink-shadow);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: white !important;
+}
+
+.nav-link {
+    color: white !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color) !important;
+    transform: translateY(-2px);
+}
+
+/* Language Toggle */
+.lang-toggle {
+    background: var(--accent-color);
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(74, 110, 129, 0.3);
+}
+
+.lang-toggle:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(74, 110, 129, 0.4);
+}
+
+/* Header Section */
+.project-header {
+    background: var(--bg-gradient);
+    color: white;
+    padding: 4rem 0 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="80" fill="rgba(255,255,255,0.1)"/><circle cx="800" cy="150" r="120" fill="rgba(255,255,255,0.05)"/><circle cx="500" cy="400" r="100" fill="rgba(255,255,255,0.08)"/></svg>');
+    animation: float 15s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(180deg); }
+}
+
+.project-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.project-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Content Sections */
+.content-section {
+    margin-bottom: 3rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px var(--pink-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--bg-gradient);
+    border-radius: 2px;
+}
+
+/* Gallery and Cards */
+.gallery-item {
+    box-shadow: 0 10px 30px var(--pink-shadow);
+    border: 2px solid transparent;
+}
+
+.gallery-item:hover {
+    border-color: var(--primary-color);
+}
+
+.gallery-overlay {
+    background: linear-gradient(transparent, rgba(74, 110, 129, 0.9));
+}
+
+.info-card {
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 5px 20px var(--pink-shadow);
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--bg-gradient);
+    box-shadow: 0 4px 15px var(--pink-shadow);
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}

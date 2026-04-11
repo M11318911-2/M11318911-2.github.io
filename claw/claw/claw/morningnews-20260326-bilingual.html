@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>晨報 Morning News - 2026年3月26日</title>
+    <style>
+        :root {
+            --bg-primary: #0f0f14;
+            --bg-card: #1a1a24;
+            --bg-card-hover: #22222e;
+            --text-primary: #e8e8f0;
+            --text-secondary: #a0a0b8;
+            --accent: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.3);
+            --border: #2a2a3a;
+            --gradient-start: #6366f1;
+            --gradient-end: #8b5cf6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 24px;
+            box-shadow: 0 20px 60px var(--accent-glow);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, #e0e0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: #e0e0ff;
+        }
+
+        .voice-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .voice-player {
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+        }
+
+        .voice-player h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .voice-player h3::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        audio {
+            width: 100%;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--bg-primary);
+            outline: none;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background: var(--bg-primary);
+        }
+
+        .news-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .news-screenshot {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .news-source {
+            background: var(--accent);
+            color: #fff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .news-date {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .news-title-zh {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .news-title-en {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .news-summary-zh {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .news-summary-en {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .lang-divider {
+            text-align: center;
+            padding: 0.5rem;
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .voice-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .voice-player {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>晨報 Morning News</h1>
+            <p class="subtitle">2026年3月26日 星期四 | Thursday, March 26, 2026</p>
+        </header>
+
+        <section class="voice-section">
+            <div class="voice-player">
+                <h3>中文</h3>
+                <audio controls>
+                    <source src="morningnews-20260326.mp3" type="audio/mpeg">
+                    您的瀏覽器不支援音訊播放。
+                </audio>
+            </div>
+            <div class="voice-player">
+                <h3>English</h3>
+                <audio controls>
+                    <source src="morningnews-20260326-en.mp3" type="audio/mpeg">
+                    Your browser does not support audio playback.
+                </audio>
+            </div>
+        </section>
+
+        <section class="news-grid">
+
+            <article class="news-card">
+                <img src="../screenshots/morningnews-20260326-apple-iphone17e.png" alt="iPhone 17e 發表" class="news-screenshot">
+                <div class="news-content">
+                    <div class="news-header">
+                        <span class="news-source">Apple</span>
+                        <span class="news-date">2026年3月25日</span>
+                    </div>
+                    <h2 class="news-title-zh">Apple 推出 iPhone 17e：強大且實惠的新選擇</h2>
+                    <p class="news-title-en">Apple Introduces iPhone 17e: A Powerful and Affordable Addition</p>
+                    <p class="news-summary-zh">Apple 今日宣布推出全新的 iPhone 17e，為 iPhone 17 系列增添一款強大且實惠的選擇。這款新機型延續了 Apple 一貫的創新精神，配備先進的相機系統、更長的電池續航力，以及提升的效能表現。Apple 表示，iPhone 17e 的設計旨在讓更多消費者能夠體驗最新的 iPhone 技術，同時保持親民的價格定位。此款新機的推出也顯示 Apple 在中階智慧型手機市場的持續布局。</p>
+                    <div class="lang-divider">/// English Version ///</div>
+                    <p class="news-summary-en">Apple today announced the new iPhone 17e, a powerful and affordable addition to the iPhone 17 lineup. This new model continues Apple's tradition of innovation, featuring an advanced camera system, longer battery life, and improved performance. Apple stated that the iPhone 17e is designed to let more consumers experience the latest iPhone technology while maintaining an accessible price point. The launch also demonstrates Apple's continued strategy in the mid-range smartphone market.</p>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="../screenshots/morningnews-20260326-apple-macbookair.png" alt="MacBook Air M5 發表" class="news-screenshot">
+                <div class="news-content">
+                    <div class="news-header">
+                        <span class="news-source">Apple</span>
+                        <span class="news-date">2026年3月25日</span>
+                    </div>
+                    <h2 class="news-title-zh">Apple 推出全新 MacBook Air 搭載 M5 晶片</h2>
+                    <p class="news-title-en">Apple Introduces New MacBook Air with M5 Chip</p>
+                    <p class="news-summary-zh">Apple 今日發表了全新 MacBook Air，搭載 M5 晶片，為全球最受歡迎的筆電帶來卓越效能與更強大的 AI 能力。M5 晶片採用先進的 3 奈米製程技術，結合更高效能的核心與節能核心，使得 MacBook Air 在處理日常工作的同時，能夠更順暢地執行 AI 應用程式。這款新機型不僅效能提升，電池續航力也更上一層樓，最長可達 18 小時，滿足使用者一整天的使用需求。</p>
+                    <div class="lang-divider">/// English Version ///</div>
+                    <p class="news-summary-en">Apple today announced the new MacBook Air with M5 chip, bringing exceptional performance and expanded AI capabilities to the world's most popular laptop. The M5 chip uses advanced 3-nanometer process technology, combining high-performance cores with energy-efficient cores, enabling the MacBook Air to run AI applications more smoothly while handling daily tasks. This new model not only offers improved performance but also boasts battery life of up to 18 hours, meeting users' needs for an entire day.</p>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="../screenshots/morningnews-20260326-reuters-ai.png" alt="AI 人工智慧新聞" class="news-screenshot">
+                <div class="news-content">
+                    <div class="news-header">
+                        <span class="news-source">Reuters</span>
+                        <span class="news-date">2026年3月25日</span>
+                    </div>
+                    <h2 class="news-title-zh">AI 浪潮席捲全球：ARM 進軍 AI 晶片、Meta 遭天價賠償</h2>
+                    <p class="news-title-en">AI Wave Sweeps the Globe: ARM Enters AI Chip Market, Meta Faces Massive Verdict</p>
+                    <p class="news-summary-zh">人工智慧晶片需求持續攀升，ARM 發布首款自製 AI 晶片 AGI CPU，瞄準 AI 資料中心市場，主要客戶包括 Meta、OpenAI 和 Cloudflare 等科技巨頭。同日，新墨西哥州陪審團裁決 Meta 因未能保護未成年人，須支付 3.75 億美元賠償金。此外，NVIDIA 執行長黃仁勳在 Podcast 中宣布，通用人工智慧（AGI）已經來臨，定義為能夠自主建立和運營價值數十億美元公司的系統。這些發展顯示 AI 基礎設施的競賽正進入白熱化階段。</p>
+                    <div class="lang-divider">/// English Version ///</div>
+                    <p class="news-summary-en">Demand for AI chips continues to surge. ARM unveiled its first in-house AI chip, the AGI CPU, targeting AI data center markets, with major customers including Meta, OpenAI, and Cloudflare. Meanwhile, a New Mexico jury ordered Meta to pay $375 million for failing to protect minors on its platforms. Additionally, NVIDIA CEO Jensen Huang declared in a podcast that artificial general intelligence (AGI) has arrived, defining it as systems capable of autonomously building and running billion-dollar companies. These developments show the AI infrastructure race is heating up rapidly.</p>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-content">
+                    <div class="news-header">
+                        <span class="news-source">TechStartups</span>
+                        <span class="news-date">2026年3月25日</span>
+                    </div>
+                    <h2 class="news-title-zh">Amazon 收購 Fauna Robotics 進軍人形機器人市場</h2>
+                    <p class="news-title-en">Amazon Acquires Fauna Robotics to Enter Humanoid Robot Market</p>
+                    <p class="news-summary-zh">Amazon 宣布收購紐約新創公司 Fauna Robotics，該公司開發了身高 3.5 英尺、名為 Sprout 的雙足人形機器人，定價 5 萬美元。Fauna 由前 Meta 和 Google 工程師於 2024 年創立，早期客戶包括 Disney 和 Boston Dynamics。約 50 名員工將加入 Amazon。此收購案延續了 Amazon 近期在機器人領域的布局，包括收購快遞機器人公司 Rivr，以及其原有的倉庫自動化事業 Kiva Systems。Amazon 表示，看重 Fauna 專注於安全、开發者友善的家庭和商業機器人設計。</p>
+                    <div class="lang-divider">/// English Version ///</div>
+                    <p class="news-summary-en">Amazon announced the acquisition of New York startup Fauna Robotics, which developed the 3.5-foot bipedal humanoid robot named Sprout, priced at $50,000. Founded in 2024 by ex-Meta and Google engineers, Fauna's early customers included Disney and Boston Dynamics. Approximately 50 employees will join Amazon. This acquisition follows Amazon's recent moves in robotics, including acquiring delivery-robot company Rivr and its existing warehouse automation business through Kiva Systems. Amazon cited Fauna's focus on safe, developer-friendly home and business bots.</p>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-content">
+                    <div class="news-header">
+                        <span class="news-source">WWDC</span>
+                        <span class="news-date">2026年3月25日</span>
+                    </div>
+                    <h2 class="news-title-zh">Apple 全球開發者大會 WWDC 2026 定於6月舉行</h2>
+                    <p class="news-title-en">Apple WWDC 2026 Scheduled for June</p>
+                    <p class="news-summary-zh">Apple 宣布年度全球開發者大會（WWDC）將於2026年6月8日至12日以線上形式舉行。WWDC 是 Apple 一年一度針對全球開發者舉辦的重要活動，會中將發表最新的 iOS、iPadOS、macOS、watchOS 和 visionOS 系統更新，以及各種開發者工具和框架的進展。雖然具體議程尚未公布，但外界預期 Apple 將在本次大會上展示其在人工智慧領域的最新進展，包括更智能的 Siri 助理和各項 AI 整合功能。</p>
+                    <div class="lang-divider">/// English Version ///</div>
+                    <p class="news-summary-en">Apple announced that its annual Worldwide Developers Conference (WWDC) will be held online from June 8-12, 2026. WWDC is Apple's most important annual event for global developers, where it unveils the latest iOS, iPadOS, macOS, watchOS, and visionOS system updates, along with advances in various developer tools and frameworks. Although specific agendas have not been announced, industry watchers expect Apple to showcase its latest progress in artificial intelligence, including a smarter Siri assistant and various AI integration features.</p>
+                </div>
+            </article>
+
+        </section>
+
+        <footer>
+            <p>晨報 Morning News | 2026年3月26日</p>
+            <p>新聞來源 Sources: Apple Newsroom, Reuters, TechStartups</p>
+        </footer>
+    </div>
+</body>
+</html>

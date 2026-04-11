@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日 AI 資訊簡報 2026-04-01</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-card: #1c2128;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-purple: #a371f7;
+            --accent-orange: #d29922;
+            --accent-red: #f85149;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --border-color: #30363d;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, #0a0e14 100%);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(88, 166, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .date-badge {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        .news-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 30px rgba(88, 166, 255, 0.15);
+        }
+        
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-blue), var(--accent-purple));
+        }
+        
+        .card-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .tag-international {
+            background: rgba(88, 166, 255, 0.15);
+            color: var(--accent-blue);
+        }
+        
+        .tag-taiwan {
+            background: rgba(63, 185, 80, 0.15);
+            color: var(--accent-green);
+        }
+        
+        .tag-highlight {
+            background: rgba(210, 153, 34, 0.15);
+            color: var(--accent-orange);
+        }
+        
+        .summary-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(163, 113, 247, 0.1) 100%);
+            border: 2px solid var(--accent-purple);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        
+        .summary-icon {
+            font-size: 3rem;
+            color: var(--accent-purple);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .section-title i {
+            color: var(--accent-blue);
+        }
+        
+        .section-title.taiwan i {
+            color: var(--accent-green);
+        }
+        
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .glow-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), var(--accent-purple), transparent);
+            margin: 2rem 0;
+        }
+        
+        .source-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        
+        .source-link:hover {
+            color: var(--accent-blue);
+        }
+        
+        .ai-robot-icon {
+            font-size: 5rem;
+            color: var(--accent-blue);
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <i class="bi bi-robot ai-robot-icon"></i>
+                        <div>
+                            <h1 class="hero-title mb-0">每日 AI 資訊簡報</h1>
+                            <div class="date-badge">
+                                <i class="bi bi-calendar3 me-2"></i>2026 年 4 月 1 日
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-secondary mt-3 mb-0" style="font-size: 1.1rem;">
+                        每日為您精選國際與台灣 AI 產業重要新聞，掌握最新 AI 趨勢動態
+                    </p>
+                </div>
+                <div class="col-md-4 text-end d-none d-md-block">
+                    <div class="p-4 rounded-4" style="background: rgba(88, 166, 255, 0.1); border: 1px solid rgba(88, 166, 255, 0.2);">
+                        <i class="bi bi-lightning-charge-fill" style="font-size: 2.5rem; color: var(--accent-orange);"></i>
+                        <p class="mb-0 mt-2 text-white-50 small">AI 發展速度<br><strong class="text-white">持續加速中</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <!-- International AI News -->
+        <section class="mb-5">
+            <h2 class="section-title">
+                <i class="bi bi-globe-americas"></i>
+                國際 AI 最新消息
+            </h2>
+            
+            <div class="row">
+                <!-- News 1 -->
+                <div class="col-lg-6">
+                    <article class="news-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="card-tag tag-highlight">🔥 熱門</span>
+                            <small class="text-secondary">2026/03/31</small>
+                        </div>
+                        <h3 class="h5 mb-3">Morgan Stanley 警告：2026 上半年將有重大 AI 突破，多數國家尚未準備</h3>
+                        <p class="text-secondary mb-3">
+                            摩根士丹利發出警告，表示 2026 年上半年將迎來人工智慧的變革性突破，但全球大多數國家和企業尚未做好準備。這將是自 ChatGPT 以來最重要的 AI 發展節點。
+                        </p>
+                        <a href="https://fortune.com/2026/03/13/elon-musk-morgan-stanley-ai-leap-2026/" target="_blank" class="source-link">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>Fortune
+                        </a>
+                    </article>
+                </div>
+                
+                <!-- News 2 -->
+                <div class="col-lg-6">
+                    <article class="news-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="card-tag tag-highlight">⚖️ 法規</span>
+                            <small class="text-secondary">2026/03/13</small>
+                        </div>
+                        <h3 class="h5 mb-3">Anthropic 狀告五角大廈：拒絕「供應鏈風險」標籤，與 OpenAI 展開法律戰</h3>
+                        <p class="text-secondary mb-3">
+                            Anthropic 對美國國防部提起訴訟，抗議將其列為「供應鏈風險」，引發科技界軒然大波。OpenAI 和 Google 員工聯合提交法院意見書支持 Anthropic，形成罕見的業界團結景象。
+                        </p>
+                        <a href="https://www.theguardian.com/technology/2026/mar/13/anthropic-pentagon-artificial-intelligence" target="_blank" class="source-link">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>The Guardian
+                        </a>
+                    </article>
+                </div>
+                
+                <!-- News 3 -->
+                <div class="col-lg-6">
+                    <article class="news-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="card-tag tag-international">🤖 模型</span>
+                            <small class="text-secondary">2026/03/05</small>
+                        </div>
+                        <h3 class="h5 mb-3">OpenAI 發布 GPT-5.4：專業工作定位的小型高效模型</h3>
+                        <p class="text-secondary mb-3">
+                            OpenAI 在 3 月 5 日發布 GPT-5.4，將其定位為專業工作設計的模型。此版本針對高頻工具使用進行優化，標誌著 AI 模型朝專業化方向發展的重大進展。
+                        </p>
+                        <a href="https://www.infoai.com.tw/global-ai-news" target="_blank" class="source-link">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>InfoAI
+                        </a>
+                    </article>
+                </div>
+                
+                <!-- News 4 -->
+                <div class="col-lg-6">
+                    <article class="news-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="card-tag tag-international">🍎 Apple</span>
+                            <small class="text-secondary">2026/03/30</small>
+                        </div>
+                        <h3 class="h5 mb-3">Apple 宣布 2026 年將推出全面重新設計的 AI 版 Siri</h3>
+                        <p class="text-secondary mb-3">
+                            Apple 官方宣布將在 2026 年推出具有「螢幕感知」能力的 AI 助理 Siri。這將是 Siri 史上最大幅度改版，從虛擬助理進化為情境感知智慧助手。
+                        </p>
+                        <a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank" class="source-link">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>Crescendo AI
+                        </a>
+                    </article>
+                </div>
+                
+                <!-- News 5 -->
+                <div class="col-lg-6">
+                    <article class="news-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="card-tag tag-international">📊 企業</span>
+                            <small class="text-secondary">2026/03/18</small>
+                        </div>
+                        <h3 class="h5 mb-3">德勤報告：物理 AI 將在三年內影響 41% 企業</h3>
+                        <p class="text-secondary mb-3">
+                            根據德勤最新報告，Physical AI（物理人工智慧）正進入快速發展期，預測三年內將有 41% 的企業受到徹底影響。涵蓋消費、能源、金融和生命科學等多元產業應用。
+                        </p>
+                        <a href="https://finance.technews.tw/2026/03/18/physics-ai-is-entering-a-period-of-rapid-development" target="_blank" class="source-link">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>科技新報
+                        </a>
+                    </article>
+                </div>
+                
+                <!-- News 6 -->
+                <div class="col-lg-6">
+                    <article class="news-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="card-tag tag-international">🧠 記憶</span>
+                            <small class="text-secondary">2026/03/05</small>
+                        </div>
+                        <h3 class="h5 mb-3">Anthropic 為所有 Claude 用戶推出記憶功能</h3>
+                        <p class="text-secondary mb-3">
+                            Anthropic 在 3 月初向所有 Claude 用戶推出記憶功能，讓 AI 助手能夠在對話之間保留上下文和偏好設定，大幅提升個人化助手體驗。
+                        </p>
+                        <a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank" class="source-link">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>Crescendo AI
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <div class="glow-line"></div>
+
+        <!-- Taiwan AI News -->
+        <section class="mb-5">
+            <h2 class="section-title taiwan">
+                <i class="bi bi-geo-alt-fill"></i>
+                台灣 AI 產業動態
+            </h2>
+            
+            <div class="row">
+                <!-- Taiwan News 1 -->
+                <div class="col-lg-4">
+                    <article class="news-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="card-tag tag-taiwan">🏭 展會</span>
+                            <small class="text-secondary">2026/03/25</small>
+                        </div>
+                        <h3 class="h6 mb-3">AI Expo Taiwan 2026 盛大开幕：聚焦台灣硬體優勢</h3>
+                        <p class="text-secondary mb-3 small">
+                            AI Expo Taiwan 2026 於 3 月 25 日在台北花博公園爭艷館開幕，匯集政策制定者與產業領袖。展會聚焦台灣在半導體供應鏈中的核心角色，以及如何從晶片製造轉向 AI 軟體與服務。
+                        </p>
+                        <a href="https://www.digitimes.com/news/a20260325PD219/taiwan-ai-expo-hardware-taipei-2026.html" target="_blank" class="source-link">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>DigiTimes
+                        </a>
+                    </article>
+                </div>
+                
+                <!-- Taiwan News 2 -->
+                <div class="col-lg-4">
+                    <article class="news-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="card-tag tag-taiwan">🤝 聯盟</span>
+                            <small class="text-secondary">2026/03/24</small>
+                        </div>
+                        <h3 class="h6 mb-3">台灣企業成立主權 AI 產業聯盟</h3>
+                        <p class="text-secondary mb-3 small">
+                            台灣多家科技企業攜手成立主權 AI 產業聯盟，整合上下游供應鏈資源。Altos 借重 Acer 的區域據點優勢，瞄準企業 AI 商機，預計 2026 年達成雙位數成長目標。
+                        </p>
+                        <a href="https://www.digitimes.com/news/a20260324PD211/taiwan-ai-software-alliance-2026.html" target="_blank" class="source-link">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>DigiTimes
+                        </a>
+                    </article>
+                </div>
+                
+                <!-- Taiwan News 3 -->
+                <div class="col-lg-4">
+                    <article class="news-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="card-tag tag-taiwan">🚀 戰略</span>
+                            <small class="text-secondary">2026/03/25</small>
+                        </div>
+                        <h3 class="h6 mb-3">台灣 AI 野心：不再只製造 AI 晶片，要建立軟體平台</h3>
+                        <p class="text-secondary mb-3 small">
+                            台北時報社論指出，台灣不再滿足於僅僅製造 AI 晶片，而是要建立自己的軟體、平台和服務。行政院提出十項 AI 基礎建設計畫，包括國家雲端計算中心等重大項目。
+                        </p>
+                        <a href="https://www.taipeitimes.com/News/editorials/archives/2026/03/25/2003854412" target="_blank" class="source-link">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>Taipei Times
+                        </a>
+                    </article>
+                </div>
+                
+                <!-- Taiwan News 4 -->
+                <div class="col-lg-4">
+                    <article class="news-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="card-tag tag-taiwan">📡 安全</span>
+                            <small class="text-secondary">2026/04</small>
+                        </div>
+                        <h3 class="h6 mb-3">Secutech 2026 即將開展：AI 與安全科技</h3>
+                        <p class="text-secondary mb-3 small">
+                            Secutech 2026 將於 4 月 22-24 日在台北南港展覽館舉行，匯聚超過 400 家參展商。與台灣國家 AI 和網路安全發展計畫同步，展示 AI 在安防領域的最新應用。
+                        </p>
+                        <a href="https://www.sourcesecurity.com/news/secutech-2026-ai-security-taiwan-market-co-6745-ga.1772026718.html" target="_blank" class="source-link">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>Sources Security
+                        </a>
+                    </article>
+                </div>
+                
+                <!-- Taiwan News 5 -->
+                <div class="col-lg-4">
+                    <article class="news-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="card-tag tag-taiwan">💡 應用</span>
+                            <small class="text-secondary">2026/03</small>
+                        </div>
+                        <h3 class="h6 mb-3">台灣大與群聯合作推動 AI 應用</h3>
+                        <p class="text-secondary mb-3 small">
+                            台灣大哥大與 NAND Flash 控制晶片大廠群聯（Phison）攜手合作，共同推動 AI 應用發展。結合電信資源與儲存晶片技術，加速 AI 落地應用。
+                        </p>
+                        <a href="https://www.digitimes.com/news/a20260324PD211/taiwan-ai-software-alliance-2026.html" target="_blank" class="source-link">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>DigiTimes
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <div class="glow-line"></div>
+
+        <!-- Summary Section -->
+        <section class="mb-5">
+            <div class="summary-card">
+                <div class="row align-items-center">
+                    <div class="col-md-2 text-center">
+                        <i class="bi bi-chat-quote-fill summary-icon"></i>
+                    </div>
+                    <div class="col-md-10">
+                        <h2 class="h4 mb-3" style="color: var(--accent-purple);">
+                            <i class="bi bi-lightbulb-fill me-2"></i>一句話點評摘要
+                        </h2>
+                        <p class="mb-0" style="font-size: 1.2rem; line-height: 1.8;">
+                            <strong style="color: var(--accent-orange);">2026 年 AI 發展已從「炒作」轉向「實踐」</strong>，
+                            Morgan Stanley 預警的重大突破預計上半年到來，而 Anthropic 與五角大廈的法律戰反映了 AI 監管的全球性挑戰；
+                            同時<strong style="color: var(--accent-green);">台灣正積極從晶片製造轉型為 AI 軟體強國</strong>，
+                            AI Expo Taiwan 2026 顯示產業界對硬體邊緣優勢的持續深化，以及向主權 AI 應用服務拓展的決心。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Row -->
+        <section class="mb-5">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="text-center p-4 rounded-4" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+                        <i class="bi bi-newspaper" style="font-size: 2rem; color: var(--accent-blue);"></i>
+                        <h3 class="h2 mb-1 mt-2">11</h3>
+                        <p class="text-secondary mb-0 small">則新聞總覽</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center p-4 rounded-4" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+                        <i class="bi bi-globe2" style="font-size: 2rem; color: var(--accent-green);"></i>
+                        <h3 class="h2 mb-1 mt-2">6</h3>
+                        <p class="text-secondary mb-0 small">則國際新聞</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center p-4 rounded-4" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+                        <i class="bi bi-building" style="font-size: 2rem; color: var(--accent-purple);"></i>
+                        <h3 class="h2 mb-1 mt-2">5</h3>
+                        <p class="text-secondary mb-0 small">則台灣新聞</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center p-4 rounded-4" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+                        <i class="bi bi-calendar-week" style="font-size: 2rem; color: var(--accent-orange);"></i>
+                        <h3 class="h2 mb-1 mt-2">2026</h3>
+                        <p class="text-secondary mb-0 small">年度簡報</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0 text-secondary">
+                        <i class="bi bi-robot me-2"></i>
+                        每日 AI 資訊簡報 | 由 OpenClaw AI 助理自動生成
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0 text-secondary small">
+                        <i class="bi bi-clock me-1"></i>
+                        產生時間：2026-04-01 01:02 UTC
+                        <span class="mx-2">|</span>
+                        <a href="https://ntust2026.github.io/claw/daily-ai-report-2026-04-01.html" target="_blank" class="source-link">
+                            <i class="bi bi-github me-1"></i>GitHub Pages
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

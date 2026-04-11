@@ -1,0 +1,13 @@
+Good morning! I'm your tech news host, bringing you the latest technology headlines from the United States for April 2nd, 2026.
+
+First up, space exploration. On April 1st, 2026, NASA's Artemis II crewed lunar flyby mission successfully launched from Kennedy Space Center, beginning an approximately ten-day historic flight. This is the first crewed lunar mission since Apollo 17 in 1972. The four-person crew will loop around the Moon and automatically return to Earth without requiring an engine burn, paving the way for the Artemis III lunar landing mission targeted for 2027.
+
+Next, artificial intelligence. Apple is internally testing a major upgrade to Siri that would allow the digital assistant to process multiple commands in a single query, according to Bloomberg. Users could say something like, "Set a 15-minute timer, then tell me what the weather is like," and Siri would execute both tasks in order. Analysts say this could be the most significant functional upgrade to Siri since its 2011 debut.
+
+In aviation connectivity news, Amazon's satellite internet unit Leo has partnered with Delta Air Lines to provide Wi-Fi across 500 aircraft, directly challenging Elon Musk's Starlink in the aviation connectivity market. Service is expected to launch first on U.S. continental flights in 2028.
+
+In semiconductors, Micron Technology shares surged 10.9% on April 1st, 2026, driven by explosive demand for high-bandwidth memory chips from AI applications. Analysts say demand for HBM from Nvidia GPU servers is the primary revenue driver, with the memory chip supercycle expected to extend through 2027.
+
+And in layoffs, at least 1,012 U.S. tech sector employees were affected by layoffs during the week ended April 1st. Oracle began cutting thousands of workers, Meta cut 700 staff primarily from its Reality Labs and Facebook units, and X laid off 20 non-technical employees ahead of SpaceX's planned IPO. The wave of AI-driven restructuring continues to reshape the U.S. technology sector.
+
+That's your morning tech briefing for April 2nd, 2026. Stay informed, and we'll see you next time.

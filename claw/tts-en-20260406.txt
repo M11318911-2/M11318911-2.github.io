@@ -1,0 +1,23 @@
+Morning Tech News, April 6th, 2026, Monday.
+
+News item one: OpenAI acquires tech podcast TBPN, making its first foray into the media industry.
+
+OpenAI has acquired popular tech industry talk show TBPN, marking the AI giant's first acquisition of a media company. Hosted by former tech founders John Coogan and Jordi Hays, TBPN is a daily live show airing on YouTube and X for three hours, focusing on tech, business, AI, and defense. The show has gained a cult following in Silicon Valley, with top tech CEOs like Mark Zuckerberg, Satya Nadella, Marc Benioff, and Sam Altman appearing as guests. According to The Wall Street Journal, TBPN is on track to pull in more than 30 million dollars this year. OpenAI says TBPN will maintain editorial independence and continue to choose its own programming and guests.
+
+News item two: US Senator investigates autonomous vehicle companies' transparency on remote assistance operations.
+
+Senator Ed Markey of Massachusetts sent letters to seven US companies working on autonomous vehicle technology, including Aurora, May Mobility, Motional, Nuro, Tesla, Waymo, and Zoox, asking how often their vehicles relied on input from remote staff. All companies refused to disclose the information. Senator Markey called it a stunning lack of transparency from AV companies around their use of remote assistance operators. He has called on the National Highway Traffic Safety Administration to investigate and says he is working on legislation to impose strict guardrails on AV companies' use of remote operators.
+
+News item three: Microsoft announces 10 billion dollar investment in Japan to expand AI and cyber defense.
+
+Microsoft announced it will invest 10 billion dollars in Japan to expand AI infrastructure and cyber defense capabilities. This massive investment is one of the largest tech expansions in Asia, aiming to strengthen Japan's capabilities in artificial intelligence and cybersecurity. The investment will include building data centers, establishing AI research and development centers, and collaborating with Japanese businesses and the government on cyber defense. This move is seen as a significant step in deepening US-Japan technology cooperation under the alliance framework.
+
+News item four: Anthropic Claude subscriptions will no longer cover third-party tool usage.
+
+Anthropic announced that starting April 4th at 12pm Pacific Time, Claude subscriptions will no longer cover usage on third-party tools. This policy change aims to better manage capacity. The decision affects developers and enterprise users who rely on Claude API for third-party tool integrations, requiring them to reassess their cost structures. Experts note this reflects the challenges AI companies face in resource allocation and cost control.
+
+News item five: Meta CEO Mark Zuckerberg returns to coding after two decades.
+
+According to The Pragmatic Engineer, Meta CEO Mark Zuckerberg is back to writing code after a two-decade hiatus, submitting three diffs to Meta's monorepo and becoming a heavy user of Claude Code CLI. This news has sparked discussion in the tech industry, seen as a landmark case of a tech giant CEO personally experiencing AI-powered software development tools. Zuckerberg's personal involvement could signal new directions for Meta's future AI development strategy.
+
+That's all for today's Morning Tech News from the United States.

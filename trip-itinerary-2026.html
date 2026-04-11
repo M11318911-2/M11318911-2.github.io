@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 行程總表｜欒帥 & Peggy & Wesley</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            line-height: 1.7;
+        }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 { font-size: 2em; margin-bottom: 8px; }
+        .hero .subtitle { font-size: 1.1em; opacity: 0.8; }
+        .hero .year { margin-top: 10px; font-size: 0.9em; opacity: 0.6; }
+        
+        /* Section */
+        .section { background: white; border-radius: 14px; margin-bottom: 25px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
+        
+        .section-header {
+            padding: 18px 25px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-header h2 { font-size: 1.15em; font-weight: 600; }
+        .section-header .badge { background: rgba(255,255,255,0.2); padding: 4px 14px; border-radius: 20px; font-size: 0.85em; }
+        
+        .pin { background: linear-gradient(135deg, #2980b9, #3498db); }
+        .peggy { background: linear-gradient(135deg, #8e44ad, #9b59b6); }
+        .wesley { background: linear-gradient(135deg, #27ae60, #2ecc71); }
+        .together { background: linear-gradient(135deg, #e67e22, #f39c12); }
+        .summary { background: linear-gradient(135deg, #34495e, #465c71); }
+        
+        .section-body { padding: 22px 25px; }
+        
+        /* Timeline Table */
+        .timeline { width: 100%; border-collapse: collapse; }
+        
+        .timeline th {
+            background: #f8f9fa;
+            padding: 10px 14px;
+            text-align: left;
+            font-size: 0.78em;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .timeline td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.92em;
+            vertical-align: top;
+        }
+        
+        .timeline tr:last-child td { border-bottom: none; }
+        .timeline tr:hover { background: #fafbfc; }
+        
+        .date-cell { white-space: nowrap; color: #555; font-weight: 500; min-width: 140px; }
+        
+        .location-cell { font-weight: 600; min-width: 120px; }
+        
+        .flag { margin-right: 4px; }
+        
+        .notes-cell { color: #666; font-size: 0.88em; }
+        
+        .flight-ref {
+            font-family: monospace;
+            font-size: 0.82em;
+            background: #f0f4f8;
+            color: #2980b9;
+            padding: 1px 5px;
+            border-radius: 3px;
+            margin-right: 4px;
+        }
+        
+        .booking-ref {
+            font-family: monospace;
+            font-size: 0.82em;
+            background: #f5f5f5;
+            color: #555;
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
+        
+        .highlight-row td { background: #fffbf0; }
+        
+        .in-tw { color: #27ae60; font-weight: 500; }
+        
+        .transit { color: #999; font-style: italic; }
+        
+        /* Footer */
+        footer { text-align: center; padding: 30px; color: #aaa; font-size: 0.85em; }
+        
+        @media (max-width: 700px) {
+            .timeline { font-size: 0.85em; }
+            .timeline th, .timeline td { padding: 8px 10px; }
+            .date-cell { min-width: 100px; }
+            .section-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="hero">
+        <h1>✈️ 2026 行程總表</h1>
+        <div class="subtitle">欒帥 (Pin Luan) &nbsp;·&nbsp; Peggy &nbsp;·&nbsp; Wesley</div>
+        <div class="year">最後更新：2026年4月8日</div>
+    </div>
+
+    <!-- ===== 欒帥行程 ===== -->
+    <div class="section">
+        <div class="section-header pin">
+            <h2>👤 欒帥 (Pin Luan)</h2>
+            <span class="badge">教授</span>
+        </div>
+        <div class="section-body">
+            <table class="timeline">
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>地點</th>
+                        <th>詳細備註</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="date-cell">1月 – 5月23日</td>
+                        <td class="location-cell"><span class="flag">🇹🇼</span> 台灣</td>
+                        <td class="notes-cell in-tw">授課 / 準備</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-cell">5/24（五）– 5/30（五）</td>
+                        <td class="location-cell"><span class="flag">🇩🇪</span> 德國（慕尼黑）</td>
+                        <td class="notes-cell">
+                            四大車廠踩點（賓士、保時捷、BMW、Audi）
+                            <br><span class="flight-ref">BR71</span> 5/24 TPE→MUC 23:35｜<span class="flight-ref">BR72</span> 5/30 MUC→TPE 12:00
+                            <br>PNR: <span class="booking-ref">EKMBAF</span>｜票號: <span class="booking-ref">695 2464455309</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="date-cell">5/31 – 6月2日</td>
+                        <td class="location-cell"><span class="flag">🇹🇼</span> 台灣</td>
+                        <td class="notes-cell in-tw">上課</td>
+                    </tr>
+                    <tr>
+                        <td class="date-cell">6/3（二）– 6月5日（四）</td>
+                        <td class="location-cell"><span class="flag">🇩🇪</span> 德國（慕尼黑）</td>
+                        <td class="notes-cell">
+                            探訪學生
+                            <br><span class="flight-ref">BR71</span> 6/3 TPE→MUC 23:55
+                        </td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-cell">6/6（六）– 6/9（二）</td>
+                        <td class="location-cell"><span class="flag">🇪🇸</span> 西班牙（塞維亞）</td>
+                        <td class="notes-cell">
+                            2026 EFMD Annual Conference（Santelmo Business School）
+                            <br>飯店: Barceló Sevilla Renacimiento
+                            <br>Booking: <span class="booking-ref">24876B66828337</span>｜入住 6/6｜退房 6/10
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="date-cell">6/10（三）– 6/11（四）</td>
+                        <td class="location-cell"><span class="flag">🇩🇪</span> 慕尼黑</td>
+                        <td class="notes-cell">
+                            轉機
+                            <br><span class="flight-ref">BR72</span> 6/11 MUC→TPE 12:00
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="date-cell">6/12（五）– 6/14（日）</td>
+                        <td class="location-cell"><span class="flag">🇹🇼</span> 台灣（宜蘭）</td>
+                        <td class="notes-cell in-tw">新生研習營</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-cell">6/15（日）– 6/20（五）</td>
+                        <td class="location-cell"><span class="flag">🇸🇬</span> 新加坡</td>
+                        <td class="notes-cell">
+                            與Peggy同行
+                            <br><span class="flight-ref">BR215</span> 6/15 TPE→SIN 09:25｜<span class="flight-ref">BR216</span> 6/20 SIN→TPE 15:20
+                            <br>飯店: JEN Singapore（5晚）｜SGD 1,768.60
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="date-cell">6/20（五）– 8月底</td>
+                        <td class="location-cell"><span class="flag">🇹🇼</span> 台灣</td>
+                        <td class="notes-cell in-tw">暑期授課</td>
+                    </tr>
+                    <tr>
+                        <td class="date-cell">9月 – 11月12日</td>
+                        <td class="location-cell"><span class="flag">🇹🇼</span> 台灣</td>
+                        <td class="notes-cell in-tw">下學期授課</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-cell">11/13（四）– 12/12（五）</td>
+                        <td class="location-cell"><span class="flag">🇩🇪🇪🇺</span> 德國 + 歐洲</td>
+                        <td class="notes-cell">
+                            客座教書 + 旅行（與Peggy、Wesley會合）
+                            <br>11/14-11/28 德國Pforzheim（City Flat）Booking: <span class="booking-ref">HMEX399R5W</span>｜€1,225.27
+                            <br>11/21起 Wesley 自布里斯本飛抵德國，三人會合
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ===== Peggy行程 ===== -->
+    <div class="section">
+        <div class="section-header peggy">
+            <h2>👩 Peggy</h2>
+            <span class="badge">欒帥夫人</span>
+        </div>
+        <div class="section-body">
+            <table class="timeline">
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>地點</th>
+                        <th>詳細備註</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="date-cell">1月 – 6月14日</td>
+                        <td class="location-cell"><span class="flag">🇹🇼</span> 台灣</td>
+                        <td class="notes-cell in-tw">在台灣</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-cell">6/15（日）– 6/20（五）</td>
+                        <td class="location-cell"><span class="flag">🇸🇬</span> 新加坡</td>
+                        <td class="notes-cell">
+                            與欒帥同行
+                            <br><span class="flight-ref">BR215</span> 6/15 TPE→SIN｜<span class="flight-ref">BR216</span> 6/20 SIN→TPE
+                            <br>JEN Hotel, 277 Orchard Road（5晚）
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="date-cell">6/21 – 6/22</td>
+                        <td class="location-cell">移動中</td>
+                        <td class="notes-cell transit">新加坡 → 布里斯本 移動中</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-cell">6/23（一）– 9月10日（四）</td>
+                        <td class="location-cell"><span class="flag">🇦🇺</span> 布里斯本</td>
+                        <td class="notes-cell">
+                            與Wesley同在
+                            <br><span class="flight-ref">BR315</span> 6/23 TPE→BNE｜<span class="flight-ref">BR316</span> 9/10 BNE→TPE
+                            <br>EVA Air｜已訂票
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="date-cell">9月11日（四）– 11月12日（五）</td>
+                        <td class="location-cell"><span class="flag">🇹🇼</span> 台灣</td>
+                        <td class="notes-cell in-tw">在台灣</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-cell">11/13（四）– 12月12日（五）</td>
+                        <td class="location-cell"><span class="flag">🇩🇪🇪🇺</span> 德國 + 歐洲</td>
+                        <td class="notes-cell">
+                            陪欒帥客座教書 + 歐洲旅行
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ===== Wesley行程 ===== -->
+    <div class="section">
+        <div class="section-header wesley">
+            <h2>🧑 Wesley</h2>
+            <span class="badge">UQ 研究所</span>
+        </div>
+        <div class="section-body">
+            <table class="timeline">
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>地點</th>
+                        <th>詳細備註</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="date-cell">1月 – 11月20日（四）</td>
+                        <td class="location-cell"><span class="flag">🇦🇺</span> 布里斯本</td>
+                        <td class="notes-cell">
+                            UQ 研究所上學
+                        </td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-cell">11/21（六）– 12月</td>
+                        <td class="location-cell"><span class="flag">🇩🇪🇪🇺</span> 德國 + 歐洲</td>
+                        <td class="notes-cell">
+                            與欒帥、Peggy會合，歐洲旅行
+                            <br>⚠️ 航班待確認
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ===== 三人共同時間點 ===== -->
+    <div class="section">
+        <div class="section-header together">
+            <h2>🟢 三人共同行程</h2>
+            <span class="badge">重要同行時間</span>
+        </div>
+        <div class="section-body">
+            <table class="timeline">
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>地點</th>
+                        <th>詳細備註</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row">
+                        <td class="date-cell">6/15（日）– 6/20（五）</td>
+                        <td class="location-cell"><span class="flag">🇸🇬</span> 新加坡</td>
+                        <td class="notes-cell">
+                            欒帥 + Peggy
+                            <br>JEN Hotel, 277 Orchard Road｜<span class="flight-ref">BR215</span>/<span class="flight-ref">BR216</span>
+                        </td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-cell">6/23（一）– 9月10日（四）</td>
+                        <td class="location-cell"><span class="flag">🇦🇺</span> 布里斯本</td>
+                        <td class="notes-cell">
+                            Peggy + Wesley（Wesley 在當地，Peggy 飛去會合）
+                            <br><span class="flight-ref">BR315</span> 去程 6/23｜<span class="flight-ref">BR316</span> 回程 9/10
+                        </td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-cell">11/13（四）– 12月12日（五）</td>
+                        <td class="location-cell"><span class="flag">🇩🇪</span> 德國 + 歐洲</td>
+                        <td class="notes-cell">
+                            欒帥 + Peggy（客座教書期間）
+                        </td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td class="date-cell">11/21（六）– 12月</td>
+                        <td class="location-cell"><span class="flag">🌍</span> 歐洲</td>
+                        <td class="notes-cell">
+                            欒帥 + Peggy + Wesley（三人會合）
+                            <br>Wesley 自布里斯本到德國會合｜航班待確認
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>欒帥 &nbsp;·&nbsp; Peggy &nbsp;·&nbsp; Wesley｜2026年度行程總表</p>
+        <p>資料更新：2026年4月8日</p>
+    </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+US Tech News Morning Briefing, March 29th, 2026, Sunday.
+
+Today we have three important tech news stories.
+
+First news: Apple introduces iPhone 17e. This is a powerful and affordable addition to the iPhone 17 lineup. iPhone 17e features the latest-generation A19 chip, delivering exceptional performance. The camera system upgrades to a 48-megapixel Fusion camera, supporting next-generation portrait mode and 4K Dolby Vision video recording. The new C1X modem is up to 2 times faster than the previous generation. The 6.1-inch Super Retina XDR display features Ceramic Shield 2.0 with 3 times better scratch resistance. Storage starts at 256GB, priced from just 599 US dollars.
+
+Second news: Apple introduces the new MacBook Air with M5 chip. M5 features a faster CPU and next-generation GPU, with a Neural Accelerator in each core, easily handling various workflows. Standard storage doubles to 512GB, supporting Wi-Fi 7 and Bluetooth 6. Available in 13-inch and 15-inch models, in sky blue, midnight, starlight, and silver colors. Pre-order starting at 999 US dollars.
+
+Third news: Micron Technology stock plunges 15.5 percent. Despite reporting strong quarterly results, Micron's stock dropped sharply. Investors are increasingly concerned about slowing AI demand. Micron delivered solid Q2 results and forecasts Q3 revenue of 33.5 billion US dollars with EPS of about 18.90 US dollars, while raising its quarterly dividend to 0.15 US dollars per share. However, market sentiment remains pressured by AI demand uncertainty.
+
+That's all for today's US tech news morning briefing.

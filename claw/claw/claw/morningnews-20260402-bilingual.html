@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026年4月2日 科技新聞晨報 | Tech Morning Brief</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans TC', 'Inter', sans-serif;
+            background: #0d0d12;
+            color: #e8e8f0;
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+        .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+        header {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 2.5rem;
+        }
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 1px solid rgba(100,255,218,0.25);
+            color: #64ffda;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+        h1 { font-size: 2.4rem; font-weight: 700; color: #ffffff; margin-bottom: 0.4rem; }
+        .subtitle { color: #8888aa; font-size: 1rem; font-weight: 300; }
+        .audio-section {
+            background: linear-gradient(135deg, #13132a 0%, #1a1a3a 100%);
+            border: 1px solid rgba(120,120,255,0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .audio-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 14px;
+            padding: 1.4rem;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .audio-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+        .audio-label.zh { color: #ff6b9d; }
+        .audio-label.en { color: #7c9cff; }
+        .audio-label span { font-size: 1.1rem; margin-right: 0.4rem; }
+        audio {
+            width: 100%;
+            height: 42px;
+            border-radius: 30px;
+            outline: none;
+            background: #1e1e30;
+        }
+        audio::-webkit-media-controls-panel { background: #1e1e30; }
+        .news-card {
+            background: linear-gradient(145deg, #13132a, #0f0f1f);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .news-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            border-color: rgba(100,255,218,0.15);
+        }
+        .news-header {
+            padding: 1.5rem 1.8rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .news-number {
+            background: linear-gradient(135deg, #64ffda, #4fc3f7);
+            color: #0d0d12;
+            font-weight: 800;
+            font-size: 0.9rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .news-meta { flex: 1; }
+        .news-title-zh {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.2rem;
+        }
+        .news-title-en {
+            font-size: 0.85rem;
+            color: #8888cc;
+            font-weight: 400;
+            font-style: italic;
+        }
+        .news-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.7rem;
+            border-radius: 50px;
+            letter-spacing: 0.05em;
+            margin-top: 0.5rem;
+        }
+        .tag-space { background: rgba(100,255,218,0.15); color: #64ffda; }
+        .tag-ai { background: rgba(255,107,157,0.15); color: #ff6b9d; }
+        .tag-business { background: rgba(124,156,255,0.15); color: #7c9cff; }
+        .tag-industry { background: rgba(255,202,100,0.15); color: #ffca64; }
+        .news-body { padding: 1.5rem 1.8rem; }
+        .lang-block { margin-bottom: 1.5rem; }
+        .lang-block:last-child { margin-bottom: 0; }
+        .lang-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .lang-title.zh { color: #ff6b9d; }
+        .lang-title.en { color: #7c9cff; }
+        .lang-title .dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .lang-title.zh .dot { background: #ff6b9d; }
+        .lang-title.en .dot { background: #7c9cff; }
+        .news-text { font-size: 0.95rem; color: #c8c8e0; line-height: 1.9; }
+        .news-screenshot {
+            margin-top: 1.2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .news-screenshot img {
+            width: 100%;
+            max-height: 260px;
+            object-fit: cover;
+            display: block;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+        .news-screenshot img:hover { opacity: 1; }
+        .screenshot-caption {
+            font-size: 0.7rem;
+            color: #6666888;
+            padding: 0.4rem 0.7rem;
+            background: rgba(0,0,0,0.3);
+        }
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            margin-top: 1rem;
+            color: #55556a;
+            font-size: 0.8rem;
+        }
+        footer a { color: #64ffda; text-decoration: none; }
+        @media (max-width: 640px) {
+            .audio-section { grid-template-columns: 1fr; gap: 1rem; }
+            h1 { font-size: 1.7rem; }
+            .news-header { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+    <div class="date-badge">2026 / 04 / 02 &nbsp; THURSDAY</div>
+    <h1>科技新聞晨報</h1>
+    <p class="subtitle">US Technology Morning Brief — Daily Bilingual Edition</p>
+</header>
+
+<!-- Audio Players -->
+<div class="audio-section">
+    <div class="audio-card">
+        <div class="audio-label zh"><span>&#9835;</span> 中文</div>
+        <audio controls>
+            <source src="morningnews-20260402.mp3" type="audio/mpeg">
+            您的瀏覽器不支援音訊播放。
+        </audio>
+    </div>
+    <div class="audio-card">
+        <div class="audio-label en"><span>&#9835;</span> English</div>
+        <audio controls>
+            <source src="morningnews-20260402-en.mp3" type="audio/mpeg">
+            Your browser does not support audio playback.
+        </audio>
+    </div>
+</div>
+
+<!-- News 1: Artemis II -->
+<div class="news-card">
+    <div class="news-header">
+        <div class="news-number">1</div>
+        <div class="news-meta">
+            <div class="news-title-zh">NASA 阿提米絲二號成功發射，四太空人展開繞月之旅</div>
+            <div class="news-title-en">NASA Artemis II Lifts Off — Four Astronauts Begin Lunar Flyby Mission</div>
+            <span class="news-tag tag-space">太空</span>
+        </div>
+    </div>
+    <div class="news-body">
+        <div class="lang-block">
+            <div class="lang-title zh"><span class="dot"></span>中文</div>
+            <p class="news-text">2026年4月1日，NASA阿提米絲二號（Artemis II）載人繞月任務從甘迺迪太空中心成功發射，展開為期約十天的歷史性飛行。這是自1972年阿波羅17號以來，人類首次重返月球軌道。機組人員包含NASA太空人萊德·威斯曼（指令長）、維克托·葛洛弗（駕駛員）、克莉絲蒂娜·科克，以及加拿大太空總署的傑瑞米·漢森。任務採用「自由返回軌道」，太空船將繞過月球後自動返回地球，無需引擎點火。阿提米絲二號的成功為2027年阿提米絲三號登月任務奠定基礎，也是美國重返月球战略的重要里程碑。</p>
+            <div class="news-screenshot">
+                <img src="../screenshots/artemis-20260402.png" alt="NASA Artemis II Launch" loading="lazy">
+                <div class="screenshot-caption">NASA 官網 — 阿提米絲二號發射日直播</div>
+            </div>
+        </div>
+        <div class="lang-block">
+            <div class="lang-title en"><span class="dot"></span>English</div>
+            <p class="news-text">On April 1, 2026, NASA's Artemis II lunar flyby mission successfully launched from Kennedy Space Center, marking the first crewed lunar mission since Apollo 17 in 1972. The four-person crew — Commander Reid Wiseman, Pilot Victor Glover, Mission Specialist Christina Koch of NASA, and Canadian Space Agency astronaut Jeremy Hansen — embarked on an approximately ten-day free-return trajectory around the Moon. The spacecraft will loop around the Moon and automatically return to Earth without requiring an engine burn, a critical test for the upcoming Artemis III lunar landing mission targeted for 2027.</p>
+        </div>
+    </div>
+</div>
+
+<!-- News 2: Apple Siri -->
+<div class="news-card">
+    <div class="news-header">
+        <div class="news-number">2</div>
+        <div class="news-meta">
+            <div class="news-title-zh">Apple 測試 Siri 多指令一次處理功能，向 AI 助手龍頭挑戰</div>
+            <div class="news-title-en">Apple Tests Siri Capable of Processing Multiple Commands in a Single Query</div>
+            <span class="news-tag tag-ai">AI</span>
+        </div>
+    </div>
+    <div class="news-body">
+        <div class="lang-block">
+            <div class="lang-title zh"><span class="dot"></span>中文</div>
+            <p class="news-text">根據彭博社報導，Apple 正在內部測試一項重大 Siri 升級功能：讓 Siri 能夠在單一對話中理解並執行多個連續指令。這項功能將打破 Siri 長期以來一次只能處理一項請求的限制。使用者可以說出「設定15分鐘計時器，然後告訴我天氣怎麼樣」這類複合句，Siri 將依序執行所有指令。報導指出，該功能仍在測試階段，具體上線時間尚未確定，但這代表 Apple 正努力縮小 Siri 與 Google Gemini、ChatGPT 等新一代 AI 助手之間的能力差距。分析師認為，若該功能正式推出，將是 Siri 自2011年推出以來最大的功能性升級。</p>
+            <div class="news-screenshot">
+                <img src="../screenshots/apple-siri-20260402.png" alt="Apple Siri Feature" loading="lazy">
+                <div class="screenshot-caption">AppleInsider — Siri 多指令功能報導</div>
+            </div>
+        </div>
+        <div class="lang-block">
+            <div class="lang-title en"><span class="dot"></span>English</div>
+            <p class="news-text">Apple is internally testing a major upgrade to Siri that would allow the digital assistant to process multiple sequential commands in a single query, breaking from its long-standing limitation of handling one request at a time, Bloomberg News reported. Users would be able to say something like "Set a 15-minute timer, then tell me what the weather is like," and Siri would execute both tasks in order. The feature is still in testing with no confirmed launch date, but it signals Apple's push to close the capability gap with newer AI assistants like Google Gemini and OpenAI's ChatGPT. Analysts say it could be the most significant functional upgrade to Siri since its 2011 debut.</p>
+        </div>
+    </div>
+</div>
+
+<!-- News 3: Amazon Delta -->
+<div class="news-card">
+    <div class="news-header">
+        <div class="news-number">3</div>
+        <div class="news-meta">
+            <div class="news-title-zh">Amazon 聯手達美航空，Leo 衛星 Wi-Fi 挑戰 Starlink 霸主地位</div>
+            <div class="news-title-en">Amazon Partners with Delta for Satellite Wi-Fi, Taking on Starlink in the Skies</div>
+            <span class="news-tag tag-business">商業</span>
+        </div>
+    </div>
+    <div class="news-body">
+        <div class="lang-block">
+            <div class="lang-title zh"><span class="dot"></span>中文</div>
+            <p class="news-text">Amazon 的衛星網路子公司 Leo 與達美航空（Delta Air Lines）於2026年3月31日宣布達成合作協議，將在500架達美班機上部署衛星 Wi-Fi 服務，挑戰馬斯克旗下 Starlink 在機上網路市場的主導地位。Leo 將在達美航空的新增機隊上安裝其衛星星光終端機，服務預計於2028年在美國本土航班率先啟用。達美航空行銷與產品長蘭詹·戈斯瓦米表示，此合作將讓數百萬旅客在飛行中享受高速網路服務。此前，Starlink 已先後與夏威夷航空、美國航空等多家航空公司簽署類似協議，航空 Wi-Fi 市場競爭日趨激烈。</p>
+            <div class="news-screenshot">
+                <img src="../screenshots/amazon-delta-20260402.png" alt="Amazon Delta Partnership" loading="lazy">
+                <div class="screenshot-caption">Aerotime — Amazon Leo 與達美航空合作報導</div>
+            </div>
+        </div>
+        <div class="lang-block">
+            <div class="lang-title en"><span class="dot"></span>English</div>
+            <p class="news-text">Amazon's satellite internet unit Leo signed a deal with Delta Air Lines on March 31, 2026, to provide in-flight Wi-Fi across 500 aircraft, directly challenging Elon Musk's Starlink dominance in the aviation connectivity market. Leo will install its satellite terminals on Delta's fleet, with service expected to launch first on U.S. continental flights in 2028. Delta Chief Marketing and Product Officer Ranjan Goswami said the partnership would bring high-speed internet to millions of passengers. Starlink has already secured similar agreements with Hawaiian Airlines, American Airlines, and others, making the aviation Wi-Fi market increasingly competitive.</p>
+        </div>
+    </div>
+</div>
+
+<!-- News 4: Micron -->
+<div class="news-card">
+    <div class="news-header">
+        <div class="news-number">4</div>
+        <div class="news-meta">
+            <div class="news-title-zh">美光科技股價飆漲 10.9%，AI 需求引爆記憶體晶片超級循環</div>
+            <div class="news-title-en">Micron Stock Surges 10.9% as AI Demand Drives Memory Chip Supercycle</div>
+            <span class="news-tag tag-industry">半導體</span>
+        </div>
+    </div>
+    <div class="news-body">
+        <div class="lang-block">
+            <div class="lang-title zh"><span class="dot"></span>中文</div>
+            <p class="news-text">美光科技（Micron Technology）股價在2026年4月1日飆漲10.9%，主要受惠於人工智慧應用對高效能記憶體晶片（HBM）與DRAM的爆炸性需求。AI資料中心的大規模建設持續拉動記憶體晶片需求，美光作為全球三大記憶體晶片製造商之一，優先受惠於這波熱潮。分析師指出，輝達（Nvidia）GPU伺服器對HBM的需求是美光營收增長的主要驅動力。市場預期記憶體超級循環將持續至2027年，美光已宣布大幅提高資本支出以擴充產能，包括在美國本土新建先進封裝廠房的投資計畫。</p>
+        </div>
+        <div class="lang-block">
+            <div class="lang-title en"><span class="dot"></span>English</div>
+            <p class="news-text">Micron Technology shares surged 10.9% on April 1, 2026, driven by explosive demand for high-bandwidth memory (HBM) chips and DRAM from artificial intelligence applications. As AI data centers expand at a rapid pace, Micron — one of the world's three largest memory chip makers — has emerged as a key beneficiary. Analysts say demand for HBM from Nvidia GPU servers is the primary revenue driver. Markets expect the memory chip supercycle to extend through 2027, and Micron has announced plans to significantly increase capital expenditure to expand production capacity, including new advanced packaging facilities in the United States.</p>
+        </div>
+    </div>
+</div>
+
+<!-- News 5: Tech Layoffs -->
+<div class="news-card">
+    <div class="news-header">
+        <div class="news-number">5</div>
+        <div class="news-meta">
+            <div class="news-title-zh">Oracle、Meta、X 接連裁員，美國科技業寒冬尚未結束</div>
+            <div class="news-title-en">Oracle, Meta and X Announce Fresh Layoffs as Tech Sector Reset Continues</div>
+            <span class="news-tag tag-industry">產業</span>
+        </div>
+    </div>
+    <div class="news-body">
+        <div class="lang-block">
+            <div class="lang-title zh"><span class="dot"></span>中文</div>
+            <p class="news-text">根據 Crunchbase News 統計，截至2026年4月1日的一週內，美國科技業至少有1,012名員工被裁員或收到裁員通知。本週裁員重點包括：Oracle 已開始裁減數千名員工，據 CNBC 報導，主因為公司股價下跌及投資人對其 AI 基礎建設鉅額支出感到擔憂；Meta 裁員700人，主要來自 Reality Labs、招募、銷售及 Facebook 部門，隨著公司戰略轉向人工智慧，裁員重點亦隨之調整；X（前Twitter）則裁員20人，主要為非技術崗位，被視為母公司 SpaceX 首次公開發行（IPO）前的組織精簡。AI 浪潮席捲下，科技業結構調整仍在持續。</p>
+        </div>
+        <div class="lang-block">
+            <div class="lang-title en"><span class="dot"></span>English</div>
+            <p class="news-text">At least 1,012 U.S. tech sector employees were laid off or scheduled for layoffs during the week ended April 1, 2026, per a Crunchbase News tally. Key cuts this week: Oracle began laying off thousands of workers amid declining share prices and investor concerns over heavy AI infrastructure spending, per CNBC. Meta cut 700 workers primarily from its Reality Labs, recruiting, sales, and Facebook units as the company shifts priorities toward artificial intelligence. X, formerly Twitter, laid off 20 non-technical staff, seen as restructuring ahead of parent company SpaceX's planned initial public offering. The wave of AI-driven restructuring continues to reshape the U.S. technology sector.</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>Generated by <strong>OpenClaw AI</strong> &nbsp;|&nbsp; <a href="https://github.com/ntust2026/ntust2026.github.io/tree/main/claw">GitHub Repository</a></p>
+    <p style="margin-top: 0.4rem; color: #44445a;">Voice: ElevenLabs &nbsp;|&nbsp; V2Qp7CrxJtLL0a5YYNap &nbsp;|&nbsp; Models: eleven_multilingual_v2 / eleven_turbo_v2_5</p>
+</footer>
+
+</div>
+</body>
+</html>
