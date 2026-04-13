@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>五家候選公司 獨立董事抉擇分析報告</title>
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --accent: #2e7d32;
+      --warn: #c62828;
+      --bg: #f5f7fa;
+      --card-bg: #ffffff;
+      --text: #212121;
+      --muted: #616161;
+      --border: #e0e0e0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+
+    .hero { background: linear-gradient(135deg, #1a3a5c 0%, #0d2340 100%); color: #fff; border-radius: 16px; padding: 3rem 2.5rem; margin-bottom: 2rem; }
+    .hero .badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 0.3rem 1rem; font-size: 0.8rem; letter-spacing: 0.05em; margin-bottom: 1rem; }
+    .hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .hero .en { font-size: 0.95rem; opacity: 0.7; font-style: italic; margin-bottom: 1rem; }
+    .hero .meta-row { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 0.88rem; }
+    .hero .meta-item { display: flex; align-items: center; gap: 0.4rem; }
+    .hero .meta-item strong { color: #a8d8ff; }
+
+    .card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 1.8rem 2rem; margin-bottom: 1.5rem; }
+    .card h2 { font-size: 1.15rem; color: var(--primary); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e8ecf0; }
+    .card h2 .icon { margin-right: 0.5rem; }
+
+    .section-title { font-size: 1.05rem; color: var(--primary); margin: 1.5rem 0 0.8rem; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-bottom: 1rem; }
+    th { background: var(--primary); color: #fff; padding: 0.6rem 1rem; text-align: left; }
+    td { padding: 0.55rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tr:nth-child(even) td { background: #f9fbff; }
+    tr:last-child td { border-bottom: none; }
+    td.cell-s { background: #e8f5e9; }
+    td.cell-w { background: #ffebee; }
+    td.cell-o { background: #e3f2fd; }
+    td.cell-t { background: #fff8e1; }
+
+    .tag { display: inline-block; background: #e3f2fd; color: #1565c0; border-radius: 4px; padding: 0.2rem 0.7rem; font-size: 0.78rem; margin: 0.2rem 0.2rem 0.2rem 0; }
+    .tag.warn { background: #ffebee; color: #c62828; }
+    .tag.good { background: #e8f5e9; color: #2e7d32; }
+    .tag.neutral { background: #f5f5f5; color: #616161; }
+
+    .swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .swot-cell { border-radius: 10px; padding: 1.2rem; }
+    .swot-s { background: #e8f5e9; border-left: 4px solid #2e7d32; }
+    .swot-w { background: #ffebee; border-left: 4px solid #c62828; }
+    .swot-o { background: #e3f2fd; border-left: 4px solid #1565c0; }
+    .swot-t { background: #fff8e1; border-left: 4px solid #f57f17; }
+    .swot-cell h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .swot-s h3 { color: #2e7d32; }
+    .swot-w h3 { color: #c62828; }
+    .swot-o h3 { color: #1565c0; }
+    .swot-t h3 { color: #f57f17; }
+    .swot-cell ul { padding-left: 1.2rem; font-size: 0.85rem; }
+    .swot-cell li { margin-bottom: 0.25rem; }
+
+    .ind-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .ind-pro { background: #e8f5e9; border-radius: 10px; padding: 1.2rem; border-left: 4px solid #2e7d32; }
+    .ind-con { background: #ffebee; border-radius: 10px; padding: 1.2rem; border-left: 4px solid #c62828; }
+    .ind-pro h3, .ind-con h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .ind-pro h3 { color: #2e7d32; }
+    .ind-con h3 { color: #c62828; }
+    .ind-pro ul, .ind-con ul { padding-left: 1.2rem; font-size: 0.85rem; }
+    .ind-pro li, .ind-con li { margin-bottom: 0.25rem; }
+
+    .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .sum-good { background: #e8f5e9; border-radius: 10px; padding: 1rem; border-left: 4px solid #2e7d32; }
+    .sum-warn { background: #ffebee; border-radius: 10px; padding: 1rem; border-left: 4px solid #c62828; }
+    .sum-good h3, .sum-warn h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .sum-good h3 { color: #2e7d32; }
+    .sum-warn h3 { color: #c62828; }
+    .sum-good ul, .sum-warn ul { font-size: 0.82rem; padding-left: 1.1rem; }
+
+    .footer { text-align: center; font-size: 0.75rem; color: var(--muted); margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+
+    @media (max-width: 700px) {
+      .swot-grid, .ind-grid, .summary-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">🎯 獨立董事候選人分析報告</div>
+  <h1>五家候選公司經營分析</h1>
+  <div class="en">有你共創 / 芳興科技 / 鐳洋科技 / 裕慶-KY / 全科科技</div>
+  <div class="meta-row">
+    <div class="meta-item"><strong>報告日期：</strong>2026年4月13日</div>
+    <div class="meta-item"><strong>分析標的：</strong>欒帥（候選獨董）</div>
+    <div class="meta-item"><strong>公司涵蓋：</strong>5家</div>
+  </div>
+</div>
+
+<!-- OVERVIEW TABLE -->
+<div class="card">
+  <h2><span class="icon">📊</span>五家公司基本概況比較</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>維度</th>
+        <th>有你共創</th>
+        <th>芳興科技</th>
+        <th>鐳洋科技</th>
+        <th>裕慶-KY</th>
+        <th>全科科技</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>股票代號</strong></td>
+        <td>未上櫃</td>
+        <td>未公開發行</td>
+        <td>6980（興櫃）</td>
+        <td>6957（上市）</td>
+        <td>3209（上市）</td>
+      </tr>
+      <tr>
+        <td><strong>上市進度</strong></td>
+        <td>準備興櫃</td>
+        <td>未公開發行</td>
+        <td>將轉上市</td>
+        <td>✅ 已上市</td>
+        <td>✅ 已上市</td>
+      </tr>
+      <tr>
+        <td><strong>產業類別</strong></td>
+        <td>文創電商/IP授權</td>
+        <td>衛星整機/航太通訊</td>
+        <td>射頻元件/半導體測試</td>
+        <td>商用展示架/智能電動床</td>
+        <td>通訊IC通路</td>
+      </tr>
+      <tr>
+        <td><strong>實收資本</strong></td>
+        <td>1億（登記2.5億）</td>
+        <td>約2億股</td>
+        <td>不明</td>
+        <td>不明</td>
+        <td>不明</td>
+      </tr>
+      <tr>
+        <td><strong>主要法人股東</strong></td>
+        <td>聯合報系、國際影視</td>
+        <td>正文科技（上市）</td>
+        <td>佳世達（上市）</td>
+        <td>開曼設立，外資主導</td>
+        <td>無明確大法人</td>
+      </tr>
+      <tr>
+        <td><strong>營收地區</strong></td>
+        <td>亞洲為主</td>
+        <td>不明</td>
+        <td>台38%/中國31%/美4%</td>
+        <td><strong>美洲93%</strong></td>
+        <td>內銷36%/外銷64%</td>
+      </tr>
+      <tr>
+        <td><strong>營收規模</strong></td>
+        <td>2024年收破億</td>
+        <td>不明（無公開財報）</td>
+        <td>已公開財報</td>
+        <td>已公開財報</td>
+        <td>已公開財報</td>
+      </tr>
+      <tr>
+        <td><strong>最新EPS</strong></td>
+        <td>不明</td>
+        <td>不明</td>
+        <td>不明</td>
+        <td>2024全年14.3元</td>
+        <td>2024全年3.02元</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 個別經營分析 -->
+<div class="card">
+  <h2><span class="icon">🏢</span>各公司經營分析與SWOT</h2>
+
+  <!-- 有你共創 -->
+  <h3 class="section-title">📦 有你共創 uniicreative（準備興櫃）</h3>
+  <div class="swot-grid">
+    <div class="swot-cell swot-s">
+      <h3>💪 優勢</h3>
+      <ul>
+        <li>2024年營收破億，較前一年翻倍成長</li>
+        <li>擁有280萬會員、48萬FB粉絲，流量基礎扎實</li>
+        <li><strong>IP授權生態系完整：</strong>內容×產品×數據×場域閉環</li>
+        <li>已併購日本kibidango，國際化邁出關鍵一步</li>
+        <li>獲得國際影視（Animation International）戰略注資</li>
+        <li>募資顧問成功率96%，平均募資380萬/檔</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-w">
+      <h3>⚠️ 劣勢</h3>
+      <ul>
+        <li>仍為<strong>未公開發行</strong>，無公開財務資料</li>
+        <li>營收規模相對小（破億仍屬中小型）</li>
+        <li>文創電商競爭激烈，進入門檻低</li>
+        <li>高度依賴會員成長與平台黏著度</li>
+        <li>員工數與組織規模有限，公司治理尚在建立</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-o">
+      <h3>🚀 機會</h3>
+      <ul>
+        <li>台灣文創產業政策支持</li>
+        <li>IP授權市場持續擴大（日本、中國、東南亞）</li>
+        <li>跨境電商整合服務需求成長</li>
+        <li>群眾募資協助新創品牌，市场想象空間大</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-t">
+      <h3>🔴 威脅</h3>
+      <ul>
+        <li>文創電商進入門檻低，競爭加劇</li>
+        <li>景氣波動影響消費性支出</li>
+        <li>平台依賴風險（依賴Facebook、Line等）</li>
+        <li>IP授權合約爭議與爭議處理複雜度</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 芳興科技 -->
+  <h3 class="section-title">🛰️ 芳興科技 Pyras（未公開發行）</h3>
+  <div class="swot-grid">
+    <div class="swot-cell swot-s">
+      <h3>💪 優勢</h3>
+      <ul>
+        <li>台灣少數<strong>衛星整機製造</strong>能力廠商</li>
+        <li>已取得<strong>AS9100D航太品質認證</strong>（國際標準）</li>
+        <li>2024年成功發射<strong>自製CubeSat</strong>，技術已驗證</li>
+        <li>台灣「<strong>太空國家隊</strong>」政策光環加持</li>
+        <li>正文科技持股16.1%，具上市 level 資源</li>
+        <li>四大核心技術：LEO天線、AESA雷達、海事衛星、微波元件</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-w">
+      <h3>⚠️ 劣勢</h3>
+      <ul>
+        <li><strong>完全無公開財報</strong>，獨董法定義務風險極高</li>
+        <li>股本小，規模經濟有限</li>
+        <li>營收與獲利數字完全不透明</li>
+        <li>營運歷史短，無長期財務紀錄</li>
+        <li>人才與專利布局資訊不明</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-o">
+      <h3>🚀 機會</h3>
+      <ul>
+        <li>全球低軌衛星商機爆發（Starlink、OneWeb、Kuiper）</li>
+        <li>台灣國家政策支持衛星產業自主化</li>
+        <li>台海局勢帶動國防通訊需求</li>
+        <li>AESA雷達國防國產化趨勢</li>
+        <li>CubeSat低成本切入國際供應鏈</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-t">
+      <h3>🔴 威脅</h3>
+      <ul>
+        <li>國際大廠（SpaceX、Airbus）具絕對優勢</li>
+        <li>關鍵元件國外供應，依賴進口</li>
+        <li>認證門檻高（太空級驗證）</li>
+        <li>IPO資訊不透明，投資人教育成本高</li>
+        <li>衛星產業人才供給不足</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 鐳洋科技 -->
+  <h3 class="section-title">📡 鐳洋科技 6980（興櫃將上市）</h3>
+  <div class="swot-grid">
+    <div class="swot-cell swot-s">
+      <h3>💪 優勢</h3>
+      <ul>
+        <li><strong>佳世達</strong>為主要股東，提供上市 level 資源與供應鏈</li>
+        <li>營收結構完整：射頻測試55%/智動化28%/先進射頻17%</li>
+        <li>應用領域多元：衛星/車用雷達/半導體/醫療/消費電子</li>
+        <li>已有公開財報，財務透明</li>
+        <li>2024年1月已轉興櫃一般板，IPO在即</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-w">
+      <h3>⚠️ 劣勢</h3>
+      <ul>
+        <li>營收規模相對小（本益比可能受限）</li>
+        <li>半導體測試業務景氣波動大</li>
+        <li>代理原物料（繼電器、電容）受原物料價格影響</li>
+        <li>中國市場佔31%，美中貿易戰變數大</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-o">
+      <h3>🚀 機會</h3>
+      <ul>
+        <li>低軌衛星需求爆發，射頻天線需求跟漲</li>
+        <li>AI伺服器帶動高速測試需求</li>
+        <li>車用雷達渗透率持續提升</li>
+        <li>毫米波技術5G/衛星應用想像空間大</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-t">
+      <h3>🔴 威脅</h3>
+      <ul>
+        <li>國際大廠競爭（Panasonic、Omron）</li>
+        <li>美中貿易戰影響中國大陸營收</li>
+        <li>半導體景氣循環影響智動化產品需求</li>
+        <li>興櫃轉上市初期股價波動可能較大</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 裕慶-KY -->
+  <h3 class="section-title">🛋️ 裕慶-KY 6957（已上市）</h3>
+  <div class="swot-grid">
+    <div class="swot-cell swot-s">
+      <h3>💪 優勢</h3>
+      <ul>
+        <li>✅ <strong>已上市掛牌</strong>，制度最成熟完整</li>
+        <li>2024全年EPS達<strong>14.3元</strong>，配息13元，獲利穩健</li>
+        <li>客户包括Coca-Cola、Home Depot、Lowe's、Walmart、Target等<strong>國際一線品牌</strong></li>
+        <li>商用展示架全球領導供應商，規模經濟顯著</li>
+        <li>美洲營收佔93%，美元計價受惠匯率</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-w">
+      <h3>⚠️ 劣勢</h3>
+      <ul>
+        <li><strong>美洲佔比93%，高度單一市場集中</strong></li>
+        <li>美中貿易戰+美國關稅政策不確定性高</li>
+        <li>原物料（鋼鐵、鋁、銅）價格波動影響毛利</li>
+        <li>開曼設立，控股架構較複雜</li>
+        <li>展示架為成熟產業，成長性有限</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-o">
+      <h3>🚀 機會</h3>
+      <ul>
+        <li>美國零售通路持續展店與改裝需求穩定</li>
+        <li>智能電動床打入長照/健康市場，想像空間大</li>
+        <li>關稅制度調整有助減輕成本壓力</li>
+        <li>新客戶開發（co-design等新品牌）</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-t">
+      <h3>🔴 威脅</h3>
+      <ul>
+        <li><strong>美國關稅政策</strong>為最大風險變數</li>
+        <li>景氣循環導致零售客戶調整展店預算</li>
+        <li>越南、中國供應鏈競爭加劇</li>
+        <li>家具/展示架產業進入門檻低，價格競爭激烈</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 全科科技 -->
+  <h3 class="section-title">💻 全科科技 3209（已上市）</h3>
+  <div class="swot-grid">
+    <div class="swot-cell swot-s">
+      <h3>💪 優勢</h3>
+      <ul>
+        <li>✅ <strong>已上市老牌公司</strong>，制度最穩健</li>
+        <li>1991年成立，營運超過30年，財務紀錄完整</li>
+        <li>通訊IC通路涵蓋<strong>有線寬頻51%/無線27%/其他22%</strong></li>
+        <li>2025 H1法說會：AI伺服器與FWA動能強勁</li>
+        <li>代理國際大廠品牌，產品線完整</li>
+        <li>外銷64%，分散市場風險</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-w">
+      <h3>⚠️ 劣勢</h3>
+      <ul>
+        <li>2024全年EPS僅<strong>3.02元</strong>，成長性有限</li>
+        <li>IC通路商本質，毛利受壓縮</li>
+        <li>面臨大聯大、文曄等大型通路商競爭</li>
+        <li>半導體景氣波動直接影響營收</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-o">
+      <h3>🚀 機會</h3>
+      <ul>
+        <li>AI伺服器需求爆發，帶動高階通訊IC需求</li>
+        <li>FWA（固定 wireless access）5G應用新動能</li>
+        <li>物聯網持續擴展，通訊元件需求穩健</li>
+        <li>資料中心擴建，網通元件長線成長</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-t">
+      <h3>🔴 威脅</h3>
+      <ul>
+        <li>大聯大、文曄競爭激烈，通路商利潤持續受壓</li>
+        <li>景氣循環導致庫存波動剧烈</li>
+        <li>IC設計原廠整合趨勢可能影響通路商角色</li>
+        <li>中國市場需求放緩影響營收</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 獨董好處與風險 -->
+<div class="card">
+  <h2><span class="icon">⚖️</span>獨立董事任職 — 共同好處與風險分析</h2>
+
+  <h3 class="section-title">✅ 擔任獨董的普遍好處</h3>
+  <div class="ind-grid">
+    <div class="ind-pro">
+      <h3>💰 薪酬報酬</h3>
+      <ul>
+        <li>上市（櫃）公司獨董薪酬每年通常為<strong>36～100萬元</strong>不等</li>
+        <li>已上市公司制度完善，薪酬發放穩定</li>
+        <li>興櫃公司通常也提供車馬費津貼</li>
+        <li>部分公司提供盈餘分配或認股選擇權</li>
+      </ul>
+    </div>
+    <div class="ind-pro">
+      <h3>📋 專業成長</h3>
+      <ul>
+        <li>近距離接觸上市櫃公司治理實務</li>
+        <li>學習不同產業的營運模式與財務結構</li>
+        <li>參與重大決策，擴展產業人脈網絡</li>
+        <li>累積董事歷練，有助未來擔任其他公司董事</li>
+      </ul>
+    </div>
+    <div class="ind-pro">
+      <h3>🌐 聲譽與連結</h3>
+      <ul>
+        <li>上市櫃公司獨董頭銜具社會聲望</li>
+        <li>有助建立產業專家形象</li>
+        <li>接觸優質企業家與專業經理人網絡</li>
+        <li>提升個人在特定領域的知名度</li>
+      </ul>
+    </div>
+    <div class="ind-pro">
+      <h3>🔧 對企業的正面影響</h3>
+      <ul>
+        <li>發揮專業所長，協助公司做出更好的決策</li>
+        <li>強化公司治理，保障小股東權益</li>
+        <li>協助風險管控，保護公司長期價值</li>
+        <li>成為經營團隊與投資人之間的橋樑</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section-title">⚠️ 擔任獨董的普遍風險</h3>
+  <div class="ind-grid">
+    <div class="ind-con">
+      <h3>⚖️ 法律責任風險</h3>
+      <ul>
+        <li>證券交易法第26條：獨董對<strong>申報財報不實</strong>需負刑事與民事責任</li>
+        <li>若公司掏空或內線交易，獨董難以完全免责</li>
+        <li>即使任職時間短，既往問題仍可能追溯</li>
+        <li>獨董職責保險（D&O保險）費用高且越來越貴</li>
+      </ul>
+    </div>
+    <div class="ind-con">
+      <h3>📉 聲譽風險</h3>
+      <ul>
+        <li>公司出事，媒體與公眾壓力會直接指向全體董事</li>
+        <li>獨董頭銜讓外界默認你「知道」或「應當知道」</li>
+        <li>聲譽受損可能影響本職與其他兼任職務</li>
+        <li>社群與投資人會直接點名獨董姓名</li>
+      </ul>
+    </div>
+    <div class="ind-con">
+      <h3>⏰ 時間與精力成本</h3>
+      <ul>
+        <li>每年需出席至少6～8次董事會，加上法說會、委員會</li>
+        <li>需閱讀與審查財報、重大議案，準備時間不可少</li>
+        <li>若公司有危機，獨董需投入額外時間處理</li>
+        <li>兼任多家公司獨董可能產生利益衝突問題</li>
+      </ul>
+    </div>
+    <div class="ind-con">
+      <h3>🏢 特定產業風險</h3>
+      <ul>
+        <li>芳興科技：無公開財報→無法查核→法律風險極高</li>
+        <li>裕慶-KY：美中貿易戰+關稅政策→營收高度集中美國</li>
+        <li>全科科技：IC通路景氣波動+市場價格競爭</li>
+        <li>鐳洋科技：興櫃轉上市過渡期，公司體質尚未完全穩定</li>
+        <li>有你共創：制度仍在建立，早期階段治理風險較高</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 個別公司獨董建議 -->
+<div class="card">
+  <h2><span class="icon">🎯</span>各公司擔任獨董建議摘要</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>公司</th>
+        <th>獨董風險等级</th>
+        <th>核心關注事項</th>
+        <th>建議</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>芳興科技</strong></td>
+        <td><span class="tag warn">🔴 極高</span></td>
+        <td>無公開財報，無法進行實質查核，獨董法律責任最重</td>
+        <td>極度審慎。建議等待公司完成IPO並有完整財報後再考慮</td>
+      </tr>
+      <tr>
+        <td><strong>有你共創</strong></td>
+        <td><span class="tag warn">🟠 中高</span></td>
+        <td>準備興櫃中，公司治理尚在建立，制度較不成熟</td>
+        <td>可考慮，但需確認獨董職責定位與薪酬委員會/審計委員會分工</td>
+      </tr>
+      <tr>
+        <td><strong>鐳洋科技</strong></td>
+        <td><span class="tag">🟡 中低</span></td>
+        <td>佳世達加持，已興櫃將上市，但營收規模較小</td>
+        <td>可考慮關注，佳世達為主要法人，治理相對有保障</td>
+      </tr>
+      <tr>
+        <td><strong>裕慶-KY</strong></td>
+        <td><span class="tag tag.good">🟢 低</span></td>
+        <td>已上市制度成熟，但高度依賴美國市場，關稅風險顯著</td>
+        <td>穩健選擇。獨董薪酬制度完整，但需關注美國政策風險</td>
+      </tr>
+      <tr>
+        <td><strong>全科科技</strong></td>
+        <td><span class="tag tag.good">🟢 低</span></td>
+        <td>老牌上市公司，制度最穩健，成長性較低</td>
+        <td>最穩健的獨董選擇。適合風險趨避型候選人</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 綜合決策矩陣 -->
+<div class="card">
+  <h2><span class="icon">📈</span>綜合決策參考</h2>
+  <div class="summary-grid">
+    <div class="sum-good">
+      <h3>🌟 優先選擇（風險較低）</h3>
+      <ul>
+        <li><strong>全科科技（3209）：</strong>老牌上市、30年財務紀錄、治理制度最完整、產業熟悉度高</li>
+        <li><strong>裕慶-KY（6957）：</strong>已上市EPS 14.3元、配息穩健、客户國際一線品牌、獨董薪酬最有保障</li>
+      </ul>
+    </div>
+    <div class="sum-warn">
+      <h3>⚠️ 需謹慎考量（風險較高）</h3>
+      <ul>
+        <li><strong>芳興科技：</strong>無公開財務資料為最大致命傷，獨董法律責任極高，建議迴避</li>
+        <li><strong>有你共創：</strong>文創電商成長快速但制度尚在建立階段，早期公司治理風險大</li>
+        <li><strong>鐳洋科技：</strong>可持續觀察，但營收規模與興櫃過渡期仍有不確定性</li>
+      </ul>
+    </div>
+  </div>
+  <div style="margin-top:1.2rem; padding:1rem; background:#f9fbff; border-radius:8px; font-size:0.88rem; border-left:4px solid #1565c0;">
+    <strong>📌 最終建議：</strong>若以「<strong>風險管理優先</strong>」為原則，優先選擇<strong>全科科技</strong>或<strong>裕慶-KY</strong>，兩者均為已上市公司，財務透明、制度成熟，獨董履職風險最低。若同時希望參與較具成長爆發力的產業，可考慮將<strong>鐳洋科技</strong>列為次要選項。<strong>芳興科技</strong>建議完全排除，直至公司完成IPO並建立完整公開財務資料後再重新評估。
+  </div>
+</div>
+
+<div class="footer">
+  資料來源：公開資訊觀測站、MoneyDJ理財網、鉅亨網、公司官網（104人力銀行、uniicreative.com）、Winvest投資 ｜報告日期：2026年4月13日 ｜本報告僅供參考，不構成任何投資建議
+</div>
+
+</div><!-- .container -->
+</body>
+</html>
