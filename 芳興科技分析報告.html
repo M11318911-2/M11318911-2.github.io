@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>芳興科技股份有限公司 — 企業分析報告</title>
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --accent: #2e7d32;
+      --warning: #c62828;
+      --bg: #f5f7fa;
+      --card-bg: #ffffff;
+      --text: #212121;
+      --muted: #616161;
+      --border: #e0e0e0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, var(--primary) 0%, #0d2340 100%); color: #fff; border-radius: 16px; padding: 3rem 2.5rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; top: -60px; right: -60px; width: 240px; height: 240px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+    .hero::after { content: ""; position: absolute; bottom: -80px; left: 20%; width: 300px; height: 300px; background: rgba(255,255,255,0.03); border-radius: 50%; }
+    .hero .badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 0.3rem 1rem; font-size: 0.8rem; letter-spacing: 0.05em; margin-bottom: 1rem; }
+    .hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .hero .en { font-size: 1rem; opacity: 0.7; font-style: italic; margin-bottom: 1.2rem; }
+    .hero .meta-row { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 0.88rem; }
+    .hero .meta-item { display: flex; align-items: center; gap: 0.4rem; }
+    .hero .meta-item strong { color: #a8d8ff; }
+
+    /* CARDS */
+    .card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 1.8rem 2rem; margin-bottom: 1.5rem; }
+    .card h2 { font-size: 1.2rem; color: var(--primary); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e8ecf0; }
+    .card h2 .icon { margin-right: 0.5rem; }
+
+    /* GRID */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    /* TABLE */
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th { background: var(--primary); color: #fff; padding: 0.65rem 1rem; text-align: left; }
+    td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); }
+    tr:nth-child(even) td { background: #f9fbff; }
+    tr:last-child td { border-bottom: none; }
+
+    /* SWOT */
+    .swot-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 1rem; }
+    .swot-cell { border-radius: 10px; padding: 1.2rem; }
+    .swot-s { background: #e8f5e9; border-left: 4px solid #2e7d32; }
+    .swot-w { background: #ffebee; border-left: 4px solid #c62828; }
+    .swot-o { background: #e3f2fd; border-left: 4px solid #1565c0; }
+    .swot-t { background: #fff8e1; border-left: 4px solid #f57f17; }
+    .swot-cell h3 { font-size: 1rem; margin-bottom: 0.6rem; }
+    .swot-s h3 { color: #2e7d32; }
+    .swot-w h3 { color: #c62828; }
+    .swot-o h3 { color: #1565c0; }
+    .swot-t h3 { color: #f57f17; }
+    .swot-cell ul { padding-left: 1.2rem; font-size: 0.88rem; }
+    .swot-cell li { margin-bottom: 0.3rem; }
+    @media (max-width: 700px) { .swot-grid { grid-template-columns: 1fr; } }
+
+    /* IPO */
+    .ipo-phase { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1.5rem; }
+    .phase { flex: 1; min-width: 120px; text-align: center; padding: 0.8rem 0.5rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600; }
+    .phase.done { background: #c8e6c9; color: #2e7d32; }
+    .phase.current { background: #fff9c4; color: #f57f17; border: 2px solid #fdd835; }
+    .phase.future { background: #eceff1; color: #90a4ae; }
+    .phase .num { font-size: 1.4rem; display: block; margin-bottom: 0.2rem; }
+
+    /* TAGS */
+    .tag { display: inline-block; background: #e3f2fd; color: #1565c0; border-radius: 4px; padding: 0.2rem 0.7rem; font-size: 0.8rem; margin: 0.2rem 0.2rem 0.2rem 0; }
+    .tag.warn { background: #ffebee; color: #c62828; }
+    .tag.good { background: #e8f5e9; color: #2e7d32; }
+    .tag.gold { background: #fff8e1; color: #e65100; }
+
+    /* TECH */
+    .tech-card { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
+    .tech-item { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-radius: 10px; padding: 0.8rem 1rem; flex: 1; min-width: 200px; border-left: 3px solid #1565c0; }
+    .tech-item h4 { font-size: 0.88rem; color: var(--primary); margin-bottom: 0.2rem; }
+    .tech-item p { font-size: 0.8rem; color: var(--muted); }
+
+    /* FOOTER */
+    .footer { text-align: center; font-size: 0.78rem; color: var(--muted); margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+
+    /* SECTION SPACING */
+    .section-title { font-size: 1.05rem; color: var(--primary); margin: 1.5rem 0 0.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<div class="hero">
+  <div class="badge">🌟 台灣太空國家隊成員</div>
+  <h1>芳興科技股份有限公司</h1>
+  <div class="en">PYRAS TECHNOLOGY INC.</div>
+  <p style="font-size:1rem; opacity:0.9; margin-bottom:1.2rem;">台灣領先的專業航太與微波通訊公司</p>
+  <div class="meta-row">
+    <div class="meta-item"><strong>統一編號：</strong>53985400</div>
+    <div class="meta-item"><strong>董 事 長：</strong>陳賡源</div>
+    <div class="meta-item"><strong>實收資本額：</strong>約 1.99 億股</div>
+    <div class="meta-item"><strong>認證：</strong>AS9100D 航太品質</div>
+    <div class="meta-item"><strong>總部地址：</strong>新北市汐止區福德一路396號</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     BUSINESS OVERVIEW
+═══════════════════════════════════════════ -->
+<div class="card">
+  <h2><span class="icon">🏢</span>公司與業務概覽</h2>
+  <p>芳興科技（Pyras Technology Inc.）為台灣少數同時具備<strong>航太品質認證（AS9100D）</strong>與<strong>自主研發能力</strong>之專業航太與微波通訊公司，被列為台灣「<strong>太空國家隊</strong>」重點成員，專注於以下四大核心技術領域：</p>
+
+  <div class="tech-card">
+    <div class="tech-item">
+      <h4>🛰️ 低軌衛星天線 (LEO Satellite Antennas)</h4>
+      <p>用於全球高速衛星網路，為目前衛星產業最熱門區塊</p>
+    </div>
+    <div class="tech-item">
+      <h4>🌊 海事衛星通訊 (Maritime SATCOM)</h4>
+      <p>針對船隻與海洋環境的衛星通訊解決方案</p>
+    </div>
+    <div class="tech-item">
+      <h4>📡 AESA 雷達 (主動電子掃描陣列)</h4>
+      <p>先進雷達技術，廣泛應用於國防與航太領域</p>
+    </div>
+    <div class="tech-item">
+      <h4>🔧 微波元件研發</h4>
+      <p>通訊與雷達系統的基礎硬體技術</p>
+    </div>
+  </div>
+
+  <p style="margin-top:1.5rem;">公司提供從<strong>元件→硬體→韌體→軟體</strong>之一站式整合服務，2024 年成功發射自製 <strong>CubeSat</strong>，正式進入新太空產業。同時取得 <strong>ISO 27001 資訊安全認證</strong>，並建立 ESG 永續治理框架。</p>
+
+  <div style="margin-top:1rem;">
+    <span class="tag gold">⭐ 台灣太空國家隊</span>
+    <span class="tag good">AS9100D 航太品質認證</span>
+    <span class="tag good">ISO 27001 資安認證</span>
+    <span class="tag good">自主研發解決方案</span>
+    <span class="tag good">CubeSat 已發射驗證</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SHAREHOLDER STRUCTURE
+═══════════════════════════════════════════ -->
+<div class="card">
+  <h2><span class="icon">👥</span>董監事與主要股東結構</h2>
+  <p style="font-size:0.85rem; color:var(--muted); margin-bottom:1rem;">資料來源：公司資料庫 + 長紅未上市股票資訊網（最新更新）｜★ 為用戶自行提供之資料</p>
+  <table>
+    <thead>
+      <tr>
+        <th>職稱</th>
+        <th>姓名 / 代表法人</th>
+        <th>持股股數</th>
+        <th>持股比例</th>
+        <th>備註</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>董事長</td>
+        <td>陳賡源</td>
+        <td>1,857,463 股</td>
+        <td>9.34%</td>
+        <td>公司創辦人 / 核心經營者</td>
+      </tr>
+      <tr>
+        <td>董事</td>
+        <td>正文科技（股）公司</td>
+        <td>3,200,000 股</td>
+        <td>16.10%</td>
+        <td>上市公司（通訊設備大廠）；重要策略夥伴</td>
+      </tr>
+      <tr>
+        <td>董事</td>
+        <td>中鑫國際（股）公司</td>
+        <td>3,200,000 股</td>
+        <td>16.10%</td>
+        <td>法人董事（可能與正文科技關係密切）</td>
+      </tr>
+      <tr>
+        <td>董事</td>
+        <td>張慶同</td>
+        <td>1,500,000 股</td>
+        <td>7.55%</td>
+        <td>專業經理人</td>
+      </tr>
+      <tr>
+        <td>董事</td>
+        <td>劉勉志</td>
+        <td>1,000,000 股</td>
+        <td>5.03%</td>
+        <td>專業經理人</td>
+      </tr>
+      <tr>
+        <td>監察人</td>
+        <td>陳羿君</td>
+        <td>100,000 股</td>
+        <td>0.50%</td>
+        <td>獨立監察人</td>
+      </tr>
+      <tr>
+        <td>監察人</td>
+        <td>黃令宜</td>
+        <td>15,000 股</td>
+        <td>0.08%</td>
+        <td>獨立監察人</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top:1rem; font-size:0.88rem;"><strong>整體董監持股合計：約 54.7%</strong>（含董事長 9.34% + 正文 16.10% + 中鑫 16.10% + 張 7.55% + 劉 5.03% + 監察人 0.58%）。</p>
+  <div style="margin-top:1rem; padding:0.8rem; background:#f9fbff; border-radius:8px; border-left:4px solid #1565c0;">
+    <strong style="font-size:0.88rem;">🔍 重要觀察：</strong>
+    <ul style="font-size:0.85rem; margin-top:0.4rem; padding-left:1.2rem;">
+      <li><strong>正文科技</strong>為上市公司（台灣通訊設備大廠），持股16.1%，代表芳興科技有上市 level 的產業資源與技術驗證支持。</li>
+      <li><strong>中鑫國際</strong>持股與正文科技完全相同（均為16.1%），可能為關係企業或策略聯盟，兩者合計32.2%。</li>
+      <li>陳賡源董事長持股約9.3%，IPO後需注意股权稀释對經營權的影響。</li>
+      <li>董監整體持股逾54%，有利於維持經營穩定，但上市後減持可能造成股價壓力。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SWOT
+═══════════════════════════════════════════ -->
+<div class="card">
+  <h2><span class="icon">📊</span>SWOT 分析</h2>
+  <div class="swot-grid">
+    <div class="swot-cell swot-s">
+      <h3>💪 優勢 Strengths</h3>
+      <ul>
+        <li>台灣少數同時具備<strong>AS9100D 航太認證</strong>與自主研發能力的廠商</li>
+        <li>已被列入台灣<strong>「太空國家隊」</strong>，具政策加持優勢</li>
+        <li>涵蓋<strong>元件→硬體→韌體→軟體</strong>一站式整合，減少供應鏈依賴</li>
+        <li>四大核心技術：LEO衛星天線、海事通訊、AESA雷達、微波元件，布局完整</li>
+        <li>2024年成功發射<strong>自製 CubeSat</strong>，已完成實際產品驗證</li>
+        <li>擁有 <strong>ISO 27001</strong>（資安）與 <strong>AS9100D</strong>（航太）雙認證，國際門檻領先</li>
+        <li><strong>正文科技</strong>為策略法人股東，提供上市 level 之通訊技術與供應鏈資源</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-w">
+      <h3>⚠️ 劣勢 Weaknesses</h3>
+      <ul>
+        <li><strong>目前為未公開發行</strong>，尚無公開財務資料，投資人難以評估體質</li>
+        <li>股本相對小（&lt; 2億股），規模經濟有限</li>
+        <li>營收與獲利能力<strong>無公開數據</strong>，體質不明</li>
+        <li>營運歷史較短，尚未建立長期財務紀錄可供參考</li>
+        <li>過度依賴政府、國防或特定大型客戶採購</li>
+        <li>員工人數與專利布局等資訊不明，不利投資評估</li>
+        <li>與國際大廠（Starlink、Airbus）相比，資本與規模差距極大</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-o">
+      <h3>🚀 機會 Opportunities</h3>
+      <ul>
+        <li><strong>全球低軌衛星商機爆發：</strong>Starlink、OneWeb、亞馬遜 Kuiper 帶動供應鏈需求，台灣供應商受惠</li>
+        <li><strong>台灣國家政策支持：</strong>政府推動衛星產業自主化，具政策紅利與國家隊光環</li>
+        <li><strong>國土安全與國防需求：</strong>台海緊張局勢帶動通訊備援與軍事通訊需求</li>
+        <li><strong>AESA 雷達國產化：</strong>台灣國防自主趨勢下，AESA 作為核心雷達技術，需求明確</li>
+        <li><strong>海事衛星通訊：</strong>漁業與海運市場具長期需求</li>
+        <li><strong>CubeSat 低成本切入：</strong>可快速切入國際衛星的驗證與供應鏈</li>
+        <li>上市後具備集資擴產、併購整合之能量</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-t">
+      <h3>🔴 威脅 Threats</h3>
+      <ul>
+        <li><strong>國際大廠競爭激烈：</strong>Starlink、Airbus、SpaceX 具備主導地位與絶対優勢</li>
+        <li><strong>關鍵元件供應風險：</strong>衛星元件多依賴國外供應，匯率與供應鏈波動大</li>
+        <li><strong>認證門檻高：</strong>AS9100D、太空級驗證時間長、成本高，須持續投入</li>
+        <li><strong>IPO 前缺乏公開財務透明度：</strong>投資人教育成本高，初期可能股價波動大</li>
+        <li>台灣衛星產業人才供給不足，挖角激烈</li>
+        <li>總體經濟與地緣政治風險影響政府國防預算</li>
+        <li>中國大陸衛星產業崛起，價格競爭壓力加劇</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     IPO ASSESSMENT
+═══════════════════════════════════════════ -->
+<div class="card">
+  <h2><span class="icon">📈</span>IPO 詳細評估</h2>
+
+  <h3 class="section-title">📍 目前階段定位</h3>
+  <div class="ipo-phase">
+    <div class="phase done"><span class="num">①</span>私設立</div>
+    <div class="phase done"><span class="num">②</span>輔導期</div>
+    <div class="phase done"><span class="num">③</span>登錄興櫃前準備</div>
+    <div class="phase current"><span class="num">④</span>邁向上市</div>
+    <div class="phase future"><span class="num">⑤</span>掛牌交易</div>
+  </div>
+  <p style="font-size:0.85rem; color:var(--muted);">*芳興科技目前仍為「未公開發行」狀態，尚無法上興櫃或上市，IPO旅程仍在非常早期階段。</p>
+
+  <h3 class="section-title">✅ IPO 優點與助益</h3>
+  <ul style="font-size:0.88rem; padding-left:1.3rem;">
+    <li><strong>品牌知名度提升：</strong>掛牌後可直接獲得媒體與機構投資人關注</li>
+    <li><strong>國家的隊光環加持：</strong>太空國家隊成員標籤有助吸引投資人目光與政策優惠</li>
+    <li><strong>籌資能力強化：</strong>可透過增資、CB、ECB 等工具集資擴產</li>
+    <li><strong>人才留才激勵：</strong>員工認股計畫更具吸引力，有助招募與留才</li>
+    <li><strong>併購整合實力：</strong>上市股可作為併購貨幣，加速產業垂直整合</li>
+    <li><strong>財務透明化壓力：</strong>公開資訊揭露可提升公司治理水平</li>
+  </ul>
+
+  <h3 class="section-title">⚠️ IPO 風險與挑戰</h3>
+  <ul style="font-size:0.88rem; padding-left:1.3rem;">
+    <li><strong>營收尚未規模化：</strong>低軌衛星市場仍屬早期，營收來源可能有限</li>
+    <li><strong>財務體質不明：</strong>無公開財報是最大障礙，投資人與承銷商難以定價</li>
+    <li><strong>股权集中度：</strong>董監持股合計逾54%，上市後減持壓力大</li>
+    <li><strong>產業不確定性：</strong>全球衛星市場商業模式仍在演變，需求爆发時點難測</li>
+    <li><strong>承銷商輔導意願：</strong>小型股本、低營收公司較難獲得大型承銷商青睞</li>
+    <li><strong>掛牌後股價流動性風險：</strong>股本小、營收低的個股易有流動性問題</li>
+  </ul>
+
+  <h3 class="section-title">📋 IPO 前置條件（建議改善事項）</h3>
+  <table style="font-size:0.88rem;">
+    <tr>
+      <th>項目</th>
+      <th>現狀</th>
+      <th>建議目標</th>
+    </tr>
+    <tr>
+      <td>實收資本額</td>
+      <td>～2億股以下</td>
+      <td>考慮增資至 3～5 億股，提升掛牌後股票流動性</td>
+    </tr>
+    <tr>
+      <td>財務透明化</td>
+      <td>尚無公開財報</td>
+      <td>至少完成 2～3 年完整財務報告（經會計師簽證）</td>
+    </tr>
+    <tr>
+      <td>營收門檻</td>
+      <td>不明</td>
+      <td>需滿足台灣證交所上市新規：近一年營收≥ 5億元，或近三年平均≥ 3億元</td>
+    </tr>
+    <tr>
+      <td>公司治理</td>
+      <td>基本符合</td>
+      <td>設立薪酬委員會、審計委員會，引進獨立董事</td>
+    </tr>
+    <tr>
+      <td>內控制度</td>
+      <td>已有 ISO 27001 + AS9100D</td>
+      <td>建立完整內部控制制度，並經第三方驗證</td>
+    </tr>
+    <tr>
+      <td>專利布局</td>
+      <td>不明</td>
+      <td>盤點核心技術專利，為上市前審查做準備</td>
+    </tr>
+    <tr>
+      <td>營收來源多元化</td>
+      <td>可能依賴特定客戶</td>
+      <td>拓展商業客戶，降低對政府國防採購依賴</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     INVESTMENT SUMMARY
+═══════════════════════════════════════════ -->
+<div class="card">
+  <h2><span class="icon">🎯</span>總結與投資決策參考</h2>
+  <div class="grid-2">
+    <div style="background:#e8f5e9; border-radius:10px; padding:1.2rem; border-left:4px solid #2e7d32;">
+      <h3 style="color:#2e7d32; font-size:1rem; margin-bottom:0.5rem;">🌟 看點</h3>
+      <ul style="font-size:0.85rem; padding-left:1.2rem;">
+        <li>台灣太空國家隊成員，受惠政策紅利</li>
+        <li>已具實際產品（CubeSat 2024年發射成功）</li>
+        <li>AS9100D + ISO 27001雙認證，國際門檻領先</li>
+        <li>四大核心技術：LEO天線、海事通訊、AESA雷達、微波元件</li>
+        <li>正文科技加持，技術與供應鏈可靠</li>
+        <li>台灣少數同時具備航太認證與自主研發的民營廠</li>
+      </ul>
+    </div>
+    <div style="background:#ffebee; border-radius:10px; padding:1.2rem; border-left:4px solid #c62828;">
+      <h3 style="color:#c62828; font-size:1rem; margin-bottom:0.5rem;">⚠️ 警示</h3>
+      <ul style="font-size:0.85rem; padding-left:1.2rem;">
+        <li>尚無公開財務資料，無法評估獲利能力</li>
+        <li>營收規模可能極小</li>
+        <li>IPO時程尚不明確</li>
+        <li>產業波動性高，不確定性大</li>
+        <li>國際大廠資本差距巨大</li>
+        <li>營收高度依賴政府國防預算</li>
+      </ul>
+    </div>
+  </div>
+  <div style="margin-top:1.2rem; padding:1rem; background:#f9fbff; border-radius:8px; font-size:0.88rem;">
+    <strong>📌 綜合建議：</strong>芳興科技屬於高度專業、先進技術導向之衛星與航太通訊公司，在台灣衛星產業政策支持與「太空國家隊」標籤下具有戰略價值與長線投資潛力。<strong>AS9100D 航太認證</strong>是重要加分項，代表其品質管理已達國際航太標準。然而，公司目前處於IPO<strong>非常早期的前期準備階段</strong>，完全沒有公開財務資料，是最大障礙。<br><br>
+    適合對衛星產業有高度興趣並可承受高風險之專業投資人。正式IPO投資前，建議等待公司：(1) 揭露完整財務報告；(2) 達到營收5億元門檻；(3) 確認具體IPO時程後再行評估。
+  </div>
+</div>
+
+<div class="footer">
+  資料來源：104人力銀行（公司簡介）、Pyras官網、長紅未上市股票資訊網、公司資料庫 ｜報告生成日期：2026年4月13日 ｜本報告僅供參考，不構成任何投資建議
+</div>
+
+</div><!-- .container -->
+</body>
+</html>
