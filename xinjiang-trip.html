@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>北疆8日精華行程 | 新疆之旅</title>
+    <title>北疆8日精華行程（修訂版）| 新疆之旅</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
@@ -28,6 +28,11 @@
             padding: 8px 20px; border-radius: 20px; margin-top: 15px; font-size: 0.95em;
             color: white; width: fit-content;
         }
+        .hero .note {
+            background: rgba(255,200,0,0.9); color: #333;
+            padding: 8px 15px; border-radius: 8px; margin-top: 10px;
+            font-size: 0.9em; width: fit-content;
+        }
         
         /* Info Cards */
         .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 30px; }
@@ -45,6 +50,16 @@
         .section { background: white; border-radius: 16px; padding: 30px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .section h2 { color: #1a5f7a; margin-bottom: 20px; font-size: 1.4em; display: flex; align-items: center; gap: 10px; }
         .section h2::before { content: ''; width: 4px; height: 24px; background: linear-gradient(to bottom, #1a5f7a, #159895); border-radius: 2px; }
+        
+        /* Notice */
+        .notice {
+            background: linear-gradient(135deg, #fff9e6, #fff3cc);
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px; border-radius: 8px; margin-bottom: 20px;
+        }
+        .notice-title { color: #b38600; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .notice ul { margin-left: 20px; color: #665500; }
+        .notice li { margin-bottom: 5px; }
         
         /* Photo Grid */
         .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 20px; }
@@ -93,6 +108,14 @@
         .budget-table tr:last-child td { border-bottom: none; }
         .budget-table .total { background: linear-gradient(to right, #e8f5f0, #f0f9f6); font-weight: bold; color: #159895; font-size: 1.1em; }
         .budget-table td:nth-child(2) { font-weight: 600; }
+        .budget-note { color: #888; font-size: 0.85em; margin-top: 10px; }
+        
+        /* Hotel Badge */
+        .hotel-badge {
+            display: inline-block; background: linear-gradient(135deg, #ffd700, #ffb800);
+            color: #333; padding: 3px 10px; border-radius: 12px;
+            font-size: 0.8em; font-weight: bold; margin-left: 8px;
+        }
         
         /* Tips */
         .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
@@ -104,9 +127,6 @@
         .tip .tip-icon { position: absolute; right: 15px; top: 15px; font-size: 1.5em; opacity: 0.3; }
         .tip .tip-title { font-weight: bold; color: #1a5f7a; margin-bottom: 5px; }
         .tip .tip-text { color: #666; font-size: 0.9em; }
-        
-        /* Gallery */
-        .gallery-intro { text-align: center; color: #666; margin-bottom: 20px; }
         
         /* Footer */
         .footer { text-align: center; padding: 40px 30px; background: linear-gradient(135deg, #1a5f7a, #159895); border-radius: 16px; color: white; margin-top: 20px; }
@@ -135,8 +155,19 @@
             <div class="hero-overlay">
                 <h1>🏔️ 北疆8日精華行程</h1>
                 <p>天山以北 · 草原湖泊 · 雪山風光</p>
-                <div class="badge">⏰ 建議出發：8月20日前後 | 👥 8-12人成團 | 💰 每人$7-9萬</div>
+                <div class="badge">⏰ 建議出發：8月20日前後 | 👥 校友會揪團 | 💰 每人$10-13萬</div>
+                <div class="note">⭐ 五星級飯店 · 全程含餐 · 安全第一</div>
             </div>
+        </div>
+        
+        <!-- Important Notice -->
+        <div class="notice">
+            <div class="notice-title">⚠️ 重要調整說明</div>
+            <ul>
+                <li>🏨 <strong>住宿升級：</strong>以五星級飯店為主，保障安全與舒適</li>
+                <li>🍽️ <strong>餐食調整：</strong>全程含餐（由旅行社安排），不建議自理，避免腸胃不適影響行程</li>
+                <li>💰 <strong>預算調整：</strong>因五星級飯店+全程含餐，預算调整为$10-13萬/人</li>
+            </ul>
         </div>
         
         <!-- Quick Info -->
@@ -149,17 +180,17 @@
             <div class="info-card">
                 <div class="icon">💰</div>
                 <div class="label">每人預算</div>
-                <div class="value">$7-9萬</div>
+                <div class="value">$10-13萬</div>
             </div>
             <div class="info-card">
-                <div class="icon">🎯</div>
-                <div class="label">精華景點</div>
-                <div class="value">3大區域</div>
+                <div class="icon">🏨</div>
+                <div class="label">住宿標準</div>
+                <div class="value">五星級</div>
             </div>
             <div class="info-card">
-                <div class="icon">🌡️</div>
-                <div class="label">平均溫度</div>
-                <div class="value">20-28°C</div>
+                <div class="icon">🍽️</div>
+                <div class="label">餐食安排</div>
+                <div class="value">全程含餐</div>
             </div>
             <div class="info-card">
                 <div class="icon">✈️</div>
@@ -168,10 +199,9 @@
             </div>
         </div>
         
-        <!-- Photo Gallery Intro -->
+        <!-- Photo Gallery -->
         <div class="section">
             <h2>🖼️ 景點先覽</h2>
-            <p class="gallery-intro">北疆三大經典，一次走遍</p>
             <div class="photo-grid">
                 <div class="photo-card">
                     <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80" alt="賽里木湖">
@@ -198,8 +228,8 @@
                     <div class="day-content">
                         <img class="day-img" src="https://images.unsplash.com/photo-1580654712603-eb43273aff33?w=300&q=80" alt="烏魯木齊">
                         <h3>🛫 台北 → 烏魯木齊</h3>
-                        <p class="desc">抵達烏魯木齊（地窩堡國際機場），專車接機入住市區酒店。下午可逛國際大巴扎，感受維吾爾族文化。</p>
-                        <p class="highlight">📍 住宿：烏魯木齊 | 🍽️ 晚餐：市區新疆菜</p>
+                        <p class="desc">抵達烏魯木齊（地窩堡國際機場），專車接機入住五星級酒店。下午可逛國際大巴扎，感受維吾爾族文化。</p>
+                        <p class="highlight">🏨 住宿：烏魯木齊五星酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：飛機上 | 午餐：飛機上 | 晚餐：五星酒店內</p>
                     </div>
                 </div>
                 
@@ -208,8 +238,8 @@
                     <div class="day-content">
                         <img class="day-img" src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=300&q=80" alt="賽里木湖">
                         <h3>🚗 烏魯木齊 → 賽里木湖</h3>
-                        <p class="desc">早餐後驅車前往賽里木湖（約5-6小時車程），沿途穿越天山山脈，抵達後遊覽这颗「太平洋最後一滴眼淚」。</p>
-                        <p class="highlight">🌊 賽里木湖 | 🏨 住宿：賽里木湖景區/果子溝</p>
+                        <p class="desc">早餐後驅車前往賽里木湖（約5-6小時車程），沿途穿越天山山脈，抵達後遊覽這顆「太平洋最後一滴眼淚」。</p>
+                        <p class="highlight">🏨 住宿：賽里木湖週邊五星或高級酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：五星酒店 | 午餐：沿途餐廳 | 晚餐：酒店內</p>
                     </div>
                 </div>
                 
@@ -219,7 +249,7 @@
                         <img class="day-img" src="https://images.unsplash.com/photo-1529922700572-f86a5db00e7f?w=300&q=80" alt="伊寧">
                         <h3>🌿 賽里木湖 → 霍爾果斯 → 伊寧</h3>
                         <p class="desc">早晨賞賽里木湖日出，途經霍爾果斯口岸（國門打卡），下午前往伊寧市，漫步六星街感受哈薩克風情。</p>
-                        <p class="highlight">🏛️ 霍爾果斯口岸 | 🎨 伊寧六星街 | 🍜 當地美食</p>
+                        <p class="highlight">🏨 住宿：伊寧五星酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：酒店內 | 午餐：當地餐廳 | 晚餐：五星酒店</p>
                     </div>
                 </div>
                 
@@ -228,8 +258,8 @@
                     <div class="day-content">
                         <img class="day-img" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=300&q=80" alt="那拉提">
                         <h3>🌸 伊寧 → 那拉提草原</h3>
-                        <p class="desc">驅車前往那拉提草原（約4小時），下午遊覽河谷草原，感受哈薩克牧民生活，骑马驰骋草原。</p>
-                        <p class="highlight">🐎 那拉提草原 | 🏨 住宿：草原景區內蒙古包/酒店</p>
+                        <p class="desc">驅車前往那拉提草原（約4小時），下午遊覽河谷草原，感受哈薩克牧民生活，騎馬馳騁草原。</p>
+                        <p class="highlight">🏨 住宿：那拉提草原週邊五星酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：酒店內 | 午餐：草原餐廳 | 晚餐：酒店內</p>
                     </div>
                 </div>
                 
@@ -239,7 +269,7 @@
                         <img class="day-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=300&q=80" alt="盤龍古道">
                         <h3>🏔️ 那拉提草原（盤龍古道）</h3>
                         <p class="desc">乘坐區間車遊覽空中草原，穿越精靈古怪的盤龍古道，欣賞松林、雪山、花海組成的天然畫卷。</p>
-                        <p class="highlight">☁️ 空中草原 | 🌲 雪蓮谷 | 🏔️ 雪山觀景台</p>
+                        <p class="highlight">🏨 住宿：那拉提草原週邊五星酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：酒店內 | 午餐：景區餐廳 | 晚餐：酒店內</p>
                     </div>
                 </div>
                 
@@ -249,7 +279,7 @@
                         <img class="day-img" src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=300&q=80" alt="克拉瑪依">
                         <h3>🚗 那拉提 → 奎屯 → 克拉瑪依</h3>
                         <p class="desc">早起離開草原，途中遊覽戈壁風光與少數民族村落，經過奎屯前往克拉瑪依，體驗油城風情。</p>
-                        <p class="highlight">🛣️ 沙漠公路風光 | 🏨 住宿：克拉瑪依</p>
+                        <p class="highlight">🏨 住宿：克拉瑪依五星酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：酒店內 | 午餐：沿途餐廳 | 晚餐：五星酒店</p>
                     </div>
                 </div>
                 
@@ -259,7 +289,7 @@
                         <img class="day-img" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&q=80" alt="喀納斯">
                         <h3>🌲 克拉瑪依 → 喀納斯</h3>
                         <p class="desc">驅車前往人間淨土喀納斯（約5小時），下午遊覽喀納斯湖、臥龍灣、月亮灣，感受喀納斯三灣的迷人之美。</p>
-                        <p class="highlight">🏔️ 喀納斯國家地質公園 | 🏨 住宿：景區內/賈登峪</p>
+                        <p class="highlight">🏨 住宿：喀納斯/布爾津五星酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：酒店內 | 午餐：沿途餐廳 | 晚餐：五星酒店</p>
                     </div>
                 </div>
                 
@@ -268,8 +298,8 @@
                     <div class="day-content">
                         <img class="day-img" src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=300&q=80" alt="觀魚台">
                         <h3>🌅 喀納斯（觀魚台）→ 返程</h3>
-                        <p class="desc">清晨登觀魚台賞喀納斯全景，捕捉晨霧中的神仙灣灣景。下山後返回布爾津/喀納斯機場，結束難忘的北疆之旅。</p>
-                        <p class="highlight">🦈 觀魚台全景 | 🛫 返程 | 📸 美好的回憶</p>
+                        <p class="desc">清晨登觀魚台賞喀納斯全景，捕捉晨霧中的神仙灣灣景。下山後前往喀納斯/布爾津機場，結束難忘的北疆之旅。</p>
+                        <p class="highlight">🍽️ 早餐：酒店內 | 午餐：當地餐廳 | 晚餐：飛機上<br>🛫 帶著美好的回憶回家</p>
                     </div>
                 </div>
                 
@@ -278,18 +308,18 @@
         
         <!-- Budget -->
         <div class="section">
-            <h2>💰 預算參考（每人）</h2>
+            <h2>💰 預算參考（每人）- 修訂版</h2>
             <table class="budget-table">
                 <tr><th>項目</th><th>預估費用（TWD）</th><th>說明</th></tr>
                 <tr><td>來回機票</td><td>$18,000 - $25,000</td><td>台北↔烏魯木齊/喀納斯</td></tr>
-                <tr><td>當地交通（包車/旅遊巴）</td><td>$12,000 - $18,000</td><td>8天含全程接送</td></tr>
-                <tr><td>住宿（舒適型酒店）</td><td>$16,000 - $25,000</td><td>7晚，平均$2,300-3,500/晚</td></tr>
-                <tr><td>餐飲</td><td>$8,000 - $12,000</td><td>含新疆特色餐</td></tr>
+                <tr><td>當地交通（旅遊巴）</td><td>$10,000 - $15,000</td><td>8天全程接送，人多分擔</td></tr>
+                <tr><td>🏨 五星級住宿</td><td>$30,000 - $45,000</td><td>7晚，平均$4,300-6,500/晚</td></tr>
+                <tr><td>🍽️ 全程含餐</td><td>$15,000 - $20,000</td><td>早餐+午餐+晚餐，旅行社安排</td></tr>
                 <tr><td>門票+區間車</td><td>$8,000 - $12,000</td><td>賽里木湖、那拉提、喀納斯</td></tr>
                 <tr><td>保險+其他</td><td>$5,000 - $8,000</td><td>旅平險、簽證（如需）</td></tr>
-                <tr class="total"><td>💎 總計</td><td colspan="2">$67,000 - $100,000</td></tr>
+                <tr class="total"><td>💎 總計</td><td colspan="2">$86,000 - $125,000</td></tr>
             </table>
-            <p style="margin-top: 15px; color: #888; font-size: 0.9em;">※ 人數越多，包車/交通費用分擔越便宜 | ※ 實際費用視淡旺季而定</p>
+            <p class="budget-note">※ 五星級飯店+全程含餐，預算约$10-13萬/人<br>※ 人數越多，整體費用性價比越高<br>※ 實際價格需等旅行社確認</p>
         </div>
         
         <!-- Tips -->
@@ -333,8 +363,8 @@
         <div class="footer">
             <div class="🦞">🦞</div>
             <h3>台科小小斌 ✨</h3>
-            <p>北疆8日行程 · 為校友會幹部們精心規劃</p>
-            <p>如需調整行程或添加景點，請與我聯繫！</p>
+            <p>北疆8日行程（修訂版）· 校友會揪團專用</p>
+            <p>⭐ 五星級飯店 · 全程含餐 · 安全第一</p>
             <div class="credit">🏔️ 新疆旅遊 · 天山以北 · 人間淨土</div>
         </div>
         
