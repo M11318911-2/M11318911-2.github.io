@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>北疆經典 13 日 — 東方瑞士</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: #0a0a1a;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #1a1a3e 0%, #0d0d2b 50%, #1a0a2e 100%);
+      padding: 60px 20px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: 
+        radial-gradient(ellipse at 20% 50%, rgba(120,80,255,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(255,100,80,0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(80,200,255,0.1) 0%, transparent 40%);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 6px 20px;
+      border-radius: 50px;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffd700, #ff8c00, #ff6b35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+      position: relative;
+    }
+    .hero-sub {
+      font-size: 20px;
+      color: rgba(255,255,255,0.7);
+      margin-top: 10px;
+      font-weight: 300;
+      letter-spacing: 3px;
+    }
+    .hero-dates {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 25px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      padding: 12px 30px;
+    }
+    .hero-dates .date-box {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .hero-dates .plus {
+      font-size: 24px;
+      color: #ffd700;
+    }
+    .hero-dates .nights {
+      font-size: 16px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* Price Section */
+    .price-section {
+      background: linear-gradient(135deg, #ff6b35, #e74c3c);
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .price-label {
+      font-size: 14px;
+      letter-spacing: 3px;
+      opacity: 0.9;
+      text-transform: uppercase;
+    }
+    .price-value {
+      font-size: 72px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      margin-top: 5px;
+    }
+    .price-unit {
+      font-size: 20px;
+      font-weight: 300;
+      opacity: 0.9;
+    }
+    .price-note {
+      font-size: 14px;
+      margin-top: 15px;
+      opacity: 0.85;
+      background: rgba(255,255,255,0.15);
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: 50px;
+    }
+    .price-features {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .price-feature {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .price-feature .check {
+      background: rgba(255,255,255,0.2);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    /* Highlights */
+    .highlights-section {
+      background: #0d0d1a;
+      padding: 60px 20px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .section-sub {
+      text-align: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+      margin-bottom: 40px;
+    }
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .highlight-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .highlight-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+    }
+    .highlight-card:nth-child(1)::before { background: #ffd700; }
+    .highlight-card:nth-child(2)::before { background: #00d4aa; }
+    .highlight-card:nth-child(3)::before { background: #667eea; }
+    .highlight-card:nth-child(4)::before { background: #ff6b9d; }
+    .highlight-card:nth-child(5)::before { background: #ffa500; }
+    .highlight-card:nth-child(6)::before { background: #00bfff; }
+    .highlight-card:nth-child(7)::before { background: #7b68ee; }
+    .highlight-card:nth-child(8)::before { background: #ff6347; }
+    .highlight-card:nth-child(9)::before { background: #3cb371; }
+    .highlight-card:nth-child(10)::before { background: #da70d6; }
+    .highlight-card:nth-child(11)::before { background: #ff4500; }
+    .highlight-card:nth-child(12)::before { background: #1e90ff; }
+    .highlight-card:nth-child(13)::before { background: #32cd32; }
+    .highlight-card:nth-child(14)::before { background: #ff69b4; }
+    
+    .highlight-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .highlight-card h3 .star {
+      color: #ffd700;
+      font-size: 12px;
+    }
+    .highlight-card h3 .num {
+      background: rgba(255,255,255,0.1);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .highlight-card p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+    }
+    .highlight-card .tags {
+      margin-top: 10px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .highlight-card .tag {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 50px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.7);
+    }
+    .highlight-card .tag.red {
+      background: rgba(255,80,80,0.2);
+      color: #ff6b6b;
+    }
+
+    /* Special Section */
+    .special-section {
+      background: linear-gradient(135deg, #1a1a3e, #0d0d2b);
+      padding: 50px 20px;
+    }
+    .special-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .special-card {
+      background: linear-gradient(135deg, rgba(102,126,234,0.2), rgba(118,75,162,0.2));
+      border: 1px solid rgba(102,126,234,0.3);
+      border-radius: 16px;
+      padding: 25px;
+    }
+    .special-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .special-card h3 .icon {
+      font-size: 24px;
+    }
+    .special-card ul {
+      list-style: none;
+    }
+    .special-card ul li {
+      padding: 6px 0;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .special-card ul li::before {
+      content: '✓';
+      color: #ffd700;
+      font-weight: 700;
+    }
+
+    /* Itinerary Timeline */
+    .timeline-section {
+      background: #0d0d1a;
+      padding: 60px 20px;
+    }
+    .timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, #ffd700, #ff6b35, #667eea, #00d4aa);
+      border-radius: 3px;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .timeline-item .day {
+      min-width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #ffd700, #ff8c00);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+      color: #000;
+      z-index: 1;
+      position: relative;
+    }
+    .timeline-item .content {
+      flex: 1;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .timeline-item .content h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .timeline-item .content .desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+    .timeline-item .content .meals {
+      display: flex;
+      gap: 15px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #ffd700, #ff8c00);
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .cta-section h2 {
+      font-size: 32px;
+      font-weight: 900;
+      color: #000;
+    }
+    .cta-section p {
+      font-size: 16px;
+      margin-top: 10px;
+      opacity: 0.8;
+      color: #000;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #000;
+      color: #ffd700;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 15px 50px;
+      border-radius: 50px;
+      margin-top: 25px;
+      text-decoration: none;
+    }
+    .cta-info {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(0,0,0,0.7);
+    }
+
+    /* Footer */
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 36px; }
+      .price-value { font-size: 52px; }
+      .timeline::before { left: 15px; }
+      .timeline-item .day { min-width: 40px; height: 40px; font-size: 11px; }
+      .timeline-item { gap: 20px; }
+      .price-features { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">🌟 2026 限定行程</div>
+    <h1>北疆經典 13 日</h1>
+    <div class="hero-sub">東 方 瑞 士 · 天 山 雪 域 · 絲 路 傳 奇</div>
+    <div class="hero-dates">
+      <div class="date-box">8/22</div>
+      <div class="plus">✦</div>
+      <div class="date-box">9/3</div>
+      <div class="nights">12 晚 13 天</div>
+    </div>
+  </div>
+
+  <!-- Price -->
+  <div class="price-section">
+    <div class="price-label">行程費用</div>
+    <div class="price-value">NTD 114,800<span class="price-unit"> / 人</span></div>
+    <div class="price-note">含隨團服務人員、導遊、司機小費</div>
+    <div class="price-features">
+      <div class="price-feature">
+        <div class="check">✓</div>
+        全程無購物
+      </div>
+      <div class="price-feature">
+        <div class="check">✓</div>
+        無自費項目
+      </div>
+      <div class="price-feature">
+        <div class="check">✓</div>
+        商務艙加價
+      </div>
+      <div class="price-feature">
+        <div class="check">✓</div>
+        零利率分期
+      </div>
+    </div>
+  </div>
+
+  <!-- Highlights -->
+  <div class="highlights-section">
+    <div class="section-title">🏔️ 五大草原 · 雙湖秘境 · 世界級公路</div>
+    <div class="section-sub">13 個必訪景點 · 6 個 5A 級景區</div>
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <h3><span class="num">🌊</span> 天山天池</h3>
+        <p>高山湖泊風光，古稱「瑤池」，融森林、草原、雪山於一體</p>
+        <div class="tags"><span class="tag red">5A 景區</span><span class="tag">世界遺產</span></div>
+      </div>
+      <div class="highlight-card">
+        <h3><span class="num">🏡</span> 禾木村</h3>
+        <p>圖瓦族古樸民居，白樺林與茅草屋相映，漫步其中彷彿穿越時光</p>
+        <div class="tags"><span class="tag red">中國最美鄉村</span></div>
+      </div>
+      <div class="highlight-card">
+        <h3><span class="num">🌲</span> 喀納斯湖</h3>
+        <p>人間淨土、神仙遺落人間的明珠，湖水變色奇景，船遊三道灣</p>
+        <div class="tags"><span class="tag red">5A 景區</span><span class="tag">二次進園</span></div>
+      </div>
+      <div class="highlight-card">
+        <h3><span class="num">🎨</span> 五彩灘</h3>
+        <p>額爾齊斯河畔彩色礫石，日光映照下色彩絢麗耀眼</p>
+        <div class="tags"><span class="tag red">5A 景區</span></div>
+      </div>
+      <div class="highlight-card">
+        <h3><span class="num">👹</span> 烏爾禾魔鬼城</h3>
+        <p>雅丹地貌，風蝕奇岩造型多變，彷彿大地上的魔幻世界</p>
+        <div class="tags"><span class="tag red">5A 景區</span></div>
+      </div>
+      <div class="highlight-card">
+        <h3><span class="num">💧</span> 賽里木湖</h3>
+        <p>碧水蕩漾，雪山倒影湖中，高山湖泊壯麗景色令人心醉</p>
+        <div class="tags"><span class="tag red">5A 景區</span></div>
+      </div>
+      <div class="highlight-card">
+        <h3><span class="num">🐎</span> 那拉提空中草原</h3>
+        <p>「塞外江南」伊犁河谷，體驗騎馬，俯瞰群山與牧場</p>
+        <div class="tags"><span class="tag red">5A 景區</span><span class="tag">草原騎馬</span></div>
+      </div>
+      <div class="highlight-card">
+        <h3><span class="num">🦢</span> 巴音布魯克草原</h3>
+        <p>天鵝湖與九曲十八彎，草原風光壯闊迷人</p>
+        <div class="tags"><span class="tag red">5A 景區</span></div>
+      </div>
+      <div class="highlight-card">
+        <h3><span class="num">🛣️</span> 獨庫公路</h3>
+        <p>世界公認、全中國最美的一條公路，一日穿越四季</p>
+        <div class="tags"><span class="tag red">世界最美</span><span class="tag">7座商務車</span></div>
+      </div>
+      <div class="highlight-card">
+        <h3><span class="num">🚗</span> 阿禾公路</h3>
+        <p>2025 年新通車景觀公路，全長 209 公里，串聯高山森林草原</p>
+        <div class="tags"><span class="tag red">新通車</span></div>
+      </div>
+      <div class="highlight-card">
+        <h3><span class="num">🛶</span> 喀納斯船遊</h3>
+        <p>水路感受喀納斯湖，高山湖泊的風迎面吹來，透心涼</p>
+        <div class="tags"><span class="tag">三道灣</span></div>
+      </div>
+      <div class="highlight-card">
+        <h3><span class="num">🎭</span> 千迴西域</h3>
+        <p>沉浸式絲路文化演出，融合十二木卡姆等非遺元素</p>
+        <div class="tags"><span class="tag">歌舞之鄉</span></div>
+      </div>
+      <div class="highlight-card">
+        <h3><span class="num">🛒</span> 國際大巴扎</h3>
+        <p>濃郁伊斯蘭建築風格，重現古絲綢之路繁華</p>
+        <div class="tags"><span class="tag">絲路文化</span></div>
+      </div>
+      <div class="highlight-card">
+        <h3><span class="num">🌸</span> 喀贊其</h3>
+        <p>乘坐馬車悠遊草原，感受哈薩克族古樸與自然的和諧共生</p>
+        <div class="tags"><span class="tag">馬車體驗</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Special Arrangements -->
+  <div class="special-section">
+    <div class="section-title">✨ 特別安排</div>
+    <div class="section-sub">精心設計的尊榮體驗</div>
+    <div class="special-grid">
+      <div class="special-card">
+        <h3><span class="icon">🍽️</span> 頂級餐食</h3>
+        <ul>
+          <li>午餐 RMB 60-80 元 / 人</li>
+          <li>晚餐 RMB 100-180 元 / 人</li>
+          <li>手抓肉風味、冷水魚風味、烤全羊風味</li>
+        </ul>
+      </div>
+      <div class="special-card">
+        <h3><span class="icon">🚐</span> 尊榮座駕</h3>
+        <ul>
+          <li>1+1 寬敞車型</li>
+          <li>7 座商務車（獨庫公路段）</li>
+          <li>小眾出團，10 人成行，最多 20 人</li>
+        </ul>
+      </div>
+      <div class="special-card">
+        <h3><span class="icon">🎁</span> 貼心好禮</h3>
+        <ul>
+          <li>每日礦泉水</li>
+          <li>新疆時令水果、特色酸奶</li>
+          <li>贈送網卡</li>
+          <li>資深導遊全程陪同</li>
+        </ul>
+      </div>
+      <div class="special-card">
+        <h3><span class="icon">🏨</span> 精選住宿</h3>
+        <ul>
+          <li>希爾頓、萬達文華（烏魯木齊）</li>
+          <li>錦江國際、尊茂寶石（阿勒泰）</li>
+          <li>禾木村內住宿（如詩如畫）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline-section">
+    <div class="section-title">📅 行程概覽</div>
+    <div class="section-sub">從台北出發，一路向北探索新疆</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="day">Day<br>1</div>
+        <div class="content">
+          <h4>台北 → 烏魯木齊</h4>
+          <div class="desc">桃園 → 北京 → 烏魯木齊，抵達新疆省會，入住希爾頓或萬達文華</div>
+          <div class="meals">早餐：X｜午餐：機上｜晚餐：機上</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="day">Day<br>2</div>
+        <div class="content">
+          <h4>烏魯木齊 → 天山天池 → 阿勒泰</h4>
+          <div class="desc">遊覽天山天池風景區（含區間車），融森林、草原、雪山於一體</div>
+          <div class="meals">早餐：飯店｜午餐：中式合菜｜晚餐：手抓肉風味</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="day">Day<br>3</div>
+        <div class="content">
+          <h4>阿勒泰 → 阿禾公路 → 禾木村</h4>
+          <div class="desc">行駛 2025 年新通車景觀公路（約209公里），入住禾木村內</div>
+          <div class="meals">早餐：飯店｜午餐：中式饗宴｜晚餐：中式合菜</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="day">Day<br>4</div>
+        <div class="content">
+          <h4>禾木 → 喀納斯 → 賈登峪</h4>
+          <div class="desc">喀納斯自然景觀保護區、船遊三道灣、觀魚亭、白樺林、月亮灣、神仙灣、臥龍灣</div>
+          <div class="meals">早餐：飯店｜午餐：中式饗宴｜晚餐：中式合菜</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="day">Day<br>5</div>
+        <div class="content">
+          <h4>二進喀納斯 → 五彩灘 → 布爾津</h4>
+          <div class="desc">圖瓦人家訪、二次進入喀納斯、五彩灘日落</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="day">Day<br>6-13</div>
+        <div class="content">
+          <h4>賽里木湖 → 那拉提 → 巴音布魯克 → 獨庫公路</h4>
+          <div class="desc">賽里木湖、喀贊其（馬車）、那拉提空中草原、巴音布魯克草原、九曲十八彎、獨庫公路、國際大巴扎、千迴西域</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>立即預定您的北疆之旅</h2>
+    <p>限量 20 席 · 名額有限 · 報名從速</p>
+    <div class="cta-btn">聯繫我們</div>
+    <div class="cta-info">出發日期：2026 年 8 月 22 日｜報名截止：出發前 45 天</div>
+  </div>
+
+  <footer>
+    <p>國立臺灣科技大學 EMBA 校友會｜東方瑞士—北疆經典 13 日</p>
+    <p style="margin-top:5px">行程適用至 2026 年 8 月出發｜洋明旅行社</p>
+  </footer>
+
+</body>
+</html>
