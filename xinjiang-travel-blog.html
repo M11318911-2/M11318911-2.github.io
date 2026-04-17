@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>北疆經典 13 日 — 東方瑞士 | 國立臺灣科技大學 EMBA 校友會</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --accent: #c9a84c;
+      --light: #f8f6f1;
+      --text: #2c2c2c;
+      --text-light: #666;
+      --gradient: linear-gradient(135deg, #1a3a5c 0%, #2d5a7b 50%, #1a3a5c 100%);
+      --gradient-gold: linear-gradient(135deg, #c9a84c, #e8c96a, #c9a84c);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: #fafaf8;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      min-height: 600px;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)),
+                  url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80') center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 150px;
+      background: linear-gradient(to top, #fafaf8, transparent);
+    }
+    .hero-badge {
+      background: var(--gradient-gold);
+      color: #1a3a5c;
+      padding: 8px 24px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 25px;
+      display: inline-block;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 15px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .hero .subtitle {
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+    .hero-info {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .hero-info span {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 10px 25px;
+      border-radius: 50px;
+      font-size: 14px;
+    }
+    .hero-info span strong { color: #ffd700; }
+
+    /* Navigation */
+    nav {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      padding: 15px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+    nav .logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+    nav ul a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav ul a:hover { color: var(--accent); }
+
+    /* Intro */
+    .intro {
+      max-width: 900px;
+      margin: -60px auto 0;
+      position: relative;
+      z-index: 10;
+      background: #fff;
+      border-radius: 24px;
+      padding: 50px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+    .intro .kicker {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--primary);
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    .intro p {
+      font-size: 16px;
+      color: var(--text-light);
+      line-height: 2;
+    }
+    .intro .price-box {
+      background: var(--gradient);
+      color: #fff;
+      border-radius: 16px;
+      padding: 30px;
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .intro .price-box .price {
+      font-size: 42px;
+      font-weight: 900;
+    }
+    .intro .price-box .price small {
+      font-size: 16px;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+    .intro .price-box .details {
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .intro .price-box .details span {
+      display: block;
+    }
+    .cta-btn {
+      background: var(--gradient-gold);
+      color: var(--primary);
+      padding: 14px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(201,168,76,0.4);
+    }
+
+    /* Sections */
+    section { padding: 80px 20px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .section-header .kicker {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      color: var(--primary);
+      margin-top: 10px;
+    }
+    .section-header p {
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 15px auto 0;
+      font-size: 16px;
+    }
+
+    /* Highlights Grid */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 25px;
+    }
+    .highlight-card {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      height: 300px;
+      cursor: pointer;
+    }
+    .highlight-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s;
+    }
+    .highlight-card:hover img { transform: scale(1.08); }
+    .highlight-card .overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 30px 25px 25px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      color: #fff;
+    }
+    .highlight-card .overlay h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .highlight-card .overlay p {
+      font-size: 13px;
+      opacity: 0.85;
+      line-height: 1.5;
+    }
+    .highlight-card .badge {
+      position: absolute;
+      top: 15px; right: 15px;
+      background: var(--gradient-gold);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 50px;
+    }
+
+    /* Destination Sections */
+    .destination {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+    .destination.reverse { direction: rtl; }
+    .destination.reverse > * { direction: ltr; }
+    .destination .images {
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+    }
+    .destination .images img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+    .destination .images .caption {
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 20px;
+      font-size: 13px;
+      text-align: center;
+    }
+    .destination .content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    .destination .content .location {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+    .destination .content p {
+      color: var(--text-light);
+      font-size: 15px;
+      line-height: 1.9;
+      margin-bottom: 15px;
+    }
+    .destination .content .tag {
+      display: inline-block;
+      background: rgba(201,168,76,0.15);
+      color: var(--accent);
+      padding: 5px 15px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 3px;
+    }
+
+    /* Timeline */
+    .timeline-section { background: var(--light); }
+    .timeline { max-width: 900px; margin: 0 auto; }
+    .timeline-item {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .timeline-item .day {
+      min-width: 70px;
+      height: 70px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 4px 15px rgba(26,58,92,0.3);
+    }
+    .timeline-item .content {
+      flex: 1;
+      background: #fff;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      position: relative;
+    }
+    .timeline-item .content::before {
+      content: '';
+      position: absolute;
+      left: -15px; top: 30px;
+      border: 8px solid transparent;
+      border-right-color: #fff;
+    }
+    .timeline-item .content h4 {
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .timeline-item .content p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+    .timeline-item .content .meals {
+      margin-top: 12px;
+      display: flex;
+      gap: 15px;
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 35px 30px;
+      text-align: center;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+      transition: transform 0.3s;
+    }
+    .feature-card:hover { transform: translateY(-5px); }
+    .feature-card .icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+    .feature-card h3 {
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* Food Section */
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .food-card {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      height: 220px;
+    }
+    .food-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .food-card .label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 40px 20px 15px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    /* Tips */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .tip-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 25px;
+      border-left: 4px solid var(--accent);
+      box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+    }
+    .tip-card h4 {
+      font-size: 15px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .tip-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: var(--gradient);
+      text-align: center;
+      padding: 80px 20px;
+      color: #fff;
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+    .cta-section p {
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+    .cta-section .cta-btn {
+      background: var(--gradient-gold);
+      color: var(--primary);
+      font-size: 18px;
+      padding: 16px 50px;
+    }
+    .cta-section .contact {
+      margin-top: 30px;
+      font-size: 16px;
+      opacity: 0.85;
+    }
+    .cta-section .contact strong {
+      color: #ffd700;
+    }
+
+    /* Footer */
+    footer {
+      background: #0d1f35;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 13px;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 48px; }
+      .destination { grid-template-columns: 1fr; }
+      .destination.reverse { direction: ltr; }
+      nav ul { display: none; }
+      .intro { margin: -40px 15px 0; padding: 30px 25px; }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s, transform 0.8s;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">2026 年 8 月出發</div>
+    <h1>東方瑞士<br>北疆經典 13 日</h1>
+    <div class="subtitle">天 山 天 池 · 喀 納 斯 湖 · 獨 庫 公 路</div>
+    <div class="hero-info">
+      <span>📅 <strong>8/22</strong> 出發</span>
+      <span>✈️ <strong>13</strong> 天 12 夜</span>
+      <span>👥 <strong>10-20</strong> 人小團</span>
+      <span>💰 <strong>NTD 114,800</strong> 起</span>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">🏔️ 北疆旅遊</div>
+    <ul>
+      <a href="#highlights">行程特色</a>
+      <a href="#destinations">景點介紹</a>
+      <a href="#itinerary">每日行程</a>
+      <a href="#food">特色美食</a>
+      <a href="#tips">旅遊須知</a>
+    </ul>
+  </nav>
+
+  <!-- Intro -->
+  <div class="intro reveal">
+    <div class="kicker">EMBA 校友會特別行程</div>
+    <h2>一次走訪新疆最經典的北疆風光</h2>
+    <p>穿越天山山脈，走訪人間淨土喀納斯，馳騁世界最美的獨庫公路。這是一趟融合自然奇觀、草原文化、絲路歷史的深度之旅，由資深導遊全程陪伴，小團出行，讓您盡情探索西域的神秘與壯美。</p>
+    <div class="price-box">
+      <div>
+        <div class="price">NTD 114,800<span small>/ 人</span></div>
+        <div style="font-size:13px;opacity:0.7;margin-top:3px">含隨團服務人員、導遊、司機小費</div>
+      </div>
+      <div class="details">
+        <span>📅 2026 年 8/22 出發</span>
+        <span>✈️ 商務艙加價 NTD 30,000</span>
+        <span>🏨 單人房差價 +25,000</span>
+      </div>
+      <a href="tel:0225066766" class="cta-btn">立即報名</a>
+    </div>
+  </div>
+
+  <!-- Highlights -->
+  <section id="highlights">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="kicker">Trip Highlights</div>
+        <h2>為什麼選擇這趟旅程？</h2>
+        <p>6 個 5A 級景區、2 條傳奇公路、1 場震撼演出</p>
+      </div>
+      <div class="highlights-grid">
+        <div class="highlight-card reveal">
+          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80" alt="喀納斯湖">
+          <div class="overlay">
+            <h3>🌊 喀納斯湖</h3>
+            <p>人間淨土，攝影師的天堂，神仙遺落人間的明珠</p>
+          </div>
+          <div class="badge">5A 景區</div>
+        </div>
+        <div class="highlight-card reveal">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="天山天池">
+          <div class="overlay">
+            <h3>🏔️ 天山天池</h3>
+            <p>古稱瑤池，高山湖泊風光，雪山森林草原於一體</p>
+          </div>
+          <div class="badge">5A 景區</div>
+        </div>
+        <div class="highlight-card reveal">
+          <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800&q=80" alt="那拉提草原">
+          <div class="overlay">
+            <h3>🐎 那拉提空中草原</h3>
+            <p>塞外江南，人間天堂，體驗草原騎馬趣</p>
+          </div>
+          <div class="badge">5A 景區</div>
+        </div>
+        <div class="highlight-card reveal">
+          <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80" alt="獨庫公路">
+          <div class="overlay">
+            <h3>🛣️ 獨庫公路</h3>
+            <p>世界公認最美公路，一日穿越四季</p>
+          </div>
+          <div class="badge">世界最美</div>
+        </div>
+        <div class="highlight-card reveal">
+          <img src="https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?w=800&q=80" alt="賽里木湖">
+          <div class="overlay">
+            <h3>💧 賽里木湖</h3>
+            <p>大西洋最後一滴眼淚，高山湖泊壯麗景色</p>
+          </div>
+          <div class="badge">5A 景區</div>
+        </div>
+        <div class="highlight-card reveal">
+          <img src="https://images.unsplash.com/photo-1547721064-da6cfb341d50?w=800&q=80" alt="禾木村">
+          <div class="overlay">
+            <h3>🏡 禾木村</h3>
+            <p>圖瓦族古樸民居，白樺林與茅草屋相映</p>
+          </div>
+          <div class="badge">中國最美鄉村</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destinations Detail -->
+  <section id="destinations" style="background: var(--light);">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <div class="kicker">Destinations</div>
+        <h2>精彩景點深度介紹</h2>
+      </div>
+
+      <div class="destination reveal">
+        <div class="images">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80" alt="天山天池">
+          <div class="caption">天山天池 — 古稱瑤池的仙境</div>
+        </div>
+        <div class="content">
+          <div class="location">DAY 02 · 烏魯木齊</div>
+          <h3>天山天池風景區</h3>
+          <p>天山天池以高山湖泊為中心，融森林、草原、雪山、人文景觀於一體。古稱「瑤池」，湖濱雲杉環繞，雪峰輝映，景色壯觀。傳說中這裡是西王母宴請周穆王的仙境，也是《書劍恩仇錄》中陳家洛與乾隆帝相遇的地方。</p>
+          <p>天池海拔 1910 公尺，湖面面積約 5 平方公里，平均深度 30 公尺，屬冰磧堰塞湖。天池變色湖的美譽來自於湖水隨光線、季節、氣候變幻出不同色彩的神秘特質。</p>
+          <div>
+            <span class="tag">5A 級景區</span>
+            <span class="tag">含區間車</span>
+            <span class="tag">古絲路傳說</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="destination reverse reveal">
+        <div class="images">
+          <img src="https://images.unsplash.com/photo-1547721064-da6cfb341d50?w=900&q=80" alt="禾木村">
+          <div class="caption">禾木村 — 中國第一村</div>
+        </div>
+        <div class="content">
+          <div class="location">DAY 03 · 阿勒泰</div>
+          <h3>禾木村</h3>
+          <p>曾被農業部評為「中國十個最有魅力的休閒鄉村」，這是新疆唯一獲此殊榮的鄉村。素有「中國第一村」美稱，圖瓦人的尖頂小木屋錯落有致地散落在河谷之間，白樺林環繞，禾木河嘩嘩流過，猶如世外桃源。</p>
+          <p>每年秋季是禾木最美的季節，金黃色的樺樹葉與橘紅色的山林倒映在河面上，漫步其中，彷彿穿越時光。今晚入住村莊內，在星空下感受這份寧靜。</p>
+          <div>
+            <span class="tag">中國最美鄉村</span>
+            <span class="tag">圖瓦族文化</span>
+            <span class="tag">入住村莊</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="destination reveal">
+        <div class="images">
+          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80" alt="喀納斯湖">
+          <div class="caption">喀納斯湖 — 人間淨土</div>
+        </div>
+        <div class="content">
+          <div class="location">DAY 04-05 · 喀納斯國家級自然保護區</div>
+          <h3>喀納斯自然景觀保護區</h3>
+          <p>「喀納斯」是蒙古語，意為「美麗而神秘的湖」。聯合國環保官員曾激動地說：「喀納斯是當今地球上保存最好的自然景觀，他的存在就在於向人們證明，人類曾經有過多麼美好的棲身地。」</p>
+          <p>安排二次進入景區，搭配船遊三道灣，從水路感受這片人間淨土。沿途遊覽月亮灣、神仙灣、臥龍灣，每一處都是大自然的鬼斧神工。登上觀魚亭俯瞰湖面，碧波粼粼，群峰倒影，令人嘆為觀止。</p>
+          <div>
+            <span class="tag">5A 級景區</span>
+            <span class="tag">二次進園</span>
+            <span class="tag">船遊三道灣</span>
+            <span class="tag">變色湖奇觀</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="destination reverse reveal">
+        <div class="images">
+          <img src="https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?w=900&q=80" alt="獨庫公路">
+          <div class="caption">獨庫公路 — 世界最美公路</div>
+        </div>
+        <div class="content">
+          <div class="location">DAY 10 · 穿越天山</div>
+          <h3>獨庫公路北段</h3>
+          <p>世界公認、全中國最美的一條公路。穿越天山腹地，全長 561.5 公里，一半以上地區在叢山峻嶺中穿過，跨越 4 個海拔 3000 公尺以上的達阪，鑿通 3 條高山隧道。</p>
+          <p>沿途風光壯麗——那拉提草原、巴音布魯克草原、大小龍池、天山神秘大峽谷，美不勝收。這條為戰備而建的國防公路，耗時十年、犧牲數百名官兵才建成，每一公里都凝聚著心血與汗水。</p>
+          <div>
+            <span class="tag">世界最美公路</span>
+            <span class="tag">7 座商務車</span>
+            <span class="tag">一日四季</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="destination reveal">
+        <div class="images">
+          <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=900&q=80" alt="那拉提草原">
+          <div class="caption">那拉提空中草原 — 塞外江南</div>
+        </div>
+        <div class="content">
+          <div class="location">DAY 09 · 伊犁哈薩克自治州</div>
+          <h3>那拉提空中草原</h3>
+          <p>「那拉提」在蒙古語中意為「最先見到太陽的地方」。相傳成吉思汗西征時，軍隊艱難翻越天山，來到此地見到花海廣布、流水淙淙，眾人齊呼「那拉提！」地名由此而來。</p>
+          <p>這裡居住著全國十分之一的哈薩克族，至今保留著濃郁古樸的民俗風情。特別安排草原騎馬體驗，騎馬登上空中草原觀景台，俯瞰群山與牧場，遼闊壯麗令人心胸開闊。</p>
+          <div>
+            <span class="tag">5A 級景區</span>
+            <span class="tag">騎馬體驗</span>
+            <span class="tag">哈薩克族文化</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="destination reverse reveal">
+        <div class="images">
+          <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=900&q=80" alt="巴音布魯克">
+          <div class="caption">巴音布魯克草原 — 九曲十八彎</div>
+        </div>
+        <div class="content">
+          <div class="location">DAY 08 · 巴音郭楞自治州</div>
+          <h3>巴音布魯克草原</h3>
+          <p>蒙語意為「永不枯竭的甘泉」，是中國第二大草原。四周雪山環抱，海拔約 2500 公尺，草原寬廣無垠，讓人不禁想起《敕勒歌》中「天蒼蒼、野茫茫，風吹草低見牛羊」的悠遠意境。</p>
+          <p>天鵝湖濕地保護區是全中國天鵝最多的地方，每年 5-9 月，成千上萬隻白天鵝從南方飛來棲息。九曲十八彎的開都河在夕陽時分，九道光芒倒映水中，場面壯觀動人。</p>
+          <div>
+            <span class="tag">5A 級景區</span>
+            <span class="tag">天鵝湖</span>
+            <span class="tag">九曲十八彎</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="destination reveal">
+        <div class="images">
+          <img src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?w=900&q=80" alt="五彩灘">
+          <div class="caption">五彩灘 — 天下第一灘</div>
+        </div>
+        <div class="content">
+          <div class="location">DAY 05 · 布爾津</div>
+          <h3>五彩灘</h3>
+          <p>額爾齊斯河畔的彩色奇觀，因「一河分兩岸、景致截然不同」而聞名。南岸是綠洲沙漠遼闊天際，北岸則是懸崖式雅丹地貌，岩石呈現紅、綠、紫、黃、白、黑等多種色調，被譽為「天下第一灘」。</p>
+          <p>日落時分光影絢爛，如同大地的調色盤，是新疆最美的雅丹景觀代表。夕陽照射下，岩石色彩斑斕變幻，是攝影師的夢幻天堂。</p>
+          <div>
+            <span class="tag">5A 級景區</span>
+            <span class="tag">日落勝地</span>
+            <span class="tag">雅丹地貌</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Itinerary Timeline -->
+  <section id="itinerary" class="timeline-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="kicker">Itinerary</div>
+        <h2>每日行程概覽</h2>
+        <p>13 天行程，帶你深度探索北疆</p>
+      </div>
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="day">Day<br>1</div>
+          <div class="content">
+            <h4>台北 → 烏魯木齊</h4>
+            <p>桃園機場出發，經北京轉機，前往新疆省會烏魯木齊。抵達後入住希爾頓或萬達文華酒店，準備展開北疆之旅。</p>
+            <div class="meals">早餐：X｜午餐：機上｜晚餐：機上｜宿：希爾頓 / 萬達文華</div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="day">Day<br>2</div>
+          <div class="content">
+            <h4>烏魯木齊 → 天山天池 → 阿勒泰</h4>
+            <p>遊覽天山天池風景區（含區間車），融森林、草原、雪山於一體的古稱「瑤池」。午餐品嚐手抓肉風味。</p>
+            <div class="meals">早餐：飯店｜午餐：中式合菜｜晚餐：手抓肉風味｜宿：錦江國際 / 尊茂寶石</div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="day">Day<br>3</div>
+          <div class="content">
+            <h4>阿勒泰 → 阿禾公路 → 禾木村            <p>行駛 2025 年新通車的阿禾公路（全長 209 公里），沿途串聯高山、森林、草原、溪谷。入住禾木村內，在星空下感受這個圖瓦族村莊的靜謐之美。</p>
+            <div class="meals">早餐：飯店｜午餐：中式饗宴｜晚餐：中式合菜｜宿：禾木村</div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="day">Day<br>4</div>
+          <div class="content">
+            <h4>禾木 → 喀納斯（二次進園）→ 賈登峪</h4>
+            <p>深度遊覽喀納斯自然景觀保護區：觀魚亭、白樺林、月亮灣、神仙灣、臥龍灣。特別安排船遊喀納斯湖三道灣，從水路感受人間淨土的壯美。</p>
+            <div class="meals">早餐：飯店｜午餐：中式饗宴｜晚餐：中式合菜｜宿：白樺林 / 鴻福生態</div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="day">Day<br>5</div>
+          <div class="content">
+            <h4>二進喀納斯 → 圖瓦人家訪 → 五彩灘 → 布爾津</h4>
+            <p>二次進入喀納斯，深度品味北疆美景。圖瓦人家訪，聆聽天籟之音蘇爾樂器與呼麥演出。傍晚前往五彩灘欣賞日落雅丹奇觀。</p>
+            <div class="meals">早餐：飯店｜午餐：中式饗宴｜晚餐：冷水魚風味｜宿：布爾津</div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="day">Day<br>6</div>
+          <div class="content">
+            <h4>布爾津 → 烏爾禾魔鬼城 → 奎屯</h4>
+            <p>遊覽雅丹地貌代表——烏爾禾魔鬼城，風蝕奇岩造型多變，宛如大地上的魔幻世界。《臥虎藏龍》等電影曾在此取景。</p>
+            <div class="meals">早餐：飯店｜午餐：中式合菜｜晚餐：大盤雞風味｜宿：希爾頓歡朋 / 新旅逸格</div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="day">Day<br>7</div>
+          <div class="content">
+            <h4>奎屯 → 賽里木湖 → 果子溝大橋 → 伊寧</h4>
+            <p>遊覽「大西洋最後一滴眼淚」賽里木湖，參觀成吉思汗點將台。途經雄踞天山關隘的果子溝大橋。抵達伊寧後參觀喀贊其民俗村，乘坐馬車、觀賞維吾爾族歌舞。</p>
+            <div class="meals">早餐：飯店｜午餐：中式饗宴｜晚餐：烤全羊風味｜宿：希爾頓歡朋 / 惠庭</div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="day">Day<br>8</div>
+          <div class="content">
+            <h4>伊寧 → 巴音布魯克草原 → 巴音鎮</h4>
+            <p>前往中國第二大草原——巴音布魯克草原。遊覽天鵝湖濕地保護區，觀賞九曲十八彎日落美景。運氣好時可見九道光芒倒映河面的奇景。</p>
+            <div class="meals">早餐：飯店｜午餐：中式合菜｜晚餐：野蘑菇燉雞｜宿：博雅麗景 / 九重天</div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="day">Day<br>9</div>
+          <div class="content">
+            <h4>巴音鎮 → 那拉提空中草原 → 那拉提鎮</h4>
+            <p>前往世界四大草原之一的那拉提草原，安排草原騎馬體驗登上空中草原觀景台。俯瞰群山與牧場，體驗哈薩克族的草原生活。</p>
+            <div class="meals">早餐：飯店｜午餐：中式合菜｜晚餐：烤包子風味｜宿：那拉提鎮</div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="day">Day<br>10</div>
+          <div class="content">
+            <h4>那拉提 → 獨庫公路北段 → 獨山子大峽谷 → 奎屯</h4>
+            <p>乘 7 座商務車穿越世界最美的獨庫公路北段，一日穿越四季風光。遊覽獨山子大峽谷，感受兩岸斷崖泥塑的自然雕塑博物館。</p>
+            <div class="meals">早餐：飯店｜午餐：中式饗宴｜晚餐：紅燒肉｜宿：希爾頓歡朋 / 新旅逸格</div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="day">Day<br>11</div>
+          <div class="content">
+            <h4>奎屯 → 新疆國際大巴扎 → 千回西域 → 烏魯木齊</h4>
+            <p>遊覽世界最大的大巴扎——新疆國際大巴扎，體驗伊斯蘭建築風格與絲路商旅文化。晚間欣賞《千回西域》大型室內實景民族歌舞秀。</p>
+            <div class="meals">早餐：飯店｜午餐：中式饗宴｜晚餐：烤鴨風味｜宿：希爾頓 / 萬達文華</div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="day">Day<br>12</div>
+          <div class="content">
+            <h4>烏魯木齊 → 新疆博物館 → 轉機點</h4>
+            <p>參觀新疆維吾爾自治區博物館，了解絲路歷史與西域文化。午餐後前往機場，於轉機地住宿一晚休息。</p>
+            <div class="meals">早餐：飯店｜午餐：中式饗宴｜晚餐：機上｜宿：轉機點</div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="day">Day<br>13</div>
+          <div class="content">
+            <h4>轉機點 → 北京 → 台北</h4>
+            <p>搭機返回台灣，為此次北疆之旅畫上完美的句點。結束這趟愉快、難忘的深度之旅。</p>
+            <div class="meals">早餐：簡易餐盒｜午餐：機上｜晚餐：X｜宿：溫暖的家</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="kicker">Why Us</div>
+        <h2>為什麼選擇洋明旅行社？</h2>
+        <p>小團出行、尊榮服務、深度體驗</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="icon">👥</div>
+          <h3>小眾出團</h3>
+          <p>10 人成行，最多不超過 20 人。導遊與司機能專注為每位貴賓提供更優質、更周到的服務。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="icon">🍽️</div>
+          <h3>高餐標</h3>
+          <p>午餐 RMB 60-80 元、晚餐 RMB 100-180 元，精選當地特色佳餚，讓味蕾也踏上文化探索之旅。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="icon">🚐</div>
+          <h3>1+1 寬敞車型</h3>
+          <p>新疆段安排 1+1 寬敞車型，商務艙座椅體驗，讓您自在伸展，尊榮舒適。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="icon">🎫</div>
+          <h3>全程無購物、無自費</h3>
+          <p>不走購物站，不推自費項目，把時間完全留給風景與體驗。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="icon">🏨</div>
+          <h3>精選住宿</h3>
+          <p>希爾頓、萬達文華等國際品牌酒店，禾木村入住村莊內，深度體驗當地風情。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="icon">🎁</div>
+          <h3>貼心好禮</h3>
+          <p>每日礦泉水、新疆時令水果、當地特色酸奶、贈送網卡，旅程更有溫度。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Food -->
+  <section id="food" style="background: var(--light);">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="kicker">Local Cuisine</div>
+        <h2>新疆特色美食</h2>
+        <p>大口吃肉、大碗喝酒的草原風味</p>
+      </div>
+      <div class="food-grid">
+        <div class="food-card reveal">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="手抓肉">
+          <div class="label">🍖 手抓肉風味</div>
+        </div>
+        <div class="food-card reveal">
+          <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=600&q=80" alt="烤全羊">
+          <div class="label">🐑 烤全羊風味</div>
+        </div>
+        <div class="food-card reveal">
+          <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&q=80" alt="冷水魚">
+          <div class="label">🐟 冷水魚風味</div>
+        </div>
+        <div class="food-card reveal">
+          <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80" alt="大盤雞">
+          <div class="label">🍗 大盤雞風味</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Travel Tips -->
+  <section id="tips">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="kicker">Travel Tips</div>
+        <h2>旅遊須知</h2>
+        <p>出發前的重要提醒</p>
+      </div>
+      <div class="tips-grid">
+        <div class="tip-card reveal">
+          <h4>🌡️ 溫差極大</h4>
+          <p>新疆日夜溫差可達 10-20°C 以上，「朝穿棉襖午穿紗」是常態。請備妥保暖衣物，即使夏季也需攜帶外套。</p>
+        </div>
+        <div class="tip-card reveal">
+          <h4>☀️ 紫外線強</h4>
+          <p>部分地區海拔較高，紫外線照射強烈。請帶好防曬物品、太陽眼鏡、帽子，並配備清熱防暑藥物。</p>
+        </div>
+        <div class="tip-card reveal">
+          <h4>🍈 瓜果享用</h4>
+          <p>新疆素有「瓜果之鄉」之稱，但吃完水果後千萬不要喝熱茶或涼水，以免腹瀉影響旅程。</p>
+        </div>
+        <div class="tip-card reveal">
+          <h4>🚫 尊重文化</h4>
+          <p>除蒙古族外，新疆各民族基本不食豬肉。參觀清真寺時嚴禁拍攝，請務必尊重少數民族風俗習慣。</p>
+        </div>
+        <div class="tip-card reveal">
+          <h4>💊 常備藥物</h4>
+          <p>建議隨身攜帶預防感冒、暈車、抗過敏等常用藥物。新疆地域遼闊，舟車勞頓難免，備藥有備無患。</p>
+        </div>
+        <div class="tip-card reveal">
+          <h4>🧴 皮膚保養</h4>
+          <p>氣候乾燥，請備妥潤膚乳液、護唇膏、防曬乳液等保養品，當地醫療設備不及台灣方便。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>準備好探索北疆了嗎？</h2>
+      <p>限量 20 席，名額有限，報名從速</p>
+      <a href="tel:0225066766" class="cta-btn">立即致電報名</a>
+      <div class="contact">
+        <strong>洋明旅行社</strong>｜台北專線：<strong>02-2506-6766</strong><br>
+        <span style="font-size:13px;opacity:0.7">國立臺灣科技大學 EMBA 校友會特別行程</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 國立臺灣科技大學 EMBA 校友會｜北疆經典 13 日</p>
+    <p style="margin-top:8px">行程適用至 2026 年 8 月出發｜洋明旅行社</p>
+    <p style="margin-top:8px">🔗 <a href="https://ntust2026.github.io/xinjiang_infographic.html">行程資訊圖</a></p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('nav a').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+</body>
+</html>
