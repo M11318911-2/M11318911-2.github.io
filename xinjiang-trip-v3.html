@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北疆10日行程（第三版）| 新疆之旅</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; background: #f5f7fa; color: #333; line-height: 1.7; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .hero { position: relative; overflow: hidden; border-radius: 20px; margin-bottom: 30px; }
+        .hero-img { width: 100%; height: 420px; object-fit: cover; display: block; }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(26,95,122,0.85) 100%);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 40px;
+        }
+        .hero h1 { font-size: 2.5em; color: white; margin-bottom: 8px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .hero p { color: rgba(255,255,255,0.9); font-size: 1.15em; }
+        .hero .subtitle { background: rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 18px; margin-top: 12px; color: white; display: inline-block; font-size: 0.95em; }
+        .hero .version { background: #ff6b6b; color: white; padding: 5px 15px; border-radius: 15px; margin-top: 10px; display: inline-block; font-size: 0.85em; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 25px; }
+        .info-card { background: white; padding: 18px 12px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); text-align: center; }
+        .info-card .icon { font-size: 1.8em; margin-bottom: 6px; }
+        .info-card .label { color: #888; font-size: 0.8em; }
+        .info-card .value { font-size: 1.1em; font-weight: bold; color: #1a5f7a; }
+        .section { background: white; border-radius: 16px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+        .section h2 { color: #1a5f7a; margin-bottom: 20px; font-size: 1.35em; display: flex; align-items: center; gap: 10px; }
+        .section h2::before { content: ''; width: 4px; height: 22px; background: linear-gradient(to bottom, #1a5f7a, #159895); border-radius: 2px; }
+        .photo-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
+        .photo-item { border-radius: 10px; overflow: hidden; position: relative; }
+        .photo-item img { width: 100%; height: 120px; object-fit: cover; display: block; transition: transform 0.3s; }
+        .photo-item:hover img { transform: scale(1.05); }
+        .photo-item .photo-tag { position: absolute; bottom: 0; left: 0; right: 0; padding: 6px 8px; background: linear-gradient(to top, rgba(0,0,0,0.75), transparent); color: white; font-size: 0.75em; font-weight: 600; }
+        .star-tag { background: linear-gradient(135deg, #ff6b6b, #ff8e8e); color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; margin-left: 8px; }
+        .notice { background: linear-gradient(135deg, #ffe8e8, #ffd6d6); border-left: 4px solid #ff6b6b; padding: 15px 18px; border-radius: 8px; margin-bottom: 20px; }
+        .notice-title { color: #c62828; font-weight: bold; margin-bottom: 8px; font-size: 1.05em; }
+        .notice ul { margin-left: 18px; color: #5d4037; }
+        .notice li { margin-bottom: 5px; }
+        .route-map { background: linear-gradient(135deg, #e3f2fd, #e1f5fe); border-radius: 12px; padding: 20px; margin: 20px 0; text-align: center; }
+        .route-map .route-title { color: #1565c0; font-weight: bold; margin-bottom: 10px; }
+        .route-map .route-path { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; color: #333; font-size: 0.95em; }
+        .route-map .route-dot { color: #ff6b6b; font-weight: bold; }
+        .route-map .route-arrow { color: #159895; }
+        .day-card { display: flex; gap: 18px; margin-bottom: 18px; background: #fafbfc; border-radius: 12px; overflow: hidden; border: 1px solid #eee; }
+        .day-num { min-width: 80px; background: linear-gradient(135deg, #1a5f7a, #159895); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px 10px; }
+        .day-num .day { font-size: 1.4em; font-weight: bold; }
+        .day-num .date { font-size: 0.85em; opacity: 0.85; }
+        .day-content { flex: 1; padding: 15px 18px; }
+        .day-content h3 { color: #1a5f7a; margin-bottom: 8px; font-size: 1.1em; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .day-content .highlight { background: linear-gradient(135deg, #fff5f5, #ffe8e8); border: 1px solid #ffcccc; padding: 8px 12px; border-radius: 8px; margin: 8px 0; font-size: 0.9em; color: #c62828; }
+        .day-content .highlight-secondary { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); padding: 8px 12px; border-radius: 8px; margin: 8px 0; font-size: 0.9em; color: #2e7d32; }
+        .day-content .desc { color: #555; font-size: 0.9em; margin-bottom: 8px; }
+        .day-content .meals { color: #888; font-size: 0.85em; }
+        .day-content .meals span { margin-right: 12px; }
+        .day-content .day-photo { float: right; width: 140px; height: 90px; object-fit: cover; border-radius: 8px; margin-left: 15px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .day-content::after { content: ''; display: table; clear: both; }
+        .budget-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .budget-table th, .budget-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
+        .budget-table th { background: linear-gradient(to right, #f8fafc, white); color: #1a5f7a; font-weight: 600; }
+        .budget-table td:nth-child(2) { font-weight: 600; color: #1a5f7a; }
+        .budget-table tr:last-child td { border-bottom: none; }
+        .budget-table .total-row { background: linear-gradient(to right, #e8f5e9, #f0f9f6); font-weight: bold; color: #2e7d32; font-size: 1.1em; }
+        .budget-table .total-row td { border-bottom: none; }
+        .budget-note { margin-top: 12px; color: #888; font-size: 0.85em; }
+        .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+        .tip { background: linear-gradient(135deg, #f8fafc, #f5f9f6); padding: 12px 15px; border-radius: 10px; border-left: 4px solid #159895; }
+        .tip .tip-title { font-weight: bold; color: #1a5f7a; margin-bottom: 4px; font-size: 0.95em; }
+        .tip .tip-text { color: #666; font-size: 0.85em; }
+        .includes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+        .include-item { display: flex; align-items: center; gap: 8px; background: #f8fafc; padding: 10px 12px; border-radius: 8px; }
+        .include-item .check { color: #159895; font-size: 1.2em; }
+        .include-item .text { color: #333; font-size: 0.9em; }
+        .footer { text-align: center; padding: 35px 25px; background: linear-gradient(135deg, #1a5f7a, #159895); border-radius: 16px; color: white; margin-top: 25px; }
+        .footer .lobster { font-size: 2.5em; margin-bottom: 8px; }
+        .footer h3 { font-size: 1.4em; margin-bottom: 6px; }
+        .footer p { opacity: 0.85; font-size: 0.9em; }
+        .footer .credit { margin-top: 15px; font-size: 0.8em; opacity: 0.6; }
+        .flight-info { background: linear-gradient(135deg, #e8eaf6, #e1f5fe); border-radius: 12px; padding: 15px 18px; margin: 15px 0; }
+        .flight-info .flight-title { color: #1565c0; font-weight: bold; margin-bottom: 8px; }
+        .flight-info .flight-route { display: flex; align-items: center; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .flight-info .flight-code { color: #666; font-size: 0.9em; margin-top: 5px; }
+        @media (max-width: 650px) {
+            .hero h1 { font-size: 1.6em; }
+            .hero-img { height: 260px; }
+            .photo-gallery { grid-template-columns: repeat(2, 1fr); }
+            .day-card { flex-direction: column; }
+            .day-num { flex-direction: row; min-width: auto; padding: 10px 15px; gap: 10px; }
+            .day-content .day-photo { float: none; width: 100%; margin: 10px 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <img class="hero-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80" alt="喀納斯風景">
+            <div class="hero-overlay">
+                <h1>🏔️ 北疆10日精華行程</h1>
+                <p>必遊雙核心：喀納斯 + 禾木</p>
+                <div class="subtitle">👥 校友會揪團 | ⭐ 五星飯店 | 🍽️ 全程含餐 | 💰 每人約$10-12萬</div>
+                <div class="version">📄 第三版（新增喀納斯&禾木）</div>
+            </div>
+        </div>
+        
+        <div class="info-grid">
+            <div class="info-card"><div class="icon">📅</div><div class="label">行程天數</div><div class="value">10天9夜</div></div>
+            <div class="info-card"><div class="icon">💰</div><div class="label">每人預算</div><div class="value">$10-12萬</div></div>
+            <div class="info-card"><div class="icon">👥</div><div class="label">建議人數</div><div class="value">20-30人</div></div>
+            <div class="info-card"><div class="icon">🏨</div><div class="label">住宿標準</div><div class="value">五星飯店</div></div>
+            <div class="info-card"><div class="icon">🍽️</div><div class="label">餐食安排</div><div class="value">全程含餐</div></div>
+            <div class="info-card"><div class="icon">✈️</div><div class="label">出發日期</div><div class="value">8/22</div></div>
+        </div>
+        
+        <div class="notice">
+            <div class="notice-title">⚠️ 重要說明：喀納斯&禾木才是北疆的靈魂</div>
+            <ul>
+                <li><strong>「沒去禾木跟喀納斯會等於沒去北疆」</strong>——就像去拉薩沒去布達拉宮</li>
+                <li>第三版特別<strong>保留喀納斯+禾木</strong>，這是北疆最核心的景點</li>
+                <li>路線調整：先走北線（喀納斯、禾木），再回頭走西線（賽里木湖、那拉提）</li>
+                <li>配合老師需求：8/22出發、9/2前返國</li>
+            </ul>
+        </div>
+        
+        <div class="flight-info">
+            <div class="flight-title">✈️ 航班參考（需在北京轉機）</div>
+            <div class="flight-route">
+                <span>台北 CA186</span><span>13:00→16:15</span><span>北京</span>
+            </div>
+            <div style="text-align: center; margin: 5px 0; color: #888;">↓</div>
+            <div class="flight-route">
+                <span>北京 CA1295</span><span>20:15→00:30+1</span><span>烏魯木齊</span>
+            </div>
+            <div class="flight-code">※ 航班僅供參考，實際以旅行社開票為準</div>
+        </div>
+        
+        <div class="route-map">
+            <div class="route-title">🚗 行程路線圖（北進西出）</div>
+            <div class="route-path">
+                <span>台北</span><span class="route-arrow">✈️</span>
+                <span>烏魯木齊</span><span class="route-arrow">→</span>
+                <span class="route-dot">喀納斯</span><span class="route-arrow">→</span>
+                <span class="route-dot">禾木</span><span class="route-arrow">→</span>
+                <span>布爾津</span><span class="route-arrow">→</span>
+                <span>賽里木湖</span><span class="route-arrow">→</span>
+                <span>伊寧</span><span class="route-arrow">→</span>
+                <span>那拉提</span><span class="route-arrow">→</span>
+                <span>烏魯木齊</span><span class="route-arrow">✈️</span>
+                <span>台北</span>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🖼️ 精華景點</h2>
+            <div class="photo-gallery">
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" alt="喀納斯">
+                    <div class="photo-tag">🏔️ 喀納斯 <span class="star-tag">★必遊</span></div>
+                </div>
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&q=80" alt="禾木">
+                    <div class="photo-tag">🏘️ 禾木村 <span class="star-tag">★必遊</span></div>
+                </div>
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=400&q=80" alt="賽里木湖">
+                    <div class="photo-tag">🌊 賽里木湖</div>
+                </div>
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1569839333583-7375336cde4b?w=400&q=80" alt="那拉提">
+                    <div class="photo-tag">🌿 那拉提草原</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📍 每日行程</h2>
+            
+            <div class="day-card">
+                <div class="day-num"><span class="day">Day 1</span><span class="date">8/22</span></div>
+                <div class="day-content">
+                    <img class="day-photo" src="https://images.unsplash.com/photo-1580654712603-eb43273aff33?w=300&q=80" alt="烏魯木齊">
+                    <h3>🛫 台北 → 北京 → 烏魯木齊</h3>
+                    <p class="desc">台北搭機至北京轉機，再前往新疆省會烏魯木齊。抵達後專車接機入住五星級酒店。</p>
+                    <div class="highlight-secondary">🏨 住宿：烏魯木齊希爾頓/萬達文華（5星）| 🍽️ 全程含餐</div>
+                    <div class="meals"><span>早餐：✈️機上</span><span>午餐：✈️機上</span><span>晚餐：🏨五星酒店</span></div>
+                </div>
+            </div>
+            
+            <div class="day-card">
+                <div class="day-num"><span class="day">Day 2</span><span class="date">8/23</span></div>
+                <div class="day-content">
+                    <img class="day-photo" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&q=80" alt="喀納斯">
+                    <h3>🚗 烏魯木齊 → 布爾津 → 喀納斯<span class="star-tag">★核心</span></h3>
+                    <p class="desc">長途驅車前往人間淨土喀納斯（約700km，8-9小時車程）。途中遊覽布爾津（童話邊城）。傍晚抵達喀納斯景區。</p>
+                    <div class="highlight">🏔️ 喀納斯湖（5A景區）| 神仙灣、月亮灣、臥龍灣 | 🏨 住宿：喀納斯景區內/賈登峪</div>
+                    <div class="meals"><span>早餐：🏨五星酒店</span><span>午餐：沿途餐廳</span><span>晚餐：🏨酒店內</span></div>
+                </div>
+            </div>
+            
+            <div class="day-card">
+                <div class="day-num"><span class="day">Day 3</span><span class="date">8/24</span></div>
+                <div class="day-content">
+                    <img class="day-photo" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&q=80" alt="喀納斯湖">
+                    <h3>🌲 喀納斯（觀魚台、喀納斯湖）<span class="star-tag">★核心</span></h3>
+                    <p class="desc">清晨登觀魚台俯瞰喀納斯全景。下午遊覽喀納斯湖，可搭船遊湖欣賞湖光山色。</p>
+                    <div class="highlight">🦈 觀魚台全景 | 🚢 喀納斯湖遊船 | 🌊 三灣晨霧</div>
+                    <div class="meals"><span>早餐：🏨酒店內</span><span>午餐：景區餐廳</span><span>晚餐：🏨酒店內</span></div>
+                </div>
+            </div>
+            
+            <div class="day-card">
+                <div class="day-num"><span class="day">Day 4</span><span class="date">8/25</span></div>
+                <div class="day-content">
+                    <img class="day-photo" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&q=80" alt="禾木">
+                    <h3>🏘️ 喀納斯 → 禾木（神的自留地）<span class="star-tag">★核心</span></h3>
+                    <p class="desc">乘車前往禾木村（阿禾公路），保留圖瓦族古樸民居，白樺林與茅草屋相映。下午抵達後可漫步村子。</p>
+                    <div class="highlight">🏘️ 禾木村（5A景區）| 圖瓦族文化 | 白樺林 | 🏨 住宿：禾木木屋體驗</div>
+                    <div class="meals"><span>早餐：🏨酒店內</span><span>午餐：景區餐廳</span><span>晚餐：🏨木屋內</span></div>
+                </div>
+            </div>
+            
+            <div class="day-card">
+                <div class="day-num"><span class="day">Day 5</span><span class="date">8/26</span></div>
+                <div class="day-content">
+                    <img class="day-photo" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&q=80" alt="禾木日出">
+                    <h3>🌅 禾木（日出、晨曦）→ 五彩灘 → 克拉瑪依</h3>
+                    <p class="desc">清晨登禾木觀景台欣賞日出。上午前往布爾津，遊覽五彩灘（天下第一灘）。下午前往克拉瑪依。</p>
+                    <div class="highlight">🌅 禾木日出 | 🌈 五彩灘 | 🏨 住宿：克拉瑪依五星酒店</div>
+                    <div class="meals"><span>早餐：🏨木屋內</span><span>午餐：布爾津餐廳</span><span>晚餐：🏨五星酒店</span></div>
+                </div>
+            </div>
+            
+            <div class="day-card">
+                <div class="day-num"><span class="day">Day 6</span><span class="date">8/27</span></div>
+                <div class="day-content">
+                    <img class="day-photo" src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=300&q=80" alt="賽里木湖">
+                    <h3>🚗 克拉瑪依 → 賽里木湖（約5-6小時車程）</h3>
+                    <p class="desc">長驅前往賽里木湖，途中穿越戈壁灘。抵達後湖畔漫步，欣賞湛藍湖水與雪山倒影。</p>
+                    <div class="highlight-secondary">🌊 賽里木湖（5A景區）- 太平洋的最後一滴眼淚 | 🏨 住宿：賽里木湖週邊酒店</div>
+                    <div class="meals"><span>早餐：🏨五星酒店</span><span>午餐：沿途餐廳</span><span>晚餐：🏨酒店內</span></div>
+                </div>
+            </div>
+            
+            <div class="day-card">
+                <div class="day-num"><span class="day">Day 7</span><span class="date">8/28</span></div>
+                <div class="day-content">
+                    <img class="day-photo" src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=300&q=80" alt="賽里木湖日出">
+                    <h3>🌅 賽里木湖（晨曦）→ 果子溝 → 伊寧</h3>
+                    <p class="desc">清晨欣賞賽里木湖日出，途經壯觀的果子溝大橋。下午前往伊寧市，遊覽喀贊其六星街，乘坐馬車感受維吾爾族風情。</p>
+                    <div class="highlight-secondary">🏛️ 喀贊其（乘馬車）| 🎨 六星街 | 🏨 住宿：伊寧五星酒店</div>
+                    <div class="meals"><span>早餐：🏨酒店內</span><span>午餐：當地餐廳</span><span>晚餐：🏨五星酒店</span></div>
+                </div>
+            </div>
+            
+            <div class="day-card">
+                <div class="day-num"><span class="day">Day 8</span><span class="date">8/29</span></div>
+                <div class="day-content">
+                    <img class="day-photo" src="https://images.unsplash.com/photo-1569839333583-7375336cde4b?w=300&q=80" alt="那拉提">
+                    <h3>🚗 伊寧 → 那拉提草原（約4小時車程）</h3>
+                    <p class="desc">前往那拉提草原（5A景區），下午遊覽河谷草原，感受哈薩克風情。可體驗騎馬馳騁草原。</p>
+                    <div class="highlight-secondary">🌿 那拉提草原（5A景區）| 🐎 草原騎馬 | 🏨 住宿：那拉提週邊五星</div>
+                    <div class="meals"><span>早餐：🏨五星酒店</span><span>午餐：草原餐廳</span><span>晚餐：🏨五星酒店</span></div>
+                </div>
+            </div>
+            
+            <div class="day-card">
+                <div class="day-num"><span class="day">Day 9</span><span class="date">8/30</span></div>
+                <div class="day-content">
+                    <img class="day-photo" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=300&q=80" alt="空中草原">
+                    <h3>☁️ 那拉提草原（空中草原）→ 烏魯木齊</h3>
+                    <p class="desc">乘坐區間車遊覽那拉提空中草原，登上觀景台俯瞰群山與牧場。下午返回烏魯木齊（約5-6小時車程）。</p>
+                    <div class="highlight-secondary">☁️ 空中草原觀景台 | 🌲 雪蓮谷 | 🏨 住宿：烏魯木齊希爾頓（5星）</div>
+                    <div class="meals"><span>早餐：🏨酒店內</span><span>午餐：景區餐廳</span><span>晚餐：🏨五星酒店</span></div>
+                </div>
+            </div>
+            
+            <div class="day-card">
+                <div class="day-num"><span class="day">Day 10</span><span class="date">8/31</span></div>
+                <div class="day-content">
+                    <img class="day-photo" src="https://images.unsplash.com/photo-1529922700572-f86a5db00e7f?w=300&q=80" alt="大巴扎">
+                    <h3>🏛️ 烏魯木齊（國際大巴扎）→ 台北</h3>
+                    <p class="desc">上午遊覽國際大巴扎，感受濃鬱的伊斯蘭建築風格與絲路文化。下午前往機場，搭機經北京返台。</p>
+                    <div class="highlight-secondary">🛒 國際大巴扎 | ✈️ 帶著美好回憶回家</div>
+                    <div class="meals"><span>早餐：🏨五星酒店</span><span>午餐：當地餐廳</span><span>晚餐：✈️機上</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>💰 預算參考（20-30人成團）</h2>
+            <table class="budget-table">
+                <tr><th>項目</th><th>預估費用（TWD）</th><th>說明</th></tr>
+                <tr><td>來回機票（北京轉機）</td><td>$22,000 - $28,000</td><td>台北↔北京↔烏魯木齊，團體票</td></tr>
+                <tr><td>當地交通（遊覽車）</td><td>$12,000 - $16,000</td><td>10天全程含接送，20-30人分攤</td></tr>
+                <tr><td>🏨 五星級住宿（9晚）</td><td>$27,000 - $36,000</td><td>含禾木木屋體驗，團體優惠價</td></tr>
+                <tr><td>🍽️ 全程含餐</td><td>$15,000 - $20,000</td><td>早餐+午餐+晚餐，高餐標</td></tr>
+                <tr><td>門票+區間車+遊船</td><td>$12,000 - $18,000</td><td>喀納斯、禾木、賽里木湖、那拉提等</td></tr>
+                <tr><td>保險+其他</td><td>$5,000 - $8,000</td><td>旅平險、簽證（如需）</td></tr>
+                <tr class="total-row"><td>💎 總計</td><td colspan="2">$93,000 - $126,000</td></tr>
+            </table>
+            <p class="budget-note">※ 30人成團可壓低至$10-12萬區間<br>※ 實際價格需等旅行社正式報價<br>※ 喀納斯禾木路途較遠，車程較長，請見諒</p>
+        </div>
+        
+        <div class="section">
+            <h2>✅ 費用包含</h2>
+            <div class="includes-grid">
+                <div class="include-item"><span class="check">✔</span><span class="text">來回機票（北京轉機）</span></div>
+                <div class="include-item"><span class="check">✔</span><span class="text">全程五星級飯店</span></div>
+                <div class="include-item"><span class="check">✔</span><span class="text">全程含餐（早/午/晚）</span></div>
+                <div class="include-item"><span class="check">✔</span><span class="text">全程遊覽車接送</span></div>
+                <div class="include-item"><span class="check">✔</span><span class="text">行程景點門票+區間車</span></div>
+                <div class="include-item"><span class="check">✔</span><span class="text">喀納斯湖遊船</span></div>
+                <div class="include-item"><span class="check">✔</span><span class="text">導遊/司機小費</span></div>
+                <div class="include-item"><span class="check">✔</span><span class="text">旅遊平安保險</span></div>
+                <div class="include-item"><span class="check">✔</span><span class="text">每日礦泉水</span></div>
+                <div class="include-item"><span class="check">✔</span><span class="text">全程無購物、無自費</span></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📋 旅遊須知</h2>
+            <div class="tips-grid">
+                <div class="tip"><div class="tip-title">🧴 防曬保濕</div><div class="tip-text">新疆日照強烈，SPF50+防曬、帽子必備</div></div>
+                <div class="tip"><div class="tip-title">🧥 洋蔥式穿搭</div><div class="tip-text">晝夜溫差大（可達15°C），帶外套</div></div>
+                <div class="tip"><div class="tip-title">💊 常備藥品</div><div class="tip-text">腸胃藥、感冒藥、創可貼</div></div>
+                <div class="tip"><div class="tip-title">📱 網路與支付</div><div class="tip-text">支付寶/微信支付必備</div></div>
+                <div class="tip"><div class="tip-title">🔌 轉接頭</div><div class="tip-text">中國插座為雙腳扁型，帶萬用轉換器</div></div>
+                <div class="tip"><div class="tip-title">💧 多喝水</div><div class="tip-text">新疆氣候乾燥，每天多補充水分</div></div>
