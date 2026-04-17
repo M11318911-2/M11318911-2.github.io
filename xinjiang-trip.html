@@ -3,146 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>北疆8日精華行程（修訂版）| 新疆之旅</title>
+    <title>北疆10日行程（30人成團版）| 新疆之旅</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
         .container { max-width: 950px; margin: 0 auto; padding: 20px; }
         
         /* Hero */
-        .hero { 
-            position: relative; overflow: hidden; border-radius: 20px; margin-bottom: 30px;
-        }
-        .hero-img {
-            width: 100%; height: 450px; object-fit: cover; display: block;
-        }
+        .hero { position: relative; overflow: hidden; border-radius: 20px; margin-bottom: 30px; }
+        .hero-img { width: 100%; height: 420px; object-fit: cover; display: block; }
         .hero-overlay {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(26,95,122,0.85) 100%);
             display: flex; flex-direction: column; justify-content: flex-end; padding: 40px;
         }
-        .hero h1 { font-size: 2.8em; color: white; margin-bottom: 8px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .hero p { color: rgba(255,255,255,0.9); font-size: 1.3em; }
+        .hero h1 { font-size: 2.6em; color: white; margin-bottom: 8px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .hero p { color: rgba(255,255,255,0.9); font-size: 1.2em; }
         .hero .badge { 
             display: inline-block; background: rgba(255,255,255,0.2); 
-            padding: 8px 20px; border-radius: 20px; margin-top: 15px; font-size: 0.95em;
-            color: white; width: fit-content;
-        }
-        .hero .note {
-            background: rgba(255,200,0,0.9); color: #333;
-            padding: 8px 15px; border-radius: 8px; margin-top: 10px;
-            font-size: 0.9em; width: fit-content;
+            padding: 8px 20px; border-radius: 20px; margin-top: 12px; font-size: 0.9em; color: white; width: fit-content;
         }
         
         /* Info Cards */
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 25px; }
         .info-card { 
-            background: white; padding: 20px; border-radius: 12px; 
+            background: white; padding: 18px 15px; border-radius: 12px; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.06); text-align: center;
-            transition: transform 0.2s;
         }
-        .info-card:hover { transform: translateY(-3px); }
-        .info-card .icon { font-size: 2em; margin-bottom: 8px; }
-        .info-card .label { color: #888; font-size: 0.85em; }
-        .info-card .value { font-size: 1.2em; font-weight: bold; color: #1a5f7a; }
+        .info-card .icon { font-size: 1.8em; margin-bottom: 6px; }
+        .info-card .label { color: #888; font-size: 0.8em; }
+        .info-card .value { font-size: 1.1em; font-weight: bold; color: #1a5f7a; }
         
         /* Section */
-        .section { background: white; border-radius: 16px; padding: 30px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .section h2 { color: #1a5f7a; margin-bottom: 20px; font-size: 1.4em; display: flex; align-items: center; gap: 10px; }
-        .section h2::before { content: ''; width: 4px; height: 24px; background: linear-gradient(to bottom, #1a5f7a, #159895); border-radius: 2px; }
+        .section { background: white; border-radius: 16px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .section h2 { color: #1a5f7a; margin-bottom: 18px; font-size: 1.3em; display: flex; align-items: center; gap: 10px; }
+        .section h2::before { content: ''; width: 4px; height: 22px; background: linear-gradient(to bottom, #1a5f7a, #159895); border-radius: 2px; }
         
-        /* Notice */
-        .notice {
-            background: linear-gradient(135deg, #fff9e6, #fff3cc);
-            border-left: 4px solid #ffc107;
-            padding: 15px 20px; border-radius: 8px; margin-bottom: 20px;
+        /* Cost Analysis */
+        .cost-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .cost-box { padding: 20px; border-radius: 12px; text-align: center; }
+        .cost-box.original { background: #fff0f0; border: 2px solid #ffcccc; }
+        .cost-box.optimized { background: #e8f5e9; border: 2px solid #a5d6a7; }
+        .cost-box .title { font-size: 0.9em; color: #666; margin-bottom: 8px; }
+        .cost-box .amount { font-size: 2em; font-weight: bold; }
+        .cost-box.original .amount { color: #c62828; }
+        .cost-box.optimized .amount { color: #2e7d32; }
+        .cost-box .savings { font-size: 0.85em; color: #2e7d32; margin-top: 8px; }
+        
+        /* Strategy */
+        .strategy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .strategy-item {
+            background: linear-gradient(135deg, #f8fafc, #f0f9f6);
+            padding: 15px; border-radius: 10px; border-left: 4px solid #159895;
         }
-        .notice-title { color: #b38600; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .notice ul { margin-left: 20px; color: #665500; }
-        .notice li { margin-bottom: 5px; }
+        .strategy-item .num { 
+            display: inline-block; width: 28px; height: 28px; 
+            background: #159895; color: white; border-radius: 50%;
+            text-align: center; line-height: 28px; font-size: 0.85em; font-weight: bold; margin-right: 8px;
+        }
+        .strategy-item .title { font-weight: bold; color: #1a5f7a; margin-bottom: 5px; }
+        .strategy-item .text { color: #666; font-size: 0.9em; }
+        .strategy-item .save { color: #2e7d32; font-weight: bold; font-size: 0.85em; }
         
         /* Photo Grid */
-        .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 20px; }
-        .photo-card { border-radius: 12px; overflow: hidden; position: relative; }
-        .photo-card img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.3s; }
-        .photo-card:hover img { transform: scale(1.05); }
+        .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 15px; }
+        .photo-card { border-radius: 10px; overflow: hidden; position: relative; }
+        .photo-card img { width: 100%; height: 120px; object-fit: cover; display: block; }
         .photo-card .photo-label {
-            position: absolute; bottom: 0; left: 0; right: 0; padding: 12px;
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 8px;
             background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            color: white; font-size: 0.9em; font-weight: 600;
+            color: white; font-size: 0.75em; font-weight: 600;
         }
         
         /* Timeline */
         .timeline { position: relative; }
-        .day { display: flex; gap: 20px; margin-bottom: 25px; position: relative; }
+        .day { display: flex; gap: 15px; margin-bottom: 20px; position: relative; }
         .day::before {
-            content: ''; position: absolute; left: 95px; top: 45px; bottom: -15px;
+            content: ''; position: absolute; left: 70px; top: 35px; bottom: -10px;
             width: 2px; background: linear-gradient(to bottom, #159895, #e0e0e0);
         }
         .day:last-child::before { display: none; }
         .day-num { 
-            width: 70px; height: 70px; background: linear-gradient(135deg, #1a5f7a, #159895);
+            width: 55px; height: 55px; background: linear-gradient(135deg, #1a5f7a, #159895);
             color: white; border-radius: 50%; display: flex; flex-direction: column;
             align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold;
-            box-shadow: 0 4px 15px rgba(21, 152, 149, 0.3);
         }
-        .day-num .num { font-size: 1.3em; }
-        .day-num .month { font-size: 0.7em; opacity: 0.8; }
-        .day-content { flex: 1; background: #f8fafc; padding: 15px 20px; border-radius: 12px; position: relative; overflow: hidden; }
+        .day-num .num { font-size: 1.1em; }
+        .day-num .month { font-size: 0.65em; opacity: 0.8; }
+        .day-content { flex: 1; background: #f8fafc; padding: 12px 15px; border-radius: 10px; }
         .day-content::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%;
             background: linear-gradient(to bottom, #159895, transparent);
         }
-        .day-content h3 { color: #1a5f7a; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .day-content .highlight { color: #159895; font-weight: 600; }
-        .day-content .desc { color: #666; font-size: 0.95em; }
-        .day-content .day-img {
-            float: right; width: 120px; height: 80px; object-fit: cover;
-            border-radius: 8px; margin-left: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+        .day-content h3 { color: #1a5f7a; margin-bottom: 6px; font-size: 1em; }
+        .day-content .highlight { color: #159895; font-weight: 600; font-size: 0.9em; }
+        .day-content .desc { color: #666; font-size: 0.85em; }
         
-        /* Budget */
+        /* Budget Table */
         .budget-table { width: 100%; border-collapse: collapse; }
-        .budget-table th, .budget-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
-        .budget-table th { background: linear-gradient(to right, #f8fafc, white); color: #1a5f7a; font-weight: 600; }
+        .budget-table th, .budget-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #eee; font-size: 0.9em; }
+        .budget-table th { background: #f8fafc; color: #1a5f7a; font-weight: 600; }
         .budget-table tr:last-child td { border-bottom: none; }
-        .budget-table .total { background: linear-gradient(to right, #e8f5f0, #f0f9f6); font-weight: bold; color: #159895; font-size: 1.1em; }
-        .budget-table td:nth-child(2) { font-weight: 600; }
-        .budget-note { color: #888; font-size: 0.85em; margin-top: 10px; }
+        .budget-table .total { background: linear-gradient(to right, #e8f5e9, #f0f9f6); font-weight: bold; color: #2e7d32; }
+        .budget-table .old-price { text-decoration: line-through; color: #c62828; }
         
-        /* Hotel Badge */
-        .hotel-badge {
-            display: inline-block; background: linear-gradient(135deg, #ffd700, #ffb800);
-            color: #333; padding: 3px 10px; border-radius: 12px;
-            font-size: 0.8em; font-weight: bold; margin-left: 8px;
+        /* Notice */
+        .notice {
+            background: linear-gradient(135deg, #e3f2fd, #e1f5fe);
+            border-left: 4px solid #1976d2;
+            padding: 12px 15px; border-radius: 8px; margin-top: 15px;
+            font-size: 0.9em; color: #1565c0;
         }
-        
-        /* Tips */
-        .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .tip { 
-            background: linear-gradient(135deg, #f8fafc, #f0f9f6);
-            padding: 15px 15px 15px 20px; border-radius: 10px; 
-            border-left: 4px solid #159895; position: relative;
-        }
-        .tip .tip-icon { position: absolute; right: 15px; top: 15px; font-size: 1.5em; opacity: 0.3; }
-        .tip .tip-title { font-weight: bold; color: #1a5f7a; margin-bottom: 5px; }
-        .tip .tip-text { color: #666; font-size: 0.9em; }
         
         /* Footer */
-        .footer { text-align: center; padding: 40px 30px; background: linear-gradient(135deg, #1a5f7a, #159895); border-radius: 16px; color: white; margin-top: 20px; }
-        .footer .🦞 { font-size: 2.5em; margin-bottom: 10px; }
-        .footer h3 { font-size: 1.5em; margin-bottom: 8px; }
-        .footer p { opacity: 0.85; }
-        .footer .credit { margin-top: 20px; font-size: 0.85em; opacity: 0.6; }
+        .footer { text-align: center; padding: 30px; background: linear-gradient(135deg, #1a5f7a, #159895); border-radius: 16px; color: white; margin-top: 20px; }
+        .footer .🦞 { font-size: 2em; margin-bottom: 8px; }
+        .footer h3 { font-size: 1.3em; margin-bottom: 5px; }
+        .footer p { opacity: 0.85; font-size: 0.9em; }
         
-        /* Responsive */
         @media (max-width: 600px) {
-            .hero h1 { font-size: 1.8em; }
-            .hero-img { height: 300px; }
-            .day { flex-direction: column; gap: 10px; }
+            .hero h1 { font-size: 1.6em; }
+            .hero-img { height: 280px; }
+            .cost-comparison { grid-template-columns: 1fr; }
+            .photo-grid { grid-template-columns: 1fr 1fr; }
+            .day { flex-direction: column; gap: 8px; }
             .day::before { display: none; }
-            .day-num { width: 60px; height: 60px; }
-            .day-content .day-img { float: none; width: 100%; margin: 10px 0; }
         }
     </style>
 </head>
@@ -153,21 +138,24 @@
         <div class="hero">
             <img class="hero-img" src="https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?w=1200&q=80" alt="新疆風景">
             <div class="hero-overlay">
-                <h1>🏔️ 北疆8日精華行程</h1>
-                <p>天山以北 · 草原湖泊 · 雪山風光</p>
-                <div class="badge">⏰ 建議出發：8月20日前後 | 👥 校友會揪團 | 💰 每人$10-13萬</div>
-                <div class="note">⭐ 五星級飯店 · 全程含餐 · 安全第一</div>
+                <h1>🏔️ 北疆10日行程</h1>
+                <p>校友會揪團 · 30人成團</p>
+                <div class="badge">💰 每人預算控制在 $9-10萬 | ⭐ 五星飯店 | 🍽️ 全程含餐</div>
             </div>
         </div>
         
-        <!-- Important Notice -->
-        <div class="notice">
-            <div class="notice-title">⚠️ 重要調整說明</div>
-            <ul>
-                <li>🏨 <strong>住宿升級：</strong>以五星級飯店為主，保障安全與舒適</li>
-                <li>🍽️ <strong>餐食調整：</strong>全程含餐（由旅行社安排），不建議自理，避免腸胃不適影響行程</li>
-                <li>💰 <strong>預算調整：</strong>因五星級飯店+全程含餐，預算调整为$10-13萬/人</li>
-            </ul>
+        <!-- Cost Comparison -->
+        <div class="cost-comparison">
+            <div class="cost-box original">
+                <div class="title">原本預估（8天）</div>
+                <div class="amount">$10-13萬</div>
+                <div class="savings">揪團難度較高 ❌</div>
+            </div>
+            <div class="cost-box optimized">
+                <div class="title">優化後（10天）</div>
+                <div class="amount">$9-10萬</div>
+                <div class="savings">30人成團可達標 ✅</div>
+            </div>
         </div>
         
         <!-- Quick Info -->
@@ -175,187 +163,181 @@
             <div class="info-card">
                 <div class="icon">📅</div>
                 <div class="label">行程天數</div>
-                <div class="value">8天7夜</div>
+                <div class="value">10天9夜</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">👥</div>
+                <div class="label">成團人數</div>
+                <div class="value">30人以上</div>
             </div>
             <div class="info-card">
                 <div class="icon">💰</div>
                 <div class="label">每人預算</div>
-                <div class="value">$10-13萬</div>
+                <div class="value">$9-10萬</div>
             </div>
             <div class="info-card">
                 <div class="icon">🏨</div>
                 <div class="label">住宿標準</div>
-                <div class="value">五星級</div>
+                <div class="value">五星飯店</div>
             </div>
             <div class="info-card">
                 <div class="icon">🍽️</div>
                 <div class="label">餐食安排</div>
                 <div class="value">全程含餐</div>
             </div>
-            <div class="info-card">
-                <div class="icon">✈️</div>
-                <div class="label">出發日期</div>
-                <div class="value">8/20</div>
+        </div>
+        
+        <!-- Section: How to Save -->
+        <div class="section">
+            <h2>💡 30人成團如何省錢？</h2>
+            <div class="strategy-grid">
+                <div class="strategy-item">
+                    <div class="title"><span class="num">1</span>大巴士包車</div>
+                    <div class="text">30人座大型遊覽車，每人均攤車費大幅降低</div>
+                    <div class="save">省約 $3,000-5,000/人</div>
+                </div>
+                <div class="strategy-item">
+                    <div class="title"><span class="num">2</span>飯店團購價</div>
+                    <div class="text">30間房爭取團體價，可談到市價7-8折</div>
+                    <div class="save">省約 $5,000-8,000/人</div>
+                </div>
+                <div class="strategy-item">
+                    <div class="title"><span class="num">3</span>團體餐標</div>
+                    <div class="text">與餐廳簽約團體套餐，取代單點</div>
+                    <div class="save">省約 $2,000-3,000/人</div>
+                </div>
+                <div class="strategy-item">
+                    <div class="title"><span class="num">4</span>門票團體票</div>
+                    <div class="text">30人以上可申請景點團體票優惠</div>
+                    <div class="save">省約 $1,500-2,000/人</div>
+                </div>
+            </div>
+            <div class="notice">
+                💡 <strong>關鍵：</strong>30人是關鍵門檻！超過30人後，每增加1人，邊際成本遞減，整團均攤更便宜
             </div>
         </div>
         
         <!-- Photo Gallery -->
         <div class="section">
-            <h2>🖼️ 景點先覽</h2>
+            <h2>🖼️ 精華景點</h2>
             <div class="photo-grid">
                 <div class="photo-card">
-                    <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80" alt="賽里木湖">
-                    <div class="photo-label">🌊 賽里木湖 — 太平洋的最後一滴眼淚</div>
+                    <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=400&q=80" alt="賽里木湖">
+                    <div class="photo-label">🌊 賽里木湖</div>
                 </div>
                 <div class="photo-card">
-                    <img src="https://images.unsplash.com/photo-1569839333583-7375336cde4b?w=600&q=80" alt="那拉提草原">
-                    <div class="photo-label">🌿 那拉提草原 — 空中花園</div>
+                    <img src="https://images.unsplash.com/photo-1569839333583-7375336cde4b?w=400&q=80" alt="那拉提草原">
+                    <div class="photo-label">🌿 那拉提草原</div>
                 </div>
                 <div class="photo-card">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="喀納斯">
-                    <div class="photo-label">🏔️ 喀納斯 — 人間淨土</div>
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" alt="喀納斯">
+                    <div class="photo-label">🏔️ 喀納斯</div>
                 </div>
             </div>
         </div>
         
         <!-- Itinerary -->
         <div class="section">
-            <h2>📍 每日行程</h2>
+            <h2>📍 10日行程</h2>
             <div class="timeline">
-                
                 <div class="day">
-                    <div class="day-num"><span class="num">Day 1</span><span class="month">8/20</span></div>
+                    <div class="day-num"><span class="num">D1</span><span class="month">8/20</span></div>
                     <div class="day-content">
-                        <img class="day-img" src="https://images.unsplash.com/photo-1580654712603-eb43273aff33?w=300&q=80" alt="烏魯木齊">
                         <h3>🛫 台北 → 烏魯木齊</h3>
-                        <p class="desc">抵達烏魯木齊（地窩堡國際機場），專車接機入住五星級酒店。下午可逛國際大巴扎，感受維吾爾族文化。</p>
-                        <p class="highlight">🏨 住宿：烏魯木齊五星酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：飛機上 | 午餐：飛機上 | 晚餐：五星酒店內</p>
+                        <p class="desc">抵達烏魯木齊，專車接機入住五星酒店。下午自由活動或逛大巴扎。</p>
+                        <p class="highlight">🏨 五星酒店 | 🍽️ 早/午/晚 全程含餐</p>
                     </div>
                 </div>
-                
                 <div class="day">
-                    <div class="day-num"><span class="num">Day 2</span><span class="month">8/21</span></div>
+                    <div class="day-num"><span class="num">D2</span><span class="month">8/21</span></div>
                     <div class="day-content">
-                        <img class="day-img" src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=300&q=80" alt="賽里木湖">
-                        <h3>🚗 烏魯木齊 → 賽里木湖</h3>
-                        <p class="desc">早餐後驅車前往賽里木湖（約5-6小時車程），沿途穿越天山山脈，抵達後遊覽這顆「太平洋最後一滴眼淚」。</p>
-                        <p class="highlight">🏨 住宿：賽里木湖週邊五星或高級酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：五星酒店 | 午餐：沿途餐廳 | 晚餐：酒店內</p>
+                        <h3>🚗 烏魯木齊 → 天山天池 → 阜康</h3>
+                        <p class="desc">遊覽天山天池（西王母瑤池），下午前往阜康入住。</p>
+                        <p class="highlight">🏨 五星酒店 | 🍽️ 全程含餐</p>
                     </div>
                 </div>
-                
                 <div class="day">
-                    <div class="day-num"><span class="num">Day 3</span><span class="month">8/22</span></div>
+                    <div class="day-num"><span class="num">D3</span><span class="month">8/22</span></div>
                     <div class="day-content">
-                        <img class="day-img" src="https://images.unsplash.com/photo-1529922700572-f86a5db00e7f?w=300&q=80" alt="伊寧">
+                        <h3>🚗 阜康 → 可可托海 → 富蘊</h3>
+                        <p class="desc">前往可可托海國家地質公園，遊覽額爾齊斯大峽谷。</p>
+                        <p class="highlight">🏨 五星酒店 | 🍽️ 全程含餐</p>
+                    </div>
+                </div>
+                <div class="day">
+                    <div class="day-num"><span class="num">D4</span><span class="month">8/23</span></div>
+                    <div class="day-content">
+                        <h3>🚗 富蘊 → 五彩灘 → 布爾津</h3>
+                        <p class="desc">遊覽五彩灘（天下第一灘），傍晚前往布爾津（童話邊城）。</p>
+                        <p class="highlight">🏨 五星酒店 | 🍽️ 全程含餐</p>
+                    </div>
+                </div>
+                <div class="day">
+                    <div class="day-num"><span class="num">D5</span><span class="month">8/24</span></div>
+                    <div class="day-content">
+                        <h3>🚗 布爾津 → 喀納斯（喀納斯湖）</h3>
+                        <p class="desc">進入喀納斯國家地質公園，遊覽喀納斯湖（觀魚台）。</p>
+                        <p class="highlight">🏨 景區內/五星酒店 | 🍽️ 全程含餐</p>
+                    </div>
+                </div>
+                <div class="day">
+                    <div class="day-num"><span class="num">D6</span><span class="month">8/25</span></div>
+                    <div class="day-content">
+                        <h3>🌲 喀納斯（三灣）→ 禾木</h3>
+                        <p class="desc">清晨遊覽神仙灣、月亮灣、臥龍灣，下午前往禾木村（神的自留地）。</p>
+                        <p class="highlight">🏨 禾木木屋/五星 | 🍽️ 全程含餐</p>
+                    </div>
+                </div>
+                <div class="day">
+                    <div class="day-num"><span class="num">D7</span><span class="month">8/26</span></div>
+                    <div class="day-content">
+                        <h3>🚗 禾木 → 烏爾禾（魔鬼城）→ 克拉瑪依</h3>
+                        <p class="desc">禾木村日出，途經魔鬼城（風城），晚抵克拉瑪依。</p>
+                        <p class="highlight">🏨 五星酒店 | 🍽️ 全程含餐</p>
+                    </div>
+                </div>
+                <div class="day">
+                    <div class="day-num"><span class="num">D8</span><span class="month">8/27</span></div>
+                    <div class="day-content">
+                        <h3>🚗 克拉瑪依 → 賽里木湖</h3>
+                        <p class="desc">長途驅車前往賽里木湖（600km），下午抵達遊覽。</p>
+                        <p class="highlight">🏨 五星酒店 | 🍽️ 全程含餐</p>
+                    </div>
+                </div>
+                <div class="day">
+                    <div class="day-num"><span class="num">D9</span><span class="month">8/28</span></div>
+                    <div class="day-content">
                         <h3>🌿 賽里木湖 → 霍爾果斯 → 伊寧</h3>
-                        <p class="desc">早晨賞賽里木湖日出，途經霍爾果斯口岸（國門打卡），下午前往伊寧市，漫步六星街感受哈薩克風情。</p>
-                        <p class="highlight">🏨 住宿：伊寧五星酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：酒店內 | 午餐：當地餐廳 | 晚餐：五星酒店</p>
+                        <p class="desc">早晨賞湖景，途經霍爾果斯口岸，前往伊寧遊覽六星街。</p>
+                        <p class="highlight">🏨 五星酒店 | 🍽️ 全程含餐</p>
                     </div>
                 </div>
-                
                 <div class="day">
-                    <div class="day-num"><span class="num">Day 4</span><span class="month">8/23</span></div>
+                    <div class="day-num"><span class="num">D10</span><span class="month">8/29</span></div>
                     <div class="day-content">
-                        <img class="day-img" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=300&q=80" alt="那拉提">
-                        <h3>🌸 伊寧 → 那拉提草原</h3>
-                        <p class="desc">驅車前往那拉提草原（約4小時），下午遊覽河谷草原，感受哈薩克牧民生活，騎馬馳騁草原。</p>
-                        <p class="highlight">🏨 住宿：那拉提草原週邊五星酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：酒店內 | 午餐：草原餐廳 | 晚餐：酒店內</p>
+                        <h3>✈️ 伊寧 → 烏魯木齊 → 台北</h3>
+                        <p class="desc">返回烏魯木齊搭機，結束難忘的北疆之旅。</p>
+                        <p class="highlight">🍽️ 早餐/午餐含 | 晚餐：飛機上</p>
                     </div>
                 </div>
-                
-                <div class="day">
-                    <div class="day-num"><span class="num">Day 5</span><span class="month">8/24</span></div>
-                    <div class="day-content">
-                        <img class="day-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=300&q=80" alt="盤龍古道">
-                        <h3>🏔️ 那拉提草原（盤龍古道）</h3>
-                        <p class="desc">乘坐區間車遊覽空中草原，穿越精靈古怪的盤龍古道，欣賞松林、雪山、花海組成的天然畫卷。</p>
-                        <p class="highlight">🏨 住宿：那拉提草原週邊五星酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：酒店內 | 午餐：景區餐廳 | 晚餐：酒店內</p>
-                    </div>
-                </div>
-                
-                <div class="day">
-                    <div class="day-num"><span class="num">Day 6</span><span class="month">8/25</span></div>
-                    <div class="day-content">
-                        <img class="day-img" src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=300&q=80" alt="克拉瑪依">
-                        <h3>🚗 那拉提 → 奎屯 → 克拉瑪依</h3>
-                        <p class="desc">早起離開草原，途中遊覽戈壁風光與少數民族村落，經過奎屯前往克拉瑪依，體驗油城風情。</p>
-                        <p class="highlight">🏨 住宿：克拉瑪依五星酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：酒店內 | 午餐：沿途餐廳 | 晚餐：五星酒店</p>
-                    </div>
-                </div>
-                
-                <div class="day">
-                    <div class="day-num"><span class="num">Day 7</span><span class="month">8/26</span></div>
-                    <div class="day-content">
-                        <img class="day-img" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&q=80" alt="喀納斯">
-                        <h3>🌲 克拉瑪依 → 喀納斯</h3>
-                        <p class="desc">驅車前往人間淨土喀納斯（約5小時），下午遊覽喀納斯湖、臥龍灣、月亮灣，感受喀納斯三灣的迷人之美。</p>
-                        <p class="highlight">🏨 住宿：喀納斯/布爾津五星酒店 <span class="hotel-badge">⭐ 5星</span><br>🍽️ 早餐：酒店內 | 午餐：沿途餐廳 | 晚餐：五星酒店</p>
-                    </div>
-                </div>
-                
-                <div class="day">
-                    <div class="day-num"><span class="num">Day 8</span><span class="month">8/27</span></div>
-                    <div class="day-content">
-                        <img class="day-img" src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=300&q=80" alt="觀魚台">
-                        <h3>🌅 喀納斯（觀魚台）→ 返程</h3>
-                        <p class="desc">清晨登觀魚台賞喀納斯全景，捕捉晨霧中的神仙灣灣景。下山後前往喀納斯/布爾津機場，結束難忘的北疆之旅。</p>
-                        <p class="highlight">🍽️ 早餐：酒店內 | 午餐：當地餐廳 | 晚餐：飛機上<br>🛫 帶著美好的回憶回家</p>
-                    </div>
-                </div>
-                
             </div>
         </div>
         
         <!-- Budget -->
         <div class="section">
-            <h2>💰 預算參考（每人）- 修訂版</h2>
+            <h2>💰 預算參考（30人成團）</h2>
             <table class="budget-table">
-                <tr><th>項目</th><th>預估費用（TWD）</th><th>說明</th></tr>
-                <tr><td>來回機票</td><td>$18,000 - $25,000</td><td>台北↔烏魯木齊/喀納斯</td></tr>
-                <tr><td>當地交通（旅遊巴）</td><td>$10,000 - $15,000</td><td>8天全程接送，人多分擔</td></tr>
-                <tr><td>🏨 五星級住宿</td><td>$30,000 - $45,000</td><td>7晚，平均$4,300-6,500/晚</td></tr>
-                <tr><td>🍽️ 全程含餐</td><td>$15,000 - $20,000</td><td>早餐+午餐+晚餐，旅行社安排</td></tr>
-                <tr><td>門票+區間車</td><td>$8,000 - $12,000</td><td>賽里木湖、那拉提、喀納斯</td></tr>
-                <tr><td>保險+其他</td><td>$5,000 - $8,000</td><td>旅平險、簽證（如需）</td></tr>
-                <tr class="total"><td>💎 總計</td><td colspan="2">$86,000 - $125,000</td></tr>
+                <tr><th>項目</th><th>原估價</th><th>優化價</th><th>說明</th></tr>
+                <tr><td>來回機票</td><td class="old-price">$22,000</td><td>$20,000</td><td>團體機位優惠</td></tr>
+                <tr><td>當地交通（大巴）</td><td class="old-price">$15,000</td><td>$10,000</td><td>30人座均攤</td></tr>
+                <tr><td>五星住宿（9晚）</td><td class="old-price">$40,000</td><td>$32,000</td><td>團購價7-8折</td></tr>
+                <tr><td>全程含餐</td><td class="old-price">$18,000</td><td>$15,000</td><td>團體餐標</td></tr>
+                <tr><td>門票+區間車</td><td class="old-price">$12,000</td><td>$10,000</td><td>團體票優惠</td></tr>
+                <tr><td>保險+其他</td><td>$7,000</td><td>$7,000</td><td>旅平險、簽證</td></tr>
+                <tr class="total"><td>💎 總計</td><td class="old-price">$114,000</td><td>$94,000</td><td>$9-10萬/人</td></tr>
             </table>
-            <p class="budget-note">※ 五星級飯店+全程含餐，預算约$10-13萬/人<br>※ 人數越多，整體費用性價比越高<br>※ 實際價格需等旅行社確認</p>
-        </div>
-        
-        <!-- Tips -->
-        <div class="section">
-            <h2>📋 旅遊須知</h2>
-            <div class="tips-grid">
-                <div class="tip">
-                    <span class="tip-icon">🧴</span>
-                    <div class="tip-title">防曬保濕</div>
-                    <div class="tip-text">新疆日照強烈，SPF50+防曬、帽子、太陽眼鏡必備</div>
-                </div>
-                <div class="tip">
-                    <span class="tip-icon">🧥</span>
-                    <div class="tip-title">洋蔥式穿搭</div>
-                    <div class="tip-text">晝夜溫差大（可達15°C），帶件外套或風衣</div>
-                </div>
-                <div class="tip">
-                    <span class="tip-icon">💊</span>
-                    <div class="tip-title">常備藥品</div>
-                    <div class="tip-text">腸胃藥、感冒藥、創可貼，高原反應藥（如需）</div>
-                </div>
-                <div class="tip">
-                    <span class="tip-icon">📱</span>
-                    <div class="tip-title">網路與支付</div>
-                    <div class="tip-text">中國大陸門號或租借WiFi，支付寶/微信支付必備</div>
-                </div>
-                <div class="tip">
-                    <span class="tip-icon">🔌</span>
-                    <div class="tip-title">轉接頭</div>
-                    <div class="tip-text">中國插座為雙腳扁型，帶萬用轉換器</div>
-                </div>
-                <div class="tip">
-                    <span class="tip-icon">💧</span>
-                    <div class="tip-title">多喝水</div>
-                    <div class="tip-text">新疆氣候乾燥，每天多補充水分</div>
-                </div>
+            <div class="notice">
+                💡 <strong>建議售價：</strong>$98,000-102,000/人（含導遊小費、利潤），30人成團可執行
             </div>
         </div>
         
@@ -363,9 +345,8 @@
         <div class="footer">
             <div class="🦞">🦞</div>
             <h3>台科小小斌 ✨</h3>
-            <p>北疆8日行程（修訂版）· 校友會揪團專用</p>
-            <p>⭐ 五星級飯店 · 全程含餐 · 安全第一</p>
-            <div class="credit">🏔️ 新疆旅遊 · 天山以北 · 人間淨土</div>
+            <p>北疆10日行程（30人成團版）· 校友會揪團專用</p>
+            <p>💰 目標：每人$9-10萬 · 等純隆學長確認中</p>
         </div>
         
     </div>
