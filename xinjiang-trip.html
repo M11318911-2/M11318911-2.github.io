@@ -7,26 +7,36 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 950px; margin: 0 auto; padding: 20px; }
         
         /* Hero */
         .hero { 
-            background: linear-gradient(135deg, #1a5f7a 0%, #159895 100%);
-            color: white; padding: 60px 20px; text-align: center; border-radius: 20px; margin-bottom: 30px;
+            position: relative; overflow: hidden; border-radius: 20px; margin-bottom: 30px;
         }
-        .hero h1 { font-size: 2.5em; margin-bottom: 10px; }
-        .hero p { font-size: 1.2em; opacity: 0.9; }
+        .hero-img {
+            width: 100%; height: 450px; object-fit: cover; display: block;
+        }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(26,95,122,0.85) 100%);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 40px;
+        }
+        .hero h1 { font-size: 2.8em; color: white; margin-bottom: 8px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .hero p { color: rgba(255,255,255,0.9); font-size: 1.3em; }
         .hero .badge { 
             display: inline-block; background: rgba(255,255,255,0.2); 
             padding: 8px 20px; border-radius: 20px; margin-top: 15px; font-size: 0.95em;
+            color: white; width: fit-content;
         }
         
         /* Info Cards */
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 30px; }
         .info-card { 
             background: white; padding: 20px; border-radius: 12px; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06); text-align: center;
+            transition: transform 0.2s;
         }
+        .info-card:hover { transform: translateY(-3px); }
         .info-card .icon { font-size: 2em; margin-bottom: 8px; }
         .info-card .label { color: #888; font-size: 0.85em; }
         .info-card .value { font-size: 1.2em; font-weight: bold; color: #1a5f7a; }
@@ -34,54 +44,85 @@
         /* Section */
         .section { background: white; border-radius: 16px; padding: 30px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .section h2 { color: #1a5f7a; margin-bottom: 20px; font-size: 1.4em; display: flex; align-items: center; gap: 10px; }
-        .section h2::before { content: ''; width: 4px; height: 24px; background: #159895; border-radius: 2px; }
+        .section h2::before { content: ''; width: 4px; height: 24px; background: linear-gradient(to bottom, #1a5f7a, #159895); border-radius: 2px; }
+        
+        /* Photo Grid */
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 20px; }
+        .photo-card { border-radius: 12px; overflow: hidden; position: relative; }
+        .photo-card img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.3s; }
+        .photo-card:hover img { transform: scale(1.05); }
+        .photo-card .photo-label {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 12px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white; font-size: 0.9em; font-weight: 600;
+        }
         
         /* Timeline */
         .timeline { position: relative; }
         .day { display: flex; gap: 20px; margin-bottom: 25px; position: relative; }
         .day::before {
-            content: ''; position: absolute; left: 95px; top: 40px; bottom: -15px;
-            width: 2px; background: #e0e0e0;
+            content: ''; position: absolute; left: 95px; top: 45px; bottom: -15px;
+            width: 2px; background: linear-gradient(to bottom, #159895, #e0e0e0);
         }
         .day:last-child::before { display: none; }
         .day-num { 
             width: 70px; height: 70px; background: linear-gradient(135deg, #1a5f7a, #159895);
             color: white; border-radius: 50%; display: flex; flex-direction: column;
             align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold;
+            box-shadow: 0 4px 15px rgba(21, 152, 149, 0.3);
         }
-        .day-num .num { font-size: 1.4em; }
+        .day-num .num { font-size: 1.3em; }
         .day-num .month { font-size: 0.7em; opacity: 0.8; }
-        .day-content { flex: 1; background: #f8fafc; padding: 15px 20px; border-radius: 12px; }
-        .day-content h3 { color: #1a5f7a; margin-bottom: 8px; }
+        .day-content { flex: 1; background: #f8fafc; padding: 15px 20px; border-radius: 12px; position: relative; overflow: hidden; }
+        .day-content::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: linear-gradient(to bottom, #159895, transparent);
+        }
+        .day-content h3 { color: #1a5f7a; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         .day-content .highlight { color: #159895; font-weight: 600; }
         .day-content .desc { color: #666; font-size: 0.95em; }
+        .day-content .day-img {
+            float: right; width: 120px; height: 80px; object-fit: cover;
+            border-radius: 8px; margin-left: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
         
         /* Budget */
         .budget-table { width: 100%; border-collapse: collapse; }
         .budget-table th, .budget-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
-        .budget-table th { background: #f8fafc; color: #1a5f7a; font-weight: 600; }
-        .budget-table tr:last-child td { border-bottom: none; font-weight: bold; color: #159895; }
-        .budget-table .total { background: #e8f5f0; }
+        .budget-table th { background: linear-gradient(to right, #f8fafc, white); color: #1a5f7a; font-weight: 600; }
+        .budget-table tr:last-child td { border-bottom: none; }
+        .budget-table .total { background: linear-gradient(to right, #e8f5f0, #f0f9f6); font-weight: bold; color: #159895; font-size: 1.1em; }
+        .budget-table td:nth-child(2) { font-weight: 600; }
         
         /* Tips */
         .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
         .tip { 
-            background: #f8fafc; padding: 15px; border-radius: 10px; 
-            border-left: 4px solid #159895;
+            background: linear-gradient(135deg, #f8fafc, #f0f9f6);
+            padding: 15px 15px 15px 20px; border-radius: 10px; 
+            border-left: 4px solid #159895; position: relative;
         }
+        .tip .tip-icon { position: absolute; right: 15px; top: 15px; font-size: 1.5em; opacity: 0.3; }
         .tip .tip-title { font-weight: bold; color: #1a5f7a; margin-bottom: 5px; }
         .tip .tip-text { color: #666; font-size: 0.9em; }
         
+        /* Gallery */
+        .gallery-intro { text-align: center; color: #666; margin-bottom: 20px; }
+        
         /* Footer */
-        .footer { text-align: center; padding: 30px; color: #888; font-size: 0.9em; }
-        .footer .🦞 { font-size: 1.5em; }
+        .footer { text-align: center; padding: 40px 30px; background: linear-gradient(135deg, #1a5f7a, #159895); border-radius: 16px; color: white; margin-top: 20px; }
+        .footer .🦞 { font-size: 2.5em; margin-bottom: 10px; }
+        .footer h3 { font-size: 1.5em; margin-bottom: 8px; }
+        .footer p { opacity: 0.85; }
+        .footer .credit { margin-top: 20px; font-size: 0.85em; opacity: 0.6; }
         
         /* Responsive */
         @media (max-width: 600px) {
             .hero h1 { font-size: 1.8em; }
+            .hero-img { height: 300px; }
             .day { flex-direction: column; gap: 10px; }
             .day::before { display: none; }
             .day-num { width: 60px; height: 60px; }
+            .day-content .day-img { float: none; width: 100%; margin: 10px 0; }
         }
     </style>
 </head>
@@ -90,9 +131,12 @@
         
         <!-- Hero -->
         <div class="hero">
-            <h1>🏔️ 北疆8日精華行程</h1>
-            <p>天山以北 · 草原湖泊 · 雪山風光</p>
-            <div class="badge">⏰ 建議出發：8月20日前後 | 👥 8-12人成團</div>
+            <img class="hero-img" src="https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?w=1200&q=80" alt="新疆風景">
+            <div class="hero-overlay">
+                <h1>🏔️ 北疆8日精華行程</h1>
+                <p>天山以北 · 草原湖泊 · 雪山風光</p>
+                <div class="badge">⏰ 建議出發：8月20日前後 | 👥 8-12人成團 | 💰 每人$7-9萬</div>
+            </div>
         </div>
         
         <!-- Quick Info -->
@@ -117,6 +161,31 @@
                 <div class="label">平均溫度</div>
                 <div class="value">20-28°C</div>
             </div>
+            <div class="info-card">
+                <div class="icon">✈️</div>
+                <div class="label">出發日期</div>
+                <div class="value">8/20</div>
+            </div>
+        </div>
+        
+        <!-- Photo Gallery Intro -->
+        <div class="section">
+            <h2>🖼️ 景點先覽</h2>
+            <p class="gallery-intro">北疆三大經典，一次走遍</p>
+            <div class="photo-grid">
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80" alt="賽里木湖">
+                    <div class="photo-label">🌊 賽里木湖 — 太平洋的最後一滴眼淚</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1569839333583-7375336cde4b?w=600&q=80" alt="那拉提草原">
+                    <div class="photo-label">🌿 那拉提草原 — 空中花園</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="喀納斯">
+                    <div class="photo-label">🏔️ 喀納斯 — 人間淨土</div>
+                </div>
+            </div>
         </div>
         
         <!-- Itinerary -->
@@ -127,8 +196,9 @@
                 <div class="day">
                     <div class="day-num"><span class="num">Day 1</span><span class="month">8/20</span></div>
                     <div class="day-content">
+                        <img class="day-img" src="https://images.unsplash.com/photo-1580654712603-eb43273aff33?w=300&q=80" alt="烏魯木齊">
                         <h3>🛫 台北 → 烏魯木齊</h3>
-                        <p class="desc">抵達烏魯木齊（地窩堡國際機場），專車接機入住市區酒店。</p>
+                        <p class="desc">抵達烏魯木齊（地窩堡國際機場），專車接機入住市區酒店。下午可逛國際大巴扎，感受維吾爾族文化。</p>
                         <p class="highlight">📍 住宿：烏魯木齊 | 🍽️ 晚餐：市區新疆菜</p>
                     </div>
                 </div>
@@ -136,8 +206,9 @@
                 <div class="day">
                     <div class="day-num"><span class="num">Day 2</span><span class="month">8/21</span></div>
                     <div class="day-content">
+                        <img class="day-img" src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=300&q=80" alt="賽里木湖">
                         <h3>🚗 烏魯木齊 → 賽里木湖</h3>
-                        <p class="desc">早餐後驅車前往賽里木湖（約5-6小時車程），抵達後遊覽「太平洋最後一滴眼淚」。</p>
+                        <p class="desc">早餐後驅車前往賽里木湖（約5-6小時車程），沿途穿越天山山脈，抵達後遊覽这颗「太平洋最後一滴眼淚」。</p>
                         <p class="highlight">🌊 賽里木湖 | 🏨 住宿：賽里木湖景區/果子溝</p>
                     </div>
                 </div>
@@ -145,35 +216,39 @@
                 <div class="day">
                     <div class="day-num"><span class="num">Day 3</span><span class="month">8/22</span></div>
                     <div class="day-content">
+                        <img class="day-img" src="https://images.unsplash.com/photo-1529922700572-f86a5db00e7f?w=300&q=80" alt="伊寧">
                         <h3>🌿 賽里木湖 → 霍爾果斯 → 伊寧</h3>
-                        <p class="desc">早晨賞賽里木湖日出，途經霍爾果斯口岸（國門打卡），下午前往伊寧市。</p>
-                        <p class="highlight">🏛️ 霍爾果斯口岸 | 🎨 伊寧六星街</p>
+                        <p class="desc">早晨賞賽里木湖日出，途經霍爾果斯口岸（國門打卡），下午前往伊寧市，漫步六星街感受哈薩克風情。</p>
+                        <p class="highlight">🏛️ 霍爾果斯口岸 | 🎨 伊寧六星街 | 🍜 當地美食</p>
                     </div>
                 </div>
                 
                 <div class="day">
                     <div class="day-num"><span class="num">Day 4</span><span class="month">8/23</span></div>
                     <div class="day-content">
+                        <img class="day-img" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=300&q=80" alt="那拉提">
                         <h3>🌸 伊寧 → 那拉提草原</h3>
-                        <p class="desc">驅車前往那拉提草原（約4小時），下午遊覽河谷草原，感受哈薩克風情。</p>
-                        <p class="highlight">🐎 那拉提草原 | 🏨 住宿：草原景區內</p>
+                        <p class="desc">驅車前往那拉提草原（約4小時），下午遊覽河谷草原，感受哈薩克牧民生活，骑马驰骋草原。</p>
+                        <p class="highlight">🐎 那拉提草原 | 🏨 住宿：草原景區內蒙古包/酒店</p>
                     </div>
                 </div>
                 
                 <div class="day">
                     <div class="day-num"><span class="num">Day 5</span><span class="month">8/24</span></div>
                     <div class="day-content">
+                        <img class="day-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=300&q=80" alt="盤龍古道">
                         <h3>🏔️ 那拉提草原（盤龍古道）</h3>
-                        <p class="desc">乘坐區間車遊覽空中草原，精靈古怪的盤龍古道，松林、雪山、花海。</p>
-                        <p class="highlight">☁️ 空中草原 | 🌲 雪蓮谷</p>
+                        <p class="desc">乘坐區間車遊覽空中草原，穿越精靈古怪的盤龍古道，欣賞松林、雪山、花海組成的天然畫卷。</p>
+                        <p class="highlight">☁️ 空中草原 | 🌲 雪蓮谷 | 🏔️ 雪山觀景台</p>
                     </div>
                 </div>
                 
                 <div class="day">
                     <div class="day-num"><span class="num">Day 6</span><span class="month">8/25</span></div>
                     <div class="day-content">
+                        <img class="day-img" src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=300&q=80" alt="克拉瑪依">
                         <h3>🚗 那拉提 → 奎屯 → 克拉瑪依</h3>
-                        <p class="desc">早起離開草原，途中遊覽戈壁風光，經過奎屯前往克拉瑪依。</p>
+                        <p class="desc">早起離開草原，途中遊覽戈壁風光與少數民族村落，經過奎屯前往克拉瑪依，體驗油城風情。</p>
                         <p class="highlight">🛣️ 沙漠公路風光 | 🏨 住宿：克拉瑪依</p>
                     </div>
                 </div>
@@ -181,8 +256,9 @@
                 <div class="day">
                     <div class="day-num"><span class="num">Day 7</span><span class="month">8/26</span></div>
                     <div class="day-content">
+                        <img class="day-img" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&q=80" alt="喀納斯">
                         <h3>🌲 克拉瑪依 → 喀納斯</h3>
-                        <p class="desc">驅車前往人間淨土喀納斯（約5小時），下午遊覽喀納斯湖、臥龍灣、月亮灣。</p>
+                        <p class="desc">驅車前往人間淨土喀納斯（約5小時），下午遊覽喀納斯湖、臥龍灣、月亮灣，感受喀納斯三灣的迷人之美。</p>
                         <p class="highlight">🏔️ 喀納斯國家地質公園 | 🏨 住宿：景區內/賈登峪</p>
                     </div>
                 </div>
@@ -190,9 +266,10 @@
                 <div class="day">
                     <div class="day-num"><span class="num">Day 8</span><span class="month">8/27</span></div>
                     <div class="day-content">
-                        <h3>🌅 喀納斯（觀魚台）→ 機場</h3>
-                        <p class="desc">清晨登觀魚台賞喀納斯全景，下山後返回布爾津/喀納斯機場，結束行程。</p>
-                        <p class="highlight">🦈 觀魚台全景 | 🛫 返程</p>
+                        <img class="day-img" src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=300&q=80" alt="觀魚台">
+                        <h3>🌅 喀納斯（觀魚台）→ 返程</h3>
+                        <p class="desc">清晨登觀魚台賞喀納斯全景，捕捉晨霧中的神仙灣灣景。下山後返回布爾津/喀納斯機場，結束難忘的北疆之旅。</p>
+                        <p class="highlight">🦈 觀魚台全景 | 🛫 返程 | 📸 美好的回憶</p>
                     </div>
                 </div>
                 
@@ -212,7 +289,7 @@
                 <tr><td>保險+其他</td><td>$5,000 - $8,000</td><td>旅平險、簽證（如需）</td></tr>
                 <tr class="total"><td>💎 總計</td><td colspan="2">$67,000 - $100,000</td></tr>
             </table>
-            <p style="margin-top: 15px; color: #888; font-size: 0.9em;">※ 人數越多，包車/交通費用分擔越便宜</p>
+            <p style="margin-top: 15px; color: #888; font-size: 0.9em;">※ 人數越多，包車/交通費用分擔越便宜 | ※ 實際費用視淡旺季而定</p>
         </div>
         
         <!-- Tips -->
@@ -220,27 +297,33 @@
             <h2>📋 旅遊須知</h2>
             <div class="tips-grid">
                 <div class="tip">
-                    <div class="tip-title">🧴 防曬保濕</div>
+                    <span class="tip-icon">🧴</span>
+                    <div class="tip-title">防曬保濕</div>
                     <div class="tip-text">新疆日照強烈，SPF50+防曬、帽子、太陽眼鏡必備</div>
                 </div>
                 <div class="tip">
-                    <div class="tip-title">🧥 洋蔥式穿搭</div>
+                    <span class="tip-icon">🧥</span>
+                    <div class="tip-title">洋蔥式穿搭</div>
                     <div class="tip-text">晝夜溫差大（可達15°C），帶件外套或風衣</div>
                 </div>
                 <div class="tip">
-                    <div class="tip-title">💊 常備藥品</div>
+                    <span class="tip-icon">💊</span>
+                    <div class="tip-title">常備藥品</div>
                     <div class="tip-text">腸胃藥、感冒藥、創可貼，高原反應藥（如需）</div>
                 </div>
                 <div class="tip">
-                    <div class="tip-title">📱 網路</div>
+                    <span class="tip-icon">📱</span>
+                    <div class="tip-title">網路與支付</div>
                     <div class="tip-text">中國大陸門號或租借WiFi，支付寶/微信支付必備</div>
                 </div>
                 <div class="tip">
-                    <div class="tip-title">🔌 轉接頭</div>
+                    <span class="tip-icon">🔌</span>
+                    <div class="tip-title">轉接頭</div>
                     <div class="tip-text">中國插座為雙腳扁型，帶萬用轉換器</div>
                 </div>
                 <div class="tip">
-                    <div class="tip-title">💧 多喝水</div>
+                    <span class="tip-icon">💧</span>
+                    <div class="tip-title">多喝水</div>
                     <div class="tip-text">新疆氣候乾燥，每天多補充水分</div>
                 </div>
             </div>
@@ -249,8 +332,10 @@
         <!-- Footer -->
         <div class="footer">
             <div class="🦞">🦞</div>
-            <p>台科小小斌 ✨ 製作</p>
-            <p>如需調整行程，請告訴我！</p>
+            <h3>台科小小斌 ✨</h3>
+            <p>北疆8日行程 · 為校友會幹部們精心規劃</p>
+            <p>如需調整行程或添加景點，請與我聯繫！</p>
+            <div class="credit">🏔️ 新疆旅遊 · 天山以北 · 人間淨土</div>
         </div>
         
     </div>
