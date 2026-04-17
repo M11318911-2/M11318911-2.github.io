@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北疆13日行程地圖 | 新疆之旅</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a5f7a 0%, #159895 100%);
+            color: white; padding: 50px 30px; text-align: center; border-radius: 20px; margin-bottom: 30px;
+        }
+        .hero h1 { font-size: 2.2em; margin-bottom: 10px; }
+        .hero p { opacity: 0.9; font-size: 1.1em; }
+        .hero .subtitle { 
+            background: rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 20px;
+            margin-top: 15px; display: inline-block;
+        }
+        
+        .section { background: white; border-radius: 16px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+        .section h2 { color: #1a5f7a; margin-bottom: 20px; font-size: 1.3em; }
+        
+        /* Route Map - Horizontal Flow */
+        .route-flow {
+            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center;
+            padding: 20px; background: linear-gradient(135deg, #f8fafc, #e8f5f9);
+            border-radius: 12px; margin: 20px 0;
+        }
+        .route-node {
+            background: white; border: 2px solid #159895; border-radius: 10px;
+            padding: 10px 15px; text-align: center; min-width: 100px;
+            position: relative;
+        }
+        .route-node .day-label {
+            background: #1a5f7a; color: white; border-radius: 8px;
+            padding: 2px 8px; font-size: 0.75em; margin-bottom: 5px;
+            display: inline-block;
+        }
+        .route-node .city-name { font-weight: bold; color: #1a5f7a; font-size: 0.95em; }
+        .route-node .attraction { color: #666; font-size: 0.8em; margin-top: 3px; }
+        .route-arrow { color: #159895; font-size: 1.2em; font-weight: bold; }
+        
+        .route-node.highlight { border-color: #ff6b6b; background: #fff5f5; }
+        .route-node.highlight .city-name { color: #c62828; }
+        
+        /* Timeline */
+        .timeline { position: relative; }
+        .timeline::before {
+            content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+            width: 3px; background: linear-gradient(to bottom, #1a5f7a, #159895, #1a5f7a);
+        }
+        
+        .timeline-item {
+            display: flex; gap: 20px; margin-bottom: 20px; position: relative;
+        }
+        .timeline-item::before {
+            content: ''; position: absolute; left: 17px; top: 20px;
+            width: 10px; height: 10px; background: #159895; border-radius: 50%;
+            border: 3px solid white; box-shadow: 0 0 0 2px #159895;
+        }
+        .timeline-item.highlight::before {
+            background: #ff6b6b; box-shadow: 0 0 0 2px #ff6b6b;
+        }
+        
+        .timeline-day {
+            min-width: 60px; background: linear-gradient(135deg, #1a5f7a, #159895);
+            color: white; border-radius: 10px; padding: 10px 8px;
+            text-align: center; font-weight: bold;
+        }
+        .timeline-day .day { font-size: 1.1em; }
+        .timeline-day .date { font-size: 0.75em; opacity: 0.8; }
+        
+        .timeline-content {
+            flex: 1; background: #f8fafc; border-radius: 10px; padding: 15px;
+            border-left: 3px solid #159895;
+        }
+        .timeline-item.highlight .timeline-content {
+            border-left-color: #ff6b6b; background: #fff8f8;
+        }
+        
+        .timeline-content h3 {
+            color: #1a5f7a; font-size: 1em; margin-bottom: 5px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .timeline-item.highlight .timeline-content h3 { color: #c62828; }
+        
+        .timeline-content .route {
+            color: #888; font-size: 0.85em; margin-bottom: 5px;
+        }
+        .timeline-content .desc { color: #555; font-size: 0.9em; }
+        .timeline-content .spot {
+            display: inline-block; background: #e8f5e9; color: #2e7d32;
+            padding: 2px 8px; border-radius: 8px; font-size: 0.8em; margin-top: 5px;
+        }
+        .timeline-content .spot.red {
+            background: #ffebee; color: #c62828;
+        }
+        
+        /* Legend */
+        .legend {
+            display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;
+            padding: 15px; background: #f8fafc; border-radius: 10px; margin-top: 15px;
+        }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.9em; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .legend-dot.blue { background: #159895; }
+        .legend-dot.red { background: #ff6b6b; }
+        
+        /* Summary Box */
+        .summary-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;
+        }
+        .summary-item {
+            background: linear-gradient(135deg, #f8fafc, white);
+            padding: 15px; border-radius: 10px; text-align: center;
+            border: 1px solid #eee;
+        }
+        .summary-item .icon { font-size: 1.8em; margin-bottom: 5px; }
+        .summary-item .value { font-size: 1.3em; font-weight: bold; color: #1a5f7a; }
+        .summary-item .label { color: #888; font-size: 0.8em; }
+        
+        .flight-section {
+            background: linear-gradient(135deg, #e8eaf6, #e1f5fe);
+            border-radius: 12px; padding: 20px; margin: 20px 0;
+        }
+        .flight-title { color: #1565c0; font-weight: bold; margin-bottom: 15px; text-align: center; }
+        
+        .flight-card {
+            background: white; border-radius: 10px; padding: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 10px;
+        }
+        .flight-card .flight-num { font-weight: bold; color: #1a5f7a; }
+        .flight-card .flight-time { color: #666; font-size: 0.9em; }
+        .flight-card .flight-route { display: flex; align-items: center; gap: 15px; }
+        .flight-card .city { font-weight: bold; font-size: 1.1em; }
+        .flight-arrow { color: #159895; font-size: 1.2em; }
+        
+        .footer { text-align: center; padding: 30px; background: linear-gradient(135deg, #1a5f7a, #159895); border-radius: 16px; color: white; margin-top: 20px; }
+        .footer .lobster { font-size: 2em; margin-bottom: 8px; }
+        .footer p { opacity: 0.85; }
+        
+        @media (max-width: 700px) {
+            .route-flow { flex-direction: column; }
+            .route-arrow { transform: rotate(90deg); }
+            .timeline-item { flex-direction: column; }
+            .timeline::before { left: 10px; }
+            .timeline-item::before { left: 7px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="hero">
+            <h1>🗺️ 北疆13日行程地圖</h1>
+            <p>國立臺灣科技大學 EMBA 校友會</p>
+            <div class="subtitle">天山天池。阿禾公路。二進喀納斯。禾木村。五彩灘。<br>烏爾禾魔鬼城。賽里木湖。喀贊其。巴音布魯克。那拉提空中草原。獨庫公路</div>
+        </div>
+        
+        <!-- Flight Info -->
+        <div class="flight-section">
+            <div class="flight-title">✈️ 去程航班（8/22出發）</div>
+            <div class="flight-card">
+                <div>
+                    <div class="flight-num">CA186</div>
+                    <div class="flight-time">13:00 → 16:15</div>
+                </div>
+                <div class="flight-route">
+                    <span class="city">台北</span>
+                    <span class="flight-arrow">→</span>
+                    <span class="city">北京</span>
+                </div>
+            </div>
+            <div class="flight-card">
+                <div>
+                    <div class="flight-num">CA1295</div>
+                    <div class="flight-time">20:15 → 00:30+1</div>
+                </div>
+                <div class="flight-route">
+                    <span class="city">北京</span>
+                    <span class="flight-arrow">→</span>
+                    <span class="city">烏魯木齊</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Summary -->
+        <div class="section">
+            <h2>📊 行程概覽</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="icon">📅</div>
+                    <div class="value">13天</div>
+                    <div class="label">總天數</div>
+                </div>
+                <div class="summary-item">
+                    <div class="icon">🏔️</div>
+                    <div class="value">10+</div>
+                    <div class="label">精華景點</div>
+                </div>
+                <div class="summary-item">
+                    <div class="icon">✈️</div>
+                    <div class="value">4段</div>
+                    <div class="label">航班</div>
+                </div>
+                <div class="summary-item">
+                    <div class="icon">🚗</div>
+                    <div class="value">~2000km</div>
+                    <div class="label">總車程</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Route Map -->
+        <div class="section">
+            <h2>🗺️ 路線示意圖</h2>
+            <div class="route-flow">
+                <div class="route-node">
+                    <div class="day-label">Day 1-2</div>
+                    <div class="city-name">烏魯木齊</div>
+                    <div class="attraction">天山天池</div>
+                </div>
+                <div class="route-arrow">→</div>
+                <div class="route-node highlight">
+                    <div class="day-label">Day 3-4</div>
+                    <div class="city-name">喀納斯</div>
+                    <div class="attraction">第一次進</div>
+                </div>
+                <div class="route-arrow">→</div>
+                <div class="route-node highlight">
+                    <div class="day-label">Day 4-5</div>
+                    <div class="city-name">禾木</div>
+                    <div class="attraction">神的自留地</div>
+                </div>
+                <div class="route-arrow">→</div>
+                <div class="route-node">
+                    <div class="day-label">Day 5-6</div>
+                    <div class="city-name">布爾津</div>
+                    <div class="attraction">五彩灘</div>
+                </div>
+                <div class="route-arrow">→</div>
+                <div class="route-node">
+                    <div class="day-label">Day 6-7</div>
+                    <div class="city-name">克拉瑪依</div>
+                    <div class="attraction">魔鬼城</div>
+                </div>
+                <div class="route-arrow">→</div>
+                <div class="route-node">
+                    <div class="day-label">Day 8</div>
+                    <div class="city-name">賽里木湖</div>
+                    <div class="attraction">太平洋的眼淚</div>
+                </div>
+                <div class="route-arrow">→</div>
+                <div class="route-node">
+                    <div class="day-label">Day 9</div>
+                    <div class="city-name">伊寧</div>
+                    <div class="attraction">喀贊其/六星街</div>
+                </div>
+                <div class="route-arrow">→</div>
+                <div class="route-node">
+                    <div class="day-label">Day 10</div>
+                    <div class="city-name">巴音布魯克</div>
+                    <div class="attraction">天鵝湖/九曲十八彎</div>
+                </div>
+                <div class="route-arrow">→</div>
+                <div class="route-node">
+                    <div class="day-label">Day 11-12</div>
+                    <div class="city-name">那拉提</div>
+                    <div class="attraction">空中草原</div>
+                </div>
+                <div class="route-arrow">→</div>
+                <div class="route-node">
+                    <div class="day-label">Day 12</div>
+                    <div class="city-name">獨庫公路</div>
+                    <div class="attraction">中國最美公路</div>
+                </div>
+                <div class="route-arrow">→</div>
+                <div class="route-node">
+                    <div class="day-label">Day 13</div>
+                    <div class="city-name">烏魯木齊</div>
+                    <div class="attraction">大巴扎/千回西域</div>
+                </div>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item"><div class="legend-dot blue"></div>一般景點</div>
+                <div class="legend-item"><div class="legend-dot red"></div>核心景點（喀納斯、禾木）</div>
+            </div>
+        </div>
+        
+        <!-- Daily Timeline -->
+        <div class="section">
+            <h2>📅 每日行程詳情</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-day"><div class="day">D1</div><div class="date">8/22</div></div>
+                    <div class="timeline-content">
+                        <h3>🛫 台北 → 北京 → 烏魯木齊</h3>
+                        <div class="route">CA186 13:00-16:15 + CA1295 20:15-00:30+1</div>
+                        <div class="desc">搭機前往新疆省會烏魯木齊，專車接機入住五星級酒店。</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day"><div class="day">D2</div><div class="date">8/23</div></div>
+                    <div class="timeline-content">
+                        <h3>🏔️ 烏魯木齊 → 天山天池 → 阿勒泰</h3>
+                        <div class="route">車程約2小時至天池，再驅車至阿勒泰</div>
+                        <div class="desc">遊覽天山天池（古稱瑤池），融森林、草原、雪山於一體的高山湖泊風光。</div>
+                        <span class="spot">天山天池 5A</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item highlight">
+                    <div class="timeline-day"><div class="day">D3</div><div class="date">8/24</div></div>
+                    <div class="timeline-content">
+                        <h3>🚗 阿勒泰 → 布爾津 → 喀納斯（第一次進）</h3>
+                        <div class="route">車程約4-5小時至喀納斯</div>
+                        <div class="desc">前往人間淨土喀納斯湖，遊覽臥龍灣、月亮灣、神仙灣。</div>
+                        <span class="spot red">★ 喀納斯湖 5A（第一次）</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item highlight">
+                    <div class="timeline-day"><div class="day">D4</div><div class="date">8/25</div></div>
+                    <div class="timeline-content">
+                        <h3>🏘️ 喀納斯 → 禾木（神的自留地）</h3>
+                        <div class="route">阿禾公路，車程約2-3小時</div>
+                        <div class="desc">前往禾木村，保留圖瓦族古樸民居，白樺林與茅草屋相映，漫步其中彷彿穿越時光。</div>
+                        <span class="spot red">★ 禾木村 5A</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day"><div class="day">D5</div><div class="date">8/26</div></div>
+                    <div class="timeline-content">
+                        <h3>🌅 禾木（日出）→ 布爾津 → 克拉瑪依</h3>
+                        <div class="route">禾木至布爾津約3小時，布爾津至克拉瑪依約3小時</div>
+                        <div class="desc">清晨登禾木觀景台賞日出，返回布爾津後前往克拉瑪依。</div>
+                        <span class="spot">禾木日出</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day"><div class="day">D6</div><div class="date">8/27</div></div>
+                    <div class="timeline-content">
+                        <h3>🚗 克拉瑪依 → 布爾津 → 五彩灘 → 克拉瑪依</h3>
+                        <div class="route">克拉瑪依至布爾津約3小時，布爾津至五彩灘約30分鐘</div>
+                        <div class="desc">遊覽額爾齊斯河畔的五彩灘，礫石斑斕如調色板，日光映照下色彩絢麗耀眼。</div>
+                        <span class="spot">五彩灘 5A</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day"><div class="day">D7</div><div class="date">8/28</div></div>
+                    <div class="timeline-content">
+                        <h3>🏜️ 克拉瑪依 → 烏爾禾（魔鬼城）→ 克拉瑪依</h3>
+                        <div class="route">克拉瑪依至魔鬼城約1.5小時</div>
+                        <div class="desc">遊覽烏爾禾魔鬼城的雅丹地貌，風蝕奇岩造型多變，宛如大地上的魔幻世界。</div>
+                        <span class="spot">魔鬼城 5A</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day"><div class="day">D8</div><div class="date">8/29</div></div>
+                    <div class="timeline-content">
+                        <h3>🌊 克拉瑪依 → 賽里木湖</h3>
+                        <div class="route">車程約5-6小時</div>
+                        <div class="desc">長驅前往賽里木湖，碧水蕩漾，雪山倒影湖中，高山湖泊壯麗景色令人心醉。</div>
+                        <span class="spot">賽里木湖 5A</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day"><div class="day">D9</div><div class="date">8/30</div></div>
+                    <div class="timeline-content">
+                        <h3>🎨 賽里木湖 → 伊寧（喀贊其）</h3>
+                        <div class="route">賽里木湖至伊寧約3小時</div>
+                        <div class="desc">遊覽喀贊其乘坐馬車，悠遊草原，感受民族古樸與自然的和諧共生。漫步六星街。</div>
+                        <span class="spot">喀贊其（乘馬車）| 六星街</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day"><div class="day">D10</div><div class="date">8/31</div></div>
+                    <div class="timeline-content">
+                        <h3>🦢 伊寧 → 巴音布魯克</h3>
+                        <div class="route">車程約4-5小時</div>
+                        <div class="desc">前往巴音布魯克草原，天鵝湖與九曲十八彎點綴其中，草原風光壯闊迷人。</div>
+                        <span class="spot">巴音布魯克 5A | 天鵝湖 | 九曲十八彎</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day"><div class="day">D11</div><div class="date">9/1</div></div>
+                    <div class="timeline-content">
+                        <h3>🌿 巴音布魯克 → 那拉提草原</h3>
+                        <div class="route">車程約3-4小時</div>
+                        <div class="desc">前往那拉提草原，體驗騎馬，感受哈薩克族民俗風情與豐富的草原文化。</div>
+                        <span class="spot">那拉提草原 5A | 草原騎馬</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day"><div class="day">D12</div><div class="date">9/2</div></div>
+                    <div class="timeline-content">
+                        <h3>☁️ 那拉提（空中草原）→ 獨庫公路北段 → 烏魯木齊</h3>
+                        <div class="route">那拉提至獨庫公路北段，再至烏魯木齊（約5-6小時）</div>
+                        <div class="desc">遊覽那拉提空中草原觀景台，俯瞰群山與牧場。下午穿越世界最美公路之一——獨庫公路。</div>
+                        <span class="spot">空中草原觀景台 | 雪蓮谷 | 獨庫公路</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day"><div class="day">D13</div><div class="date">9/3</div></div>
+                    <div class="timeline-content">
+                        <h3>🏛️ 烏魯木齊（國際大巴扎）→ 北京 → 台北</h3>
+                        <div class="route">下午遊覽大巴扎，晚間航班返台</div>
+                        <div class="desc">上午遊覽國際大巴扎，具有濃鬱的伊斯蘭建築風格與絲路文化。晚間搭機返台，結束難忘的北疆之旅。</div>
+                        <span class="spot">國際大巴扎 | 千回西域（自費）</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Return Flight -->
+        <div class="flight-section">
+            <div class="flight-title">✈️ 回程航班（9/3返台）</div>
+            <div class="flight-card">
+                <div>
+                    <div class="flight-num">CA1296</div>
+                    <div class="flight-time">08:00 → 12:00</div>
+                </div>
+                <div class="flight-route">
+                    <span class="city">烏魯木齊</span>
+                    <span class="flight-arrow">→</span>
+                    <span class="city">北京</span>
+                </div>
+            </div>
+            <div class="flight-card">
+                <div>
+                    <div class="flight-num">CA185</div>
+                    <div class="flight-time">17:00 → 20:00</div>
+                </div>
+                <div class="flight-route">
+                    <span class="city">北京</span>
+                    <span class="flight-arrow">→</span>
+                    <span class="city">台北</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="lobster">🦞</div>
+            <p>台科小小斌 ✨ 製作</p>
+            <p>資料來源：洋明旅行社 SJ1.pdf 原始行程</p>
+        </div>
+    </div>
+</body>
+</html>
