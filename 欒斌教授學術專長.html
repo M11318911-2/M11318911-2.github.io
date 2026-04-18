@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>欒斌教授 — 學術專長</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      background: #f0f4f8;
+      color: #2d3748;
+      line-height: 1.7;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+      color: #fff;
+      padding: 48px 32px 36px;
+      text-align: center;
+    }
+    header .avatar {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem;
+      margin: 0 auto 16px;
+      border: 3px solid rgba(255,255,255,0.5);
+    }
+    header h1 { font-size: 2rem; letter-spacing: 2px; }
+    header h2 { font-size: 1.1rem; font-weight: 400; opacity: 0.85; margin-top: 6px; }
+    header .subtitle { font-size: 0.95rem; opacity: 0.75; margin-top: 4px; }
+
+    /* Badges */
+    .badges {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+      margin-top: 20px;
+    }
+    .badge {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.82rem;
+    }
+
+    /* Main layout */
+    main {
+      max-width: 900px;
+      margin: 36px auto;
+      padding: 0 20px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 640px) { main { grid-template-columns: 1fr; } }
+
+    /* Cards */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    .card.full-width { grid-column: 1 / -1; }
+    .card h3 {
+      font-size: 1.05rem;
+      color: #2b6cb0;
+      border-left: 4px solid #2b6cb0;
+      padding-left: 10px;
+      margin-bottom: 16px;
+    }
+
+    /* Stats row */
+    .stats {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+    }
+    .stat-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 22px 16px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    .stat-box .num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2b6cb0;
+    }
+    .stat-box .label { font-size: 0.82rem; color: #718096; margin-top: 4px; }
+
+    /* Tags */
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      background: #ebf8ff;
+      color: #2b6cb0;
+      border-radius: 16px;
+      padding: 4px 14px;
+      font-size: 0.85rem;
+      border: 1px solid #bee3f8;
+    }
+
+    /* List */
+    ul.styled { padding-left: 0; list-style: none; }
+    ul.styled li {
+      padding: 8px 0 8px 22px;
+      border-bottom: 1px solid #f0f4f8;
+      position: relative;
+      font-size: 0.93rem;
+    }
+    ul.styled li::before {
+      content: "▸";
+      position: absolute; left: 0;
+      color: #2b6cb0;
+    }
+    ul.styled li:last-child { border-bottom: none; }
+
+    /* Award items */
+    .award-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f4f8;
+      font-size: 0.93rem;
+    }
+    .award-item:last-child { border-bottom: none; }
+    .award-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #a0aec0;
+      padding-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="avatar">欒</div>
+  <h1>欒 斌 教授</h1>
+  <h2>Pin Luarn, Ph.D.</h2>
+  <div class="subtitle">國立臺灣科技大學 企業管理系 專任教授</div>
+  <div class="badges">
+    <span class="badge">🏆 2024 教育部師鐸獎</span>
+    <span class="badge">🌐 Stanford 全球前 2% 頂尖科學家</span>
+    <span class="badge">📚 電子商務 | 行動商務 | AI</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-box">
+      <div class="num">8,300+</div>
+      <div class="label">Google Scholar 引用次數</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">3</div>
+      <div class="label">ESI 高引用論文</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">10+</div>
+      <div class="label">出版專書</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">前 2%</div>
+      <div class="label">全球頂尖科學家 (Stanford)</div>
+    </div>
+  </div>
+
+  <!-- 基本資訊 -->
+  <div class="card">
+    <h3>基本資訊</h3>
+    <ul class="styled">
+      <li>現職：國立臺灣科技大學企業管理系 教授</li>
+      <li>學歷：美國威斯康辛大學麥迪遜分校 工業工程博士</li>
+      <li>Email：luarn@gapps.ntust.edu.tw</li>
+      <li>Google Scholar：引用逾 8,300 次</li>
+    </ul>
+  </div>
+
+  <!-- 研究領域 -->
+  <div class="card">
+    <h3>研究領域</h3>
+    <div class="tag-list">
+      <span class="tag">電子商務</span>
+      <span class="tag">網路行銷</span>
+      <span class="tag">行動商務</span>
+      <span class="tag">社群媒體</span>
+      <span class="tag">區塊鏈</span>
+      <span class="tag">人工智慧應用</span>
+      <span class="tag">資訊系統</span>
+      <span class="tag">科技接受模型</span>
+      <span class="tag">消費者行為</span>
+    </div>
+  </div>
+
+  <!-- 榮譽與獎項 -->
+  <div class="card full-width">
+    <h3>榮譽與獎項</h3>
+    <div class="award-item">
+      <div class="award-icon">🏆</div>
+      <div><strong>2024 年教育部師鐸獎</strong>（民國 113 年）— 台灣教師最高榮譽之一</div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">🌐</div>
+      <div><strong>Stanford/Elsevier 全球前 2% 頂尖科學家</strong> — 連續入選</div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">🎖️</div>
+      <div><strong>Emerald 2014 & 2015 Highly Commended Paper Award</strong> — 連續兩年獲獎</div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">📌</div>
+      <div><strong>3 篇 ESI 高引用論文</strong>（Highly Cited Papers）— 位於全球前 1%</div>
+    </div>
+  </div>
+
+  <!-- 代表著作 -->
+  <div class="card full-width">
+    <h3>代表性著作</h3>
+    <ul class="styled">
+      <li>《電子商務：應用與科技發展》第五版（滄海書局）— 台灣電子商務教科書標準用書</li>
+      <li>行動商務用戶採用行為相關研究 — 引用次數居高</li>
+      <li>社群媒體持續使用意圖研究系列</li>
+      <li>區塊鏈技術在商業應用之探討</li>
+      <li>AI 驅動電子商務與消費者行為研究</li>
+      <li>TAM（科技接受模型）延伸應用系列論文</li>
+    </ul>
+  </div>
+
+  <!-- 教學領域 -->
+  <div class="card">
+    <h3>主要教學課程</h3>
+    <ul class="styled">
+      <li>電子商務</li>
+      <li>行動商務</li>
+      <li>數位行銷</li>
+      <li>資訊管理</li>
+      <li>管理資訊系統</li>
+    </ul>
+  </div>
+
+  <!-- 學術服務 -->
+  <div class="card">
+    <h3>學術服務與貢獻</h3>
+    <ul class="styled">
+      <li>多本 SSCI 期刊審稿委員</li>
+      <li>國際學術研討會論文評審</li>
+      <li>台科大企管系學術發展推動</li>
+      <li>產學合作計畫主持人</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>
+  資料來源：臺灣科技大學企管系官網、Google Scholar、ResearchGate、Emerald Publishing &nbsp;｜&nbsp; 整理日期：2026-04-18
+</footer>
+
+</body>
+</html>
