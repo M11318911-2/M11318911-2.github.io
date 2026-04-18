@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hermes vs OpenClaw 深度比較報告 2026-04-18</title>
+  <style>
+    :root {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b22;
+      --bg-card: #1c2128;
+      --bg-card2: #21262d;
+      --border: #30363d;
+      --purple: #a78bfa;
+      --blue: #60a5fa;
+      --green: #34d399;
+      --orange: #fb923c;
+      --red: #f87171;
+      --yellow: #facc15;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.75;
+      padding: 2rem;
+    }
+
+    .container { max-width: 960px; margin: 0 auto; }
+
+    /* ===== HERO ===== */
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 60% at 20% 50%, rgba(167,139,250,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 80% 50%, rgba(96,165,250,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero .date {
+      display: inline-block;
+      background: rgba(96,165,250,0.12);
+      color: var(--blue);
+      border: 1px solid rgba(96,165,250,0.3);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero .subtitle { color: var(--text-secondary); font-size: 1rem; max-width: 560px; margin: 0 auto 1rem; }
+    .hero .vs-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin: 0.5rem 0;
+    }
+    .hero .vs-badge .hermes { color: var(--purple); }
+    .hero .vs-badge .vs { color: var(--text-secondary); font-size: 0.9rem; }
+    .hero .vs-badge .openclaw { color: var(--blue); }
+
+    /* ===== CARDS ===== */
+    section {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.75rem;
+    }
+    section.purple-border { border-top: 3px solid var(--purple); }
+    section.blue-border { border-top: 3px solid var(--blue); }
+    section.green-border { border-top: 3px solid var(--green); }
+    section.orange-border { border-top: 3px solid var(--orange); }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    h2 .emoji { font-size: 1.4rem; }
+
+    /* ===== FEATURE TABLE ===== */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    .comparison-table th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border-bottom: 2px solid var(--border);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      font-weight: 700;
+    }
+    .comparison-table th.col-hermes { color: var(--purple); }
+    .comparison-table th.col-openclaw { color: var(--blue); }
+    .comparison-table td {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table .feature-name { color: var(--text-secondary); font-size: 0.85rem; }
+    .comparison-table .hermes-cell { color: var(--text-primary); }
+    .comparison-table .openclaw-cell { color: var(--text-primary); }
+    .comparison-table .check { color: var(--green); font-weight: bold; }
+    .comparison-table .cross { color: var(--red); font-weight: bold; }
+    .comparison-table .partial { color: var(--yellow); }
+
+    /* ===== TAG ===== */
+    .tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.15rem 0.55rem;
+      border-radius: 5px;
+      letter-spacing: 0.03em;
+    }
+    .tag.free { background: rgba(52,211,153,0.15); color: var(--green); border: 1px solid rgba(52,211,153,0.3); }
+    .tag.opensource { background: rgba(167,139,250,0.15); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); }
+    .tag.fee { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+
+    /* ===== CALLOUT ===== */
+    .callout {
+      background: var(--bg-card);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      border-left: 3px solid var(--purple);
+    }
+    .callout.blue { border-left-color: var(--blue); }
+    .callout.green { border-left-color: var(--green); }
+    .callout.orange { border-left-color: var(--orange); }
+    .callout p { color: var(--text-secondary); font-size: 0.9rem; }
+    .callout strong { color: var(--text-primary); }
+
+    /* ===== USAGE PATTERN ===== */
+    .usage-flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .flow-box {
+      flex: 1;
+      min-width: 140px;
+      background: var(--bg-card);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .flow-box.hero-agent {
+      background: rgba(167,139,250,0.1);
+      border: 1px solid rgba(167,139,250,0.3);
+    }
+    .flow-box.assistant-agent {
+      background: rgba(96,165,250,0.1);
+      border: 1px solid rgba(96,165,250,0.3);
+    }
+    .flow-box .flow-role { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+    .flow-box.hero-agent .flow-role { color: var(--purple); }
+    .flow-box.assistant-agent .flow-role { color: var(--blue); }
+    .flow-box .flow-name { font-size: 1.1rem; font-weight: 800; }
+    .flow-box .flow-desc { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.2rem; }
+    .flow-box .flow-tasks { font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.5rem; }
+    .flow-box .flow-tasks li { list-style: none; padding: 0.15rem 0; text-align: left; }
+    .flow-box .flow-tasks li::before { content: "· "; color: var(--purple); }
+
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      padding: 0 0.5rem;
+      flex-shrink: 0;
+    }
+
+    /* ===== FEATURE GRID ===== */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.2rem;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+    .feature-card.hermes { border-left: 3px solid var(--purple); }
+    .feature-card.openclaw { border-left: 3px solid var(--blue); }
+    .feature-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.6rem; }
+    .feature-card.hermes h3 { color: var(--purple); }
+    .feature-card.openclaw h3 { color: var(--blue); }
+    .feature-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .feature-card li { font-size: 0.85rem; color: var(--text-secondary); padding-left: 1.2rem; position: relative; }
+    .feature-card li::before { content: "▹"; position: absolute; left: 0; color: var(--purple); font-weight: bold; font-size: 0.75rem; top: 0.2rem; }
+    .feature-card.openclaw li::before { color: var(--blue); }
+    .feature-card li strong { color: var(--text-primary); }
+
+    /* ===== COST CARD ===== */
+    .cost-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.2rem;
+    }
+    .cost-card {
+      background: var(--bg-card);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .cost-card .cost-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 0.4rem; }
+    .cost-card .cost-value { font-size: 2rem; font-weight: 800; }
+    .cost-card.hermes .cost-value { color: var(--green); }
+    .cost-card.openclaw .cost-value { color: var(--blue); }
+    .cost-card .cost-note { font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.3rem; }
+
+    /* ===== QUICK SUMMARY ===== */
+    .quick-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.2rem;
+    }
+    .summary-card {
+      background: var(--bg-card);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+    .summary-card.hermes { border-top: 3px solid var(--purple); }
+    .summary-card.openclaw { border-top: 3px solid var(--blue); }
+    .summary-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .summary-card.hermes h3 { color: var(--purple); }
+    .summary-card.openclaw h3 { color: var(--blue); }
+    .summary-card p { font-size: 0.88rem; color: var(--text-secondary); }
+    .summary-card .best-for { margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary); }
+    .summary-card .best-for strong { color: var(--text-primary); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2rem 0 1rem;
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--blue); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem; }
+      h1 { font-size: 1.7rem; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .cost-row { grid-template-columns: 1fr; }
+      .quick-summary { grid-template-columns: 1fr; }
+      .usage-flow { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); padding: 0.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="date">2026-04-18</span>
+    <h1>Hermes vs OpenClaw 深度比較報告</h1>
+    <p class="subtitle">两大开源 AI Agent 平台全面解析：核心差異、協作模式與應用場景</p>
+    <div class="vs-badge">
+      <span class="hermes">Hermes</span>
+      <span class="vs">vs</span>
+      <span class="openclaw">OpenClaw</span>
+    </div>
+    <p style="font-size:0.82rem; color:var(--text-secondary); margin-top:0.5rem">資料來源：NousResearch GitHub、Petronella Cybersecurity News、Remote OpenClaw、Wikipedia</p>
+  </div>
+
+  <!-- OVERVIEW CARDS -->
+  <section class="purple-border">
+    <h2><span class="emoji">🏷️</span> 兩者基本定位</h2>
+    <div class="feature-grid">
+      <div class="feature-card hermes">
+        <h3>🟣 Hermes — Nous Research</h3>
+        <ul>
+          <li><strong>核心理念：</strong>「會成長的 AI」— 內建學習循環</li>
+          <li><strong>定位：</strong>自我改善型 AI Agent，會從經驗中建立並改善技能</li>
+          <li><strong>最大亮點：</strong>唯一內建「用經驗自我學習」機制的 Agent</li>
+          <li><strong>開源協議：</strong>MIT（完全免費開源）</li>
+          <li><strong>最低硬體需求：</strong>$5 VPS 或本地環境</li>
+        </ul>
+      </div>
+      <div class="feature-card openclaw">
+        <h3>🔵 OpenClaw — Marco Steinhuber</h3>
+        <ul>
+          <li><strong>核心理念：</strong>「開源自主助理」— 跨服務自動工作流</li>
+          <li><strong>定位：</strong>讓 LLM 成為 24/7 自主助理，運作在自有硬體上</li>
+          <li><strong>最大亮點：</strong>Skills 生態系（ClawHub 100+ Skills）+ 多平台接入</li>
+          <li><strong>開源協議：</strong>開源免費（2026/02 非營利基金會接管）</li>
+          <li><strong>最低硬體需求：</strong>需運行在實體機器/VPS 上</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section class="blue-border">
+    <h2><span class="emoji">📊</span> 功能詳細比較表</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th style="width:22%">功能項目</th>
+          <th class="col-hermes" style="width:39%">Hermes</th>
+          <th class="col-openclaw" style="width:39%">OpenClaw</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="feature-name">開發者</td>
+          <td class="hermes-cell">Nous Research</td>
+          <td class="openclaw-cell">Marco Steinhuber</td>
+        </tr>
+        <tr>
+          <td class="feature-name">開源協議</td>
+          <td class="hermes-cell"><span class="tag opensource">MIT</span> 完全開源</td>
+          <td class="openclaw-cell"><span class="tag opensource">開源</span> 非營利基金會接管</td>
+        </tr>
+        <tr>
+          <td class="feature-name">核心亮點</td>
+          <td class="hermes-cell">內建學習循環，會從經驗中成長</td>
+          <td class="openclaw-cell">Skills 生態系 + ClawHub</td>
+        </tr>
+        <tr>
+          <td class="feature-name">記憶系統</td>
+          <td class="hermes-cell">✅ 強大 — FTS5 對話搜尋 + LLM 摘要 + Honcho 用戶建模</td>
+          <td class="openclaw-cell">✅ 一般 — workspace 檔案系統為基礎 + 每日笔记</td>
+        </tr>
+        <tr>
+          <td class="feature-name">模型支援</td>
+          <td class="hermes-cell">✅ 任意模型（OpenRouter 200+、Hugging Face、OpenAI、MiniMax、Kimi 等）</td>
+          <td class="openclaw-cell">✅ 主要接入 Claude，亦支援多種 LLM</td>
+        </tr>
+        <tr>
+          <td class="feature-name">運行成本</td>
+          <td class="hermes-cell"><span class="tag free">$0</span> 完全免費，號稱可在 $5 VPS 運行</td>
+          <td class="openclaw-cell"><span class="tag fee">免費開源</span> 需自備硬體/雲端資源</td>
+        </tr>
+        <tr>
+          <td class="feature-name">API Key 需求</td>
+          <td class="hermes-cell"><span class="check">無需</span>（可用本地模型）</td>
+          <td class="openclaw-cell">需要（對應 AI 模型 API）</td>
+        </tr>
+        <tr>
+          <td class="feature-name">多代理（Subagent）</td>
+          <td class="hermes-cell"><span class="check">✅</span> 支援，隔離子 Agent 平行處理</td>
+          <td class="openclaw-cell"><span class="check">✅</span> 支援 subagent orchestration</td>
+        </tr>
+        <tr>
+          <td class="feature-name">排程自動化（Cron）</td>
+          <td class="hermes-cell"><span class="check">✅</span> 內建，支援自然語言設定</td>
+          <td class="openclaw-cell"><span class="check">✅</span> 支援 cron job + 心跳檢查</td>
+        </tr>
+        <tr>
+          <td class="feature-name">研究應用</td>
+          <td class="hermes-cell"><span class="check">✅</span> trajectory 生成、Atropos RL、可用於訓練下一代模型</td>
+          <td class="openclaw-cell">一般用途</td>
+        </tr>
+        <tr>
+          <td class="feature-name">平台接入</td>
+          <td class="hermes-cell">CLI、Telegram、Discord、Slack、WhatsApp、Signal、Email、SMS</td>
+          <td class="openclaw-cell">LINE、Discord、Telegram、WhatsApp、Signal、Matrix、Email 等</td>
+        </tr>
+        <tr>
+          <td class="feature-name">本地離線運行</td>
+          <td class="hermes-cell"><span class="check">✅</span> 完全支援，資料不離機器</td>
+          <td class="openclaw-cell"><span class="check">✅</span> 支援本地 LLM + 自有硬體</td>
+        </tr>
+        <tr>
+          <td class="feature-name">語音處理</td>
+          <td class="hermes-cell"><span class="check">✅</span> 語音備忘錄轉錄</td>
+          <td class="openclaw-cell">需透過技能擴充</td>
+        </tr>
+        <tr>
+          <td class="feature-name">部署方式</td>
+          <td class="hermes-cell">本地、Docker、SSH、Daytona、Singularity、Modal（含 serverless 休眠）</td>
+          <td class="openclaw-cell">本地、Gateway 服務運行、支援 Raspberry Pi、VPS</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Skills 系統</td>
+          <td class="hermes-cell">✅ 從經驗中自動建立並自我改善</td>
+          <td class="openclaw-cell"><span class="check">✅</span> ClawHub 100+ Skills 技能市場</td>
+        </tr>
+        <tr>
+          <td class="feature-name">隱私重視度</td>
+          <td class="hermes-cell"><span class="check">極高</span> — 支援完全離線，$0 成本</td>
+          <td class="openclaw-cell"><span class="check">高</span> — 本地運行，資料自主</td>
+        </tr>
+        <tr>
+          <td class="feature-name">發布時間</td>
+          <td class="hermes-cell">2026 年（持續活躍開發）</td>
+          <td class="openclaw-cell">約 2024 年起，2026/02 基金會接管</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- IDEAL USAGE PATTERN -->
+  <section class="green-border">
+    <h2><span class="emoji">🤝</span> 推薦協作模式：雙代理分工</h2>
+    <div class="usage-flow">
+      <div class="flow-box hero-agent">
+        <div class="flow-role">🟣 主代理（Hero Agent）</div>
+        <div class="flow-name">OpenClaw</div>
+        <div class="flow-desc">複雜規劃 + 核心決策</div>
+        <ul class="flow-tasks">
+          <li>高階策略規劃</li>
+          <li>複雜任務決策</li>
+          <li>最終品質把關</li>
+          <li>使用高階模型（Claude等）</li>
+        </ul>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box assistant-agent">
+        <div class="flow-role">🔵 助理代理（Assistant Agent）</div>
+        <div class="flow-name">Hermes</div>
+        <div class="flow-desc">具體執行 + 輔助任務</div>
+        <ul class="flow-tasks">
+          <li>例行性、重複性工作</li>
+          <li>初步研究與資料收集</li>
+          <li>檔案整理、備份</li>
+          <li>使用輕量模型（DeepSeek等）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout green" style="margin-top:1.2rem">
+      <p><strong>💡 核心邏輯：</strong>用 OpenClaw（貴但聰明）做需要複雜判斷的事，用 Hermes（便宜且會學習）做大量的執行工作。省下 API 成本，同時讓系統隨著使用越來越強。</p>
+    </div>
+    <div class="callout orange" style="margin-top:0.75rem">
+      <p><strong>四大實際應用場景：</strong></p>
+      <p>① <strong>故障自動修復：</strong>OpenClaw 掛了 → Hermes 瞬間接手修復</p>
+      <p>② <strong>規劃執行一條龍：</strong>OpenClaw 規劃 → Hermes 寫程式 → 省 50%+ API 成本</p>
+      <p>③ <strong>全天候走廊巡查：</strong>Hermes 每 2 小時自動檢查，有錯立即通知 OpenClaw</p>
+      <p>④ <strong>共同完美企劃：</strong>Hermes 寫初稿 → OpenClaw 修改 → 自動互相檢視盲點</p>
+    </div>
+  </section>
+
+  <!-- COST ANALYSIS -->
+  <section class="orange-border">
+    <h2><span class="emoji">💰</span> 成本分析</h2>
+    <div class="cost-row">
+      <div class="cost-card hermes">
+        <div class="cost-label">Hermes 月費</div>
+        <div class="cost-value">$0</div>
+        <div class="cost-note">MIT 開源，完全免費<br>可在 $5 VPS 運行<br>不需要 API Key（可用本地模型）</div>
+      </div>
+      <div class="cost-card openclaw">
+        <div class="cost-label">OpenClaw 月費</div>
+        <div class="cost-value">$0</div>
+        <div class="cost-note">開源免費<br>需自備 API Key（Claude 等）<br>或本地 LLM + 硬體成本</div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:1rem">
+      <p><strong>📌 結論：</strong>兩者本身都是開源免費的。Hermes 的額外成本極低（$5 VPS 即可）；OpenClaw 若搭配高階模型（Claude Opus 4.7）則有對應的 API 費用。選擇時應以功能需求為主，而非成本。</p>
+    </div>
+  </section>
+
+  <!-- QUICK SUMMARY -->
+  <section class="purple-border">
+    <h2><span class="emoji">📋</span> 快速選擇指南</h2>
+    <div class="quick-summary">
+      <div class="summary-card hermes">
+        <h3>🟣 選 Hermes 當...</h3>
+        <p>你希望 Agent 能從經驗中學習、不斷成長，且願意折疊一點智慧換取極低成本</p>
+        <div class="best-for"><strong>適合：</strong>研究人員、预算有限、個人开发者、隐私高度敏感场景、完全离线需求</div>
+      </div>
+      <div class="summary-card openclaw">
+        <h3>🔵 選 OpenClaw 當...</h3>
+        <p>你需要一個能接入 LINE/Discord/Telegram、擁有豐富 Skills 生态、且能與 Claude 深度整合的 24/7 助理</p>
+        <div class="best-for"><strong>適合：</strong>企业用户、已有 Claude 订阅者、需要多平台整合、需要 ClawHub 技能扩展</div>
+      </div>
+    </div>
+    <div class="callout blue" style="margin-top:1.2rem">
+      <p><strong>🚀 終極組合：</strong>兩者並用，用 Obsidian 作為共享記憶區，OpenClaw 擔任主腦決策者，Hermes 擔任執行助理。這就是那張 Infographic 建議的「Multi-Agent Workflow」— 未來已經不是單打獨鬥的時代了。</p>
+    </div>
+  </section>
+
+  <!-- SOURCE INFO -->
+  <section class="blue-border">
+    <h2><span class="emoji">📚</span> 參考資料</h2>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem">
+      <li style="padding-left:0">🔗 <a href="https://github.com/nousresearch/hermes-agent" target="_blank" style="color:var(--blue)">github.com/nousresearch/hermes-agent</a> — Hermes Agent 官方 GitHub</li>
+      <li style="padding-left:0">🔗 <a href="https://hermes-agent.nousresearch.com/docs/" target="_blank" style="color:var(--purple)">hermes-agent.nousresearch.com/docs/</a> — Hermes 官方文檔</li>
+      <li style="padding-left:0">🔗 <a href="https://petronellatech.com/blog/hermes-agent-ai-guide-2026" target="_blank" style="color:var(--text-secondary)">Petronella — Hermes Agent Guide 2026</a></li>
+      <li style="padding-left:0">🔗 <a href="https://en.wikipedia.org/wiki/OpenClaw" target="_blank" style="color:var(--blue)">OpenClaw — Wikipedia</a></li>
+      <li style="padding-left:0">🔗 <a href="https://petronellatech.com/blog/openclaw-ai-agent-guide-2026" target="_blank" style="color:var(--text-secondary)">Petronella — OpenClaw AI Agent Guide 2026</a></li>
+      <li style="padding-left:0">🔗 <a href="https://remoteopenclaw.com/blog/best-models-for-hermes-agent" target="_blank" style="color:var(--text-secondary)">Remote OpenClaw — Best Models for Hermes Agent 2026</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>報告生成時間：2026-04-18 | 由 OpenClaw Agent 自動生成</p>
+    <p><a href="https://ntust2026.github.io">ntust2026.github.io</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
