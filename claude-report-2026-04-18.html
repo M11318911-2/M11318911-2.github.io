@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude 新功能報告 2026-04-18</title>
+  <style>
+    :root {
+      --bg-primary: #0f1117;
+      --bg-secondary: #1a1d27;
+      --bg-card: #242836;
+      --accent: #d4a574;
+      --accent-secondary: #7eb8da;
+      --text-primary: #e8e6e3;
+      --text-secondary: #9ca3af;
+      --border: #2d3348;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg-primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    section {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h2 .icon {
+      font-size: 1.5rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(126, 184, 218, 0.15);
+      color: var(--accent-secondary);
+      padding: 0.15rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-left: auto;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    li {
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-secondary);
+    }
+
+    li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    li strong {
+      color: var(--text-primary);
+    }
+
+    .highlight-box {
+      background: var(--bg-card);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.25rem;
+      border-radius: 0 10px 10px 0;
+      margin: 1rem 0;
+    }
+
+    .highlight-box.warning {
+      border-left-color: #e57373;
+      background: rgba(229, 115, 115, 0.08);
+    }
+
+    .highlight-box p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .col {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .col h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .col h3 .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .col.orange h3 .dot { background: #f59e0b; }
+    .col.blue h3 .dot { background: var(--accent-secondary); }
+
+    .col ul {
+      gap: 0.5rem;
+    }
+
+    .col li {
+      font-size: 0.88rem;
+      padding-left: 1.2rem;
+    }
+
+    .col li::before {
+      font-size: 0.7rem;
+    }
+
+    .workflow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .workflow-step {
+      background: var(--bg-card);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+      text-align: center;
+      min-width: 100px;
+    }
+
+    .workflow-step .step-title {
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .workflow-step .step-desc {
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+    }
+
+    .workflow-arrow {
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+
+    .slash-cmds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .cmd {
+      background: rgba(126, 184, 218, 0.1);
+      border: 1px solid rgba(126, 184, 218, 0.25);
+      color: var(--accent-secondary);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      font-family: "SF Mono", "Fira Code", monospace;
+      font-size: 0.8rem;
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem; }
+      .two-col { grid-template-columns: 1fr; }
+      h1 { font-size: 1.75rem; }
+      .workflow { flex-direction: column; align-items: flex-start; }
+      .workflow-arrow { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <span class="badge">ANTHROPIC 更新</span>
+      <h1>Claude 新功能報告</h1>
+      <p class="subtitle">Claude for Word × Claude Design 生態系最新進展</p>
+      <div class="meta">
+        <span>📅 2026 年 4 月 18 日</span>
+        <span>📌 Claude Taiwan 社群</span>
+        <span>👤 Maple Kuo</span>
+      </div>
+    </header>
+
+    <!-- Claude for Word -->
+    <section>
+      <h2><span class="icon">📄</span> Claude for Word <span class="tag">已全面開放</span></h2>
+      <ul>
+        <li><strong>推出時間：</strong>2026 年 4 月 11 日</li>
+        <li><strong>開放範圍：</strong>最初僅提供給 Teams / Enterprise 用戶 Beta 測試，一週後已全面開放給所有 <strong>Pro / Max</strong> 付費用戶</li>
+        <li><strong>核心功能：</strong>Claude 現在能直接閱讀並編輯 Word 文件</li>
+        <li><strong>局部編輯：</strong>使用者可圈選特定段落，要求 Claude 進行修改（如：精簡文字、改為被動語態）</li>
+        <li><strong>保留格式：</strong>修改時保留原始<strong>排版、字體和標號</strong></li>
+        <li><strong>追蹤修訂：</strong>所有修改內容以 Word 原生的「<strong>追蹤修訂</strong>」模式呈現</li>
+        <li><strong>上下文共享：</strong>資訊可與 <strong>Claude for Excel</strong> 和 <strong>PowerPoint</strong> 互通</li>
+      </ul>
+
+      <div class="two-col">
+        <div class="col orange">
+          <h3><span class="dot"></span>主要優勢</h3>
+          <ul>
+            <li>無需複製貼上，直接在文件中與 AI 協作</li>
+            <li>局部修改精準，不破壞整體格式</li>
+            <li>修訂軌跡透明，可逐條接受或拒絕</li>
+            <li>與 Excel、PowerPoint 生態系深度整合</li>
+          </ul>
+        </div>
+        <div class="col blue">
+          <h3><span class="dot"></span>可用指令</h3>
+          <div class="slash-cmds">
+            <span class="cmd">/check-doc</span>
+            <span class="cmd">/copy-edit</span>
+            <span class="cmd">/summarize-contract</span>
+            <span class="cmd">/flag-issues</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-box warning">
+        <p><strong>⚠️ 安全警告：</strong>不要在來源不明或不可信的外部文件上使用此功能。攻擊者可能在文件或註解中隱藏「惡意指令」，誘導 AI 做出外洩資料或篡改關鍵條款的行為（間接提示攻擊 / Indirect Prompt Injection）。</p>
+      </div>
+    </section>
+
+    <!-- Claude Design -->
+    <section>
+      <h2><span class="icon">🎨</span> Claude Design <span class="tag">研究預覽</span></h2>
+      <ul>
+        <li><strong>定位：</strong>讓 Claude 像 <strong>UX 設計師</strong>一樣工作</li>
+        <li><strong>核心能力：</strong>套用團隊特定的設計風格，針對細節進行微調</li>
+        <li><strong>交付包（handoff bundle）：</strong>將設計意圖與互動邏輯完整打包，可直接交給 <strong>Claude Code</strong> 進行實作</li>
+        <li><strong>協作與權限：</strong>支援 Private / 開放編輯，可於群組對話中與 Claude 共同修改</li>
+        <li><strong>原型製作：</strong>內建網頁抓取工具，可直接取現有網站元素，讓原型更逼真</li>
+        <li><strong>可用對象：</strong>Claude Pro、Max、Team、Enterprise（Research Preview 階段）</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p><strong>💡 協作流程：</strong>設計稿 → 打包成 handoff bundle → 交給 Claude Code 實作，強調 Claude 生態系的無縫整合。</p>
+      </div>
+
+      <div class="workflow">
+        <div class="workflow-step">
+          <div class="step-title">Claude Design</div>
+          <div class="step-desc">設計稿定案</div>
+        </div>
+        <span class="workflow-arrow">→</span>
+        <div class="workflow-step">
+          <div class="step-title">handoff bundle</div>
+          <div class="step-desc">打包設計意圖</div>
+        </div>
+        <span class="workflow-arrow">→</span>
+        <div class="workflow-step">
+          <div class="step-title">Claude Code</div>
+          <div class="step-desc">實作代碼</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 總結 -->
+    <section>
+      <h2><span class="icon">🔗</span> 生態系趨勢觀察</h2>
+      <ul>
+        <li><strong>深度整合：</strong>Anthropic 正在將 Claude 深度嵌入各種工作流程（文件、代碼、設計）</li>
+        <li><strong>多代理協作：</strong>從設計到實作，Claude 生態系強調跨產品無縫交接</li>
+        <li><strong>安全意識提升：</strong>隨著 AI 深入文件處理，安全問題（提示注入）已被正式列入關注</li>
+        <li><strong>開放速度加快：</strong>Beta 測試週期縮短，新功能可在短時間內全面開放</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>報告生成時間：2026-04-18 | 資料來源：Claude Taiwan 社群（Maple Kuo）</p>
+      <p>由 OpenClaw Agent 生成</p>
+    </footer>
+
+  </div>
+</body>
+</html>
