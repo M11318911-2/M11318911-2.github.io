@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTC 2026｜黃仁勳的 Token 經濟學</title>
+  <style>
+    :root {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b22;
+      --bg-card: #1c2128;
+      --bg-card2: #21262d;
+      --border: #30363d;
+      --nvidia-green: #76b900;
+      --nvidia-green-light: #a3d15a;
+      --accent-blue: #60a5fa;
+      --accent-purple: #a78bfa;
+      --accent-orange: #fb923c;
+      --accent-yellow: #facc15;
+      --accent-red: #f87171;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.75;
+      padding: 2rem;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; }
+
+    /* ===== HERO ===== */
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(118,185,0,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero .source-badge {
+      display: inline-block;
+      background: rgba(118,185,0,0.12);
+      color: var(--nvidia-green-light);
+      border: 1px solid rgba(118,185,0,0.3);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    .hero h1 span { color: var(--nvidia-green); }
+    .hero .subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto 1rem;
+    }
+    .hero .meta {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.75rem;
+    }
+    section.nvidia { border-top: 3px solid var(--nvidia-green); }
+    section.blue { border-top: 3px solid var(--accent-blue); }
+    section.orange { border-top: 3px solid var(--accent-orange); }
+    section.purple { border-top: 3px solid var(--accent-purple); }
+    section.yellow { border-top: 3px solid var(--accent-yellow); }
+    section.red { border-top: 3px solid var(--accent-red); }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    h2 .emoji { font-size: 1.4rem; }
+    h2 .tag {
+      margin-left: auto;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.15rem 0.6rem;
+      border-radius: 6px;
+    }
+    .tag.trillion {
+      background: rgba(118,185,0,0.15);
+      color: var(--nvidia-green-light);
+      border: 1px solid rgba(118,185,0,0.3);
+    }
+    .tag.update {
+      background: rgba(96,165,250,0.15);
+      color: var(--accent-blue);
+      border: 1px solid rgba(96,165,250,0.3);
+    }
+
+    p { color: var(--text-secondary); margin-bottom: 0.75rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ===== KEY STATS ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .stat-card .value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--nvidia-green);
+      line-height: 1.2;
+    }
+    .stat-card .label {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 0.3rem;
+    }
+    .stat-card.highlight {
+      background: rgba(118,185,0,0.08);
+      border: 1px solid rgba(118,185,0,0.25);
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.3rem;
+      bottom: 0.3rem;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--nvidia-green), var(--accent-blue));
+      border-radius: 1px;
+    }
+    .timeline-item { margin-bottom: 0.85rem; position: relative; }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.5rem;
+      top: 0.45rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--nvidia-green);
+      border: 2px solid var(--bg-secondary);
+    }
+    .timeline-item .year {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--nvidia-green);
+      margin-right: 0.5rem;
+    }
+    .timeline-item .event { font-size: 0.88rem; color: var(--text-secondary); }
+    .timeline-item .event strong { color: var(--text-primary); }
+
+    /* ===== PRICING TABLE ===== */
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.2rem;
+      font-size: 0.88rem;
+    }
+    .pricing-table th {
+      text-align: left;
+      padding: 0.7rem 1rem;
+      border-bottom: 2px solid var(--border);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      font-weight: 700;
+    }
+    .pricing-table td {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    .pricing-table tr:last-child td { border-bottom: none; }
+    .pricing-table .tier { font-weight: 700; color: var(--text-primary); }
+    .pricing-table .price { font-weight: 800; color: var(--nvidia-green-light); font-size: 1rem; }
+    .pricing-table .note { font-size: 0.78rem; }
+    .pricing-table tr.highlight-row {
+      background: rgba(118,185,0,0.06);
+    }
+
+    /* ===== REVENUE COMPARISON ===== */
+    .revenue-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+    .revenue-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .revenue-card .platform { font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.4rem; }
+    .revenue-card .amount { font-size: 1.8rem; font-weight: 800; color: var(--nvidia-green); }
+    .revenue-card .unit { font-size: 0.85rem; color: var(--text-secondary); }
+    .revenue-card .arch { font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.3rem; }
+
+    /* ===== QUOTE BOX ===== */
+    .quote-box {
+      background: var(--bg-card);
+      border-left: 4px solid var(--nvidia-green);
+      border-radius: 0 10px 10px 0;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+    }
+    .quote-box p {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    .quote-box .source {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+      font-style: normal;
+    }
+
+    /* ===== INSIGHT ===== */
+    .insight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.2rem;
+    }
+    .insight-card {
+      background: var(--bg-card);
+      border-radius: 10px;
+      padding: 1.1rem;
+    }
+    .insight-card h3 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--accent-blue);
+    }
+    .insight-card p { font-size: 0.85rem; }
+    .insight-card.orange h3 { color: var(--accent-orange); }
+    .insight-card.green h3 { color: var(--nvidia-green-light); }
+
+    /* ===== VERARUBIN ===== */
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .spec-item {
+      background: var(--bg-card);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .spec-item .spec-label { font-size: 0.72rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .spec-item .spec-value { font-size: 1.05rem; font-weight: 800; color: var(--nvidia-green-light); }
+
+    /* ===== CALLOUT ===== */
+    .callout {
+      background: var(--bg-card);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      border-left: 3px solid var(--nvidia-green);
+    }
+    .callout.warning { border-left-color: var(--accent-orange); background: rgba(251,146,60,0.06); }
+    .callout.blue { border-left-color: var(--accent-blue); }
+    .callout p { font-size: 0.9rem; margin: 0; }
+    .callout strong { color: var(--text-primary); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2rem 0 1rem;
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--nvidia-green-light); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem; }
+      h1 { font-size: 1.7rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .revenue-grid { grid-template-columns: 1fr; }
+      .insight-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="source-badge">NVIDIA GTC 2026 · 經濟觀察報</span>
+    <h1><span>│</span> 黃仁勳的 Token 經濟學</h1>
+    <p class="subtitle">資料中心從「訓練模型」的地方，變成「生產 Token 的工廠」—— 一套全新的商業邏輯</p>
+    <div class="meta">
+      <span>📅 GTC 2026：2026年3月16-19日，美國聖何塞</span>
+      <span>📰 來源：經濟觀察報 via 鉅亨網</span>
+    </div>
+  </div>
+
+  <!-- CORE INSIGHT -->
+  <section class="nvidia">
+    <h2><span class="emoji">💡</span> 核心洞察</h2>
+    <div class="quote-box">
+      <p>「資料中心正在從訓練模型的地方，變成生產 Token 的工廠。」</p>
+      <p class="source">— 黃仁勳，GTC 2026 主題演講</p>
+    </div>
+    <p style="margin-top:1rem">黃仁勳在 GTC 大會用兩小時講了一套新的商業邏輯：<strong>AI 基礎設施的核心價值不再只是「訓練模型」，而在於「每秒能產出多少 Token」</strong>。這改變了資料中心的商業模式。</p>
+    <div class="stats-grid">
+      <div class="stat-card highlight">
+        <div class="value">$1 兆</div>
+        <div class="label">2027 年全球 AI 基礎設施需求預測</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">4%+</div>
+        <div class="label">預言發布後輝達股價瞬時跳漲</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">$2,159B</div>
+        <div class="label">輝達2026財年全年營收</div>
+      </div>
+    </div>
+    <div class="callout warning" style="margin-top:1rem">
+      <p><strong>⚠️ A股反應：</strong>兆美元預言公布後，幾小時內A股開盤算力產業鏈股票集體下跌，天孚通訊跌幅超10%，長光華芯跌9.72%。原因：黃仁勳預言的下一代Feynman晶片架構要<strong>2028年</strong>才上市，而A股電子類股平均市盈率已達82倍。</p>
+    </div>
+  </section>
+
+  <!-- TOKEN CONSUMPTION JUMPS -->
+  <section class="blue">
+    <h2><span class="emoji">📈</span> Token 消耗量三級跳</h2>
+    <p>Token 是大語言模型處理資訊的基本單位，可粗略理解為 AI 處理或生成的文字片段（一個漢字約等於1-2個Token）。過去兩年發生了幾次量級上的跳躍：</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="year">2022年底</span>
+        <span class="event"><strong>ChatGPT 上線</strong>，AI 學會生成內容，開始大量消耗 Token</span>
+      </div>
+      <div class="timeline-item">
+        <span class="year">ChatGPT o1</span>
+        <span class="event"><strong>o1 模型出現</strong>，AI 學會推理和反思，為了思考，<strong>要在內部生成大量 Token 給自己看</strong></span>
+      </div>
+      <div class="timeline-item">
+        <span class="year">Claude Code</span>
+        <span class="event"><strong>Anthropic Claude Code 發布</strong>，AI 能讀取檔案、編寫程式碼、編譯測試，<strong>每任務消耗 Token 比簡單對話多出數個數量級</strong></span>
+      </div>
+    </div>
+    <div class="callout blue" style="margin-top:1rem">
+      <p><strong>黃仁勳強調：</strong>輝達所有軟體工程師都在用 AI 輔助程式設計。AI 工作分兩階段——<strong>訓練</strong>（一次性的昂貴成本）與<strong>推理</strong>（模型幹活，每天都在發生，需求越來越大）。</p>
+    </div>
+  </section>
+
+  <!-- PARADIGM SHIFT -->
+  <section class="nvidia">
+    <h2><span class="emoji">🔄</span> 典範轉移：訓練 → 推理</h2>
+    <p>過去全球買 GPU 主要是為了訓練模型，現在重心已明顯轉向推理。</p>
+    <div class="insight-grid">
+      <div class="insight-card orange">
+        <h3>🔺 訓練轉向推理</h3>
+        <p>IDC 中國分析師杜昀龍指出，目前中國推理伺服器不論增速還是佔比均已超過訓練，推理佔比已接近 <strong>60%</strong>。</p>
+      </div>
+      <div class="insight-card green">
+        <h3>🚀 推理需求爆炸</h3>
+        <p>黃仁勳指出，推理服務商的業務規模過去一年增長了 <strong>100倍</strong>。</p>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:1rem">
+      <p>但問題在於：<strong>Token 還沒有形成市場定價體系。</strong> 黃仁勳在演講中給出了他認為未來會出現的五檔價格，作為一種願景參考。</p>
+    </div>
+  </section>
+
+  <!-- TOKEN PRICING TIERS -->
+  <section class="purple">
+    <h2><span class="emoji">💰</span> Token 五檔定價未來願景</h2>
+    <p>模型越大、上下文越長、響應速度越快，Token 就越貴。以下是黃仁勳提出的定價層級：</p>
+    <table class="pricing-table">
+      <thead>
+        <tr>
+          <th>等級</th>
+          <th>每百萬Token價格</th>
+          <th>說明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tier">免費層</td>
+          <td class="price">$0</td>
+          <td class="note">產出量大，但響應速度慢</td>
+        </tr>
+        <tr>
+          <td class="tier">中等層</td>
+          <td class="price">$3</td>
+          <td class="note">一般回應速度</td>
+        </tr>
+        <tr>
+          <td class="tier">高級層</td>
+          <td class="price">$6</td>
+          <td class="note">較高質量輸出</td>
+        </tr>
+        <tr>
+          <td class="tier">高速層</td>
+          <td class="price">$45</td>
+          <td class="note">快速響應，低延遲</td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="tier">🔥 頂級層</td>
+          <td class="price">$150</td>
+          <td class="note">最優質量 + 最快速度</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout" style="margin-top:1rem">
+      <p><strong>頂級層範例：</strong>一個研究團隊每天用 5000 萬 Token，按每百萬 $150 美元計算，一天費用約 <strong>$7,500 美元</strong>。對企業來說，這筆錢能完成以前做不到的事——例如一次性讀完整份合同或一整個程式碼庫（上下文窗口從 32K 拉高到 400K）。</p>
+    </div>
+  </section>
+
+  <!-- EFFICIENCY REVOLUTION -->
+  <section class="nvidia">
+    <h2><span class="emoji">⚡</span> 效率革命：同樣電力，誰產更多 Token 誰就贏</h2>
+    <p>黃仁勳指出：每一座資料中心都受<strong>電力限制</strong>——一座 1GW 的資料中心永遠不會變成 2GW，這是電力和土地決定的。在固定功率下：</p>
+    <p style="text-align:center; font-size:1.1rem; font-weight:700; color:var(--text-primary); margin:1rem 0">
+      誰消耗每瓦電力能產出的 Token 最多 → 誰的生產成本就最低 → 誰就賺得最多
+    </p>
+    <p>他在演講中展示了同一座 1GW 資料中心，用不同硬體平台的年營收差距：</p>
+    <div class="revenue-grid">
+      <div class="revenue-card">
+        <div class="platform">Blackwell 架構</div>
+        <div class="amount">$300B</div>
+        <div class="unit">年營收（美元）</div>
+        <div class="arch">當前一代</div>
+      </div>
+      <div class="revenue-card" style="border-color:rgba(118,185,0,0.4)">
+        <div class="platform">Vera Rubin</div>
+        <div class="amount">$1,500B</div>
+        <div class="unit">年營收（美元）</div>
+        <div class="arch">下一代（5x）</div>
+      </div>
+      <div class="revenue-card" style="border-color:rgba(118,185,0,0.6)">
+        <div class="platform">Groq LPU</div>
+        <div class="amount">$3,000B</div>
+        <div class="unit">年營收（美元）</div>
+        <div class="arch">推理加速（10x）</div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:1rem">
+      <p><strong>兆美元預言的由來：</strong>不是晶片漲價，而是同樣的電力能生產出更多、更貴的 Token。客戶現有的資料中心還沒有被充分利用，換上新代裝置，同樣電力條件下收入可翻好幾倍。</p>
+    </div>
+    <div class="quote-box">
+      <p>「未來每一位 CEO 都會盯著自己 Token 工廠的效能，因為那直接就是收入。」</p>
+      <p class="source">— 黃仁勳</p>
+    </div>
+  </section>
+
+  <!-- EMPLOYEE TOKEN BUDGET -->
+  <section class="orange">
+    <h2><span class="emoji">👔</span> 未來趨勢：每位工程師的 Token 預算</h2>
+    <p>黃仁勳描述了矽谷正在出現的新變化：越來越多工程師日常用 AI 寫程式碼、做研究、處理文件——這些操作統統要消耗 Token，企業需要為員工使用 AI 的開銷買單。</p>
+    <div class="callout" style="border-left-color:var(--accent-orange); margin-top:1rem">
+      <p><strong>預言：</strong>這筆開銷會大到需要<strong>單獨列預算</strong>，就像企業給員工配電腦和軟體一樣。<strong>未來每個工程師入職時都會拿到一份年度 Token 預算，金額大約相當於基礎薪資的一半。</strong></p>
+    </div>
+    <div class="insight-grid" style="margin-top:1rem">
+      <div class="insight-card">
+        <h3>📊 對企業的影響</h3>
+        <p>員工使用 AI 的成本將從隱性變顯性，需要像管理軟體授權一樣管理 Token 預算。</p>
+      </div>
+      <div class="insight-card orange">
+        <h3>🏷️ 對HR的影響</h3>
+        <p>招募時除了談薪水，還要談 Token 配額——這將成為科技業新標配福利項目。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERA RUBIN -->
+  <section class="nvidia">
+    <h2><span class="emoji">🖥️</span> 新硬體：Vera Rubin 平台</h2>
+    <p>黃仁勳的 Token 經濟學對應的硬體是 GTC 上正式發布的 <strong>Vera Rubin 平台</strong>。</p>
+    <div class="quote-box">
+      <p>「過去談 Hopper 架構的時候我會舉起一塊晶片，但 Vera Rubin 不是一塊晶片的事，它是一整個系統。」</p>
+      <p class="source">— 黃仁勳</p>
+    </div>
+    <div class="spec-grid">
+      <div class="spec-item">
+        <span class="spec-label">晶片數量</span>
+        <span class="spec-value">7 款晶片</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">核心</span>
+        <span class="spec-value">NVL72</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">整合 GPU</span>
+        <span class="spec-value">72 顆 Rubin GPU</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">散熱</span>
+        <span class="spec-value">100% 液冷</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">安裝時間</span>
+        <span class="spec-value">2 小時</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">對比上代</span>
+        <span class="spec-value">從 2 天 → 2 小時</span>
+      </div>
+    </div>
+    <div class="callout warning" style="margin-top:1rem">
+      <p><strong>⚠️ 下一代 Feynman 架構：</strong>黃仁勳預告的 Feynman 晶片架構要 <strong>2028 年</strong>才會上市，這是造成資本市場短期情緒波動的原因之一。</p>
+    </div>
+  </section>
+
+  <!-- KEY TAKEAWAYS -->
+  <section class="blue">
+    <h2><span class="emoji">📋</span> 關鍵總結</h2>
+    <div class="insight-grid">
+      <div class="insight-card">
+        <h3>🔄 商業模式改變</h3>
+        <p>資料中心的價值衡量標準從「訓練多少模型」變成「每秒產出多少 Token」</p>
+      </div>
+      <div class="insight-card green">
+        <h3>⚡ 效率即收益</h3>
+        <p>在固定電力下，Token 產出效率直接等於營收能力，差距可達 10 倍</p>
+      </div>
+      <div class="insight-card orange">
+        <h3>💸 定價階梯化</h3>
+        <p>Token 將形成從免費到 $150/百萬的五檔定價體系</p>
+      </div>
+      <div class="insight-card">
+        <h3>👔 員工成本結構改變</h3>
+        <p>AI 使用成本將如同電腦一樣列為標準 IT 支出，Token 預算將成標配福利</p>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:1.2rem; border-left-color:var(--accent-purple)">
+      <p><strong>一句話總結：</strong>黃仁勳把 AI 基礎設施重新定義為「Token 工廠」，而工廠的效率（每瓦電力能換多少 Token）就是未來資料中心的核心竞争力。</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>資料來源：<a href="https://hao.cnyes.com/post/238054" target="_blank">鉅亨網《經濟觀察報》</a> ｜ GTC 2026，2026年3月16-19日</p>
+    <p>由 OpenClaw Agent 自動生成 ｜ <a href="https://ntust2026.github.io">ntust2026.github.io</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
