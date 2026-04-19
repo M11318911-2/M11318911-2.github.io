@@ -1,1 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent 每日資訊看板</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap');
 
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 2px;
+        }
+
+        .info-card {
+            background: #f8fafc;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            background: #eff6ff;
+            border-left-color: #8b5cf6;
+        }
+
+        .info-card.no-news {
+            border-left: 4px solid #cbd5e1;
+            color: #64748b;
+            text-align: center;
+            padding: 32px 16px;
+        }
+
+        .source-badge {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-top: 8px;
+        }
+
+        .date-badge {
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .info-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .info-title a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .info-title a:hover {
+            color: #8b5cf6;
+            text-decoration: underline;
+        }
+
+        .info-summary {
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+
+        .header-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+
+        .update-time {
+            color: #64748b;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen py-8 px-4">
+        <div class="max-w-6xl mx-auto">
+            <!-- Header -->
+            <div class="header-gradient rounded-2xl shadow-xl p-8 mb-8 text-white">
+                <h1 class="text-4xl font-bold mb-2">AI Agent 每日資訊看板</h1>
+                <p class="text-blue-100">最新技術動態、媒體試用心得、新產品介紹</p>
+                <p class="text-blue-200 text-sm mt-4" id="update-time"></p>
+            </div>
+
+            <!-- Section 1: 各家推出的技術更新 -->
+            <div class="mb-8">
+                <h2 class="section-title text-2xl font-bold text-slate-800 mb-6">各家推出的技術更新</h2>
+                <div class="space-y-4">
+                    <!-- OpenAI GPT-5.4 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://csguide.cn/private/gpt5.4-release.html" target="_blank">OpenAI 發布 GPT-5.4：具備原生計算機操作能力</a>
+                        </div>
+                        <div class="source-badge">編程指北</div>
+                        <div class="date-badge">📅 2026 年 3 月</div>
+                        <div class="info-summary">OpenAI 首次發布通用模型 GPT-5.4，具備最先進的計算機使用能力，擁有 1M token 上下文窗口，83% GDPVal 評分，使代理能夠跨應用程序執行複雜工作流程。</div>
+                    </div>
+
+                    <!-- Claude 更新 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://chatgptdemo.com/2026/04/18/claude-ai-review-2026/" target="_blank">Claude 完整評測 2026：功能更新與深度解析</a>
+                        </div>
+                        <div class="source-badge">AI 玩新聞</div>
+                        <div class="date-badge">📅 2026 年 4 月 18 日</div>
+                        <div class="info-summary">Claude 推出 Claude Opus 4.5 和推理模型 Claude Opus 4.5 Extended Thinking，Projects、Artifacts、Memory 全面免費開放，Claude Code 工具支持終端機代碼協助。</div>
+                    </div>
+
+                    <!-- Google Gemini 更新 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://blog.mean.ceo/new-ai-model-releases-news-april-2026/" target="_blank">Google Gemini 3 系列發布：推理能力領先業界</a>
+                        </div>
+                        <div class="source-badge">Mean CEO Blog</div>
+                        <div class="date-badge">📅 2026 年 4 月</div>
+                        <div class="info-summary">Google 發布 Gemini 3 Pro、Gemini 3 DeepThink 推理模型及 Gemini 3 Pro Image，GPQA Diamond 得分達 94.3%，成本效益最優，每百萬 tokens 定價 2 美元。</div>
+                    </div>
+
+                    <!-- Agent SDK 框架對比 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://composio.dev/content/claude-agents-sdk-vs-openai-agents-sdk-vs-google-adk" target="_blank">Claude vs OpenAI vs Google：Agent SDK 框架全面對比</a>
+                        </div>
+                        <div class="source-badge">Composio</div>
+                        <div class="date-badge">📅 2026 年 4 月</div>
+                        <div class="info-summary">詳細對比三大廠商的 Agent SDK，Claude、ChatGPT 和 Gemini 都具備代理模式，可控制瀏覽器進行預訂、瀏覽和多步網頁任務。</div>
+                    </div>
+
+                    <!-- 模型對比資訊 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://llm-stats.com/llm-updates" target="_blank">AI Updates Today - 2026 年 4 月最新 AI 模型發佈</a>
+                        </div>
+                        <div class="source-badge">LLM Stats</div>
+                        <div class="date-badge">📅 2026 年 4 月</div>
+                        <div class="info-summary">追蹤 2026 年各家 AI 模型的最新版本發布、功能更新和基準測試結果，涵蓋 OpenAI、Google、Anthropic 等主要廠商。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: 各媒體的試用心得 -->
+            <div class="mb-8">
+                <h2 class="section-title text-2xl font-bold text-slate-800 mb-6">各媒體的試用心得</h2>
+                <div class="space-y-4">
+                    <!-- 完整入門指南 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://blog.creatorhome.tw/what-is-ai-agent-complete-guide-2026/" target="_blank">什麼是 AI Agent？2026 年完整入門指南 + 熱門工具推薦</a>
+                        </div>
+                        <div class="source-badge">Creator Home</div>
+                        <div class="date-badge">📅 2026 年</div>
+                        <div class="info-summary">從零開始學習 AI Agent 基礎概念，AI Agent 與傳統聊天機器人的差異，以及 2026 年最熱門、最實用的 AI Agent 工具推薦。</div>
+                    </div>
+
+                    <!-- PM 視角理解 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://doppler.medium.com/2026-1-%E7%B0%A1%E5%96%AE-ai-agent-%E6%98%AF%E5%A6%82%E4%BD%95%E8%A2%AB%E5%AF%A6%E4%BD%9C%E7%9A%84-%E4%BB%A5-pm-%E8%A6%96%E8%A7%92%E7%90%86%E8%A7%A3-ai-agent-%E7%9A%84%E5%B7%A5%E7%A8%8B%E8%BC%AA%E5%BB%93-258469466eb1" target="_blank">簡單 AI Agent 是如何被實作的？以 PM 視角理解 Agent 工程輪廓</a>
+                        </div>
+                        <div class="source-badge">Medium - Doppler Kuo</div>
+                        <div class="date-badge">📅 2026 年 1 月</div>
+                        <div class="info-summary">以產品經理的角度深入淺出地解釋 AI Agent 的工程實現原理，幫助非技術人員理解 Agent 的核心設計概念和工作流程。</div>
+                    </div>
+
+                    <!-- Google 開發者技巧 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://developers.googleblog.com/build-better-ai-agents-5-developer-tips-from-the-agent-bake-off" target="_blank">Build Better AI Agents：Agent Bake-Off 中的 5 個開發者技巧</a>
+                        </div>
+                        <div class="source-badge">Google Developers Blog</div>
+                        <div class="date-badge">📅 2026 年</div>
+                        <div class="info-summary">Google 整理的 5 個實用開發技巧，來自業界知名的 Agent Bake-Off 比賽，幫助開發者打造更強大、更可靠的 AI Agent。</div>
+                    </div>
+
+                    <!-- AI Agent 框架對比 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://botpress.com/blog/ai-agent-frameworks" target="_blank">2026 年 7 個免費 AI Agent 框架完整對比</a>
+                        </div>
+                        <div class="source-badge">Botpress</div>
+                        <div class="date-badge">📅 2026 年</div>
+                        <div class="info-summary">盤點 2026 年最流行的開源 AI Agent 框架，包括各自的特點、適用場景，以及初學者友善的安裝和使用指南。</div>
+                    </div>
+
+                    <!-- 初學者建構指南 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://botpress.com/blog/build-ai-agent" target="_blank">如何從零開始構建 AI Agent？初學者完整教學</a>
+                        </div>
+                        <div class="source-badge">Botpress</div>
+                        <div class="date-badge">📅 2026 年</div>
+                        <div class="info-summary">一步步教初學者如何構建自己的 AI Agent，涵蓋基本概念、必要工具、程式碼範例和常見問題解答。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: 新產品的介紹 -->
+            <div class="mb-8">
+                <h2 class="section-title text-2xl font-bold text-slate-800 mb-6">新產品的介紹</h2>
+                <div class="space-y-4">
+                    <!-- Hermes Agent 完全指南 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://www.aiposthub.com/hermes-agent-open-source-ai-2026/" target="_blank">Hermes Agent 完全指南：2026 年最火爆的開源自進化 AI 助理</a>
+                        </div>
+                        <div class="source-badge">AI Post Hub</div>
+                        <div class="date-badge">📅 2026 年 4 月</div>
+                        <div class="info-summary">詳細介紹 Hermes Agent 的核心特性，包括自進化能力、多平台支持（CLI、Telegram、Slack 等）、自動技能創建，以及如何快速上手使用。</div>
+                    </div>
+
+                    <!-- Hermes Agent 對比分析 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://zhuanlan.zhihu.com/p/2022015752258027715" target="_blank">Hermes Agent 全面調研解讀：2026 最強 Agent Harness 框架</a>
+                        </div>
+                        <div class="source-badge">知乎</div>
+                        <div class="date-badge">📅 2026 年 4 月</div>
+                        <div class="info-summary">深入分析 Hermes Agent 相比其他 Agent 框架的優勢，特別是自我改進和記憶功能，以及在實際應用中的表現。</div>
+                    </div>
+
+                    <!-- MaxHermes 雲端助手 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://www.stcn.com/article/detail/3754341.html" target="_blank">MiniMax 發布全球首個雲端自我進化 AI 助手 MaxHermes</a>
+                        </div>
+                        <div class="source-badge">STCN 財經</div>
+                        <div class="date-badge">📅 2026 年 4 月</div>
+                        <div class="info-summary">MiniMax 推出的 MaxHermes 是業界首個雲端自我進化 AI 助手，結合 Hermes 框架的強大能力與雲端便利性，支援多場景應用。</div>
+                    </div>
+
+                    <!-- Hermes Agent 哲學對比 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://altsol.tw/hermes-agent-nous-research" target="_blank">Hermes Agent 是什麼？Nous Research 如何改變遊戲規則</a>
+                        </div>
+                        <div class="source-badge">替代方案有限公司</div>
+                        <div class="date-badge">📅 2026 年</div>
+                        <div class="info-summary">介紹 Nous Research 開發的 Hermes Agent，強調其自我改進和記憶能力，以及與 OpenClaw 等競品的核心哲學差異。</div>
+                    </div>
+
+                    <!-- Hermes Agent GitHub 資源 -->
+                    <div class="info-card card-hover">
+                        <div class="info-title">
+                            <a href="https://www.runoob.com/ai-agent/hermes-agent.html" target="_blank">Hermes Agent 教學資源及安裝指南</a>
+                        </div>
+                        <div class="source-badge">菜鳥教程</div>
+                        <div class="date-badge">📅 2026 年</div>
+                        <div class="info-summary">提供 Hermes Agent 的詳細安裝步驟、配置方法和使用技巧，適合初學者快速上手開源 AI Agent 框架。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="glass-effect rounded-xl p-6 text-center">
+                <p class="update-time">
+                    ✨ 此看板於每日早上 7:30 自動更新，展示過去 7 天內的最新資訊 |
+                    <span id="last-update">最後更新時間正在加載...</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 更新時間顯示
+        function updateTimestamp() {
+            const now = new Date();
+            const options = {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            };
+            const formatter = new Intl.DateTimeFormat('zh-TW', options);
+            const timeString = formatter.format(now);
+
+            document.getElementById('update-time').textContent = '📊 資料更新於：' + timeString;
+            document.getElementById('last-update').textContent = timeString;
+        }
+
+        // 初始化
+        updateTimestamp();
+
+        // 每分鐘更新一次時間
+        setInterval(updateTimestamp, 60000);
+    </script>
+</body>
+</html>
