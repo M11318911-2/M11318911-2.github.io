@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>嘉義火雞肉飯懶人包｜50家老店排名</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #faf8f5;
+      color: #333;
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .header h1 {
+      font-size: 1.8rem;
+      color: #2c2c2c;
+      margin-bottom: 0.5rem;
+    }
+    .header p {
+      color: #888;
+      font-size: 0.9rem;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .filter-btn {
+      padding: 0.4rem 1rem;
+      border: 1.5px solid #d4a;
+      border-radius: 20px;
+      background: white;
+      color: #d4a;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: #d4a;
+      color: white;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    th {
+      background: #d4a;
+      color: white;
+      padding: 0.9rem 0.75rem;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+    td {
+      padding: 0.8rem 0.75rem;
+      border-bottom: 1px solid #f0ece8;
+      font-size: 0.85rem;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fdf9f6; }
+    .score {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #d4a;
+    }
+    .score-header { width: 70px; }
+    .name-header { width: 160px; }
+    .google-header { width: 80px; }
+    .hours-header { width: 150px; }
+    .addr-header { width: 200px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tag {
+      background: #f5efe8;
+      color: #7a5a4a;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+    }
+    .closed { color: #aaa; text-decoration: line-through; }
+    .note { font-size: 0.75rem; color: #888; margin-top: 4px; }
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      .header h1 { font-size: 1.4rem; }
+      th, td { padding: 0.6rem 0.5rem; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🍗 嘉義火雞肉飯懶人包</h1>
+  <p>資料來源：Nash神之領域｜最後更新：2024-02-08｜共 23 家</p>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" data-filter="all">全部</button>
+  <button class="filter-btn" data-filter="100">推薦100分</button>
+  <button class="filter-btn" data-filter="95">95分</button>
+  <button class="filter-btn" data-filter="90">90分</button>
+  <button class="filter-btn" data-filter="85">85分</button>
+  <button class="filter-btn" data-filter="80">80分</button>
+  <button class="filter-btn" data-filter="75">75分</button>
+  <button class="filter-btn" data-filter="closed">已歇業</button>
+</div>
+
+<div class="table-wrap">
+<table id="table">
+  <thead>
+    <tr>
+      <th class="score-header">推薦</th>
+      <th class="name-header">店名</th>
+      <th class="google-header">Google</th>
+      <th class="addr-header">地址</th>
+      <th class="hours-header">營業時間</th>
+      <th>特色</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-score="100">
+      <td class="score">100</td>
+      <td><strong>阿宏師火雞肉飯</strong><br><span class="note">光華路本店 / 後庄店</span></td>
+      <td>⭐ 4.2</td>
+      <td>嘉義市東區光華路108號</td>
+      <td>10:00–20:30</td>
+      <td><div class="tags"><span class="tag">半熟蛋必點</span><span class="tag">飯偏軟</span><span class="tag">醬汁超香</span><span class="tag">油蔥酥脆</span></div></td>
+    </tr>
+    <tr data-score="100">
+      <td class="score">100</td>
+      <td><strong>小莊火雞肉飯</strong><br><span class="note">原莊家，2023更名</span></td>
+      <td>⭐ 5.0</td>
+      <td>嘉義市東區光華路18號</td>
+      <td>10:30–14:00, 16:30–20:00</td>
+      <td><div class="tags"><span class="tag">網美店</span><span class="tag">平衡感完美</span><span class="tag">雞片飯份量大</span></div></td>
+    </tr>
+    <tr data-score="100">
+      <td class="score">100</td>
+      <td><strong>嘉義公園火雞肉飯</strong><br><span class="note">已搬家至忠孝路</span></td>
+      <td>⭐ 4.1</td>
+      <td>嘉義市東區忠孝路338號</td>
+      <td>06:30–13:30<br><small>週二公休</small></td>
+      <td><div class="tags"><span class="tag">米飯煮得好</span><span class="tag">油蔥酥多</span><span class="tag">油蔥酥自助餐</span></div></td>
+    </tr>
+    <tr data-score="100">
+      <td class="score">100</td>
+      <td><strong>頭家火雞肉飯</strong></td>
+      <td>⭐ 4.2</td>
+      <td>嘉義市東區中正路174號</td>
+      <td>06:30–14:00</td>
+      <td><div class="tags"><span class="tag">開門看心情</span><span class="tag">蒸蛋超強</span><span class="tag">雞片飯便宜</span></div></td>
+    </tr>
+    <tr data-score="100">
+      <td class="score">100</td>
+      <td><strong>原民國路火雞肉飯</strong></td>
+      <td>⭐ 4.4</td>
+      <td>嘉義市東區安和街27號</td>
+      <td>07:00–14:30<br><small>週二、三公休</small></td>
+      <td><div class="tags"><span class="tag">幾乎完美</span><span class="tag">飯稍軟</span><span class="tag">油蔥雞油黃金比例</span></div></td>
+    </tr>
+    <tr data-score="95">
+      <td class="score">95</td>
+      <td><strong>桃城三禾火雞肉飯</strong></td>
+      <td>⭐ 4.4</td>
+      <td>嘉義市東區民權路97號</td>
+      <td>10:00–20:00<br><small>週四休息</small></td>
+      <td><div class="tags"><span class="tag">不太需排隊</span><span class="tag">份量大</span><span class="tag">無雞片飯</span></div></td>
+    </tr>
+    <tr data-score="95">
+      <td class="score">95</td>
+      <td><strong>阿里山火雞肉飯</strong></td>
+      <td>⭐ 3.9</td>
+      <td>嘉義市西區北港路375-1號</td>
+      <td>10:00–20:00</td>
+      <td><div class="tags"><span class="tag">超冷門</span><span class="tag">低調好吃</span><span class="tag">好停車</span></div></td>
+    </tr>
+    <tr data-score="95">
+      <td class="score">95</td>
+      <td><strong>可口火雞肉飯</strong></td>
+      <td>⭐ 4.5</td>
+      <td>嘉義市東區公明路90號</td>
+      <td>07:30–19:30</td>
+      <td><div class="tags"><span class="tag">超冷門</span><span class="tag">米香淡雅</span><span class="tag">加油蔥酥更讚</span></div></td>
+    </tr>
+    <tr data-score="90">
+      <td class="score">90</td>
+      <td><strong>阿明火雞肉飯</strong></td>
+      <td>⭐ 3.9</td>
+      <td>嘉義市東區延平街151號</td>
+      <td>10:00–14:00, 17:00–20:30</td>
+      <td><div class="tags"><span class="tag">座位少</span><span class="tag">咖喱飯好吃</span><span class="tag">味噌湯好喝</span><span class="tag">火雞切盤強</span></div></td>
+    </tr>
+    <tr data-score="90">
+      <td class="score">90</td>
+      <td><strong>火雞達人</strong></td>
+      <td>⭐ 4.5</td>
+      <td>嘉義市東區台林街96號</td>
+      <td>15:30–20:30<br><small>六日 10:30–14:00</small></td>
+      <td><div class="tags"><span class="tag">座位多乾淨</span><span class="tag">品質穩定</span><span class="tag">味噌湯好喝</span></div></td>
+    </tr>
+    <tr data-score="85">
+      <td class="score">85</td>
+      <td><strong>家禾火雞肉飯</strong></td>
+      <td>⭐ 4.2</td>
+      <td>嘉義市西區民生北路247號</td>
+      <td>11:00–21:00</td>
+      <td><div class="tags"><span class="tag">靠火車站</span><span class="tag">油蔥香氣棒</span></div></td>
+    </tr>
+    <tr data-score="85">
+      <td class="score">85</td>
+      <td><strong>簡單火雞肉飯</strong></td>
+      <td>⭐ 4.2</td>
+      <td>嘉義市東區大雅路二段581號</td>
+      <td>07:30–20:30<br><small>週二公休</small></td>
+      <td><div class="tags"><span class="tag">離市區稍遠</span><span class="tag">雞片飯完售早</span><span class="tag">米飯好吃</span></div></td>
+    </tr>
+    <tr data-score="85">
+      <td class="score">85</td>
+      <td><strong>郭家美食店</strong></td>
+      <td>⭐ 3.8</td>
+      <td>嘉義市東區大雅路二段384號</td>
+      <td>10:00–18:30</td>
+      <td><div class="tags"><span class="tag">雞油為主</span><span class="tag">越吃越上癮</span><span class="tag">人少</span></div></td>
+    </tr>
+    <tr data-score="85">
+      <td class="score">85</td>
+      <td><strong>曾家火雞肉飯</strong></td>
+      <td>⭐ 3.9</td>
+      <td>嘉義縣中埔鄉中山路944號</td>
+      <td>06:00–13:00</td>
+      <td><div class="tags"><span class="tag">油蔥酥要主動要</span><span class="tag">火雞肉飯比雞片飯精彩</span></div></td>
+    </tr>
+    <tr data-score="80">
+      <td class="score">80</td>
+      <td><strong>博愛雞肉飯</strong></td>
+      <td>⭐ 3.4</td>
+      <td>嘉義市西區博愛路一段391號</td>
+      <td>05:00–14:20</td>
+      <td><div class="tags"><span class="tag">火車後站</span><span class="tag">雞片厚切</span><span class="tag">有分店</span></div></td>
+    </tr>
+    <tr data-score="80">
+      <td class="score">80</td>
+      <td><strong>阿溪雞肉飯</strong></td>
+      <td>⭐ 4.2</td>
+      <td>嘉義市西區仁愛路356號</td>
+      <td>05:30–13:30</td>
+      <td><div class="tags"><span class="tag">肉片嚼勁</span><span class="tag">早餐名店</span></div></td>
+    </tr>
+    <tr data-score="80">
+      <td class="score">80</td>
+      <td><strong>嘉義體育館姊妹火雞肉飯</strong></td>
+      <td>⭐ 4.1</td>
+      <td>嘉義市東區垂楊路1號</td>
+      <td>06:00–01:00</td>
+      <td><div class="tags"><span class="tag">在地人多</span><span class="tag">好停車</span><span class="tag">雞片飯便宜</span></div></td>
+    </tr>
+    <tr data-score="80">
+      <td class="score">80</td>
+      <td><strong>眼鏡火雞肉飯</strong></td>
+      <td>⭐ 4.2</td>
+      <td>嘉義市西區西榮街196號</td>
+      <td>07:00–13:30</td>
+      <td><div class="tags"><span class="tag">早餐場</span><span class="tag">醬汁淡雅</span><span class="tag">無雞片飯</span></div></td>
+    </tr>
+    <tr data-score="80">
+      <td class="score">80</td>
+      <td><strong>阿樓師火雞肉飯</strong></td>
+      <td>⭐ 4.2</td>
+      <td>嘉義市東區吳鳳北路102號</td>
+      <td>16:00–24:00</td>
+      <td><div class="tags"><span class="tag">宵夜場</span><span class="tag">滷肉飯意外好吃</span><span class="tag">品質不太穩定</span></div></td>
+    </tr>
+    <tr data-score="80">
+      <td class="score">80</td>
+      <td><strong>合家火雞肉飯</strong></td>
+      <td>⭐ 4.3</td>
+      <td>嘉義市東區民國路65號</td>
+      <td>11:00–14:30, 16:30–20:00<br><small>週三、四公休</small></td>
+      <td><div class="tags"><span class="tag">雞片飯很強</span><span class="tag">四部位豪邁</span><span class="tag">味噌湯必點</span></div></td>
+    </tr>
+    <tr data-score="75">
+      <td class="score">75</td>
+      <td><strong>嘉義車頭火雞肉飯</strong><br><span class="note">公明店</span></td>
+      <td>⭐ 3.9</td>
+      <td>嘉義市東區公明路265號</td>
+      <td>09:30–20:00</td>
+      <td><div class="tags"><span class="tag">不太需排隊</span><span class="tag">半熟蛋加分</span></div></td>
+    </tr>
+    <tr data-score="75">
+      <td class="score">75</td>
+      <td><strong>正統雞肉飯</strong></td>
+      <td>⭐ 4.5</td>
+      <td>嘉義市東區大雅路二段591號</td>
+      <td>8:00–14:00, 16:00–20:00<br><small>週一公休</small></td>
+      <td><div class="tags"><span class="tag">在地人推薦</span><span class="tag">味噌湯好喝</span><span class="tag">油蔥味明顯</span></div></td>
+    </tr>
+    <tr data-score="closed">
+      <td class="score">—</td>
+      <td><strong class="closed">博愛火雞哥</strong><br><span class="note closed">已歇業</span></td>
+      <td>⭐ 4.1</td>
+      <td>嘉義市東區吳鳳北路212號</td>
+      <td>—</td>
+      <td><div class="tags"><span class="tag">二代店</span><span class="tag">好停車</span><span class="tag">雞片飯分量大</span></div></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('#table tbody tr').forEach(row => {
+      if (filter === 'all') {
+        row.style.display = '';
+      } else if (filter === 'closed') {
+        row.style.display = row.dataset.score === 'closed' ? '' : 'none';
+      } else {
+        row.style.display = row.dataset.score === filter ? '' : 'none';
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
