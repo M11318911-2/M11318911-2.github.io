@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌲 東方瑞士——北疆經典 11 日 | 國立臺灣科技大學 EMBA 校友會</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #1a5f7a;
+            --secondary: #57c5b6;
+            --accent: #f39c12;
+            --dark: #0d1b2a;
+            --light: #f8f9fa;
+            --gradient-1: linear-gradient(135deg, #1a5f7a 0%, #57c5b6 100%);
+            --gradient-2: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
+        }
+        body {
+            font-family: -apple-system, 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            background: #f0f4f8;
+            color: #2c3e50;
+            line-height: 1.7;
+        }
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1a5f7a 0%, #0d3d4d 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.08"/><circle cx="50" cy="80" r="1" fill="white" opacity="0.12"/><circle cx="10" cy="70" r="0.8" fill="white" opacity="0.1"/><circle cx="90" cy="10" r="1.2" fill="white" opacity="0.06"/></svg>');
+            opacity: 0.5;
+        }
+        .hero-badge {
+            background: rgba(243, 156, 18, 0.2);
+            border: 1px solid rgba(243, 156, 18, 0.4);
+            color: #f39c12;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+        .hero h1 span {
+            color: #57c5b6;
+        }
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+        .hero-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+        .hero-meta-item svg {
+            width: 20px;
+            height: 20px;
+        }
+        .hero-org {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 20px 40px;
+            backdrop-filter: blur(10px);
+        }
+        .hero-org-title {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+        .hero-org-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            animation: bounce 2s infinite;
+            opacity: 0.6;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        /* Nav */
+        .nav {
+            background: white;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .nav-inner::-webkit-scrollbar { display: none; }
+        .nav a {
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: #1a5f7a;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        .nav a:hover, .nav a.active {
+            background: #1a5f7a;
+            color: white;
+        }
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        /* Section */
+        .section {
+            background: white;
+            border-radius: 24px;
+            padding: 50px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+        .section-label {
+            display: inline-block;
+            background: var(--gradient-1);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        .section h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a5f7a;
+            margin: 30px 0 15px;
+        }
+        .section p {
+            color: #5a6c7d;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        /* Route Map */
+        #route-map {
+            width: 100%;
+            height: 500px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        #route-map svg {
+            width: 100%;
+            height: 100%;
+        }
+        /* Feature Cards */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #d0e8ed;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(26, 95, 122, 0.12);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .feature-card h4 {
+            color: #1a5f7a;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #5a6c7d;
+            margin: 0;
+        }
+        /* Attractions */
+        .attractions {
+            margin-top: 30px;
+        }
+        .attraction {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            padding: 30px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .attraction:last-child {
+            border-bottom: none;
+        }
+        .attraction:nth-child(even) {
+            direction: rtl;
+        }
+        .attraction:nth-child(even) > * {
+            direction: ltr;
+        }
+        .attraction-img {
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, #1a5f7a 0%, #57c5b6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+        }
+        .attraction-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .attraction-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .attraction-content h4 {
+            color: #1a5f7a;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .attraction-content .location {
+            color: #f39c12;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .attraction-content p {
+            color: #5a6c7d;
+            margin: 0;
+            font-size: 1rem;
+        }
+        .attraction-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .attraction-highlights span {
+            background: #e8f4f8;
+            color: #1a5f7a;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin-top: 30px;
+            padding-left: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #1a5f7a, #57c5b6);
+            border-radius: 3px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 25px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 30px;
+            width: 16px;
+            height: 16px;
+            background: #1a5f7a;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #1a5f7a;
+        }
+        .timeline-day {
+            display: inline-block;
+            background: #1a5f7a;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .timeline-item h4 {
+            color: #0d1b2a;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+        .timeline-item p {
+            color: #5a6c7d;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .timeline-meals {
+            display: flex;
+            gap: 15px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .meal {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+        }
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .stat {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
+            border-radius: 16px;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1a5f7a;
+        }
+        .stat-label {
+            color: #5a6c7d;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        /* Price */
+        .price-box {
+            background: linear-gradient(135deg, #1a5f7a 0%, #0d3d4d 100%);
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .price-box h3 {
+            color: #57c5b6;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .price-承诺 {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .price-承诺-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+        .price-承诺-item span {
+            background: rgba(243, 156, 18, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .section { padding: 30px 20px; }
+            .attraction {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .attraction:nth-child(even) { direction: ltr; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .nav a { padding: 8px 14px; font-size: 13px; }
+        }
+        /* Footer */
+        .footer {
+            background: #0d1b2a;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #57c5b6;
+            text-decoration: none;
+        }
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            aspect-ratio: 1;
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a5f7a 0%, #57c5b6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            position: relative;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-item span {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.6);
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+        @media (max-width: 600px) {
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-badge">🏔️ 2026 限定行程</div>
+    <h1>東方瑞士<br><span>北疆經典 11 日</span></h1>
+    <p class="hero-subtitle">穿越天山最美公路、邂逅喀納斯湖光山色、沉醉那拉提空中草原</p>
+    <div class="hero-meta">
+        <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            11天10夜
+        </div>
+        <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            新疆．北疆
+        </div>
+        <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            EMBA 校友會專屬
+        </div>
+    </div>
+    <div class="hero-org">
+        <div class="hero-org-title">主辦單位</div>
+        <div class="hero-org-name">🌏 洋明旅行 MATCH TRAVEL × 國立臺灣科技大學 EMBA 校友會</div>
+    </div>
+    <div class="hero-scroll">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+</section>
+
+<!-- Nav -->
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="#highlights">行程特色</a>
+        <a href="#route-map-section">路線地圖</a>
+        <a href="#attractions">核心景點</a>
+        <a href="#schedule">完整行程</a>
+        <a href="#info">報名資訊</a>
+    </div>
+</nav>
+
+<!-- Highlights -->
+<section class="section" id="highlights">
+    <span class="section-label">✨ 行程特色</span>
+    <h2>為什麼選擇這條路線？</h2>
+    <p>北疆集結了新疆最精華的自然景觀，這是一場穿越天山、縱貫盆地、邂逅草原與湖泊的深度之旅。全程無購物、無自費，給您最純淨的旅遊體驗。</p>
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-number">8</div>
+            <div class="stat-label">國家 5A 級景區</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">1</div>
+            <div class="stat-label">最美公路穿越</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">561</div>
+            <div class="stat-label">獨庫公路公里數</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-label">購物・自費</div>
+        </div>
+    </div>
+    <div class="features">
+        <div class="feature-card">
+            <div class="feature-icon">🏔️</div>
+            <h4>喀納斯國家地質公園</h4>
+            <p>特別安排二進喀納斯，深入臥龍灣、月亮灣、神仙灣，欣賞如畫般的湖光山色</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🏡</div>
+            <h4>禾木村．神的自留地</h4>
+            <p>保留圖瓦族古樸民居，白樺林與茅草屋交織，被譽為「中國最美鄉村」</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🛣️</div>
+            <h4>獨庫公路北段</h4>
+            <p>特別安排 7 座商務車（4-5 人一部），穿越被公認為全中國最美的公路</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌿</div>
+            <h4>那拉提空中草原</h4>
+            <p>體驗騎馬登上位於山與牧場的觀景台，俯瞰「塞外江南」的壯闊美景</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🦢</div>
+            <h4>賽里木湖</h4>
+            <p>碧水與雪山倒影交織的高山湖泊，湖畔野花遍地，天鵝悠游其間</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎪</div>
+            <h4>喀贊其民族風情</h4>
+            <p>乘坐維吾爾族傳統馬車（哈迪克）穿梭巷弄，感受濃厚的伊犁民俗風情</p>
+        </div>
+    </div>
+</section>
+
+<!-- Route Map -->
+<section class="section" id="route-map-section">
+    <span class="section-label">🗺️ 路線地圖</span>
+    <h2>行程路線圖</h2>
+    <p>從烏魯木齊出發，穿越準噶爾盆地、S21 沙漠公路，一路向北抵達喀納斯，再沿著伊犁河谷南下，最終穿越獨庫公路返回。全程約 2,500 公里。</p>
+    <div id="route-map"></div>
+</section>
+
+<!-- Attractions Detail -->
+<section class="section" id="attractions">
+    <span class="section-label">🏆 核心景點</span>
+    <h2>五大國家 5A 級景區詳細介紹</h2>
+    <div class="attractions">
+        <div class="attraction">
+            <div class="attraction-img">
+                🏔️
+                <div class="attraction-badge">5A 景區</div>
+            </div>
+            <div class="attraction-content">
+                <h4>喀納斯湖｜Kanas Lake</h4>
+                <div class="location">📍 阿勒泰地區．布爾津縣 | 海拔 1,374 公尺</div>
+                <p>喀納斯是中國唯一的南西伯利亞動植物分佈區，四周雪峰聳峙，綠坡墨林，艷花彩蝶，湖光山色層出不窮。湖水會隨著季節與光線變換色彩，被譽為「神的後花園」。</p>
+                <p>特別安排<strong>二進喀納斯</strong>，一次走完神仙灣、月亮灣、臥龍灣三個精華景點，並登上觀魚亭俯瞰湖景，天氣晴朗時可遠眺友誼峰冰川。</p>
+                <div class="attraction-highlights">
+                    <span>🏔️ 高山湖泊</span>
+                    <span>🌲 原始森林</span>
+                    <span>🐟 湖怪傳說</span>
+                    <span>🗻 冰川雪山</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="attraction">
+            <div class="attraction-img">
+                🌲
+                <div class="attraction-badge">中國最美鄉村</div>
+            </div>
+            <div class="attraction-content">
+                <h4>禾木村｜Hemu Village</h4>
+                <div class="location">📍 阿勒泰地區．布爾津縣 | 圖瓦族村落</div>
+                <p>禾木村是全世界僅存的 3 個圖瓦人村落中最遠及最大的一個，被農業部評為「中國十個最有魅力的休閒鄉村」。這裡群山環抱、綠草如茵，圖瓦人的尖頂小木屋、牲口圍欄點綴其間。</p>
+                <p>金秋時節，漫山紅杉與金黃白樺林交織，倒映在河水中，炊煙裊裊，宛如置身油畫世界。被譽為「神的自留地」與「攝影家的天堂」。</p>
+                <div class="attraction-highlights">
+                    <span>🏡 圖瓦古村落</span>
+                    <span>🍂 秋色絕美</span>
+                    <span>📸 攝影天堂</span>
+                    <span>🐴 草原牧場</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="attraction">
+            <div class="attraction-img">
+                🌈
+                <div class="attraction-badge">5A 景區</div>
+            </div>
+            <div class="attraction-content">
+                <h4>五彩灘｜Colorful Beach</h4>
+                <div class="location">📍 阿勒泰地區．布爾津縣 | 額爾齊斯河畔</div>
+                <p>五彩灘是典型的雅丹地貌，由流水侵蝕切割與風蝕作用共同形成。這裡的岩石因含有不同礦物質，在陽光照射下幻化出紅、綠、紫、黃等多種色彩，宛如一個五彩斑斕的童話世界。</p>
+                <p>傍晚時分是五彩灘最美的時段，夕陽的餘暉灑在岩石上，色彩更加絢爛奪目。對岸是蔥鬱的河谷風光，一河隔兩岸，勝似兩重天。</p>
+                <div class="attraction-highlights">
+                    <span>🎨 雅丹地貌</span>
+                    <span>🌅 日落絕景</span>
+                    <span>🌿 河谷風光</span>
+                    <span>📸 攝影勝地</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="attraction">
+            <div class="attraction-img">
+                🏜️
+                <div class="attraction-badge">5A 景區</div>
+            </div>
+            <div class="attraction-content">
+                <h4>烏爾禾魔鬼城｜Ghost City</h4>
+                <div class="location">📍 克拉瑪依市．烏爾禾區 | 準噶爾盆地</div>
+                <p>烏爾禾魔鬼城是中國最美三大雅丹地貌之一，位於準噶爾盆地西北邊緣。這裡的風蝕地貌形狀怪異，當地蒙古族人稱之為「蘇魯木哈克」，意為「魔鬼出入的地方」。</p>
+                <p>《臥虎藏龍》等多部電影都曾在此取景。夕陽西下時，整座魔鬼城呈現出蒼涼悠遠和雄渾空曠的獨特魅力，令人嘆為觀止。</p>
+                <div class="attraction-highlights">
+                    <span>🎬 電影取景地</span>
+                    <span>🌬️ 風蝕奇岩</span>
+                    <span>🌅 夕陽景觀</span>
+                    <span>🦴 化石遺址</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="attraction">
+            <div class="attraction-img">
+                💧
+                <div class="attraction-badge">5A 景區</div>
+            </div>
+            <div class="attraction-content">
+                <h4>賽里木湖｜Sayram Lake</h4>
+                <div class="location">📍 博爾塔拉蒙古自治州 | 海拔 2,073 公尺</div>
+                <p>賽里木湖古稱「淨海」，位於絲綢之路北道，是新疆海拔最高、面積最大的高山湖泊。湖水清澈見底，呈現夢幻的碧藍色，被譽為「大西洋最後一滴眼淚」。</p>
+                <p>6 月是黃金季節，湖邊野花競相開放，最美的是金蓮花連成一片花海。天鵝、大雁和野鴨在粼粼碧波上悠游，構成一幅詩意盎然的畫卷。</p>
+                <div class="attraction-highlights">
+                    <span>🦢 天鵝棲息地</span>
+                    <span>🌸 六月花海</span>
+                    <span>💎 高山湖泊</span>
+                    <span>🌅 日出日落</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- More Attractions -->
+<section class="section" id="more-attractions">
+    <span class="section-label">🌟 精彩亮點</span>
+    <h2>其他必訪景點</h2>
+    <div class="attractions">
+        <div class="attraction">
+            <div class="attraction-img">🛤️</div>
+            <div class="attraction-content">
+                <h4>S21 沙漠公路</h4>
+                <div class="location">📍 烏魯木齊 ⇄ 阿勒泰 | 全長 342 公里</div>
+                <p>新疆最新開通的高速公路，全線貫穿準噶爾盆地和古爾班通古特沙漠，沿途以綠洲、濕地、海上雅丹等景觀為主，被譽為「最美沙漠公路」。</p>
+            </div>
+        </div>
+        <div class="attraction">
+            <div class="attraction-img">🐎</div>
+            <div class="attraction-content">
+                <h4>那拉提空中草原</h4>
+                <div class="location">📍 伊犁哈薩克自治州．新源縣 | 5A 景區</div>
+                <p>那拉提草原被天山環抱，年降水量達 800mm，被譽為「塞外江南」與「人間天堂」。特別安排體驗騎馬，登上觀景台俯瞰山與牧場，感受哈薩克族牧民生活。</p>
+            </div>
+        </div>
+        <div class="attraction">
+            <div class="attraction-img">🛶</div>
+            <div class="attraction-content">
+                <h4>喀贊其民俗風景區</h4>
+                <div class="location">📍 伊犁哈薩克自治州．伊寧市</div>
+                <p>乘坐維吾爾族傳統馬車「哈迪克」穿梭巷弄，體驗濃厚的伊犁民俗風情。這裡保留了大量原生態民居、民風與民情，是伊寧的城市名片。</p>
+            </div>
+        </div>
+        <div class="attraction">
+            <div class="attraction-img">🛣️</div>
+            <div class="attraction-content">
+                <h4>獨庫公路北段</h4>
+                <div class="location">📍 獨山子 ⇄ 庫車 | 全段 561 公里（北段精華約 250 公里）</div>
+                <p>被公認為全中國最美的公路，一條可以看遍四季風光的公路。穿越戈壁、雪山、草原、峽谷、森林與湖泊，十里不同天，一天有四季。特別安排 7 座商務車，4-5 人一部，穿行更舒適安全。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Schedule -->
+<section class="section" id="schedule">
+    <span class="section-label">📅 完整行程</span>
+    <h2>11 天 10 夜行程表</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <span class="timeline-day">DAY 1</span>
+            <h4>台北 ✈️ 烏魯木齊</h4>
+            <p>集合出發，飛往新疆首府烏魯木齊，抵達後入住飯店休息，調整時差。</p>
+            <div class="timeline-meals">
+                <div class="meal">🍽️ 晚餐：當地料理</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-day">DAY 2</span>
+            <h4>烏魯木齊 → S21 沙漠公路 → 布爾津</h4>
+            <p>穿越最新開通的 S21 沙漠公路，沿途欣賞準噶爾盆地風光。抵達布爾津，遊覽五彩灘（5A 景區），觀賞夕陽下的雅丹地貌。</p>
+            <div class="timeline-meals">
+                <div class="meal">🍽️ 早餐｜午餐｜晚餐</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-day">DAY 3</span>
+            <h4>布爾津 → 喀納斯國家地質公園（神仙灣、月亮灣、臥龍灣）</h4>
+            <p>前往喀納斯國家地質公園，遊覽神仙灣的晨霧、月亮灣的倒影、臥龍灣的奇景。搭乘區間車深入景區，遠眺冰川之父友誼峰。</p>
+            <div class="timeline-meals">
+                <div class="meal">🍽️ 早餐｜午餐｜晚餐</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-day">DAY 4</span>
+            <h4>喀納斯（二進喀納斯）→ 觀魚亭 → 賈登峪</h4>
+            <p>第二次進入喀納斯，登上觀魚亭俯瞰全景，展開圖瓦人家訪，體驗少數民族文化。午後前往賈登峪住宿。</p>
+            <div class="timeline-meals">
+                <div class="meal">🍽️ 早餐｜午餐｜晚餐</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-day">DAY 5</span>
+            <h4>賈登峪 → 禾木村（神的自留地）</h4>
+            <p>前往被譽為「中國最美鄉村」的禾木村，這裡保留完整的圖瓦族古樸風貌。漫步白樺林間，感受與世隔絕的寧靜，夜晚可觀星。</p>
+            <div class="timeline-meals">
+                <div class="meal">🍽️ 早餐｜午餐｜晚餐</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-day">DAY 6</span>
+            <h4>禾木村（晨曦）→ 布爾津 → 克拉瑪依</h4>
+            <p>清晨欣賞禾木日出，捕捉炊煙裊裊的美景。返回布爾津，途經烏爾禾魔鬼城（5A 景區），欣賞夕陽下的風蝕奇岩地貌。</p>
+            <div class="timeline-meals">
+                <div class="meal">🍽️ 早餐｜午餐｜晚餐</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-day">DAY 7</span>
+            <h4>克拉瑪依 → 賽里木湖（5A 景區）</h4>
+            <p>驅車前往「大西洋最後一滴眼淚」——賽里木湖。環湖遊覽，湖畔漫步，欣賞雪山倒影與野花遍地的美景。運氣好可見天鵝悠游。</p>
+            <div class="timeline-meals">
+                <div class="meal">🍽️ 早餐｜午餐｜晚餐</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-day">DAY 8</span>
+            <h4>賽里木湖 → 喀讚其 → 伊寧</h4>
+            <p>驅車前往伊寧，遊覽喀變其民俗風景區，乘坐傳統馬車「哈迪克」穿梭巷弄，體驗維吾爾族濃厚的民俗風情與文化。</p>
+            <div class="timeline-meals">
+                <div class="meal">🍽️ 早餐｜午餐｜晚餐</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-day">DAY 9</span>
+            <h4>伊寧 → 那拉提空中草原（5A 景區）</h4>
+            <p>前往那拉提草原，特別安排體驗騎馬，登上觀景台俯瞰「塞外江南」的壯闊美景。漫步空中草原，感受哈薩克族牧民生活。</p>
+            <div class="timeline-meals">
+                <div class="meal">🍽️ 早餐｜午餐｜晚餐</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-day">DAY 10</span>
+            <h4>那拉提 → 獨庫公路北段 → 獨山子</h4>
+            <p>特別安排 7 座商務車（4-5 人一部）穿越獨庫公路北段精華。這條被譽為全中國最美的公路，穿行於雪山、草原、峽谷之間，十里不同天。</p>
+            <div class="timeline-meals">
+                <div class="meal">🍽️ 早餐｜午餐｜晚餐</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-day">DAY 11</span>
+            <h4>獨山子 → 烏魯木齊 ✈️ 台北</h4>
+            <p>返回烏魯木齊，搭機返台。結束這趟難忘的北疆深度之旅。🌏</p>
+            <div class="timeline-meals">
+                <div class="meal">🍽️ 早餐｜午餐（機上）</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Info -->
+<section class="section" id="info">
+    <span class="section-label">📋 報名資訊</span>
+    <h2>行程費用說明</h2>
+    <div class="price-box">
+        <h3>團費包含</h3>
+        <p>全程機票、飯店、交通、餐食、景點門票、領隊導遊小費</p>
+        <div class="price-承诺">
+            <div class="price-承诺-item">
+                <span>🛒</span> 全程無購物
+            </div>
+            <div class="price-承诺-item">
+                <span>🎫</span> 無自費項目
+            </div>
+            <div class="price-承诺-item">
+                <span>🍽️</span> 無自理餐
+            </div>
+        </div>
+    </div>
+    <h3 style="margin-top: 40px;">🚌 交通安排</h3>
+    <p>獨庫公路段特別安排 <strong>7 座商務車（4-5 人一部）</strong>，其餘行程搭乘遊覽車。讓您在最美公路上行駛更舒適安全，深入探索每一個景點。</p>
+    <h3>📝 備註</h3>
+    <p>行程適用至 <strong>2026 年 8 月</strong>出發。圖示說明：★ 特別安排、▲ 入內參觀或含門票、◎ 下車參觀或行車經過。</p>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>🌏 主辦單位｜<strong>洋明旅行 MATCH TRAVEL</strong></p>
+    <p style="margin-top: 8px;">🎓 委託單位｜<strong>國立臺灣科技大學 EMBA 校友會</strong></p>
+    <p style="margin-top: 20px; opacity: 0.4;">© 2026 MATCH TRAVEL | <a href="http://www.match-tour.com">www.match-tour.com</a></p>
+</footer>
+
+<!-- D3.js Route Map -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+(function() {
+    const cities = [
+        { name: "烏魯木齊", x: 280, y: 420 },
+        { name: "布爾津", x: 450, y: 150 },
+        { name: "喀納斯", x: 500, y: 80 },
+        { name: "禾木", x: 430, y: 70 },
+        { name: "克拉瑪依", x: 230, y: 260 },
+        { name: "賽里木湖", x: 100, y: 300 },
+        { name: "伊寧", x: 80, y: 370 },
+        { name: "那拉提", x: 140, y: 420 },
+        { name: "獨山子", x: 210, y: 350 }
+    ];
+
+    const route = [
+        [0, 1], [1, 2], [1, 3], [1, 4],
+        [4, 5], [5, 6], [6, 7], [7, 8], [8, 0]
+    ];
+
+    const width = 600, height = 520;
+    const svg = d3.select('#route-map')
+        .append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('preserveAspectRatio', 'xMidYMid meet');
+
+    // Background
+    svg.append('rect')
+        .attr('width', width)
+        .attr('height', height)
+        .attr('fill', '#f0f4f8');
+
+    // Xinjiang outline approximation
+    const xjPoints = [
+        [50, 150], [100, 100], [200, 50], [350, 30], [480, 60],
+        [550, 120], [570, 200], [550, 280], [500, 350],
+        [450, 400], [380, 450], [280, 470], [180, 450],
+        [100, 380], [50, 280], [30, 200]
+    ];
+    const xjLine = d3.line()(xjPoints.map(p => [p[0] * 0.95 + 15, p[1] * 0.9 + 30]));
+    svg.append('path')
+        .attr('d', xjLine + 'Z')
+        .attr('fill', '#e8f4e8')
+        .attr('stroke', '#c8e0c8')
+        .attr('stroke-width', 1);
+
+    // Grid lines
+    for (let i = 0; i < 600; i += 50) {
+        svg.append('line')
+            .attr('x1', i).attr('y1', 0)
+            .attr('x2', i).attr('y2', height)
+            .attr('stroke', '#e0e8f0')
+            .attr('stroke-width', 0.5);
+    }
+    for (let i = 0; i < height; i += 50) {
+        svg.append('line')
+            .attr('x1', 0).attr('y1', i)
+            .attr('x2', width).attr('y2', i)
+            .attr('stroke', '#e0e8f0')
+            .attr('stroke-width', 0.5);
+    }
+
+    // Route lines
+    route.forEach(function(seg) {
+        const from = cities[seg[0]], to = cities[seg[1]];
+        svg.append('line')
+            .attr('x1', from.x).attr('y1', from.y)
+            .attr('x2', to.x).attr('y2', to.y)
+            .attr('stroke', '#e74c3c')
+            .attr('stroke-width', 2.5)
+            .attr('stroke-dasharray', '6,4')
+            .attr('opacity', 0.7);
+    });
+
+    // City dots and labels
+    cities.forEach(function(c, i) {
+        const colors = ['#1a5f7a', '#57c5b6', '#f39c12', '#27ae60', '#e74c3c', '#9b59b6', '#e67e22', '#3498db', '#2c3e50'];
+        const isHighlight = [0, 1, 2, 3, 5, 7].includes(i);
+        const r = isHighlight ? 10 : 7;
+        
+        svg.append('circle')
+            .attr('cx', c.x).attr('cy', c.y)
+            .attr('r', r)
+            .attr('fill', colors[i])
+            .attr('stroke', 'white')
+            .attr('stroke-width', 2)
+            .style('filter', 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))');
+        
+        svg.append('text')
+            .attr('x', c.x)
+            .attr('y', c.y - r - 8)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '12px')
+            .attr('font-weight', isHighlight ? '700' : '500')
+            .attr('fill', '#0d1b2a')
+            .text(c.name);
+    });
+
+    // Legend
+    const legend = svg.append('g').attr('transform', 'translate(15, 470)');
+    legend.append('line')
+        .attr('x1', 0).attr('y1', 5)
+        .attr('x2', 30).attr('y2', 5)
+        .attr('stroke', '#e74c3c')
+        .attr('stroke-width', 2.5)
+        .attr('stroke-dasharray', '6,4');
+    legend.append('text')
+        .attr('x', 38).attr('y', 9)
+        .attr('font-size', '11px')
+        .attr('fill', '#5a6c7d')
+        .text('行車路線');
+
+    legend.append('circle')
+        .attr('cx', 110).attr('cy', 5).attr('r', 7)
+        .attr('fill', '#57c5b6')
+        .attr('stroke', 'white').attr('stroke-width', 1.5);
+    legend.append('text')
+        .attr('x', 122).attr('y', 9)
+        .attr('font-size', '11px')
+        .attr('fill', '#5a6c7d')
+        .text('主要景點');
+
+    // Title
+    svg.append('text')
+        .attr('x', width / 2).attr('y', 25)
+        .attr('text-anchor', 'middle')
+        .attr('font-size', '14px')
+        .attr('font-weight', '600')
+        .attr('fill', '#1a5f7a')
+        .text('🗺️ 北疆行程路線圖');
+})();
+</script>
+</body>
+</html>
